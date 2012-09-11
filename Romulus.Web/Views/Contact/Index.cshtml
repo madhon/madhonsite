@@ -1,0 +1,51 @@
+﻿@model ContactViewModel
+
+@{
+    ViewBag.Title = "Contact";
+    HtmlHelper.ClientValidationEnabled = true;
+    HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
+}
+
+<h2>Contact</h2>
+@using (Html.BeginForm("Index", "Contact", FormMethod.Post, new { @name = "frmContact", @id = "frmContact"  })  )
+{   
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    <fieldset>
+    <legend>Your Information</legend>
+     <div class="editor-label">@Html.LabelFor(f => f.Name)</div>
+     <div class="editor-field">
+        @Html.TextBoxFor(f => f.Name)
+        @Html.ValidationMessageFor(f => f.Name)
+    </div>
+
+     <div class="editor-label">@Html.LabelFor(f => f.Email)</div>
+     <div class="editor-field">
+        @Html.TextBoxFor(f => f.Email)
+        @Html.ValidationMessageFor(f => f.Email)
+    </div>
+
+     <div class="editor-label">@Html.LabelFor(f => f.Message)</div>
+     <div class="editor-field">
+        @Html.TextAreaFor(f => f.Message, 5, 100, null)
+        @Html.ValidationMessageFor(f => f.Message)
+    </div>
+
+    </fieldset>
+    <div class="buttons">
+     <button class="action green" type="submit"><span class="label">Send Message</span></button>
+     <button class="action" type="reset"><span class="label">Cancel</span></button>
+    </div> 
+}
+
+@section scriptFiles {
+    <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.validate.unobtrusive.min.js"></script>
+}
+
+@section cssFiles {
+    <link rel="stylesheet" href="@Url.Content("~/content/css3-buttons.css")" type="text/css" media="screen">
+}
+
+
+
