@@ -5,11 +5,12 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
     <title>Bond Name</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     <meta name="google-site-verification" content="JueVkl3cqLkcn0bEYbgmHvXOscWjwld9eqT8WP2zlsw" />
     <meta name="verify-v1" content="3o9u8JJjDFX6bIFo33nVdmhVtkeZnfCmy5ulejun0oc=" />
-	<script type="text/javascript" src="/Scripts/modernizr-2.5.3.min.js"></script>
+	<meta name="viewport" content="width=device-width">
+	<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href="/includes/css/andreas.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/Scripts/modernizr-2.6.2.min.js"></script>
 </head>
 
 <body>
@@ -48,8 +49,15 @@
 
     </div>
 
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>    <script type="text/javascript" src="/Scripts/knockout.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/Scripts/knockout-2.1.0.js"></script>
 	<script type="text/javascript" src="/includes/js/bond.js"></script>
-    <script>        window._gaq = [['_setAccount','UA-19732462-1'],['_trackPageview'],['_trackPageLoadTime']];        Modernizr.load({            load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'        });    </script>	
+    <script>
+        window._gaq = [['_setAccount','UA-19732462-1'],['_trackPageview'],['_trackPageLoadTime']];
+        Modernizr.load({
+            load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+        });
+    </script>	
+
 </body>
 </html>

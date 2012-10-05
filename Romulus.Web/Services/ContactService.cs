@@ -21,7 +21,7 @@ namespace Romulus.Web.Services
 
             message.To.Add(new MailAddress("madhon@madhon.com", "Madhon"));
             SmtpClient client = new SmtpClient {Host = "ASPMX.L.GOOGLE.com", Port = 25};
-
+            
             try
             {
                 client.Send(message);
