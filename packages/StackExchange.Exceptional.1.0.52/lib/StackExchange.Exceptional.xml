@@ -444,6 +444,12 @@
             context during the exception.
             </summary>
         </member>
+        <member name="M:StackExchange.Exceptional.Error.SetContextProperties(System.Web.HttpContext)">
+            <summary>
+            Sets Error properties pulled from HttpContext, if present
+            </summary>
+            <param name="context">The HttpContext related to the request</param>
+        </member>
         <member name="M:StackExchange.Exceptional.Error.IsBuiltInException(System.Exception)">
             <summary>
             returns if the type of the exception is built into .Net core
@@ -485,6 +491,11 @@
             </summary>
             <param name="json">JSON representing an Error</param>
             <returns>The Error object</returns>
+        </member>
+        <member name="P:StackExchange.Exceptional.Error.FormLogFilters">
+            <summary>
+            Filters on form values *not * to log, because they contain sensitive data
+            </summary>
         </member>
         <member name="P:StackExchange.Exceptional.Error.Id">
             <summary>
@@ -1087,6 +1098,11 @@
             The Ignore section of the configuration, optional and no errors will be blocked from logging if not specified
             </summary>
         </member>
+        <member name="P:StackExchange.Exceptional.Settings.LogFilters">
+            <summary>
+            The Ignore section of the configuration, optional and no errors will be blocked from logging if not specified
+            </summary>
+        </member>
         <member name="T:StackExchange.Exceptional.Settings.SettingsCollection`1">
             <summary>
             A collection of list types all with a Name attribute
@@ -1146,6 +1162,16 @@
         <member name="P:StackExchange.Exceptional.Settings.IgnoreSettings.Types">
             <summary>
             Types collection for errors to ignore.  Any errors with a Type matching any name here will not be logged
+            </summary>
+        </member>
+        <member name="T:StackExchange.Exceptional.Settings.LogFilterSettings">
+            <summary>
+            Ignore element for deserilization from a configuration, e.g. web.config or app.config
+            </summary>
+        </member>
+        <member name="P:StackExchange.Exceptional.Settings.LogFilterSettings.FormFilters">
+            <summary>
+            Regular expressions collection for errors to ignore.  Any errors with a .ToString() matching any regex here will not be logged
             </summary>
         </member>
         <member name="T:StackExchange.Exceptional.ErrorStoreSettings">
@@ -1216,6 +1242,21 @@
         <member name="P:StackExchange.Exceptional.IgnoreType.Type">
             <summary>
             The fully qualified type of the exception to ignore
+            </summary>
+        </member>
+        <member name="T:StackExchange.Exceptional.LogFilter">
+            <summary>
+            A filter entry with the forn variable name and what to replace the value with when logging
+            </summary>
+        </member>
+        <member name="P:StackExchange.Exceptional.LogFilter.Name">
+            <summary>
+            The form parameter name to ignore
+            </summary>
+        </member>
+        <member name="P:StackExchange.Exceptional.LogFilter.ReplaceWith">
+            <summary>
+            The value to log instead of the real value
             </summary>
         </member>
         <member name="T:StackExchange.Exceptional.Stores.ErrorStoreType">
