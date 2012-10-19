@@ -4,3 +4,5 @@ MadhonMVC4.sln.DotSettings
 MadhonMVC4.v11.suo
 Romulus.Web/bin
 Romulus.Web/obj/
+Romulus.Web.Tests/bin/
+Romulus.Web.Tests/obj

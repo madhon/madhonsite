@@ -57,6 +57,9 @@
       <HintPath>..\packages\FluentValidation.MVC4.3.4.6.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
     <Reference Include="MiniProfiler">
       <HintPath>..\packages\MiniProfiler.2.0.2\lib\net40\MiniProfiler.dll</HintPath>
     </Reference>
@@ -121,12 +124,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleMobileConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BondGirlController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\GridlockController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ViewSwitcherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,6 +148,18 @@
   <ItemGroup>
     <Content Include="bond_girl.php" />
     <Content Include="Content\css3-buttons.css" />
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\icons-18-black.png" />
+    <Content Include="Content\images\icons-18-white.png" />
+    <Content Include="Content\images\icons-36-black.png" />
+    <Content Include="Content\images\icons-36-white.png" />
+    <Content Include="Content\jquery.mobile-1.2.0.css" />
+    <Content Include="Content\jquery.mobile-1.2.0.min.css" />
+    <Content Include="Content\jquery.mobile.structure-1.2.0.css" />
+    <Content Include="Content\jquery.mobile.structure-1.2.0.min.css" />
+    <Content Include="Content\jquery.mobile.theme-1.2.0.css" />
+    <Content Include="Content\jquery.mobile.theme-1.2.0.min.css" />
+    <Content Include="Content\Site.Mobile.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\AIfront.jpg" />
@@ -170,6 +187,8 @@
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\jquery.mobile-1.2.0.js" />
+    <Content Include="Scripts\jquery.mobile-1.2.0.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -197,6 +216,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\BondGirl\Index.cshtml" />
+    <Content Include="Views\Shared\_ViewSwitcher.cshtml" />
+    <Content Include="Views\Shared\_Layout.Mobile.cshtml" />
+    <Content Include="Views\BondGirl\Index.Mobile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

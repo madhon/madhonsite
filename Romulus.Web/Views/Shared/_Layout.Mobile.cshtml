@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html> 
+<html> 
+    <head> 
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title> 
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="//code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+		<script src="//code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="//code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+		<script>
+            $(document).ready(function () {
+                $.mobile.ajaxEnabled = false; 
+            });
+		</script>
+        @RenderSection("cssFiles", false)
+    </head> 
+<body> 
+
+    <div data-role="page" data-theme="b">
+        @*@Html.Partial("_ViewSwitcher")*@
+
+        <div data-role="header" data-position="fixed">
+            <h1>@ViewBag.Title</h1>
+			<div data-role="navbar" data-iconpos="left">
+				<ul>
+				<li>@Html.ActionLink("Home", "Index", "Home", null, new { data_icon="home"})</li>
+				<li>@Html.ActionLink("Bond Name Generator", "Index", "BondGirl", null, new { data_icon="search"})</li>
+				<li>@Html.ActionLink("Contact", "Index", "Contact", null, new { data_icon="info"})</li>
+				</ul>
+			</div>
+        </div>
+
+        <div data-role="content">
+            @RenderBody()		
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            Copyright &copy; 2012 Madhon
+        </div>
+
+    </div>
+
+    @RenderSection("scriptFiles", false)
+</body>
+</html>

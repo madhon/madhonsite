@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Bond Name";
+}
+ <h2>Bond Girl Name Generator</h2> 
+<form id="wrestlerform" action="#"> 
+    <p><input name="oldname" type="text" size="40" value="Enter Your Name Here" onclick="this.value=''" /></p>
+    <p><a href="#" onclick="printname();" data-role="button" data-mini="true" data-icon="refresh">Generate Your Name</a></p>
+    <p><input name="newname" type="text" size="40" readonly="readonly" /></p> 
+</form>
+@section scriptFiles {
+    <script type="text/javascript" src="/includes/js/bond.js"></script>
+}
