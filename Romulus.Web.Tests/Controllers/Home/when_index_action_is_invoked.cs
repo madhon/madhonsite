@@ -12,13 +12,19 @@ namespace Romulus.Web.Tests.Controllers.Home
     [Subject(typeof (HomeController))]
     public class when_index_action_is_invoked
     {
-        private static HomeController controller;
-        private static ViewResult viewResult;
+        static HomeController controller;
+        static ActionResult viewResult;
 
-        private Establish context = () => controller = new HomeController();
+        Establish context = () => controller = new HomeController();
 
-        private Because of = () => viewResult = (ViewResult) controller.Index();
+        Because of = () => viewResult = (ViewResult) controller.Index();
 
-        private It should_return_a_ViewResult_with_default_view_name = () => viewResult.ViewName.Should().BeEmpty();
+        It should_return_a_ViewResult_object = () => viewResult.ShouldBeOfType<ViewResult>();
+
+        It should_return_a_ViewResult_with_default_view_name = () =>
+            {
+                var vr = viewResult.As<ViewResult>();
+                vr.ViewName.Should().BeEmpty();
+            };
     }
 }
