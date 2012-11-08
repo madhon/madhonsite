@@ -2,7 +2,6 @@ L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Romulus.Web.Tests.dll
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Romulus.Web.Tests.pdb
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\FluentAssertions.dll
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Romulus.Web.dll
-L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\xunit.dll
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Autofac.dll
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\FluentValidation.dll
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\System.Web.Optimization.dll
@@ -15,7 +14,6 @@ L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Antlr3.Runtime.dll
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Romulus.Web.pdb
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\FluentAssertions.pdb
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\FluentAssertions.xml
-L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\xunit.xml
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Autofac.xml
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\FluentValidation.pdb
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\FluentValidation.xml
@@ -74,3 +72,5 @@ E:\p4_pixel1666_HADES\MadhonMVC4\Romulus.Web.Tests\bin\Debug\tr\FluentValidation
 E:\p4_pixel1666_HADES\MadhonMVC4\Romulus.Web.Tests\obj\Debug\Romulus.Web.Tests.csprojResolveAssemblyReference.cache
 E:\p4_pixel1666_HADES\MadhonMVC4\Romulus.Web.Tests\obj\Debug\Romulus.Web.Tests.dll
 E:\p4_pixel1666_HADES\MadhonMVC4\Romulus.Web.Tests\obj\Debug\Romulus.Web.Tests.pdb
+L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Machine.Specifications.Clr4.dll
+L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Machine.Specifications.dll
