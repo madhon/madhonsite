@@ -182,8 +182,14 @@
     <Content Include="includes\css\andreas2.css">
       <DependentUpon>andreas2.scss</DependentUpon>
     </Content>
+    <Content Include="includes\css\andreas2.min.css">
+      <DependentUpon>andreas2.css</DependentUpon>
+    </Content>
     <Content Include="includes\css\print.css">
       <DependentUpon>print.scss</DependentUpon>
+    </Content>
+    <Content Include="includes\css\print.min.css">
+      <DependentUpon>print.css</DependentUpon>
     </Content>
     <Content Include="includes\js\bond.js">
       <DependentUpon>bond.coffee</DependentUpon>
