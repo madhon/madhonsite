@@ -8,6 +8,7 @@ using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
 using FluentValidation.Mvc;
+using Microsoft.Web.Mvc;
 using Romulus.Web.Infrastructure;
 using StackExchange.Profiling;
 
@@ -68,12 +69,8 @@ namespace Romulus.Web
 
         private void ConfigureProfilingViewEngine()
         {
-            var copy = ViewEngines.Engines.ToList();
             ViewEngines.Engines.Clear();
-            foreach (var item in copy)
-            {
-                ViewEngines.Engines.Add(new ProfilingViewEngine(item));
-            }
+            ViewEngines.Engines.Add(new ProfilingViewEngine(new FixedRazorViewEngine()));
         }
 
         private void InitProfilerSettings()
