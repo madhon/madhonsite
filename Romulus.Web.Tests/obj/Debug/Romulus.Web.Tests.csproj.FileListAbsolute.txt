@@ -9,8 +9,6 @@ L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\StackExchange.Exceptional.dll
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\FluentValidation.Mvc.dll
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\MiniProfiler.dll
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Autofac.Integration.Mvc.dll
-L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\WebGrease.dll
-L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Antlr3.Runtime.dll
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Romulus.Web.pdb
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\FluentAssertions.pdb
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\FluentAssertions.xml
@@ -74,3 +72,4 @@ E:\p4_pixel1666_HADES\MadhonMVC4\Romulus.Web.Tests\obj\Debug\Romulus.Web.Tests.d
 E:\p4_pixel1666_HADES\MadhonMVC4\Romulus.Web.Tests\obj\Debug\Romulus.Web.Tests.pdb
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Machine.Specifications.Clr4.dll
 L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Machine.Specifications.dll
+L:\websites\MadhonMVC4\Romulus.Web.Tests\bin\Debug\Microsoft.Web.Mvc.FixedDisplayModes.dll
