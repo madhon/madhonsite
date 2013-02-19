@@ -66,8 +66,9 @@
       <HintPath>..\packages\FluentValidation.MVC4.3.4.6.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.1\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
     </Reference>
     <Reference Include="MiniProfiler">
       <HintPath>..\packages\MiniProfiler.2.0.2\lib\net40\MiniProfiler.dll</HintPath>
@@ -230,9 +231,9 @@
     <Content Include="Scripts\jquery.mobile-1.2.0.js" />
     <Content Include="Scripts\jquery.mobile-1.2.0.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
