@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -49,6 +48,11 @@ namespace Romulus.Web
             }
         }
 
+        protected void Application_EndRequest()
+        {
+            MiniProfiler.Stop();
+        }
+
         private void StartIoC()
         {
             var builder = new ContainerBuilder();
@@ -73,8 +77,8 @@ namespace Romulus.Web
             MiniProfiler.Settings.RouteBasePath = "~/profiler";
             MiniProfiler.Settings.StackMaxLength = 256;
 
-            MiniProfiler.Settings.Results_Authorize = (request) => true;
-            MiniProfiler.Settings.Results_List_Authorize = (request) => true;
+            MiniProfiler.Settings.Results_Authorize = request => true;
+            MiniProfiler.Settings.Results_List_Authorize = request => true;
         }
     }
 }
