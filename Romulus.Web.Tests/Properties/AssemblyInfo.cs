@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Home")]
 [assembly: AssemblyProduct("Romulus.Web.Tests")]
-[assembly: AssemblyCopyright("Copyright © Home 2012")]
+[assembly: AssemblyCopyright("Copyright © Home 2012-2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

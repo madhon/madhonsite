@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Romulus.Web", "Romulus.Web\Romulus.Web.csproj", "{DEADF933-32B1-4D72-B705-086AAD4D9D99}"
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Romulus.Web", "Romulus.Web\Romulus.Web.csproj", "{A73F5E0F-9310-49EB-917C-D5D524ED7F45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Romulus.Web.Tests", "Romulus.Web.Tests\Romulus.Web.Tests.csproj", "{3E434647-BA86-446D-AA47-85284A67EAD5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Romulus.Web.Tests", "Romulus.Web.Tests\Romulus.Web.Tests.csproj", "{7D6754BB-695E-42EB-9DE6-DDA822FC24EF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B42E3E0B-62D0-4D2B-BF70-501BB42D092C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5FBE1FF0-718E-4448-B67E-DE0C16905E49}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
@@ -18,14 +18,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DEADF933-32B1-4D72-B705-086AAD4D9D99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DEADF933-32B1-4D72-B705-086AAD4D9D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DEADF933-32B1-4D72-B705-086AAD4D9D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DEADF933-32B1-4D72-B705-086AAD4D9D99}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E434647-BA86-446D-AA47-85284A67EAD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E434647-BA86-446D-AA47-85284A67EAD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E434647-BA86-446D-AA47-85284A67EAD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E434647-BA86-446D-AA47-85284A67EAD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A73F5E0F-9310-49EB-917C-D5D524ED7F45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A73F5E0F-9310-49EB-917C-D5D524ED7F45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A73F5E0F-9310-49EB-917C-D5D524ED7F45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A73F5E0F-9310-49EB-917C-D5D524ED7F45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D6754BB-695E-42EB-9DE6-DDA822FC24EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D6754BB-695E-42EB-9DE6-DDA822FC24EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D6754BB-695E-42EB-9DE6-DDA822FC24EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D6754BB-695E-42EB-9DE6-DDA822FC24EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

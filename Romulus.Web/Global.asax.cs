@@ -1,4 +1,5 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -14,9 +15,6 @@ using StackExchange.Profiling;
 
 namespace Romulus.Web
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
     public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
@@ -49,11 +47,6 @@ namespace Romulus.Web
             {
                 // you can start profiling your code immediately
             }
-        }
-
-        protected void Application_EndRequest()
-        {
-            MiniProfiler.Stop();
         }
 
         private void StartIoC()
