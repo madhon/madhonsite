@@ -18,8 +18,6 @@ namespace Romulus.Web
     {
         protected void Application_Start()
         {
-            StartIoC();
-
             InitProfilerSettings();
             ConfigureProfilingViewEngine();
 
@@ -28,6 +26,7 @@ namespace Romulus.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             //BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ContainerConfig.RegisterContainer();
 
             FluentValidationModelValidatorProvider.Configure();
         }
@@ -51,17 +50,6 @@ namespace Romulus.Web
         protected void Application_EndRequest()
         {
             MiniProfiler.Stop();
-        }
-
-        private void StartIoC()
-        {
-            var builder = new ContainerBuilder();
-
-            builder.RegisterControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterModule<RomulusSiteModule>();
-
-            IContainer container = builder.Build();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 
         private void ConfigureProfilingViewEngine()
