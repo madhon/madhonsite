@@ -64,7 +64,6 @@ namespace Romulus.Web
             MiniProfiler.Settings.PopupMaxTracesToShow = 10;
             MiniProfiler.Settings.RouteBasePath = "~/profiler";
             MiniProfiler.Settings.StackMaxLength = 256;
-
             MiniProfiler.Settings.Results_Authorize = request => true;
             MiniProfiler.Settings.Results_List_Authorize = request => true;
         }
