@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Romulus.Web.Services;
 using Romulus.Web.ViewModels;
@@ -22,13 +23,13 @@ namespace Romulus.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(ContactViewModel model)
+        public async Task<ActionResult> Index(ContactViewModel model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    contactService.SendMessage(model);
+                    await SendMessageAsync(model);
                     return RedirectToAction("Complete");
                 }
                 catch (Exception ex)
@@ -46,5 +47,14 @@ namespace Romulus.Web.Controllers
             return View();
         }
 
+        private async Task SendMessageAsync(ContactViewModel model)
+        {
+            await contactService.SendMessageAsync(model);
+        }
+
+        private void SendMessage(ContactViewModel model)
+        {
+            contactService.SendMessage(model);
+        }
     }
 }

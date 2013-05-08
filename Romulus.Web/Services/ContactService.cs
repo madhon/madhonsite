@@ -2,19 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Threading.Tasks;
 using Romulus.Web.ViewModels;
 
 namespace Romulus.Web.Services
 {
     public class ContactService : IContactService
     {
+        public async Task SendMessageAsync(ContactViewModel model)
+        {
+            MailMessage message = new MailMessage
+            {
+                From = new MailAddress(address: model.Email, displayName: model.Name),
+                Subject = "Message from website",
+                Sender = new MailAddress(address: model.Email, displayName: model.Name),
+                IsBodyHtml = false,
+                Body = model.Message
+            };
+
+            message.To.Add(new MailAddress("madhon@madhon.com", "Madhon"));
+
+            await SendEmailAwaitable(message: message, server: "ASPMX.L.GOOGLE.com", port: 25);
+        }
+
         public void SendMessage(ContactViewModel model)
         {
             MailMessage message = new MailMessage
             {
-                From = new MailAddress(model.Email, model.Name),
+                From = new MailAddress(address: model.Email, displayName: model.Name),
                 Subject = "Message from website",
-                Sender = new MailAddress(model.Email, model.Name),
+                Sender = new MailAddress(address: model.Email, displayName: model.Name),
                 IsBodyHtml = false,
                 Body = model.Message
             };
@@ -37,6 +54,12 @@ namespace Romulus.Web.Services
             }
         }
 
-
+        private async Task<bool> SendEmailAwaitable(MailMessage message, string server, int port)
+        {
+            SmtpClient smtpClient = new SmtpClient(server, port);
+            smtpClient.Send(message);
+            await Task.Yield();
+            return true;
+        }
     }
 }
