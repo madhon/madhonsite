@@ -9,57 +9,46 @@ namespace Romulus.Web.Services
 {
     public class ContactService : IContactService
     {
-        public async Task SendMessageAsync(ContactViewModel model)
-        {
-            MailMessage message = new MailMessage
-            {
-                From = new MailAddress(address: model.Email, displayName: model.Name),
-                Subject = "Message from website",
-                Sender = new MailAddress(address: model.Email, displayName: model.Name),
-                IsBodyHtml = false,
-                Body = model.Message
-            };
-
-            message.To.Add(new MailAddress("madhon@madhon.com", "Madhon"));
-
-            await SendEmailAwaitable(message: message, server: "ASPMX.L.GOOGLE.com", port: 25);
-        }
-
         public void SendMessage(ContactViewModel model)
         {
-            MailMessage message = new MailMessage
+            using (var mailMessage = CreateMailMessage(model: model))
+            using (var smtp = CreateSmtpClient())
             {
-                From = new MailAddress(address: model.Email, displayName: model.Name),
-                Subject = "Message from website",
-                Sender = new MailAddress(address: model.Email, displayName: model.Name),
-                IsBodyHtml = false,
-                Body = model.Message
-            };
-
-            message.To.Add(new MailAddress("madhon@madhon.com", "Madhon"));
-            SmtpClient client = new SmtpClient { Host = "ASPMX.L.GOOGLE.com", Port = 25 };
-
-            try
-            {
-                client.Send(message);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-            finally
-            {
-                client.Dispose();
-                message.Dispose();
+                smtp.Send(mailMessage);
             }
         }
 
-        private async Task<bool> SendEmailAwaitable(MailMessage message, string server, int port)
+        public async Task SendMessageAsync(ContactViewModel model)
         {
-            SmtpClient smtpClient = new SmtpClient(server, port);
+            var message = CreateMailMessage(model: model);
+            await SendEmailAwaitable(message: message);
+        }
+
+        private async Task SendEmailAwaitable(MailMessage message)
+        {
+            SmtpClient smtpClient = CreateSmtpClient();
             smtpClient.Send(message);
             await Task.Yield();
-            return true;
+        }
+
+        private MailMessage CreateMailMessage(ContactViewModel model)
+        {
+            MailMessage message = new MailMessage
+                {
+                    From = new MailAddress(address: model.Email, displayName: model.Name),
+                    Subject = "Message from website",
+                    Sender = new MailAddress(address: model.Email, displayName: model.Name),
+                    IsBodyHtml = false,
+                    Body = model.Message
+                };
+
+            message.To.Add(new MailAddress("madhon@madhon.com", "Madhon"));
+            return message;
+        }
+
+        private SmtpClient CreateSmtpClient()
+        {
+            return new SmtpClient {Host = "ASPMX.L.GOOGLE.com", Port = 25};
         }
     }
 }
