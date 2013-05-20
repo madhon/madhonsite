@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Autofac;
-using Autofac.Integration.Mvc;
 using FluentValidation.Mvc;
-using Microsoft.Web.Mvc;
-using Romulus.Web.Infrastructure;
-using StackExchange.Profiling;
 
 namespace Romulus.Web
 {
@@ -18,9 +12,6 @@ namespace Romulus.Web
     {
         protected void Application_Start()
         {
-            InitProfilerSettings();
-            ConfigureProfilingViewEngine();
-
             AreaRegistration.RegisterAllAreas();
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -33,39 +24,11 @@ namespace Romulus.Web
 
         protected void Application_BeginRequest()
         {
-            MiniProfiler profiler = null;
-
-            var ip = Request.GetClientIpAddress();
-            if (Request.IsLocal | ip == "93.96.173.32" | ip == "62.49.29.223" | ip == "89.243.253.162")
-            {
-                profiler = MiniProfiler.Start();
-            }
-
-            using (profiler.Step("Application_BeginRequest"))
-            {
-                // you can start profiling your code immediately
-            }
+            MvcHandler.DisableMvcResponseHeader = true;
         }
 
         protected void Application_EndRequest()
         {
-            MiniProfiler.Stop();
-        }
-
-        private void ConfigureProfilingViewEngine()
-        {
-            ViewEngines.Engines.Clear();
-            ViewEngines.Engines.Add(new ProfilingViewEngine(new FixedRazorViewEngine()));
-        }
-
-        private void InitProfilerSettings()
-        {
-            MiniProfiler.Settings.PopupRenderPosition = RenderPosition.Right;
-            MiniProfiler.Settings.PopupMaxTracesToShow = 10;
-            MiniProfiler.Settings.RouteBasePath = "~/profiler";
-            MiniProfiler.Settings.StackMaxLength = 256;
-            MiniProfiler.Settings.Results_Authorize = request => true;
-            MiniProfiler.Settings.Results_List_Authorize = request => true;
         }
     }
 }

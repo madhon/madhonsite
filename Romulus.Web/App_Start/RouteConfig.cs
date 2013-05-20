@@ -11,21 +11,26 @@ namespace Romulus.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
+            routes.IgnoreRoute("{*favicon}", new {favicon = @"(.*/)?favicon.ico(/.*)?"});
 
             routes.Ignore("bond_girl.php");
 
-            routes.MapRoute(
-                            "Default",
-                            "{controller}.aspx/{action}/{id}",
-                            new { action = "Index", id = "" }
-                          );
+
+            //RouteAttribute.MapDecoratedRoutes(routes);
 
             routes.MapRoute(
-                          "Root",
-                          "",
-                          new { controller = "Home", action = "Index", id = "" }
-                        );
+                "Default",
+                "{controller}.aspx/{action}/{id}",
+                new {action = "Index", id = ""}
+                );
+
+            routes.MapRoute(
+                "Root",
+                "",
+                new {controller = "Home", action = "Index", id = ""}
+                );
+
+            routes.MapRoute("", "{*url}", new {controller = "Error", action = "PageNotFound"});
         }
     }
 }

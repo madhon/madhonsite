@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Mvc;
-using Romulus.Web.Infrastructure;
 
 namespace Romulus.Web
 {
@@ -9,7 +8,6 @@ namespace Romulus.Web
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-            filters.Add(new ProfilingActionFilter());
         }
     }
 }

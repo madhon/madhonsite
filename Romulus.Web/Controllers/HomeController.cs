@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using Romulus.Web.Infrastructure;
 using StackExchange.Exceptional;
 
 namespace Romulus.Web.Controllers

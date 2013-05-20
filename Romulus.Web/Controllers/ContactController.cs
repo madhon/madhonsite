@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Romulus.Web.Infrastructure;
 using Romulus.Web.Services;
 using Romulus.Web.ViewModels;
 using StackExchange.Exceptional;
