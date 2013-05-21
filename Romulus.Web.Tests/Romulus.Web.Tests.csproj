@@ -78,8 +78,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BondGirl\when_index_action_is_invoked.cs" />
+    <Compile Include="Controllers\Contact\when_index_action_is_invoked.cs" />
+    <Compile Include="Controllers\Contact\when_index_action_with_model_is_invoked.cs" />
+    <Compile Include="Controllers\GridLock\when_index_action_is_invoked.cs" />
     <Compile Include="Controllers\Home\when_index_action_is_invoked.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ContactService\when_send_is_invoked.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
