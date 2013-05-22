@@ -18,7 +18,7 @@ namespace Romulus.Web.App_Start
     {
         public static void PreStart()
         {
-            MiniProfiler.Settings.PopupRenderPosition = RenderPosition.Right;
+            MiniProfiler.Settings.PopupRenderPosition = RenderPosition.Left;
             MiniProfiler.Settings.PopupMaxTracesToShow = 10;
             MiniProfiler.Settings.RouteBasePath = "~/profiler";
             MiniProfiler.Settings.StackMaxLength = 256;

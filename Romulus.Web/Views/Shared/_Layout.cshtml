@@ -11,41 +11,107 @@
     <meta name="google-site-verification" content="JueVkl3cqLkcn0bEYbgmHvXOscWjwld9eqT8WP2zlsw" />
     <meta name="verify-v1" content="3o9u8JJjDFX6bIFo33nVdmhVtkeZnfCmy5ulejun0oc=" />
 	<meta name="viewport" content="width=device-width">
-	<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link href="@Url.Content("~/includes/css/andreas.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/content/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/content/ddlevelsmenu-base.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/content/ddlevelsmenu-topbar.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/content/slider.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/content/prettyPhoto.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/content/metro.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/content/bootstrap-responsive.min.css")" rel="stylesheet" type="text/css" />
 	@RenderSection("cssFiles", false)
 	<script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-2.6.2.min.js")"></script>	
 </head>
 
-<body>
-
-  <div id="wrap">
-
-     <header id="header"> 
-        <h1>Madhon's Site</h1> 
-     </header>
-
-     <img id="frontphoto" src="@Url.Content("~/img/front.jpg")" width="760" height="175" alt="FrontPhoto" />
-
-         <div id="leftside"> 
-        <h2 class="hide">Menu:</h2> 
-            <ul class="avmenu">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Bond Name Generator", "Index", "BondGirl")</li>
-                <li>@Html.ActionLink("Gridlock", "Index", "Gridlock")</li>
-                <li>@Html.ActionLink("Contact", "Index", "Contact")</li>
-        </ul> 
-    </div> 
-
-    <div id="contentwide"> 
-    @RenderBody()
+  <div class="slidepanel">
+    <div class="container">
+      <div class="row">
+        <div class="span8">
+          <div class="spara"> 
+            <!-- Contact details --><p></p>
+          </div>
+        </div>
+        <div class="span4">
+            <div class="social">
+              <!-- Social media icons. Repalce # with your profile links -->
+                      <a href="https://twitter.com/madh0n" class="blightblue"><i class="icon-twitter"></i></a>
+            </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
     </div>
+  </div>
 
-    <footer id="footer"> 
-        Copyright &copy; 2012-2013 Madhon | Design by <a href="http://andreasviklund.com">Andreas Viklund</a> 
-    </footer> 
+  <header>
+    <div class="container">
+      <div class="row">
+
+        <div class="span3">
+
+          <!-- Logo starts -->
+
+          <div class="logo">
+            <div class="logo-image">
+			
+            </div>
+            <div class="logo-text">
+              <h1>Mad<span class="lightblue">Hon</span></h1>
+			  
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+        </div>
+
+        <div class="span9">
+          <div class="navi pull-right">
+            <div id="ddtopmenubar" class="mattblackmenu">
+              <ul>
+                <li><a href="@Url.Action("Index", "Home")" class="blightblue"> <i class="icon-home"></i> Home</a></li>
+                <li><a href="@Url.Action("Index", "BondGirl")" class="bred"> <i class="icon-film"></i> Bond Name</a></li>
+				<li><a href="@Url.Action("Index", "Gridlock")" class="bgreen"> <i class="icon-eye-open"></i> Gridlock</a></li>
+                <li><a href="@Url.Action("Index", "Contact")" class="bblue"> <i class="icon-envelope-alt"></i> Contact</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="navis"></div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="clearfix"></div>
+
+  <!-- Content starts -->
+  <div class="content">
+    <div class="container ">
+	<div class="row">
+	<div class="span2"></div>
+	<div class="span8">
+	@RenderBody()
+	</div> <!--/span8-->
+	<div class="span2"></div>
+	</div><!--/row-->
+	
+    </div> <!--/container-->
+  </div> <!--/content-->
+  <!-- Content ends -->
+
+<footer>
+  <div class="container">
+    <div class="row">
+
+      <div class="span12">
+          <div class="copy text-center">
+                <p>Copyright &copy; 2012-2013 Madhon</p>
+          </div>
+      </div>
 
     </div>
+  <div class="clearfix"></div>
+  </div>
+</footer> 
 	
     <!--[if lt IE 9]>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -53,6 +119,13 @@
     <!--[if gte IE 9]><!-->
     <script type="text/javascript" src="//code.jquery.com/jquery-2.0.0.min.js"></script>
     <!--<![endif]-->
+   
+    <script type="text/javascript" src="@Url.Content("~/scripts/bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/scripts/jquery.prettyPhoto.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/scripts/jquery.isotope.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/scripts/ddlevelsmenu.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/jquery.cslider.js")"></script>
+
 
     @RenderSection("scriptFiles", false)
     <script>

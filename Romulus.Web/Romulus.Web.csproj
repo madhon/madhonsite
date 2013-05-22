@@ -169,8 +169,21 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="bond_girl.php" />
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css3-buttons.css" />
+    <Content Include="Content\ddlevelsmenu-base.css" />
+    <Content Include="Content\ddlevelsmenu-topbar.css" />
+    <Content Include="Content\font-awesome-ie7.css" />
+    <Content Include="Content\font-awesome-ie7.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\font\fontawesome-webfont.svg" />
     <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\icons-18-black.png" />
     <Content Include="Content\images\icons-18-white.png" />
     <Content Include="Content\images\icons-36-black.png" />
@@ -187,8 +200,10 @@
     <Content Include="Content\jquery.mobile.theme-1.2.0.min.css" />
     <Content Include="Content\jquery.mobile.theme-1.3.0.css" />
     <Content Include="Content\jquery.mobile.theme-1.3.0.min.css" />
+    <Content Include="Content\prettyPhoto.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Site.Mobile.css" />
+    <Content Include="Content\slider.css" />
     <Content Include="Global.asax" />
     <Content Include="includes\css\andreas2.scss" />
     <Content Include="includes\css\print.css">
@@ -214,6 +229,10 @@
       <Iced>True</Iced>
     </Content>
     <Content Include="51Degrees.mobi.config" />
+    <Content Include="Content\font\fontawesome-webfont.woff" />
+    <Content Include="Content\font\fontawesome-webfont.ttf" />
+    <Content Include="Content\font\fontawesome-webfont.eot" />
+    <Content Include="Content\font\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="img\AIfront.jpg" />
     <Content Include="img\bg.gif" />
@@ -237,13 +256,20 @@
     </Content>
     <Content Include="MvcDiagnostics.aspx" />
     <Content Include="OLDbond_girl.php" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\ddlevelsmenu.js" />
+    <Content Include="Scripts\filter.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Scripts\jquery-migrate-1.1.1.js" />
     <Content Include="Scripts\jquery-migrate-1.1.1.min.js" />
+    <Content Include="Scripts\jquery.cslider.js" />
+    <Content Include="Scripts\jquery.isotope.js" />
     <Content Include="Scripts\jquery.mobile-1.3.0.js" />
     <Content Include="Scripts\jquery.mobile-1.3.0.min.js" />
+    <Content Include="Scripts\jquery.prettyPhoto.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

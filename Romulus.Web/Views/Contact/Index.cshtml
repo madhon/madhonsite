@@ -7,45 +7,71 @@
 }
 
 <h2>Contact</h2>
-@using (Html.BeginForm("Index", "Contact", FormMethod.Post, new { @name = "frmContact", @id = "frmContact"  })  )
+@using (Html.BeginForm("Index", "Contact", FormMethod.Post, new { @name = "frmContact", @id = "frmContact", @class = "form-horizontal"  })  )
 {   
     @Html.ValidationSummary(true)
     @Html.AntiForgeryToken()
+
     <fieldset>
-    <legend>Your Information</legend>
-     <div class="editor-label">@Html.LabelFor(f => f.Name)</div>
-     <div class="editor-field">
-        @Html.TextBoxFor(f => f.Name)
-        @Html.ValidationMessageFor(f => f.Name)
-    </div>
+        <legend>Your Information</legend>
+        <div class="control-group">
+            @Html.LabelFor(f => f.Name, new { @class = "control-label"})
+            <div class="controls">
+                @Html.TextBoxFor(f => f.Name)
+                @Html.ValidationMessageFor(f => f.Name, null, new { @class = "help-inline" })
+            </div>
+        </div>
+        
+        <div class="control-group">
+            @Html.LabelFor(f => f.Email, new { @class = "control-label"})
+            <div class="controls">
+                @Html.TextBoxFor(f => f.Email)
+                @Html.ValidationMessageFor(f => f.Email, null, new { @class = "help-inline" })
+            </div>
+        </div>
 
-     <div class="editor-label">@Html.LabelFor(f => f.Email)</div>
-     <div class="editor-field">
-        @Html.TextBoxFor(f => f.Email)
-        @Html.ValidationMessageFor(f => f.Email)
-    </div>
-
-     <div class="editor-label">@Html.LabelFor(f => f.Message)</div>
-     <div class="editor-field">
-        @Html.TextAreaFor(f => f.Message, 5, 100, null)
-        @Html.ValidationMessageFor(f => f.Message)
-    </div>
-
+        <div class="control-group">
+            @Html.LabelFor(f => f.Message, new { @class = "control-label"})
+            <div class="controls">
+                @Html.TextAreaFor(f => f.Message, 5, 100, null)
+                @Html.ValidationMessageFor(f => f.Message, null, new { @class = "help-inline" })
+            </div>
+        </div>      
     </fieldset>
-    <div class="buttons">
-     <button class="action green" type="submit"><span class="label">Send Message</span></button>
-     <button class="action" type="reset"><span class="label">Cancel</span></button>
-    </div> 
+    
+    <div class="form-actions">
+     <button class="btn btn-primary" type="submit">Send Message</button>
+     <button class="btn" type="reset">Cancel</button>
+    </div>
 }
 
 @section scriptFiles {
     <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+        jQuery.validator.setDefaults({
+            highlight: function (element, errorClass, validClass) {
+                if (element.type === 'radio') {
+                    this.findByName(element.name).addClass(errorClass).removeClass(validClass);
+                } else {
+                    $(element).addClass(errorClass).removeClass(validClass);
+                    $(element).closest('.control-group').removeClass('success').addClass('error');
+                }
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                if (element.type === 'radio') {
+                    this.findByName(element.name).removeClass(errorClass).addClass(validClass);
+                } else {
+                    $(element).removeClass(errorClass).addClass(validClass);
+                    $(element).closest('.control-group').removeClass('error').addClass('success');
+                }
+            }
+        });
+    </script>
+    
+
 }
 
-@section cssFiles {
-    <link rel="stylesheet" href="@Url.Content("~/content/css3-buttons.css")" type="text/css" media="screen">
-}
 
 
 
