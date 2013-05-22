@@ -14,23 +14,38 @@ namespace Romulus.Web
             routes.IgnoreRoute("{*favicon}", new {favicon = @"(.*/)?favicon.ico(/.*)?"});
 
             routes.Ignore("bond_girl.php");
-
+            routes.Ignore("exceptions.axd");
 
             //RouteAttribute.MapDecoratedRoutes(routes);
 
             routes.MapRoute(
-                "Default",
-                "{controller}.aspx/{action}/{id}",
-                new {action = "Index", id = ""}
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new {controller = "Home", action = "Index", id = UrlParameter.Optional}
                 );
 
             routes.MapRoute(
-                "Root",
-                "",
-                new {controller = "Home", action = "Index", id = ""}
+                name: "Errors",
+                url: "{controller}/{action}/{resource}/{subResource}",
+                defaults: new
+                    {
+                        controller = "Home",
+                        action = "Errors",
+                        resource = UrlParameter.Optional,
+                        subResource = UrlParameter.Optional
+                    }
                 );
 
-            routes.MapRoute("", "{*url}", new {controller = "Error", action = "PageNotFound"});
+            routes.MapRoute(
+                name: "Root",
+                url: "",
+                defaults: new {controller = "Home", action = "Index", id = ""}
+                );
+
+            routes.MapRoute(
+                name: "",
+                url: "{*url}",
+                defaults: new {controller = "Error", action = "PageNotFound"});
         }
     }
 }

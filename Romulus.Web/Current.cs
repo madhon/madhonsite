@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Romulus.Web.Infrastructure;
+using StackExchange.Exceptional;
 using StackExchange.Profiling;
 
 namespace Romulus.Web
@@ -43,6 +44,11 @@ namespace Romulus.Web
 
                 return false;
             }
+        }
+
+        public static void LogException(Exception e)
+        {
+            ErrorStore.LogException(ex: e, context: Context);
         }
     }
 }
