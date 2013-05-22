@@ -159,13 +159,6 @@
     <Compile Include="Infrastructure\RomulusSiteModule.cs" />
     <Compile Include="Infrastructure\RouteAttribute.cs" />
     <Compile Include="Infrastructure\ProfiledUrlRoutingModule.cs" />
-    <Compile Include="Mobile\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Mobile\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ContactService.cs" />
     <Compile Include="Services\IContactService.cs" />
@@ -242,7 +235,6 @@
     <Content Include="includes\js\site.js">
       <DependentUpon>site.coffee</DependentUpon>
     </Content>
-    <Content Include="Mobile\Default.aspx" />
     <Content Include="MvcDiagnostics.aspx" />
     <Content Include="OLDbond_girl.php" />
     <Content Include="Scripts\jquery-1.9.1.js" />
