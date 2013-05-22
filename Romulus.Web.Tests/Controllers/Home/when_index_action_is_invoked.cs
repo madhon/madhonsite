@@ -18,9 +18,9 @@ namespace Romulus.Web.Tests.Controllers.Home
 
         Because of = () => viewResult = (ViewResult) controller.Index();
 
-        It should_return_a_ViewResult_object = () => viewResult.ShouldBeOfType<ViewResult>();
+        It should_return_a_viewresult_object = () => viewResult.ShouldBeOfType<ViewResult>();
 
-        It should_return_a_ViewResult_with_default_view_name = () =>
+        It should_return_a_viewresult_with_default_view_name = () =>
             {
                 var vr = viewResult.As<ViewResult>();
                 vr.ViewName.Should().BeEmpty();
