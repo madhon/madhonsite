@@ -18,7 +18,6 @@ namespace Romulus.Web.Infrastructure
         public static IHtmlString AssemblyFileVersion(this HtmlHelper helper)
         {
             AssemblyFileVersionAttribute attr = typeof(HtmlHelperExtensions).Assembly.GetCustomAttributes(typeof(AssemblyFileVersionAttribute), true).OfType<AssemblyFileVersionAttribute>().FirstOrDefault();
-
             return MvcHtmlString.Create(attr != null ? attr.Version : string.Empty);
         }
     }

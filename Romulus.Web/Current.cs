@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Web;
+using System.Web.Caching;
 using System.Web.Mvc;
 using Romulus.Web.Infrastructure;
 using StackExchange.Exceptional;
@@ -44,6 +47,23 @@ namespace Romulus.Web
 
                 return false;
             }
+        }
+
+        public static object GetCachedObject(string key)
+        {
+            return HttpRuntime.Cache[key];
+        }
+
+        public static void SetCachedObject(string key, object o, int durationSecs)
+        {
+            HttpRuntime.Cache.Add(
+                key,
+                o,
+                null,
+                DateTime.Now.AddSeconds(durationSecs),
+                Cache.NoSlidingExpiration,
+                CacheItemPriority.High,
+                null);
         }
 
         public static void LogException(Exception e)
