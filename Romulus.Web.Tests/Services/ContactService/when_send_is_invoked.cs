@@ -8,22 +8,25 @@ using Romulus.Web.ViewModels;
 
 namespace Romulus.Web.Tests.Services.ContactService
 {
-    [Subject(typeof(Web.Services.ContactService))]
+    [Subject(typeof (Web.Services.ContactService))]
     public class when_send_is_invoked
     {
         static IContactService service;
-        private static ContactViewModel model;
-
-        private Because of = () =>
-            {
-                model = new ContactViewModel {Email = "madhon@madhon.co.uk", Name = "Madhon", Message = "Spec Testing"};
-            };
-
+        static ContactViewModel model;
 
         Establish context = () => service = new Web.Services.ContactService();
 
-        It should_send_sync = () => service.SendMessage(model: model);
+        Because of = () =>
+                {
+                    model = new ContactViewModel
+                        {
+                            Email = "madhon@madhon.co.uk",
+                            Name = "Madhon",
+                            Message = "Spec Testing"
+                        };
+                };
 
         It should_send_async = () => service.SendMessageAsync(model: model);
+        It should_send_sync = () => service.SendMessage(model: model);
     }
 }

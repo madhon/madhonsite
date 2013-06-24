@@ -22,12 +22,10 @@ namespace Romulus.Web.App_Start
             MiniProfiler.Settings.PopupMaxTracesToShow = 10;
             MiniProfiler.Settings.RouteBasePath = "~/profiler";
             MiniProfiler.Settings.StackMaxLength = 256;
-            DynamicModuleUtility.RegisterModule(typeof(MiniProfilerStartupModule));
-
-            GlobalFilters.Filters.Add(new ProfilingActionFilter());
             MiniProfiler.Settings.Results_Authorize = request => Current.IsAdmin;
             MiniProfiler.Settings.Results_List_Authorize = request => Current.IsAdmin;
-           
+            DynamicModuleUtility.RegisterModule(typeof(MiniProfilerStartupModule));
+            GlobalFilters.Filters.Add(new ProfilingActionFilter());
         }
 
         public static void PostStart()
