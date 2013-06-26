@@ -1791,7 +1791,7 @@ border:1px solid #eee;
 	padding: 25px 10px;
 	text-align: center;
 	font-size: 17px;
-	line-height: 17px;
+	line-height: 25px;
 	margin-top:25px !important;
 }
 
@@ -1824,6 +1824,7 @@ border:1px solid #eee;
 .foot a:hover{
 	border-bottom: 0px;
 }
+
 
 /* Footer */
 

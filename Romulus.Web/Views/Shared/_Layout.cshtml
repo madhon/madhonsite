@@ -10,15 +10,12 @@
     <title>@ViewBag.Title</title>
     <meta name="google-site-verification" content="JueVkl3cqLkcn0bEYbgmHvXOscWjwld9eqT8WP2zlsw" />
     <meta name="verify-v1" content="3o9u8JJjDFX6bIFo33nVdmhVtkeZnfCmy5ulejun0oc=" />
-	<meta name="viewport" content="width=device-width">
-    <link href="@Url.Content("~/content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
-	<link href="@Url.Content("~/content/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
 	<link href="@Url.Content("~/content/ddlevelsmenu-base.css")" rel="stylesheet" type="text/css" />
 	<link href="@Url.Content("~/content/ddlevelsmenu-topbar.css")" rel="stylesheet" type="text/css" />
-	<link href="@Url.Content("~/content/slider.css")" rel="stylesheet" type="text/css" />
-	<link href="@Url.Content("~/content/prettyPhoto.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/content/metro.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/content/bootstrap-responsive.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/content/metro.css")" rel="stylesheet" type="text/css" />
 	@RenderSection("cssFiles", false)
 	<script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-2.6.2.min.js")"></script>	
 </head>
@@ -120,11 +117,8 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-2.0.2.min.js"></script>
     <!--<![endif]-->
    
-    <script type="text/javascript" src="@Url.Content("~/scripts/bootstrap.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/scripts/jquery.prettyPhoto.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/scripts/jquery.isotope.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/scripts/ddlevelsmenu.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/scripts/jquery.cslider.js")"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/scripts/ddlevelsmenu.js")"></script>   
     @RenderSection("scriptFiles", false)
     <script>
         window._gaq = [['_setAccount','UA-19732462-1'],['_trackPageview'],['_trackPageLoadTime']];
