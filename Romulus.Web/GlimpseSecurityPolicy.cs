@@ -1,0 +1,28 @@
+using Glimpse.AspNet.Extensions;
+using Glimpse.Core.Extensibility;
+
+namespace Romulus.Web
+{
+    public class GlimpseSecurityPolicy:IRuntimePolicy
+    {
+        public RuntimePolicy Execute(IRuntimePolicyContext policyContext)
+        {
+             //You can perform a check like the one below to control Glimpse's permissions within your application.
+			 //More information about RuntimePolicies can be found at http://getglimpse.com/Help/Custom-Runtime-Policy
+			 var httpContext = policyContext.GetHttpContext();
+
+            if (!Current.IsAdmin)
+            {
+                return RuntimePolicy.Off;
+
+            }
+
+            return RuntimePolicy.On;
+        }
+
+        public RuntimeEvent ExecuteOn
+        {
+            get { return RuntimeEvent.EndRequest; }
+        }
+    }
+}
