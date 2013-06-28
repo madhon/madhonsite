@@ -15,7 +15,8 @@
     <fieldset>
         <legend>Your Information</legend>
         <div class="control-group">
-            @Html.LabelFor(f => f.Name, new { @class = "control-label"})
+            @*@Html.LabelFor(f => f.Name, new { @class = "control-label"})*@
+            @Html.BootstrapLabelFor("name")
             <div class="controls">
                 @Html.TextBoxFor(f => f.Name)
                 @Html.ValidationMessageFor(f => f.Name, null, new { @class = "help-inline" })
