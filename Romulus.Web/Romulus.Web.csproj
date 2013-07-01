@@ -275,6 +275,13 @@
     <Content Include="OLDbond_girl.php" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\contact.js">
+      <DependentUpon>contact.ts</DependentUpon>
+    </Content>
+    <Content Include="Scripts\contact.min.js">
+      <DependentUpon>contact.ts</DependentUpon>
+    </Content>
+    <Content Include="Scripts\contact.ts" />
     <Content Include="Scripts\ddlevelsmenu.js" />
     <Content Include="Scripts\filter.js" />
     <None Include="Scripts\jquery-2.0.2.intellisense.js" />
@@ -297,6 +304,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.min.js" />
+    <Content Include="Scripts\typings\jquery.validation\jquery.validation.d.ts" />
+    <Content Include="Scripts\typings\jquery\jquery.d.ts" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
