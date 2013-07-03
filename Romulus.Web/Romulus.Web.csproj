@@ -220,6 +220,7 @@
     <Content Include="Content\Site.Mobile.css" />
     <Content Include="Content\slider.css" />
     <Content Include="Global.asax" />
+    <Content Include="img\fix_it_cat.jpg" />
     <Content Include="includes\css\andreas2.scss" />
     <Content Include="includes\css\print.css">
       <DependentUpon>print.scss</DependentUpon>
@@ -331,6 +332,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Error\PageNotFound.cshtml" />
+    <Content Include="Views\Error\General.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
