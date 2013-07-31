@@ -18,33 +18,33 @@ namespace Romulus.Web.App_Start
     {
         public static void PreStart()
         {
-            //MiniProfiler.Settings.PopupRenderPosition = RenderPosition.Left;
-            //MiniProfiler.Settings.PopupMaxTracesToShow = 10;
-            //MiniProfiler.Settings.RouteBasePath = "~/profiler";
-            //MiniProfiler.Settings.StackMaxLength = 256;
-            //MiniProfiler.Settings.Results_Authorize = request => Current.IsAdmin;
-            //MiniProfiler.Settings.Results_List_Authorize = request => Current.IsAdmin;
+            MiniProfiler.Settings.PopupRenderPosition = RenderPosition.Left;
+            MiniProfiler.Settings.PopupMaxTracesToShow = 10;
+            MiniProfiler.Settings.RouteBasePath = "~/profiler";
+            MiniProfiler.Settings.StackMaxLength = 256;
+            MiniProfiler.Settings.Results_Authorize = request => Current.IsAdmin;
+            MiniProfiler.Settings.Results_List_Authorize = request => Current.IsAdmin;
 
-            //var ignored = MiniProfiler.Settings.IgnoredPaths.ToList();
-            //ignored.Add("WebResource.axd");
-            //ignored.Add("ScriptResource.axd");
-            //ignored.Add("Glimpse.axd");
-            //ignored.Add("/content/");
-            //ignored.Add("/img/");
-            //ignored.Add("/scripts/");
-            //ignored.Add(".js");
+            var ignored = MiniProfiler.Settings.IgnoredPaths.ToList();
+            ignored.Add("WebResource.axd");
+            ignored.Add("ScriptResource.axd");
+            ignored.Add("Glimpse.axd");
+            ignored.Add("/content/");
+            ignored.Add("/img/");
+            ignored.Add("/scripts/");
+            ignored.Add(".js");
 
-            //MiniProfiler.Settings.IgnoredPaths = ignored.ToArray();
+            MiniProfiler.Settings.IgnoredPaths = ignored.ToArray();
 
-            //DynamicModuleUtility.RegisterModule(typeof(MiniProfilerStartupModule));
-            //GlobalFilters.Filters.Add(new ProfilingActionFilter());
+            DynamicModuleUtility.RegisterModule(typeof(MiniProfilerStartupModule));
+            GlobalFilters.Filters.Add(new ProfilingActionFilter());
         }
 
         public static void PostStart()
         {
             ViewEngines.Engines.Clear();
-        //    ViewEngines.Engines.Add(new ProfilingViewEngine(new FixedRazorViewEngine()));
-            ViewEngines.Engines.Add(new FixedRazorViewEngine());
+            ViewEngines.Engines.Add(new ProfilingViewEngine(new FixedRazorViewEngine()));
+            //ViewEngines.Engines.Add(new FixedRazorViewEngine());
         }
     }
 

@@ -19,7 +19,6 @@ namespace Romulus.Web
             builder.RegisterModule<RomulusSiteModule>();
 
             var container = builder.Build();
-            container.ActivateGlimpse();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
