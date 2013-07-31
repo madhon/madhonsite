@@ -20,5 +20,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("4.0.0.0")]
 [assembly: AssemblyFileVersion("4.1.13212.1436")]
 //[assembly: AssemblyInformationalVersion("${major}.${minor}.${patch}-${branch} ${hash|short}")]
-[assembly: AssemblyInformationalVersion("4.1.13212.1436.0-master 27255d9")]
+[assembly: AssemblyInformationalVersion("4.1.13212.1436.0-master b824fb3")]
 
