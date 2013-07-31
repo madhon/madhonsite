@@ -17,7 +17,7 @@
         <div class="control-group">
             @Html.LabelFor(f => f.Name, new { @class = "control-label"})
             <div class="controls">
-                @Html.TextBoxFor(f => f.Name)
+                @Html.Html5TextBoxFor(f => f.Name, InputTypes.InputType.Text, null, "Your Name", false, false, true)
                 @Html.ValidationMessageFor(f => f.Name, null, new { @class = "help-inline" })
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="control-group">
             @Html.LabelFor(f => f.Email, new { @class = "control-label"})
             <div class="controls">
-                @Html.TextBoxFor(f => f.Email)
+                @Html.Html5TextBoxFor(f => f.Email, InputTypes.InputType.Email, null, "Your Email Address")
                 @Html.ValidationMessageFor(f => f.Email, null, new { @class = "help-inline" })
             </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="control-group">
             @Html.LabelFor(f => f.Message, new { @class = "control-label"})
             <div class="controls">
-                @Html.TextAreaFor(f => f.Message, 5, 100, null)
+                @Html.TextAreaFor(f => f.Message, 5, 100, new { @placeholder = "Your message"})
                 @Html.ValidationMessageFor(f => f.Message, null, new { @class = "help-inline" })
             </div>
         </div>      
