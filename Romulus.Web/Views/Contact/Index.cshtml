@@ -7,33 +7,33 @@
 }
 
 <h2>Contact</h2>
-@using (Html.BeginForm("Index", "Contact", FormMethod.Post, new { @name = "frmContact", @id = "frmContact", @class = "form-horizontal"  })  )
+@using (Html.BeginForm("Index", "Contact", FormMethod.Post, new { @name = "frmContact", @id = "frmContact", @class = "form-horizontal", @role = "form"  })  )
 {   
     @Html.ValidationSummary(true)
     @Html.AntiForgeryToken()
 
     <fieldset>
         <legend>Your Information</legend>
-        <div class="control-group">
-            @Html.LabelFor(f => f.Name, new { @class = "control-label"})
-            <div class="controls">
-                @Html.Html5TextBoxFor(f => f.Name, InputTypes.InputType.Text, null, "Your Name", false, false, true)
+        <div class="form-group">
+            @Html.LabelFor(f => f.Name, new { @class = "col-md-2 control-label"})
+            <div class="col-md-6">
+                @Html.Html5TextBoxFor(f => f.Name, InputTypes.InputType.Text, new { @class ="form-control"}, "Your Name", false, false, true)
                 @Html.ValidationMessageFor(f => f.Name, null, new { @class = "help-inline" })
             </div>
         </div>
         
-        <div class="control-group">
-            @Html.LabelFor(f => f.Email, new { @class = "control-label"})
-            <div class="controls">
-                @Html.Html5TextBoxFor(f => f.Email, InputTypes.InputType.Email, null, "Your Email Address")
+        <div class="form-group">
+            @Html.LabelFor(f => f.Email, new { @class = "col-md-2 control-label"})
+            <div class="col-md-6">
+                @Html.Html5TextBoxFor(f => f.Email, InputTypes.InputType.Email, new { @class ="form-control"}, "Your Email Address")
                 @Html.ValidationMessageFor(f => f.Email, null, new { @class = "help-inline" })
             </div>
         </div>
 
-        <div class="control-group">
-            @Html.LabelFor(f => f.Message, new { @class = "control-label"})
-            <div class="controls">
-                @Html.TextAreaFor(f => f.Message, 5, 100, new { @placeholder = "Your message"})
+        <div class="form-group">
+            @Html.LabelFor(f => f.Message, new { @class = "col-md-2 control-label"})
+            <div class="col-md-6">
+                @Html.TextAreaFor(f => f.Message, 5, 100, new { @placeholder = "Your message", @class ="form-control"})
                 @Html.ValidationMessageFor(f => f.Message, null, new { @class = "help-inline" })
             </div>
         </div>      
@@ -41,7 +41,7 @@
     
     <div class="form-actions">
      <button class="btn btn-primary" type="submit">Send Message</button>
-     <button class="btn" type="reset">Cancel</button>
+     <button class="btn btn-default" type="reset">Cancel</button>
     </div>
 }
 
