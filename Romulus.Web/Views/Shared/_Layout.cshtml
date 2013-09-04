@@ -6,6 +6,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>@ViewBag.Title</title>
     <meta name="google-site-verification" content="JueVkl3cqLkcn0bEYbgmHvXOscWjwld9eqT8WP2zlsw" />
     <meta name="verify-v1" content="3o9u8JJjDFX6bIFo33nVdmhVtkeZnfCmy5ulejun0oc=" />
@@ -16,116 +17,119 @@
 	<link href="@Url.Content("~/content/ddlevelsmenu-topbar.css")" rel="stylesheet" type="text/css" />
 	<link href="@Url.Content("~/content/metro.css")" rel="stylesheet" type="text/css" />
 	@RenderSection("cssFiles", false)
-	<script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-2.6.2.min.js")"></script>	
+	<script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-2.6.2-respond-1.1.0.min.js")"></script>	
 </head>
+                           <body>
+<!--[if lt IE 9]>
+       <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+                               <div class="slidepanel">
+                                   <div class="container">
+                                       <div class="row">
+                                           <div class="col-md-8">
+                                               <div class="spara"> 
+                                                   <!-- Contact details --><p></p>
+                                               </div>
+                                           </div>
+                                           <div class="col-md-4">
+                                               <div class="social">
+                                                   <a href="http://uk.linkedin.com/pub/jonathon-douglas/19/9aa/29a" class="bviolet"><i class="icon-linkedin"></i></a>
+                                                   <a href="https://twitter.com/madh0n" class="blightblue"><i class="icon-twitter"></i></a>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="clearfix"></div>
+                                   </div>
+                               </div>
 
-  <div class="slidepanel">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8">
-          <div class="spara"> 
-            <!-- Contact details --><p></p>
-          </div>
-        </div>
-        <div class="col-md-4">
-            <div class="social">
-			   <a href="http://uk.linkedin.com/pub/jonathon-douglas/19/9aa/29a" class="bviolet"><i class="icon-linkedin"></i></a>
-               <a href="https://twitter.com/madh0n" class="blightblue"><i class="icon-twitter"></i></a>
-            </div>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-  </div>
+                               <header>
+                                   <div class="container">
+                                       <div class="row">
 
-  <header>
-    <div class="container">
-      <div class="row">
+                                           <div class="col-md-3">
 
-        <div class="col-md-3">
+                                               <!-- Logo starts -->
 
-          <!-- Logo starts -->
-
-          <div class="logo">
-            <div class="logo-image">
+                                               <div class="logo">
+                                                   <div class="logo-image">
 			
-            </div>
-            <div class="logo-text">
-              <h1>Mad<span class="lightblue">Hon</span></h1>
+                                                   </div>
+                                                   <div class="logo-text">
+                                                       <h1>Mad<span class="lightblue">Hon</span></h1>
 			  
-            </div>
+                                                   </div>
 
-            <div class="clearfix"></div>
-          </div>
-        </div>
+                                                   <div class="clearfix"></div>
+                                               </div>
+                                           </div>
 
-        <div class="col-md-9">
-          <div class="navi pull-right">
-            <div id="ddtopmenubar" class="mattblackmenu">
-              <ul>
-                <li><a href="@Url.Action("Index", "Home")" class="blightblue"> <i class="glyphicon glyphicon-home"></i>Home</a></li>
-                <li><a href="@Url.Action("Index", "BondGirl")" class="bred"> <i class="glyphicon glyphicon-film"></i>BondName</a></li>
-				<li><a href="@Url.Action("Index", "Gridlock")" class="bgreen"> <i class="glyphicon glyphicon-eye-open"></i>Gridlock</a></li>
-                <li><a href="@Url.Action("Index", "Contact")" class="bblue"> <i class="glyphicon glyphicon-envelope"></i>Contact</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="navis"></div>
-          <div class="clearfix"></div>
-        </div>
-      </div>
-    </div>
-  </header>
+                                           <div class="col-md-9">
+                                               <div class="navi pull-right">
+                                                   <div id="ddtopmenubar" class="mattblackmenu">
+                                                       <ul>
+                                                           <li><a href="@Url.Action("Index", "Home")" class="blightblue"> <i class="glyphicon glyphicon-home"></i>Home</a></li>
+                                                           <li><a href="@Url.Action("Index", "BondGirl")" class="bred"> <i class="glyphicon glyphicon-film"></i>BondName</a></li>
+                                                           <li><a href="@Url.Action("Index", "Gridlock")" class="bgreen"> <i class="glyphicon glyphicon-eye-open"></i>Gridlock</a></li>
+                                                           <li><a href="@Url.Action("Index", "Contact")" class="bblue"> <i class="glyphicon glyphicon-envelope"></i>Contact</a></li>
+                                                       </ul>
+                                                   </div>
+                                               </div>
+                                               <div class="navis"></div>
+                                               <div class="clearfix"></div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </header>
 
-  <div class="clearfix"></div>
+                               <div class="clearfix"></div>
 
-  <!-- Content starts -->
-  <div class="content">
-    <div class="container ">
-	<div class="row">
-	<div class="col-md-2"></div>
-	<div class="col-md-8">
-	@RenderBody()
-	</div> <!--/span8-->
-	<div class="col-md-2"></div>
-	</div><!--/row-->
+                               <!-- Content starts -->
+                               <div class="content">
+                                   <div class="container ">
+                                       <div class="row">
+                                           <div class="col-md-2"></div>
+                                           <div class="col-md-8">
+                                               @RenderBody()
+                                           </div> <!--/span8-->
+                                           <div class="col-md-2"></div>
+                                       </div><!--/row-->
 	
-    </div> <!--/container-->
-  </div> <!--/content-->
-  <!-- Content ends -->
+                                   </div> <!--/container-->
+                               </div> <!--/content-->
+                               <!-- Content ends -->
 
-<footer>
-  <div class="container">
-    <div class="row">
+                               <footer>
+                                   <div class="container">
+                                       <div class="row">
 
-      <div class="col-md-12">
-          <div class="copy text-center">
-                <p>Copyright &copy; 2012-2013 Madhon</p>
-          </div>
-      </div>
+                                           <div class="col-md-12">
+                                               <div class="copy text-center">
+                                                   <p>Copyright &copy; 2012-2013 Madhon</p>
+                                               </div>
+                                           </div>
 
-    </div>
-  <div class="clearfix"></div>
-  </div>
-</footer> 
+                                       </div>
+                                       <div class="clearfix"></div>
+                                   </div>
+                               </footer> 
 	
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <![endif]-->
-    <!--[if gte IE 9]><!-->
-    <script type="text/javascript" src="//code.jquery.com/jquery-2.0.3.min.js"></script>
-    <!--<![endif]-->
+                               <!--[if lt IE 9]>
+                                   <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+                               <![endif]-->
+                               <!--[if gte IE 9]><!-->
+                               <script type="text/javascript" src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+                               <!--<![endif]-->
    
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="@Url.Content("~/scripts/ddlevelsmenu.js")"></script>   
-    @RenderSection("scriptFiles", false)
-    <script>
-        window._gaq = [['_setAccount','UA-19732462-1'],['_trackPageview'],['_trackPageLoadTime']];
-        Modernizr.load({
-            load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-        });
-    </script>
-    @MiniProfiler.RenderIncludes()
-<!--@Html.AssemblyFileVersion()-->
-</body>
+                               <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+                               <script type="text/javascript" src="@Url.Content("~/scripts/ddlevelsmenu.js")"></script>   
+                               @RenderSection("scriptFiles", false)
+                               <script>
+                                   window._gaq = [['_setAccount','UA-19732462-1'],['_trackPageview'],['_trackPageLoadTime']];
+                                   Modernizr.load({
+                                       load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+                                   });
+                               </script>
+                               @MiniProfiler.RenderIncludes()
+                               <!--@Html.AssemblyFileVersion()-->
+                           </body>
 </html>
