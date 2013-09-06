@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Web.Mvc;
-using Romulus.Web.Infrastructure;
+using AttributeRouting.Web.Mvc;
 
 namespace Romulus.Web.Controllers
 {
     public class BondGirlController : Controller
     {
         [HttpGet]
+        [GET("BondGirl")]
         public ActionResult Index()
         {
             return View();

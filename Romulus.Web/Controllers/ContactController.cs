@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using AttributeRouting.Web.Mvc;
 using Romulus.Web.Infrastructure;
 using Romulus.Web.Services;
 using Romulus.Web.ViewModels;
@@ -18,12 +19,14 @@ namespace Romulus.Web.Controllers
         }
 
         [HttpGet]
+        [GET("Contact")]
         public ActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
+        [POST("Contact")]
         public async Task<ActionResult> Index(ContactViewModel model)
         {
             if (ModelState.IsValid)
@@ -43,6 +46,7 @@ namespace Romulus.Web.Controllers
         }
 
         [HttpGet]
+        [GET("Contact/Complete")]
         public ActionResult Complete()
         {
             return View();
