@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Autofac;
-using Autofac.Builder;
 
 namespace Romulus.Web
 {
@@ -34,11 +32,6 @@ namespace Romulus.Web
         public static string ToTitleCase(this string str, CultureInfo cultureInfo)
         {
             return cultureInfo.TextInfo.ToTitleCase(str.ToLower());
-        }
-
-        public static IRegistrationBuilder<TImplementor, ConcreteReflectionActivatorData, SingleRegistrationStyle> RegisterType<TImplementor, TService>(this ContainerBuilder builder) where TImplementor : TService
-        {
-            return builder.RegisterType<TImplementor>().As<TService>();
         }
     }
 }
