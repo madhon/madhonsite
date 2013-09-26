@@ -10,7 +10,8 @@ namespace Romulus.Web.Infrastructure
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ContactService>().As<IContactService>();
+            builder.RegisterType<ContactService, IContactService>();
+            //builder.RegisterType<ContactService>().As<IContactService>();
         }
     }
 }
