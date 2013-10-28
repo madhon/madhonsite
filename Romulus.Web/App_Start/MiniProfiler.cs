@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-using Microsoft.Web.Mvc;
 using Romulus.Web.App_Start;
 using Romulus.Web.Infrastructure;
 using StackExchange.Profiling;
@@ -43,7 +42,7 @@ namespace Romulus.Web.App_Start
         public static void PostStart()
         {
             ViewEngines.Engines.Clear();
-            ViewEngines.Engines.Add(new ProfilingViewEngine(new FixedRazorViewEngine()));
+            ViewEngines.Engines.Add(new ProfilingViewEngine(new RazorViewEngine()));
             //ViewEngines.Engines.Add(new FixedRazorViewEngine());
         }
     }
