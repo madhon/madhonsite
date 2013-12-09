@@ -29,6 +29,7 @@ namespace Romulus.Web.App_Start
             ignored.Add("ScriptResource.axd");
             ignored.Add("Glimpse.axd");
             ignored.Add("/content/");
+            ignored.Add("/fonts/");
             ignored.Add("/img/");
             ignored.Add("/scripts/");
             ignored.Add(".js");

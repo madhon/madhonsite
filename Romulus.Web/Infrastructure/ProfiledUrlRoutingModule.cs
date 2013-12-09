@@ -12,6 +12,7 @@ namespace Romulus.Web.Infrastructure
         public override void PostResolveRequestCache(HttpContextBase context)
         {
             if (context.Request.Path.StartsWith("/content/", StringComparison.OrdinalIgnoreCase)) return;
+            if (context.Request.Path.StartsWith("/fonts/", StringComparison.OrdinalIgnoreCase)) return;
             if (context.Request.Path.StartsWith("/includes/", StringComparison.OrdinalIgnoreCase)) return;
             if (context.Request.Path.StartsWith("/img/", StringComparison.OrdinalIgnoreCase)) return;
             if (context.Request.Path.StartsWith("/scripts/", StringComparison.OrdinalIgnoreCase)) return;
