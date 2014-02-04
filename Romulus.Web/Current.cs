@@ -66,7 +66,7 @@ namespace Romulus.Web
             }
         }
 
-        private static Regex LastAddress = new Regex(@"\b(\d|a-f|\.|:)+$", RegexOptions.Compiled);
+        private static readonly Regex LastAddress = new Regex(@"\b(\d|a-f|\.|:)+$", RegexOptions.Compiled);
 
         public static string GetRemoteIP(string realIp, string remoteAddr, string xForwardedFor)
         {

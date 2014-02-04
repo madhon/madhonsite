@@ -2,8 +2,8 @@ body {
   margin: 0 auto;
   padding: 0;
   font-family: "Times New Roman", serif;
-  background: white;
-  color: black; }
+  background: #fff;
+  color: #000; }
 
 #wrap {
   margin: 2%;
@@ -16,10 +16,9 @@ body {
 #frontphoto, #leftside, #rightside, .hide {
   display: none; }
 
-#content img, #contentwide img, #contentwide2 img {
-  /* display:none; */ }
 
 a {
   text-decoration: underline;
-  color: blue; }
+  color: #00f; }
 
+/*# sourceMappingURL=L:\websites\MadhonMVC4\Romulus.Web\includes\css\print.css.map */

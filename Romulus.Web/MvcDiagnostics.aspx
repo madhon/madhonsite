@@ -24,7 +24,7 @@
         new MvcCoreAssemblyInfo() { Version = "1.0.40128.0", Name = "ASP.NET MVC 1.0 RC 1 Refresh" },
         new MvcCoreAssemblyInfo() { Version = "1.0.40216.0", Name = "ASP.NET MVC 1.0 RC 2" },
         new MvcCoreAssemblyInfo() { Version = "1.0.40310.0", Name = "ASP.NET MVC 1.0 RTM", FuturesVersion = "1.0.40310.0" },
-        
+
         // v2
         new MvcCoreAssemblyInfo() { Version = "1.1.40430.0", Name = "ASP.NET MVC 1.1 Preview 0" },
         new MvcCoreAssemblyInfo() { Version = "2.0.40724.0", Name = "ASP.NET MVC 2 Preview 1", FuturesVersion = "2.0.40724.0" },
@@ -33,18 +33,26 @@
         new MvcCoreAssemblyInfo() { Version = "2.0.41211.0", Name = "ASP.NET MVC 2 RC 1", FuturesVersion = "2.0.41211.0" },
         new MvcCoreAssemblyInfo() { Version = "2.0.50129.0", Name = "ASP.NET MVC 2 RC 2", FuturesVersion = "2.0.50129.0" },
         new MvcCoreAssemblyInfo() { Version = "2.0.50217.0", Name = "ASP.NET MVC 2 RTM", FuturesVersion = "2.0.50217.0" },
-        
+
         // v3
         new MvcCoreAssemblyInfo() { Version = "3.0.20105.0", Name = "ASP.NET MVC 3 RTM", FuturesVersion = "3.0.20105.0" },
-		
+
 		// v4
-        new MvcCoreAssemblyInfo() { Version = "4.0.20710.0", Name = "ASP.NET MVC 4 RTM"}
+        new MvcCoreAssemblyInfo() { Version = "4.0.20710.0", Name = "ASP.NET MVC 4 RTM"},
+
+        // v5
+        new MvcCoreAssemblyInfo() { Version = "5.0.0.0", Name = "ASP.NET MVC 5 RTM"},
+        new MvcCoreAssemblyInfo() { Version = "5.0.11001.0", Name = "ASP.NET MVC 5 RTM"}
+
+        // v5.1
+        new MvcCoreAssemblyInfo() { Version = "5.1.0.0", Name = "ASP.NET MVC 5.1 RTM"},
+        new MvcCoreAssemblyInfo() { Version = "5.1.20110.0", Name = "ASP.NET MVC 5.1 RTM"}
     };
 
     private static readonly MvcFuturesAssemblyInfo[] _mvcFuturesAssemblyHistory = new[] {
         // v1
         new MvcFuturesAssemblyInfo() { Version = "1.0.40310.0", Name = "ASP.NET MVC 1.0 RTM Futures", DownloadUrl = "http://aspnet.codeplex.com/Release/ProjectReleases.aspx?ReleaseId=24471#DownloadId=61773" },
-        
+
         // v2
         new MvcFuturesAssemblyInfo() { Version = "2.0.40724.0", Name = "ASP.NET MVC 2 Preview 1 Futures", DownloadUrl = "http://aspnet.codeplex.com/Release/ProjectReleases.aspx?ReleaseId=30886#DownloadId=77345" },
         new MvcFuturesAssemblyInfo() { Version = "2.0.41001.0", Name = "ASP.NET MVC 2 Preview 2 Futures", DownloadUrl = "http://aspnet.codeplex.com/Release/ProjectReleases.aspx?ReleaseId=33836#DownloadId=85929" },
@@ -227,27 +235,27 @@
 <head runat="server">
     <title>ASP.NET MVC Diagnostics Utility</title>
     <style type="text/css">
-        .error 
+        .error
         {
             font-weight: bold;
             color: Red;
         }
-        
-        .box 
+
+        .box
         {
             border-width: thin;
             border-style: solid;
             padding: .2em 1em .2em 1em;
             background-color: #dddddd;
         }
-        
+
         .errorInset
         {
             padding: 1em;
             background-color: #ffbbbb;
         }
-        
-        body 
+
+        body
         {
             font-family: Calibri, Helvetica;
         }

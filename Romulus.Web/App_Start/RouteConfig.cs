@@ -15,6 +15,7 @@ namespace Romulus.Web
 
             routes.Ignore("bond_girl.php");
             routes.Ignore("exceptions.axd");
+            routes.Ignore("MvcDiagnostics.aspx");
 
             //routes.MapRoute(
             //    name: "Default",

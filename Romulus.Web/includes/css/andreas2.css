@@ -10,7 +10,7 @@ body {
   padding: 0; }
 
 #wrap {
-  background: white;
+  background: #fff;
   color: #404040;
   margin: 0 auto;
   width: 760px; }
@@ -215,7 +215,7 @@ p {
 
 /* Footer */
 #footer {
-  background: white;
+  background: #fff;
   border-top: 2px solid #e0e0e0;
   clear: both;
   color: gray;
@@ -229,7 +229,7 @@ p {
     margin: 0;
     padding: 0; }
   #footer a {
-    background-color: white;
+    background-color: #fff;
     color: gray;
     font-weight: 400;
     text-decoration: none; }
@@ -307,7 +307,7 @@ p {
 #frmContact label.error {
   font-size: 11px;
   margin-left: 113px;
-  background: #fbfcda url("/img/cancel.png") no-repeat left;
+  background: #fbfcda url('/img/cancel.png') no-repeat left;
   border: 1px solid #dbdbd3;
   width: 209px;
   margin-top: 4px;
@@ -316,18 +316,18 @@ p {
 /* Styles for validation helpers
 -----------------------------------------------------------*/
 .field-validation-error {
-  color: red; }
+  color: #ff0000; }
 
 .field-validation-valid {
   display: none; }
 
 .input-validation-error {
-  border: 1px solid red;
+  border: 1px solid #ff0000;
   background-color: #ffeeee; }
 
 .validation-summary-errors {
   font-weight: bold;
-  color: red; }
+  color: #ff0000; }
 
 .validation-summary-valid {
   display: none; }
@@ -337,3 +337,4 @@ p {
 .display-label, .editor-label, .display-field, .editor-field {
   margin: 0.5em 0; }
 
+/*# sourceMappingURL=L:\websites\MadhonMVC4\Romulus.Web\includes\css\andreas2.css.map */
