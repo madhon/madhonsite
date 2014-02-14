@@ -42,7 +42,7 @@
 
         // v5
         new MvcCoreAssemblyInfo() { Version = "5.0.0.0", Name = "ASP.NET MVC 5 RTM"},
-        new MvcCoreAssemblyInfo() { Version = "5.0.11001.0", Name = "ASP.NET MVC 5 RTM"}
+        new MvcCoreAssemblyInfo() { Version = "5.0.11001.0", Name = "ASP.NET MVC 5 RTM"},
 
         // v5.1
         new MvcCoreAssemblyInfo() { Version = "5.1.0.0", Name = "ASP.NET MVC 5.1 RTM"},
