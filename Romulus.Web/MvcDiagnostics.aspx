@@ -46,7 +46,10 @@
 
         // v5.1
         new MvcCoreAssemblyInfo() { Version = "5.1.0.0", Name = "ASP.NET MVC 5.1 RTM"},
-        new MvcCoreAssemblyInfo() { Version = "5.1.20110.0", Name = "ASP.NET MVC 5.1 RTM"}
+        new MvcCoreAssemblyInfo() { Version = "5.1.20110.0", Name = "ASP.NET MVC 5.1 RTM"},
+
+        // v5.1.1
+        new MvcCoreAssemblyInfo() { Version = "5.1.20129.0", Name = "ASP.NET MVC 5.1.1 RTM"}
     };
 
     private static readonly MvcFuturesAssemblyInfo[] _mvcFuturesAssemblyHistory = new[] {
