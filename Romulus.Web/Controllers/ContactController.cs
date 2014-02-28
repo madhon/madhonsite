@@ -55,10 +55,5 @@ namespace Romulus.Web.Controllers
         {
             await contactService.SendMessageAsync(model);
         }
-
-        private void SendMessage(ContactViewModel model)
-        {
-            contactService.SendMessage(model);
-        }
     }
 }

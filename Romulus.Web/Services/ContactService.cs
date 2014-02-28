@@ -9,15 +9,6 @@ namespace Romulus.Web.Services
 {
     public class ContactService : IContactService
     {
-        public void SendMessage(ContactViewModel model)
-        {
-            using (var mailMessage = CreateMailMessage(model: model))
-            using (var smtp = CreateSmtpClient())
-            {
-                smtp.Send(mailMessage);
-            }
-        }
-
         public async Task SendMessageAsync(ContactViewModel model)
         {
             var message = CreateMailMessage(model: model);

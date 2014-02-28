@@ -27,6 +27,5 @@ namespace Romulus.Web.Tests.Services.ContactService
                 };
 
         It should_send_async = () => service.SendMessageAsync(model: model);
-        It should_send_sync = () => service.SendMessage(model: model);
     }
 }

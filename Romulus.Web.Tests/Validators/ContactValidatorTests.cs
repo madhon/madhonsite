@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using FluentAssertions;
 using FluentValidation.Results;
 using FluentValidation.TestHelper;
 using Romulus.Web.ViewModels;
 using Xunit;
-using Should.Fluent;
 
 namespace Romulus.Web.Tests.Validators
 {
@@ -30,7 +29,7 @@ namespace Romulus.Web.Tests.Validators
             };
 
             ValidationResult result = validator.Validate(model);
-            result.IsValid.Should().Be.True();
+            result.IsValid.Should().BeTrue();
         }
 
         [Fact]

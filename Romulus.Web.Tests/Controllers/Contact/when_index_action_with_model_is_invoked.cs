@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using FluentAssertions;
 using Machine.Specifications;
-using Should.Fluent;
 using Romulus.Web.Controllers;
 using Romulus.Web.Services;
 using Romulus.Web.ViewModels;
@@ -36,6 +35,6 @@ namespace Romulus.Web.Tests.Controllers.Contact
 
         Because of = () => viewResult = controller.Index(goodModel);
 
-        It should_return_a_ViewResult_object = () => viewResult.Should().Be.OfType<Task<ActionResult>>();
+        It should_return_a_ViewResult_object = () => viewResult.Should().BeAssignableTo<Task<ActionResult>>();
     }
 }

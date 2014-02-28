@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using FluentAssertions;
 using Romulus.Web.Controllers;
 using Romulus.Web.Services;
-using Should.Fluent;
 using Xbehave;
 
 namespace Romulus.Web.Tests.Controllers.Contact
@@ -19,11 +19,11 @@ namespace Romulus.Web.Tests.Controllers.Contact
         {
             "Given a Contact Controller".Given(() => controller = new ContactController(new ContactService()));
             "When The Index action is called".When(() => viewResult = (ViewResult)controller.Index());
-            "Then It should be a ViewResult object".Then(() => viewResult.Should().Be.OfType<ViewResult>());
+            "Then It should be a ViewResult object".Then(() => viewResult.Should().BeAssignableTo<ViewResult>());
             "And it should be empty".Then(() =>
             {
                 var vr = viewResult as ViewResult;
-                vr.ViewName.Should().Be.Empty();
+                vr.ViewName.Should().BeEmpty();
             });
         }
     }
