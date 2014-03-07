@@ -46,8 +46,21 @@ namespace Romulus.Web
         {
             get
             {
+                var allowedIpAddresses = new Dictionary<string, string>
+                {
+                    {"93.96.173.32", "Home"},
+                    {"89.213.243.64", "AlphaLogix Not Demon"},
+                    {"89.243.253.162", "AlphaLogix TalkTalk"}
+                };
+
+
                 var ip = Request.GetClientIpAddress();
-                if (Request.IsLocal | ip == "93.96.173.32" | ip == "62.49.29.223" | ip == "89.243.253.162")
+                if (Request.IsLocal)
+                {
+                    return true;
+                }
+
+                if (allowedIpAddresses.ContainsKey(ip))
                 {
                     return true;
                 }
@@ -128,7 +141,7 @@ namespace Romulus.Web
 
         public static void LogException(Exception e)
         {
-            ErrorStore.LogException(ex: e, context: Context);
+            ErrorStore.LogException(e, Context);
         }
     }
 }
