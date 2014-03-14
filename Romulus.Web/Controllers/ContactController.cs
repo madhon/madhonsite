@@ -19,6 +19,7 @@ namespace Romulus.Web.Controllers
 
         [HttpGet]
         [GET("Contact")]
+        [OutputCache(Duration = 86400, VaryByParam = "none")]
         public ActionResult Index()
         {
             return View();
@@ -46,6 +47,7 @@ namespace Romulus.Web.Controllers
 
         [HttpGet]
         [GET("Contact/Complete")]
+        [OutputCache(Duration = 86400, VaryByParam = "none")]
         public ActionResult Complete()
         {
             return View();

@@ -8,6 +8,7 @@ namespace Romulus.Web.Controllers
     {
         [HttpGet]
         [GET("Gridlock")]
+        [OutputCache(Duration = 86400, VaryByParam = "none")]
         public ActionResult Index()
         {
             return View();

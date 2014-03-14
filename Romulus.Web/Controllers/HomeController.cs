@@ -10,6 +10,7 @@ namespace Romulus.Web.Controllers
         [HttpGet]
         [GET("")]
         [GET("", IsAbsoluteUrl = true, ActionPrecedence = 1)]
+        [OutputCache(Duration = 86400, VaryByParam = "none")]
         public ActionResult Index()
         {
             return View();
