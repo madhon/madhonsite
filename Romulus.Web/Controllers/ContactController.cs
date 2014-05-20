@@ -27,6 +27,7 @@ namespace Romulus.Web.Controllers
 
         [HttpPost]
         [POST("Contact")]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(ContactViewModel model)
         {
             if (ModelState.IsValid)
