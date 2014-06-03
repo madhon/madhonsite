@@ -128,6 +128,7 @@ publish/
 # NuGet Packages Directory
 packages/*
 *.nupkg
+
 ## TODO: If the tool you use requires repositories.config
 ## uncomment the next line
 #!packages/repositories.config
@@ -137,6 +138,9 @@ packages/*
 # This line needs to be after the ignore of the build folder
 # (and the packages folder if the line above has been uncommented)
 !packages/build/
+
+# PVC Build packages (https://github.com/pvcbuild/pvc)
+pvc-packages/*
 
 # Windows Azure Build Output
 csx
