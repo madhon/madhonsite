@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
 using System.Threading.Tasks;
+using MimeKit;
+using MailKit.Net.Smtp;
 using Romulus.Web.ViewModels;
 
 namespace Romulus.Web.Services
@@ -11,35 +12,36 @@ namespace Romulus.Web.Services
     {
         public async Task SendMessageAsync(ContactViewModel model)
         {
-            var message = CreateMailMessage(model: model);
-            await SendEmailAwaitable(message: message);
+            var message = CreateMailMessage(model);
+            await SendEmailTask(message);
         }
 
-        private async Task SendEmailAwaitable(MailMessage message)
+        private MimeMessage CreateMailMessage(ContactViewModel model)
         {
-            SmtpClient smtpClient = CreateSmtpClient();
-            smtpClient.Send(message);
-            await Task.Yield();
-        }
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress(model.Name, model.Email));
+            message.To.Add(new MailboxAddress("Madhon", "madhon@madhon.com"));
+            message.Subject = "Message from website";
+            message.Body = new TextPart("plain") {Text = model.Message};
 
-        private MailMessage CreateMailMessage(ContactViewModel model)
-        {
-            MailMessage message = new MailMessage
-                {
-                    From = new MailAddress(address: model.Email, displayName: model.Name),
-                    Subject = "Message from website",
-                    Sender = new MailAddress(address: model.Email, displayName: model.Name),
-                    IsBodyHtml = false,
-                    Body = model.Message
-                };
+            message.Headers.Add((new Header("X-Generator", "MimeKit")));
 
-            message.To.Add(new MailAddress("madhon@madhon.com", "Madhon"));
             return message;
         }
 
-        private SmtpClient CreateSmtpClient()
+        private async Task SendEmailTask(MimeMessage message)
         {
-            return new SmtpClient {Host = "ASPMX.L.GOOGLE.com", Port = 25};
+            using (var client = new SmtpClient())
+            {
+                await client.ConnectAsync("ASPMX.L.GOOGLE.com", 25, false);
+
+                // Note: since we don't have an OAuth2 token, disable
+                // the XOAUTH2 authentication mechanism.
+                client.AuthenticationMechanisms.Remove("XOAUTH2");
+
+                await client.SendAsync(message);
+                await client.DisconnectAsync(true);
+            }
         }
     }
 }
