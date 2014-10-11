@@ -59,9 +59,9 @@
     <Reference Include="BouncyCastle">
       <HintPath>..\packages\MimeKit.0.97.0.0\lib\net45\BouncyCastle.dll</HintPath>
     </Reference>
-    <Reference Include="FiftyOne.Foundation, Version=3.1.4.5, Culture=neutral, PublicKeyToken=e967ae578dabd98e, processorArchitecture=MSIL">
+    <Reference Include="FiftyOne.Foundation, Version=3.1.7.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\51Degrees.mobi.3.1.4.5\lib\NET40\FiftyOne.Foundation.dll</HintPath>
+      <HintPath>..\packages\51Degrees.mobi.3.1.6.6\lib\NET40\FiftyOne.Foundation.dll</HintPath>
     </Reference>
     <Reference Include="FluentValidation, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -71,14 +71,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentValidation.MVC5.5.4.0.0\lib\Net45\FluentValidation.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="LightInject">
-      <HintPath>..\packages\LightInject.3.0.1.7\lib\net45\LightInject.dll</HintPath>
+    <Reference Include="LightInject, Version=3.0.1.9, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LightInject.3.0.1.9\lib\net45\LightInject.dll</HintPath>
     </Reference>
     <Reference Include="LightInject.Mvc">
       <HintPath>..\packages\LightInject.Mvc.1.0.0.4\lib\net45\LightInject.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="LightInject.Web">
-      <HintPath>..\packages\LightInject.Web.1.0.0.4\lib\net45\LightInject.Web.dll</HintPath>
+    <Reference Include="LightInject.Web, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LightInject.Web.1.0.0.5\lib\net45\LightInject.Web.dll</HintPath>
     </Reference>
     <Reference Include="MailKit">
       <HintPath>..\packages\MailKit.0.98.0.0\lib\net45\MailKit.dll</HintPath>
@@ -517,11 +519,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="51Degrees.config" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="51Degrees.config" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
