@@ -22,7 +22,7 @@ namespace Romulus.Web.Services
             message.From.Add(new MailboxAddress(model.Name, model.Email));
             message.To.Add(new MailboxAddress("Madhon", "madhon@madhon.com"));
             message.Subject = "Message from website";
-            message.Body = new TextPart("plain") {Text = model.Message};
+            message.Body = new TextPart("plain") { Text = model.Message };
 
             message.Headers.Add((new Header("X-Generator", "MimeKit")));
 

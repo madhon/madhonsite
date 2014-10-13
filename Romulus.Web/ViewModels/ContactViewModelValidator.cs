@@ -14,6 +14,5 @@ namespace Romulus.Web.ViewModels
             RuleFor(c => c.Email).EmailAddress().WithMessage("Enter a valid email address");
             RuleFor(c => c.Message).NotEmpty().WithMessage("Enter your message");
         }
-
     }
 }
