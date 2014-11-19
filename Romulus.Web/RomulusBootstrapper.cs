@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Castle.Windsor;
-using Nancy.Bootstrappers.Windsor;
+using LightInject;
+using LightInject.Nancy;
 using Nancy.Conventions;
-using Romulus.Web.Infrastructure;
 
 namespace Romulus.Web
 {
-    public class RomulusBootstrapper : WindsorNancyBootstrapper
+    public class RomulusBootstrapper : LightInjectNancyBootstrapper
     {
-        protected override void ConfigureApplicationContainer(IWindsorContainer existingContainer)
+        protected override IServiceContainer GetServiceContainer()
         {
-            existingContainer.Install(new RomulusInstaller());
+            return base.GetServiceContainer();
         }
 
         protected override void ConfigureConventions(NancyConventions nancyConventions)
