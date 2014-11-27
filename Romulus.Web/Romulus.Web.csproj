@@ -50,6 +50,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentValidation.5.5.0.0\lib\Net40\FluentValidation.dll</HintPath>
     </Reference>
+    <Reference Include="JetBrains.Annotations">
+      <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.2\Lib\JetBrains.Annotations.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="LightInject, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\LightInject.3.0.2.0\lib\net45\LightInject.dll</HintPath>

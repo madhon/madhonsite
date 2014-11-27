@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Nancy;
 using Nancy.ModelBinding;
+using Nancy.Security;
 using Nancy.Validation;
 using Romulus.Web.Services;
 using Romulus.Web.ViewModels;
@@ -21,6 +23,15 @@ namespace Romulus.Web.Modules
 
             Post["/contact", true] = async (x, ct) =>
             {
+                try
+                {
+                    this.ValidateCsrfToken();
+                }
+                catch (CsrfValidationException)
+                {
+                    return View["Views/Contact/Index"].WithStatusCode(403);
+                }
+
                 var model = this.Bind<ContactViewModel>();
                 var validationResult = this.Validate(model);
                 if (validationResult.IsValid)
@@ -47,7 +58,7 @@ namespace Romulus.Web.Modules
             return View["Views/Contact/Complete"];
         }
 
-       private async Task SendMessageAsync(ContactViewModel model)
+        private async Task SendMessageAsync([NotNull] ContactViewModel model)
         {
             await contactService.SendMessageAsync(model);
         }
