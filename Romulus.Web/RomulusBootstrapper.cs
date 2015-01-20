@@ -21,5 +21,13 @@ namespace Romulus.Web
             base.ApplicationStartup(container, pipelines);
             Nancy.Security.Csrf.Enable(pipelines);
         }
+
+        protected override byte[] FavIcon
+        {
+            get
+            {
+                return null;
+            }
+        }
     }
 }
