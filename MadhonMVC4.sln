@@ -1,14 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Romulus.Web", "Romulus.Web\Romulus.Web.csproj", "{A73F5E0F-9310-49EB-917C-D5D524ED7F45}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{FD1FDD08-88BB-489D-9376-48197F5C8D83}"
-	ProjectSection(SolutionItems) = preProject
-		lib\System.Web.Mvc.Html5.dll = lib\System.Web.Mvc.Html5.dll
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
