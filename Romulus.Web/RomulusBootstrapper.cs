@@ -1,15 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using LightInject;
-using LightInject.Nancy;
-using Nancy.Bootstrapper;
-using Nancy.Conventions;
-
-namespace Romulus.Web
+﻿namespace Romulus.Web
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using LightInject;
+    using LightInject.Nancy;
+    using Nancy.Bootstrapper;
+    using Nancy.Conventions;
+    
     public class RomulusBootstrapper : LightInjectNancyBootstrapper
     {
+        protected override byte[] FavIcon
+        {
+            get
+            {
+                return null;
+            }
+        }
+
         protected override void ConfigureConventions(NancyConventions nancyConventions)
         {
             base.ConfigureConventions(nancyConventions);
@@ -20,14 +28,6 @@ namespace Romulus.Web
         {
             base.ApplicationStartup(container, pipelines);
             Nancy.Security.Csrf.Enable(pipelines);
-        }
-
-        protected override byte[] FavIcon
-        {
-            get
-            {
-                return null;
-            }
         }
     }
 }

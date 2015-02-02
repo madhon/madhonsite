@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using Romulus.Web.ViewModels;
-
-namespace Romulus.Web.Services
+﻿namespace Romulus.Web.Services
 {
+    using System;
+    using System.Threading.Tasks;
+    using Romulus.Web.ViewModels;
+
     public interface IContactService
     {
         Task SendMessageAsync(ContactViewModel model);

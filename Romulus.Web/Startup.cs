@@ -1,8 +1,8 @@
-﻿using Microsoft.Owin.Extensions;
-using Owin;
-
-namespace Romulus.Web
+﻿namespace Romulus.Web
 {
+    using Microsoft.Owin.Extensions;
+    using Owin;
+    
     public class Startup
     {
         public void Configuration(IAppBuilder app)

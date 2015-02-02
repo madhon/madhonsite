@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using JetBrains.Annotations;
-using Nancy;
-using Nancy.ModelBinding;
-using Nancy.Security;
-using Nancy.Validation;
-using Romulus.Web.Services;
-using Romulus.Web.ViewModels;
-
-namespace Romulus.Web.Modules
+﻿namespace Romulus.Web.Modules
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using Nancy;
+    using Nancy.ModelBinding;
+    using Nancy.Security;
+    using Nancy.Validation;
+    using Romulus.Web.Services;
+    using Romulus.Web.ViewModels;
+
     public class ContactModule : NancyModule
     {
         private readonly IContactService contactService;
@@ -60,7 +60,7 @@ namespace Romulus.Web.Modules
 
         private async Task SendMessageAsync([NotNull] ContactViewModel model)
         {
-            await contactService.SendMessageAsync(model);
+            await contactService.SendMessageAsync(model).WithoutCapturingContext();
         }
     }
 }

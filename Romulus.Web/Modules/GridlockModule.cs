@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Nancy;
-
-namespace Romulus.Web.Modules
+﻿namespace Romulus.Web.Modules
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Nancy;
+
     public class GridlockModule : NancyModule
     {
         public GridlockModule()
@@ -16,7 +16,6 @@ namespace Romulus.Web.Modules
         {
             ViewBag.title = "Gridlock";
             return View["Views/Gridlock/Index"];
-
         }
     }
 }

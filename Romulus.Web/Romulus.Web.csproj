@@ -148,7 +148,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompositionRoot.cs" />
-    <Compile Include="JetBrainsAnnotations.cs" />
+    <Compile Include="JetBrainsAnnotations.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Modules\ContactModule.cs" />
     <Compile Include="Modules\GridlockModule.cs" />
     <Compile Include="Modules\HomeModule.cs" />
@@ -157,6 +159,7 @@
     <Compile Include="Services\ContactService.cs" />
     <Compile Include="Services\IContactService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="TaskExtensions.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\ContactViewModelValidator.cs" />
   </ItemGroup>

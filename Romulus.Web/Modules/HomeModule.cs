@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Nancy;
-
-namespace Romulus.Web.Modules
+﻿namespace Romulus.Web.Modules
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Nancy;
+
     public class HomeModule : NancyModule
     {
         public HomeModule()

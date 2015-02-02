@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MimeKit;
-using MailKit.Net.Smtp;
-using JetBrains.Annotations;
-using Romulus.Web.ViewModels;
-
-namespace Romulus.Web.Services
+﻿namespace Romulus.Web.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using MailKit.Net.Smtp;
+    using MimeKit;
+    using Romulus.Web.ViewModels;
+    
     public class ContactService : IContactService
     {
         public async Task SendMessageAsync([NotNull] ContactViewModel model)
         {
-            var message = CreateMailMessage(model);
-            await SendEmailTask(message);
+            var message = this.CreateMailMessage(model);
+            await this.SendEmailTask(message).WithoutCapturingContext();
         }
 
         private MimeMessage CreateMailMessage([NotNull] ContactViewModel model)
@@ -25,7 +25,7 @@ namespace Romulus.Web.Services
             message.Subject = "Message from website";
             message.Body = new TextPart("plain") { Text = model.Message };
 
-            message.Headers.Add((new Header("X-Generator", "MimeKit")));
+            message.Headers.Add(new Header("X-Generator", "MimeKit"));
 
             return message;
         }
@@ -34,14 +34,14 @@ namespace Romulus.Web.Services
         {
             using (var client = new SmtpClient())
             {
-                await client.ConnectAsync("ASPMX.L.GOOGLE.com", 25);
+                await client.ConnectAsync("ASPMX.L.GOOGLE.com", 25).WithoutCapturingContext();
 
                 // Note: since we don't have an OAuth2 token, disable
                 // the XOAUTH2 authentication mechanism.
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
 
-                await client.SendAsync(message);
-                await client.DisconnectAsync(true);
+                await client.SendAsync(message).WithoutCapturingContext();
+                await client.DisconnectAsync(true).WithoutCapturingContext();
             }
         }
     }
