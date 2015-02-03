@@ -29,14 +29,13 @@
                 }
                 catch (CsrfValidationException)
                 {
-                    return View["Views/Contact/Index"].WithStatusCode(403);
+                    return View["Views/Contact/Index"].WithStatusCode(HttpStatusCode.Forbidden);
                 }
 
-                var model = this.Bind<ContactViewModel>();
-                var validationResult = this.Validate(model);
-                if (validationResult.IsValid)
+                var model = this.BindAndValidate<ContactViewModel>();
+                if (ModelValidationResult.IsValid)
                 {
-                    await SendMessageAsync(model);
+                    await SendMessageAsync(model).WithoutCapturingContext();
                     return View["Views/Contact/Complete"];
                 }
 
