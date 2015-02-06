@@ -17,16 +17,16 @@
     @RenderSection("cssFiles", false)
 </head>
 <body>
-	<header class="bar bar-tab">
-		<a href="/" data-ignore="push>
+	<nav class="bar bar-tab">
+		<a class="tab-item" href="/" data-ignore="push>
 			<span class="icon icon-home"></span>
 			<span class="tab-label">Home</span>
 		</a>
-		<a href="/Contact" data-ignore="push>
+		<a class="tab-item" href="/Contact" data-ignore="push>
 			<span class="icon icon-person"></span>
 			<span class="tab-label">Contact</span>
 		</a>
-    </header>
+    </nav>
 
 	<div class="content">
 		@RenderBody()
