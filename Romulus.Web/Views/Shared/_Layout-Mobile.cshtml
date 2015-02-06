@@ -10,39 +10,30 @@
     @*        <meta name="apple-touch-icon" content="/includes/img/icon.png" />
         <meta name="apple-touch-startup-image" content="/inclues/img/splash.png" />
     *@
-    <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/ratchet/2.0.2/css/ratchet.min.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script>
-            $(document).ready(function () {
-                $.mobile.ajaxEnabled = false;
-            });
-    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ratchet/2.0.2/js/ratchet.min.js"></script>
     @RenderSection("cssFiles", false)
 </head>
 <body>
-    <div data-role="page" data-theme="b">
-        @*@Html.Partial("_ViewSwitcher")*@
+	<header class="bar bar-tab">
+		<a href="/">
+			<span class="icon icon-home"></span>
+			<span class="tab-label">Home</span>
+		</a>
+		<a href="/Contact">
+			<span class="icon icon-person"></span>
+			<span class="tab-label">Contact</span>
+		</a>
+    </header>
 
-        <div data-role="header" data-position="fixed">
-            <h1>@ViewBag.Title</h1>
-            <div data-role="navbar" data-iconpos="left">
-                <ul>
-                    <li><a href="/" data_icon="home">Home</a></li>
-                    <li><a href="/Contact" data_icon="info">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="ui-content" role="main">
-            @RenderBody()
-        </div>
-
-        <div data-role="footer" data-position="fixed">
-            Copyright &copy; 2010-2014 Madhon
-        </div>
-
-    </div>
+	<div class="bar bar-standard bar-footer">
+		Copyright &copy; 2010-2015 Madhon
+	</div>
+	
+	<div class="content">
+		@RenderBody()
+	</div>
     @RenderSection("scriptFiles", false)
 </body>
 </html>
