@@ -1,6 +1,5 @@
 ﻿namespace Romulus.Web.Services
 {
-    using System;
     using System.Threading.Tasks;
     using Romulus.Web.ViewModels;
 
