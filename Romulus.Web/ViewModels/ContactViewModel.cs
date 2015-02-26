@@ -1,7 +1,5 @@
 ﻿namespace Romulus.Web.ViewModels
 {
-    using System;
-
     public class ContactViewModel
     {
         public string Name { get; set; }
