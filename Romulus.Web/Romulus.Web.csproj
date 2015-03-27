@@ -145,7 +145,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompositionRoot.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="JetBrainsAnnotations.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
