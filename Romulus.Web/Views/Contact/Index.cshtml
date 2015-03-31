@@ -5,31 +5,28 @@
 }
 
 <h2>Contact</h2>
-<form action="/Contact" class="form-horizontal" id="frmContact" method="post" name="frmContact" role="form">
+<form action="/Contact" class="form-horizontal" id="frmContact" method="post" name="frmContact" role="form" data-parsley-validate>
     @Html.AntiForgeryToken()
     <fieldset>
         <legend>Your Information</legend>
         <div class="form-group">
             <label class="col-md-2 control-label" for="Name">Name</label>
             <div class="col-md-6">
-                <input class="form-control" id="Name" name="Name" placeholder="Your Name" type="Text" value="" autofocus />
-                <span class="field-validation-valid help-inline" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+                <input class="form-control" id="Name" name="Name" placeholder="Your Name" type="Text" value="" autofocus required/>
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-2 control-label" for="Email">Email</label>
             <div class="col-md-6">
-                <input class="form-control" id="Email" name="Email" placeholder="Your Email Address" type="Email" value="" />
-                <span class="field-validation-valid help-inline" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                <input class="form-control" id="Email" name="Email" placeholder="Your Email Address" type="Email" value="" data-parsley-trigger="change" required/>
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-2 control-label" for="Message">Message</label>
             <div class="col-md-6">
-                <textarea class="form-control" cols="100" data-val="true" data-val-required="Enter your message" id="Message" name="Message" placeholder="Your message" rows="5"></textarea>
-                <span class="field-validation-valid help-inline" data-valmsg-for="Message" data-valmsg-replace="true"></span>
+                <textarea class="form-control" cols="100" data-val="true" data-val-required="Enter your message" id="Message" name="Message" placeholder="Your message" rows="5" required></textarea>
             </div>
         </div>
     </fieldset>
@@ -39,12 +36,7 @@
     </div>
 </form>
 
-@section cssFiles
-{
-    <link href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css" rel="stylesheet">
-}
-
 @section scriptFiles {
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
-    <script async src="/Content/js/contact.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/parsley.js/2.0.7/parsley.min.js"></script>
+    <script src="/Content/js/contact.js"></script>
 }
