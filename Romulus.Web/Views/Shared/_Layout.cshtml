@@ -17,9 +17,8 @@
     <meta name="viewport" content="width=device-width">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/Content/css/ddlevelsmenu-base.css" rel="stylesheet">
-    <link href="/Content/css/ddlevelsmenu-topbar.css" rel="stylesheet">
-    <link href="/Content/css/metro.css" rel="stylesheet">
+    <link href="/Content/css/site.min.css" rel="stylesheet">
+    <link href="/Content/css/metro.min.css" rel="stylesheet">
     @RenderSection("cssFiles", false)
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 	<!--[if lt IE 9]>
@@ -73,13 +72,13 @@
 
                 <div class="col-md-9">
                     <div class="navi pull-right">
-                        <div id="ddtopmenubar" class="mattblackmenu">
+                         <div id="ddtopmenubar" class="mattblackmenu"> 
                             <ul>
                                 <li><a href="/" class="blightblue"> <i class="fa fa-home"></i>Home</a></li>
                                 <li><a href="/GridLock" class="bgreen"> <i class="fa fa-eye"></i>Gridlock</a></li>
                                 <li><a href="/Contact" class="bblue"> <i class="fa fa-envelope-o"></i>Contact</a></li>
                             </ul>
-                        </div>
+                         </div> 
                     </div>
                     <div class="navis"></div>
                     <div class="clearfix"></div>
@@ -126,6 +125,6 @@
     <!--<![endif]-->
 
     <script async src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script async src="/Content/js/ddlevelsmenu.js"></script>
+    @*<script async src="/Content/js/ddlevelsmenu.js"></script>*@
     @RenderSection("scriptFiles", false)
 </html>

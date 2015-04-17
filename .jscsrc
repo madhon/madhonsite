@@ -1,0 +1,7 @@
+{
+"preset": "google",
+"esnext": true,
+"requireSpacesInsideArrayBrackets": null,
+"disallowDanglingUnderscores": null,
+"disallowQuotedKeysInObjects": null
+}

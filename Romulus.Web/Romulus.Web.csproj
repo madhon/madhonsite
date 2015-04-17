@@ -43,9 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle, Version=1.8.5566.12979, Culture=neutral, PublicKeyToken=eec3120e64a3fcba, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MimeKit.1.0.12.0\lib\net45\BouncyCastle.dll</HintPath>
+    <Reference Include="BouncyCastle, Version=1.8.5579.17021, Culture=neutral, PublicKeyToken=eec3120e64a3fcba, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.1.0.13.0\lib\net45\BouncyCastle.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="FluentValidation, Version=5.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -60,8 +60,8 @@
       <HintPath>..\packages\LightInject.Nancy.1.0.0.1\lib\net45\LightInject.Nancy.dll</HintPath>
     </Reference>
     <Reference Include="MailKit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MailKit.1.0.13.0\lib\net45\MailKit.dll</HintPath>
+      <HintPath>..\packages\MailKit.1.0.14.0\lib\net45\MailKit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -73,8 +73,8 @@
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="MimeKit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MimeKit.1.0.12.0\lib\net45\MimeKit.dll</HintPath>
+      <HintPath>..\packages\MimeKit.1.0.13.0\lib\net45\MimeKit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.1.1\lib\net40\Nancy.dll</HintPath>
@@ -116,6 +116,7 @@
   <ItemGroup>
     <Content Include="Content\css\ddlevelsmenu-base.css" />
     <Content Include="Content\css\ddlevelsmenu-topbar.css" />
+    <Content Include="Content\css\metro.min.css" />
     <Content Include="Content\img\get_flash_player.png" />
     <Content Include="Content\img\gridlock.swf" />
     <Content Include="Content\css\metro.css" />
@@ -134,6 +135,7 @@
     <Content Include="Views\Contact\Index-Mobile.cshtml" />
     <Content Include="Views\Home\Index-Mobile.cshtml" />
     <Content Include="packages.config" />
+    <Content Include="Content\css\Site.min.css" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
