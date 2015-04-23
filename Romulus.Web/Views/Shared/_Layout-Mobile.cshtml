@@ -14,31 +14,36 @@
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
 	<link rel="stylesheet" href="content/css/Site.Mobile.css">
     @RenderSection("cssFiles", false)
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
 </head>
 <body>
 
-<nav class="light-blue lighten-1">
-  <ul id="slide-out" class="side-nav">
-    <li><a href="/"><i class="mdi-action-home left"> Home</a></li>
-    <li><a href="/contact"><i class="mdi-communication-email left"> Contact</a></li>
-  </ul>
-  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-</nav>
+<header>
+	<div class="container">
+	<nav class="light-blue lighten-1">
+	<a href="#" data-activates="nav-mobile" class="button-collapse top-nav waves-effect waves-light circle"><i class="mdi-navigation-menu"></i></a>
+	<ul id="nav-mobile" class="side-nav fixed">
+		<li class="bold"><a href="/" class="waves-effect waves-teal"><i class="mdi-action-home left"> Home</a></li>
+		<liclass="bold"><a href="/contact" class="waves-effect waves-teal"><i class="mdi-communication-email left"> Contact</a></li>
+		</ul>
+	</nav>
+	</div>
+</header>
 
+<main>
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
 			@RenderBody()
 		</div>
 	</div>
+</main>
 
 	<footer class="page-footer light-blue lighten-1">
 		<div class="footer-copyright">
-		<div class="container"> 2015 Madhon</div>
+		<div class="container">&copy; 2015 Madhon</div>
 		</div>
 	</footer>
-
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
 	<script src="content/js/app-mobile.js"></script>
 	@RenderSection("scriptFiles", false)
 </body>
