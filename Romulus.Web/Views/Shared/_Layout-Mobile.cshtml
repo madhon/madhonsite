@@ -1,46 +1,50 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-title" content="Madhon's Site" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     @*        <meta name="apple-touch-icon" content="/includes/img/icon.png" />
         <meta name="apple-touch-startup-image" content="/inclues/img/splash.png" />
     *@
-    <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script>
-            $(document).ready(function () {
-                $.mobile.ajaxEnabled = false;
-            });
-    </script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+	<link rel="stylesheet" href="content/css/Site.Mobile.css">
     @RenderSection("cssFiles", false)
 </head>
 <body>
-    <div data-role="page" data-theme="b">
-        <div data-role="header" data-position="fixed">
-            <h1>@ViewBag.Title</h1>
-            <div data-role="navbar" data-iconpos="left">
-                <ul>
-                    <li><a href="/" data_icon="home">Home</a></li>
-                    <li><a href="/Contact" data_icon="info">Contact</a></li>
-                </ul>
-            </div>
-        </div>
+	<nav class="light-blue lighten-1" role="navigation">
+		<div class="nav-wrapper">
+			<ul class="side-nav" id="mobilenav">
+				<li><a href="/">Home</a></li>
+				<li><a href="/contact">Contact</a></li>
+			</ul>
+			<ul id="slide-out" class="side-nav">
+				<li><a href="/">Home</a></li>
+				<li><a href="/contact">Contact</a></li>
+			</ul>
+			<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+		</div>
+	</nav>
 
-        <div class="ui-content" role="main">
-            @RenderBody()
-        </div>
+	<div class="section no-pad-bot" id="index-banner">
+		<div class="container">
+			@RenderBody()
+		</div>
+	</div>
 
-        <div data-role="footer" data-position="fixed">
-            Copyright &copy; 2010-2015 Madhon
-        </div>
+	<footer class="page-footer light-blue lighten-1">
+		<div class="footer-copyright">
+		<div class="container">© 2015 Madhon</div>
+		</div>
+	</footer>
 
-    </div>
-    @RenderSection("scriptFiles", false)
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+	<script src="content/js/app-mobile.js"></script>
+	@RenderSection("scriptFiles", false)
 </body>
 </html>
