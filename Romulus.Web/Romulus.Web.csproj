@@ -128,6 +128,7 @@
     <Content Include="Content\css\Site.css" />
     <Content Include="Content\css\Site.Mobile.css" />
     <Content Include="Content\css\slider.css" />
+    <Content Include="Content\js\app-mobile.js" />
     <Content Include="Content\js\contact.js" />
     <Content Include="Content\js\ddlevelsmenu.js" />
     <Content Include="Views\Shared\_Layout.cshtml" />
