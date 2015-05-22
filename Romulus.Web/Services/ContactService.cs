@@ -2,16 +2,22 @@
 {
     using System.Threading.Tasks;
     using JetBrains.Annotations;
-    using MailKit.Net.Smtp;
     using MimeKit;
     using Romulus.Web.ViewModels;
     
     public class ContactService : IContactService
     {
+        private ITransport transport;
+
+        public ContactService(ITransport transport)
+        {
+            this.transport = transport;
+        }
+
         public async Task SendMessageAsync([NotNull] ContactViewModel model)
         {
             var message = this.CreateMailMessage(model);
-            await this.SendEmailTask(message).WithoutCapturingContext();
+            await this.transport.DeliverAsync(message).WithoutCapturingContext();
         }
 
         private MimeMessage CreateMailMessage([NotNull] ContactViewModel model)
@@ -25,21 +31,6 @@
             message.Headers.Add(new Header("X-Generator", "MimeKit"));
 
             return message;
-        }
-
-        private async Task SendEmailTask([NotNull] MimeMessage message)
-        {
-            using (var client = new SmtpClient())
-            {
-                await client.ConnectAsync("ASPMX.L.GOOGLE.com", 25).WithoutCapturingContext();
-
-                // Note: since we don't have an OAuth2 token, disable
-                // the XOAUTH2 authentication mechanism.
-                client.AuthenticationMechanisms.Remove("XOAUTH2");
-
-                await client.SendAsync(message).WithoutCapturingContext();
-                await client.DisconnectAsync(true).WithoutCapturingContext();
-            }
         }
     }
 }

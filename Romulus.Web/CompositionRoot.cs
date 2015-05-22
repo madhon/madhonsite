@@ -7,6 +7,7 @@
     {
         public void Compose(IServiceRegistry serviceRegistry)
         {
+            serviceRegistry.Register<ITransport, GmailTransport>();
             serviceRegistry.Register<IContactService, ContactService>();
         }
     }
