@@ -43,13 +43,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle, Version=1.8.5610.15189, Culture=neutral, PublicKeyToken=eec3120e64a3fcba, processorArchitecture=MSIL">
-      <HintPath>..\packages\MimeKit.1.0.15.0\lib\net45\BouncyCastle.dll</HintPath>
+    <Reference Include="BouncyCastle, Version=1.8.5623.19633, Culture=neutral, PublicKeyToken=eec3120e64a3fcba, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.1.2.1.0\lib\net45\BouncyCastle.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentValidation, Version=5.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FluentValidation.5.5.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    <Reference Include="FluentValidation, Version=5.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.5.6.0.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="LightInject, Version=3.0.2.7, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LightInject.3.0.2.7\lib\net45\LightInject.dll</HintPath>
@@ -59,8 +59,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\LightInject.Nancy.1.0.0.1\lib\net45\LightInject.Nancy.dll</HintPath>
     </Reference>
-    <Reference Include="MailKit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
-      <HintPath>..\packages\MailKit.1.0.17.0\lib\net45\MailKit.dll</HintPath>
+    <Reference Include="MailKit, Version=1.2.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.1.2.1.0\lib\net45\MailKit.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -72,8 +72,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
-    <Reference Include="MimeKit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
-      <HintPath>..\packages\MimeKit.1.0.15.0\lib\net45\MimeKit.dll</HintPath>
+    <Reference Include="MimeKit, Version=1.2.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.1.2.1.0\lib\net45\MimeKit.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Nancy, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
