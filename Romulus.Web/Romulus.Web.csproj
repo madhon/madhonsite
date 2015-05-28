@@ -131,6 +131,7 @@
     <Content Include="Content\js\app-mobile.js" />
     <Content Include="Content\js\contact.js" />
     <Content Include="Content\js\ddlevelsmenu.js" />
+    <Content Include="keybase.txt" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Gridlock\Index.cshtml" />

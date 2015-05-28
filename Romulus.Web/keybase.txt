@@ -1,0 +1,73 @@
+﻿==================================================================
+https://keybase.io/madhon
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://www.madhon.com
+  * I am madhon (https://keybase.io/madhon) on keybase.
+  * I have a public key with fingerprint 9728 6749 1C6D 2A61 04CE  D9C9 2BF1 3D53 FA33 A75B
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "972867491c6d2a6104ced9c92bf13d53fa33a75b",
+            "host": "keybase.io",
+            "key_id": "2bf13d53fa33a75b",
+            "kid": "010155064d4207eb8394f2a8f240cbf34d93cea3a3281dc9e45f6a960b19633e257c0a",
+            "uid": "98866ca7ae45b6e157a9473f2ddb0a19",
+            "username": "madhon"
+        },
+        "service": {
+            "hostname": "www.madhon.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1432804650,
+    "expire_in": 157680000,
+    "prev": "84f86804923f159ec98b37b86b2ca73fafa3062b89777bf426fe64bd6bde4b35",
+    "seqno": 5,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.8
+Comment: https://keybase.io/crypto
+
+yMM2AnicbVJrUJRVGN4ldHQFBYWUGQv7UCDC5btfVjCBYWQakeFi0OiwfOf7zrd8
+Aru0Fy6CNFagQuFlBgIGlRqZuG5GmLrwA810yJJalBhWpHSKKTXQzDUbsrNk/zp/
+zpznfd7nPc8z78XA5zQ67Sv3E7KeUB/v1F45v8Wh2aFMxVRiwCJXYIZKrBAuXIpq
+NkFriVU12zEDJnAkz3K0QEisTIosgdMSlAVJIIFCUDJDKSJFiRwDsFiswGLzdSAZ
+INqgXrUgDD2MqozQ/+EXLhRwAicYBmdpmSZxDgKeEmiFFHmFpHEJKBQtC5QERUqk
+SJ6QJQHSjMKKAosDQmApCpIMJ+EiknMsyAk8z7KSyImIB1hIMJwo0BylkLIMcJEQ
+fEQbtJrFYojYxaJcYDFje2MxhJWqEvQF4PPxrF5WVqb/l6OXLMWot8RqsVskSxGq
+FdjtJQZfq72iZIELgfGZihGoZhnFiBpKodWmohEGAjElu+qTJWjkBadZBo/FYHmJ
+aoVG1cdgOJbH0fGNgaVIkqcVHkG0QFIKwQhQEnhAcYBnAYksoixRmjhLAl7gOA4o
+NMkqkKWBzAIZ0oBiMJ+vN80WzMCgb4omJGlTTWbR7rBCbO+F87v8NVqdZvEiP98i
+aHRLg/5bjysPVzzN22HwDwi8sNbj9Wo/fSOsyfl4gP/x+u7wX9pdwfdmHWuGN5c7
+IoqWf7H8prd115GP8p131kwu7m7ZBzbrTcEDu9ND0tPiHie6p+I0qbbqa2UREemJ
+X0cPulfxdcPHgfFugN59qj10POmEqx539b++6cx0bl+me9kWRqhqz526GxEQdStt
+PnG0q75xdWv7l73TEQNPoZynSzM6HxUdm+xMPfkhte4bw37Hz4eiNwW/WBpyY1V5
+bUVbf/c1TVC/2+5SVkSORo+81RfU3X+neTDl8rqMzgdNJ85mN/4+PRifdPr2hL78
+2JhWYf5yezLWv5+bQ43fmDNYlxZOzM/mbwzGBjMfPZ9V//mffgcPZLxa3mnsyE5V
+b859lp78YLyyef/ITFXaVTIl+EjCe79ddcwHjNV1DcYcHa7L0W1ceftsV28h7g4d
+amicSZg5fdFKNr9W6P212ttsO9mxISR+3zuemqZTsy8Hbo3KOnpuRlvRt/qHvKn8
+gzUxSuqStW8f7v2ggvHi2+YGkg7tCdrwbd/Ow9jIxFBbNev0e7fHU3s5rKft0p6X
+Xoh02j0pi24lT15iv0r2/ySnJiO7autDzxnx3N+hy8ZdBT33YuPIADkx6ckI+VMU
+HBobnZutDYct17/bFunROsOrh7YXJJtNw/frY7L/qI1vqP1+ZVhVi6lhid6a2cG1
+Hj8Q+Q/97Kfp
+=40/K
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/madhon
+
+==================================================================
