@@ -36,7 +36,7 @@
                     return View["Views/Contact/Complete"];
                 }
 
-                return View["Views/Contact/Index", model];
+                return View["Views/Contact/Index", model].WithStatusCode(HttpStatusCode.BadRequest);
             };
 
             Get["/contact/complete"] = _ => GetComplete(_);
@@ -46,13 +46,13 @@
         {
             this.CreateNewCsrfToken();
             ViewBag.title = "Contact";
-            return View["Views/Contact/Index"];
+            return View["Views/Contact/Index"].WithStatusCode(HttpStatusCode.OK);
         }
 
         private dynamic GetComplete(dynamic p)
         {
             ViewBag.title = "Contact";
-            return View["Views/Contact/Complete"];
+            return View["Views/Contact/Complete"].WithStatusCode(HttpStatusCode.OK);
         }
 
         private async Task SendMessageAsync([NotNull] ContactViewModel model)
