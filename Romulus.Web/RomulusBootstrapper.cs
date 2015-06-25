@@ -23,6 +23,9 @@
 
         protected override void ApplicationStartup(IServiceContainer container, IPipelines pipelines)
         {
+            RomulsStatusCodeHandler.AddCode(404);
+            //CustomStatusCode.AddCode(ConfigurationManager.AppSettings["HttpErrorCodes"].Split(',').Select(x => int.Parse(x)));
+
             base.ApplicationStartup(container, pipelines);
             Nancy.Security.Csrf.Enable(pipelines);
         }
