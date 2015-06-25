@@ -4,6 +4,7 @@
     using LightInject.Nancy;
     using Nancy.Bootstrapper;
     using Nancy.Conventions;
+    using Nancy.Security;
     
     public class RomulusBootstrapper : LightInjectNancyBootstrapper
     {
@@ -26,8 +27,8 @@
             RomulsStatusCodeHandler.AddCode(404);
             //CustomStatusCode.AddCode(ConfigurationManager.AppSettings["HttpErrorCodes"].Split(',').Select(x => int.Parse(x)));
 
+            Csrf.Enable(pipelines);
             base.ApplicationStartup(container, pipelines);
-            Nancy.Security.Csrf.Enable(pipelines);
         }
     }
 }

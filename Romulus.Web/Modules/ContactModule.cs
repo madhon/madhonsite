@@ -44,6 +44,7 @@
 
         private dynamic GetIndex(dynamic p)
         {
+            this.CreateNewCsrfToken();
             ViewBag.title = "Contact";
             return View["Views/Contact/Index"];
         }
