@@ -7,7 +7,7 @@
     
     public class ContactService : IContactService
     {
-        private ITransport transport;
+        private readonly ITransport transport;
 
         public ContactService(ITransport transport)
         {
