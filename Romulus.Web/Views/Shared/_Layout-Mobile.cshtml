@@ -5,13 +5,21 @@
     <link rel="dns-prefetch" href="//ajax.googleapis.com">
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title - Madhon's Site</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <!--IOS Metadata-->
     <meta name="apple-mobile-web-app-title" content="Madhon's Site" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-	<link rel="stylesheet" href="content/css/Site.Mobile.css">
+    <!--Android/Chrome Metadata-->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#5373F4">
+    <meta name="mobile-web-app-capable" content="yes">
+    <!--Windows 7/8/8.1 Metadata-->
+    <meta name="application-name" content="Madhon's Site" />
+    <meta name="msapplication-TileColor" content="#5373F4">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <link rel="stylesheet" href="content/css/Site.Mobile.css">
     @RenderSection("cssFiles", false)
 </head>
 <body>
