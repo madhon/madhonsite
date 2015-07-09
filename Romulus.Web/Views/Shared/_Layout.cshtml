@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System
+@using Romulus.Web.Constants
+<!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js oldie lt-ie9 lt-ie8  lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js oldie lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js oldie lt-ie9" lang="en"> <![endif]-->
@@ -15,20 +17,26 @@
     <meta name="google-site-verification" content="JueVkl3cqLkcn0bEYbgmHvXOscWjwld9eqT8WP2zlsw" />
     <meta name="verify-v1" content="3o9u8JJjDFX6bIFo33nVdmhVtkeZnfCmy5ulejun0oc=" />
     <meta name="viewport" content="width=device-width">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--Windows 7/8/8.1 Metadata-->
+    <meta name="application-name" content="Madhon's Site" />
+    <meta name="msapplication-TileColor" content="#5373F4">
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <link href="@ContentDeliveryNetwork.MaxCdn.BootstrapCssUrl" rel="stylesheet">
+    <link href="@ContentDeliveryNetwork.MaxCdn.FontAwesomeUrl" rel="stylesheet">
     <link href="/Content/css/site.min.css" rel="stylesheet">
     <link href="/Content/css/metro.min.css" rel="stylesheet">
     @RenderSection("cssFiles", false)
-    <script type="text/javascript" src="//cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js"></script>
+    <script type="text/javascript" src="@ContentDeliveryNetwork.JsDelivr.ModernizrUrl"></script>
     <!--[if lt IE 9]>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv-printshiv.min.js"></script>
+    <script type="text/javascript" src="@ContentDeliveryNetwork.JsDelivr.RespondUrl"></script>
+    <script type="text/javascript" src="@ContentDeliveryNetwork.JsDelivr.HtmlShivUrl"></script>
     <![endif]-->
 </head>
 <body>
     <!--[if lt IE 9]>
-           <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <div class="alert alert-warning" role="alert">
+           <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    </div>
     <![endif]-->
     <div class="slidepanel">
         <div class="container">
@@ -110,7 +118,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="copy text-center">
-                        <p>Copyright &copy; 2010-2015 Madhon</p>
+                        <p>Copyright &copy; @DateTime.Now.Year Madhon</p>
                     </div>
                 </div>
             </div>
@@ -119,13 +127,13 @@
     </footer>
 
     <!--[if lt IE 9]>
-        <script async type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script async type="text/javascript" src="@ContentDeliveryNetwork.Google.JQuery1Url"></script>
     <![endif]-->
     <!--[if gte IE 9]><!-->
-    <script async type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script async type="text/javascript" src="@ContentDeliveryNetwork.Google.JQuery2Url"></script>
     <!--<![endif]-->
 
-    <script async src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script async src="@ContentDeliveryNetwork.MaxCdn.BootstrapJsUrl"></script>
     @*<script async src="/Content/js/ddlevelsmenu.js"></script>*@
     @RenderSection("scriptFiles", false)
 </html>
