@@ -1,18 +1,21 @@
 ﻿namespace Romulus.Web.Modules
 {
-    using Nancy;
+  using System;
+  using JetBrains.Annotations;
+  using Nancy;
 
-    public class GridlockModule : NancyModule
+  [UsedImplicitly]
+  public class GridlockModule : NancyModule
+  {
+    public GridlockModule()
     {
-        public GridlockModule()
-        {
-            Get["/gridlock"] = _ => GetGridlockPage(_);
-        }
-
-        private dynamic GetGridlockPage(dynamic p)
-        {
-            ViewBag.title = "Gridlock";
-            return View["Views/Gridlock/Index"];
-        }
+      Get["/gridlock"] = _ => GetGridlockPage(_);
     }
+
+    private dynamic GetGridlockPage(dynamic p)
+    {
+      ViewBag.title = "Gridlock";
+      return View["Views/Gridlock/Index"];
+    }
+  }
 }

@@ -1,7 +1,9 @@
 ﻿namespace Romulus.Web.Modules
 {
-    using Nancy;
+  using JetBrains.Annotations;
+  using Nancy;
 
+    [UsedImplicitly]
     public class StatusCodesModule : NancyModule
     {
         public StatusCodesModule() : base("error")

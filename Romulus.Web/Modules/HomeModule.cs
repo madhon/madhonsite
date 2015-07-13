@@ -1,16 +1,19 @@
 ﻿namespace Romulus.Web.Modules
 {
-    using Nancy;
+  using System;
+  using JetBrains.Annotations;
+  using Nancy;
 
-    public class HomeModule : NancyModule
+  [UsedImplicitly]
+  public class HomeModule : NancyModule
+  {
+    public HomeModule()
     {
-        public HomeModule()
-        {
-            Get["/"] = _ =>
-            {
-                ViewBag.title = "Home";
-                return View["Views/Home/Index"];
-            };
-        }
+      Get["/"] = _ =>
+      {
+        ViewBag.title = "Home";
+        return View["Views/Home/Index"];
+      };
     }
+  }
 }

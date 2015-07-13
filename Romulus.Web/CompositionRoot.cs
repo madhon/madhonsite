@@ -1,14 +1,17 @@
 ﻿namespace Romulus.Web
 {
-    using LightInject;
-    using Romulus.Web.Services;
+  using System;
+  using JetBrains.Annotations;
+  using LightInject;
+  using Romulus.Web.Services;
 
-    public class CompositionRoot : ICompositionRoot
+  [UsedImplicitly]
+  public class CompositionRoot : ICompositionRoot
+  {
+    public void Compose(IServiceRegistry serviceRegistry)
     {
-        public void Compose(IServiceRegistry serviceRegistry)
-        {
-            serviceRegistry.Register<ITransport, GmailTransport>();
-            serviceRegistry.Register<IContactService, ContactService>();
-        }
+      serviceRegistry.Register<ITransport, GmailTransport>();
+      serviceRegistry.Register<IContactService, ContactService>();
     }
+  }
 }

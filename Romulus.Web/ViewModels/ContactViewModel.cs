@@ -1,11 +1,15 @@
 ﻿namespace Romulus.Web.ViewModels
 {
-    public class ContactViewModel
-    {
-        public string Name { get; set; }
+  using System;
+  using JetBrains.Annotations;
 
-        public string Email { get; set; }
+  [UsedImplicitly]
+  public class ContactViewModel
+  {
+    public string Name { get; set; }
 
-        public string Message { get; set; }
-    }
+    public string Email { get; set; }
+
+    public string Message { get; set; }
+  }
 }

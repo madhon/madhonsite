@@ -199,7 +199,9 @@
     <Compile Include="Modules\StatusCodesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RomulsStatusCodeHandler.cs" />
-    <Compile Include="RomulusBootstrapper.cs" />
+    <Compile Include="RomulusBootstrapper.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Services\ContactService.cs" />
     <Compile Include="Services\GmailTransport.cs" />
     <Compile Include="Services\IContactService.cs" />

@@ -1,14 +1,18 @@
 ﻿namespace Romulus.Web
 {
-    using Microsoft.Owin.Extensions;
-    using Owin;
-    
-    public class Startup
+  using System;
+  using JetBrains.Annotations;
+  using Microsoft.Owin.Extensions;
+  using Owin;
+
+  [UsedImplicitly]
+  public class Startup
+  {
+    [UsedImplicitly]
+    public void Configuration(IAppBuilder app)
     {
-        public void Configuration(IAppBuilder app)
-        {
-            app.UseNancy();
-            app.UseStageMarker(PipelineStage.MapHandler);
-        }
+      app.UseNancy();
+      app.UseStageMarker(PipelineStage.MapHandler);
     }
+  }
 }
