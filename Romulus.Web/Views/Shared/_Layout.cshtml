@@ -1,5 +1,6 @@
 ﻿@using System
 @using Romulus.Web.Constants
+@using Romulus.Web.Helpers
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js oldie lt-ie9 lt-ie8  lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js oldie lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -133,7 +134,10 @@
     <script async type="text/javascript" src="@ContentDeliveryNetwork.Google.JQuery2Url"></script>
     <!--<![endif]-->
 
-    <script async src="@ContentDeliveryNetwork.MaxCdn.BootstrapJsUrl"></script>
+
+    @Html.JsTag(@ContentDeliveryNetwork.MaxCdn.BootstrapJsUrl, true)
+
+@*<script async src="@ContentDeliveryNetwork.MaxCdn.BootstrapJsUrl"></script>*@
     @*<script async src="/Content/js/ddlevelsmenu.js"></script>*@
     @RenderSection("scriptFiles", false)
 </html>
