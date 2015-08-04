@@ -133,11 +133,6 @@
     <!--[if gte IE 9]><!-->
     <script async type="text/javascript" src="@ContentDeliveryNetwork.Google.JQuery2Url"></script>
     <!--<![endif]-->
-
-
     @Html.JsTag(@ContentDeliveryNetwork.MaxCdn.BootstrapJsUrl, true)
-
-@*<script async src="@ContentDeliveryNetwork.MaxCdn.BootstrapJsUrl"></script>*@
-    @*<script async src="/Content/js/ddlevelsmenu.js"></script>*@
     @RenderSection("scriptFiles", false)
 </html>
