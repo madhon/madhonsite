@@ -11,7 +11,7 @@
     [UsedImplicitly]
     public void Configuration(IAppBuilder app)
     {
-      app.UseNancy();
+      app.UseNancy(options => options.Bootstrapper = new RomulusBootstrapper());
       app.UseStageMarker(PipelineStage.MapHandler);
     }
   }

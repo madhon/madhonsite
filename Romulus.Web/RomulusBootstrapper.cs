@@ -1,15 +1,14 @@
 ﻿namespace Romulus.Web
 {
-  using System;
+  using DryIoc;
   using JetBrains.Annotations;
-  using LightInject;
-  using LightInject.Nancy;
   using Nancy.Bootstrapper;
   using Nancy.Conventions;
   using Nancy.Security;
+  using Romulus.Web.Services;
 
   [UsedImplicitly]
-  public class RomulusBootstrapper : LightInjectNancyBootstrapper
+  public class RomulusBootstrapper : DryIocNancyBootstrapper
   {
     protected override byte[] FavIcon
     {
@@ -22,11 +21,18 @@
       MobileViewLocationConventions.Enable(nancyConventions);
     }
 
-    protected override void ApplicationStartup(IServiceContainer container, IPipelines pipelines)
+    protected override void ConfigureApplicationContainer(IContainer existingContainer)
+    {
+      base.ConfigureApplicationContainer(existingContainer);
+
+      existingContainer.Register<ITransport, GmailTransport>();
+      existingContainer.Register<IContactService, ContactService>();
+    }
+
+    protected override void ApplicationStartup(IContainer container, IPipelines pipelines)
     {
       RomulsStatusCodeHandler.AddCode(404);
       //CustomStatusCode.AddCode(ConfigurationManager.AppSettings["HttpErrorCodes"].Split(',').Select(x => int.Parse(x)));
-
       Csrf.Enable(pipelines);
       base.ApplicationStartup(container, pipelines);
     }

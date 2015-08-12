@@ -54,14 +54,6 @@
       <HintPath>..\packages\FluentValidation.5.6.2.0\lib\Net45\FluentValidation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LightInject, Version=3.0.2.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LightInject.3.0.2.7\lib\net45\LightInject.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LightInject.Nancy, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\LightInject.Nancy.1.0.0.1\lib\net45\LightInject.Nancy.dll</HintPath>
-    </Reference>
     <Reference Include="MailKit, Version=1.2.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
       <HintPath>..\packages\MailKit.1.2.8.0\lib\net45\MailKit.dll</HintPath>
       <Private>True</Private>
@@ -190,8 +182,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompositionRoot.cs" />
     <Compile Include="Constants\ContentDeliveryNetwork.cs" />
+    <Compile Include="DryIocNancyBootstrapper.cs" />
+    <Compile Include="DryIoc\AsyncExecutionFlowScopeContext.cs" />
+    <Compile Include="DryIoc\Container.cs" />
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="JetBrainsAnnotations.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
