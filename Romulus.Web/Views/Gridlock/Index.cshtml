@@ -1,10 +1,11 @@
 ﻿@using Romulus.Web.Constants
+@using Romulus.Web.Helpers
 @{
     Layout = "Shared/_Layout.cshtml";
     ViewBag.Title = "Gridlock";
 }
 
-<script type="text/javascript" src="@ContentDeliveryNetwork.Google.SwfObjectUrl"></script>
+@Html.JsTag(ContentDeliveryNetwork.Google.SwfObjectUrl)
 <script type="text/javascript">
 
    // <![CDATA[

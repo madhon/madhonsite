@@ -1,5 +1,6 @@
 ﻿@using System
 @using Romulus.Web.Constants
+@using Romulus.Web.Helpers
 @{
     Layout = "Shared/_Layout.cshtml";
     ViewBag.Title = "Contact";
@@ -38,6 +39,6 @@
 </form>
 
 @section scriptFiles {
-    <script type="text/javascript" src="@ContentDeliveryNetwork.JsDelivr.ParsleyUrl"></script>
-    <script src="/Content/js/contact.js"></script>
+    @Html.JsTag(ContentDeliveryNetwork.JsDelivr.ParsleyUrl)
+    @Html.JsTag("/Content/js/contact.js")
 }

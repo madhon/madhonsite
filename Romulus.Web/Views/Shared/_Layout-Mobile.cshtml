@@ -1,5 +1,6 @@
 ﻿@using System
 @using Romulus.Web.Constants
+@using Romulus.Web.Helpers
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,9 +21,9 @@
     <!--Windows 7/8/8.1 Metadata-->
     <meta name="application-name" content="Madhon's Site" />
     <meta name="msapplication-TileColor" content="#5373F4">
-    <meta name="msapplication-config" content="/browserconfig.xml" />
-    <link rel="stylesheet" href="@ContentDeliveryNetwork.Cloudflare.MaterializeCssUrl">
-    <link rel="stylesheet" href="/content/css/Site.Mobile.css">
+    <meta name="msapplication-config" content="/browserconfig.xml"/>
+    @Html.CssTag(@ContentDeliveryNetwork.Cloudflare.MaterializeCssUrl)
+    @Html.CssTag("/content/css/Site.Mobile.css")
     @RenderSection("cssFiles", false)
 </head>
 <body>
@@ -57,10 +58,9 @@
 		<div class="container">Copyright &copy; @DateTime.Now.Year Madhon</div>
 	</div>
 </footer>
-	
-	<script src="@ContentDeliveryNetwork.Google.JQuery2Url"></script>
-    <script src="@ContentDeliveryNetwork.Cloudflare.MaterializeJsUrl"></script>
-	<script src="/content/js/app-mobile.js"></script>
+    @Html.JsTag(ContentDeliveryNetwork.Google.JQuery2Url)
+    @Html.JsTag(ContentDeliveryNetwork.Cloudflare.MaterializeJsUrl)
+    @Html.JsTag("/content/js/app-mobile.js")
 	@RenderSection("scriptFiles", false)
 </body>
 </html>
