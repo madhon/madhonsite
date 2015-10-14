@@ -4,9 +4,9 @@
   using System.Collections.Generic;
   using System.Linq;
   using DryIoc;
-  using global::Nancy;
-  using global::Nancy.Bootstrapper;
-  using global::Nancy.Diagnostics;
+  using Nancy;
+  using Nancy.Bootstrapper;
+  using Nancy.Diagnostics;
 
   public abstract class DryIocNancyBootstrapper : NancyBootstrapperWithRequestContainerBase<IContainer>
   {

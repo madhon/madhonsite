@@ -10,10 +10,7 @@
   [UsedImplicitly]
   public class RomulusBootstrapper : DryIocNancyBootstrapper
   {
-    protected override byte[] FavIcon
-    {
-      get { return null; }
-    }
+    protected override byte[] FavIcon => null;
 
     protected override void ConfigureConventions(NancyConventions nancyConventions)
     {
