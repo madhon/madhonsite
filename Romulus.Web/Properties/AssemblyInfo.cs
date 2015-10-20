@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using Microsoft.Owin;
 
 [assembly: AssemblyTitle("Romulus.Web")]
 [assembly: AssemblyDescription("")]
@@ -14,3 +15,6 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 [assembly: Guid("8a96136e-7f63-469b-ae02-5afa864c4cba")]
+
+
+[assembly: OwinStartup(typeof(Romulus.Web.Startup))]
