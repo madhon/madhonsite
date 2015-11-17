@@ -383,7 +383,9 @@ namespace DryIoc
 
         object IResolver.Resolve(Type serviceType, bool ifUnresolvedReturnDefault)
         {
-            return _registry.Value.ResolveServiceFromCache(serviceType, _containerWeakRef)
+            var registry = _registry.Value;
+            var factoryDelegate = registry.DefaultFactoryDelegateCache.Value.GetValueOrDefault(serviceType);
+            return (factoryDelegate == null ? null : factoryDelegate(registry.ResolutionStateCache.Value, _containerWeakRef, null))
                 ?? ResolveAndCacheDefaultDelegate(serviceType, ifUnresolvedReturnDefault, null);
         }
 
@@ -828,8 +830,15 @@ namespace DryIoc
                                 .ThrowIfNull(Error.UnableToResolveDecorator, decoratorRequest);
 
                             var decoratedArgWasUsed = decoratorRequest.FuncArgs.Key[0];
-                            decoratorExpr = !decoratedArgWasUsed ? decoratorExpr // case of replacing decorator.
-                                : Expression.Lambda(decoratorFuncType, decoratorExpr, decoratorRequest.FuncArgs.Value);
+                            if (decoratedArgWasUsed)
+                            {
+                                // Note: the conversation is required in .NET 3.5 to handle lack of covariance for Func<out T>
+                                // So that Func<Derived> may be used for Func<Base>
+                                if (decoratorExpr.Type != serviceType)
+                                    decoratorExpr = Expression.Convert(decoratorExpr, serviceType);
+
+                                decoratorExpr = Expression.Lambda(decoratorFuncType, decoratorExpr, decoratorRequest.FuncArgs.Value);
+                            }
 
                             CacheFactoryExpression(decorator.FactoryID, decoratorExpr);
                         }
@@ -843,8 +852,8 @@ namespace DryIoc
                             else
                             {
                                 var prevDecorators = ((LambdaExpression)resultDecorator);
-                                var decorateDecorator = Expression.Invoke(decoratorExpr, prevDecorators.Body);
-                                resultDecorator = Expression.Lambda(decorateDecorator, prevDecorators.Parameters[0]);
+                                var decorateDecoratorExpr = Expression.Invoke(decoratorExpr, prevDecorators.Body);
+                                resultDecorator = Expression.Lambda(decorateDecoratorExpr, prevDecorators.Parameters[0]);
                             }
                         }
                     }
@@ -1694,12 +1703,6 @@ namespace DryIoc
                     DefaultFactoryDelegateCache, KeyedFactoryDelegateCache, FactoryExpressionCache, ResolutionStateCache,
                     isChangePermitted);
             }
-
-            public object ResolveServiceFromCache(Type serviceType, IResolverContext resolverContext)
-            {
-                var factoryDelegate = DefaultFactoryDelegateCache.Value.GetValueOrDefault(serviceType);
-                return factoryDelegate == null ? null : factoryDelegate(ResolutionStateCache.Value, resolverContext, null);
-            }
         }
 
         private Container(Rules rules, Ref<Registry> registry, IScope singletonScope, IScopeContext scopeContext,
@@ -2051,7 +2054,7 @@ namespace DryIoc
     public delegate object FactoryDelegate(object[] state, IResolverContext r, IScope scope);
 
     /// <summary>Handles default conversation of expression into <see cref="FactoryDelegate"/>.</summary>
-    public static class FactoryCompiler
+    public static partial class FactoryCompiler
     {
         /// <summary>Wraps service creation expression (body) into <see cref="FactoryDelegate"/> and returns result lambda expression.</summary>
         /// <param name="expression">Service expression (body) to wrap.</param> <returns>Created lambda expression.</returns>
@@ -2059,6 +2062,8 @@ namespace DryIoc
         {
             return Expression.Lambda<FactoryDelegate>(OptimizeExpression(expression), _factoryDelegateParamsExpr);
         }
+
+        static partial void CompileToDelegate(Expression expression, ref FactoryDelegate result);
 
         /// <summary>First wraps the input service creation expression into lambda expression and
         /// then compiles lambda expression to actual <see cref="FactoryDelegate"/> used for service resolution.
@@ -2070,18 +2075,22 @@ namespace DryIoc
         public static FactoryDelegate CompileToDelegate(this Expression expression, IContainer container)
         {
             expression = OptimizeExpression(expression);
-            if (expression.NodeType == ExpressionType.ArrayIndex)
-            {
-                var arrayIndexExpr = (BinaryExpression)expression;
-                if (arrayIndexExpr.Left.NodeType == ExpressionType.Parameter)
-                {
-                    var index = (int)((ConstantExpression)arrayIndexExpr.Right).Value;
-                    var value = container.ResolutionStateCache[index];
-                    return (state, context, scope) => value;
-                }
-            }
 
-            return Expression.Lambda<FactoryDelegate>(expression, _factoryDelegateParamsExpr).Compile();
+            // Optimization for singleton resolution
+            //if (expression.NodeType == ExpressionType.ArrayIndex)
+            //{
+            //    var arrayIndexExpr = (BinaryExpression)expression;
+            //    if (arrayIndexExpr.Left.NodeType == ExpressionType.Parameter)
+            //    {
+            //        var index = (int)((ConstantExpression)arrayIndexExpr.Right).Value;
+            //        var value = container.ResolutionStateCache[index];
+            //        return (state, context, scope) => value;
+            //    }
+            //}
+
+            FactoryDelegate factoryDelegate = null;
+            CompileToDelegate(expression, ref factoryDelegate);
+            return factoryDelegate ?? Expression.Lambda<FactoryDelegate>(expression, _factoryDelegateParamsExpr).Compile();
         }
 
         private static Expression OptimizeExpression(Expression expression)
@@ -2296,6 +2305,10 @@ namespace DryIoc
             var serviceType = wrapperType.GetGenericParamsAndArgs()[0];
             var serviceRequest = request.Push(serviceType);
             var serviceExpr = Resolver.CreateResolutionExpression(serviceRequest);
+            // Note: the conversation is required in .NET 3.5 to handle lack of covariance for Func<out T>
+            // So that Func<Derived> may be used for Func<Base>
+            if (serviceExpr.Type != serviceType)
+                serviceExpr = Expression.Convert(serviceExpr, serviceType);
             var factoryExpr = Expression.Lambda(serviceExpr, null);
             var serviceFuncType = typeof(Func<>).MakeGenericType(serviceType);
             var wrapperCtor = wrapperType.GetConstructorOrNull(args: serviceFuncType);
@@ -2318,7 +2331,15 @@ namespace DryIoc
             var serviceRequest = request.Push(serviceType);
             var serviceFactory = request.Container.ResolveFactory(serviceRequest);
             var serviceExpr = serviceFactory == null ? null : serviceFactory.GetExpressionOrDefault(serviceRequest);
-            return serviceExpr == null ? null : Expression.Lambda(funcType, serviceExpr, funcArgExprs);
+            if (serviceExpr == null)
+                return null;
+
+            // Note: the conversation is required in .NET 3.5 to handle lack of covariance for Func<out T>
+            // So that Func<Derived> may be used for Func<Base>
+            if (serviceExpr.Type != serviceType)
+                serviceExpr = Expression.Convert(serviceExpr, serviceType);
+
+            return Expression.Lambda(funcType, serviceExpr, funcArgExprs);
         }
 
         private static Expression GetLambdaExpressionExpressionOrDefault(Request request)
@@ -3680,10 +3701,10 @@ namespace DryIoc
             }
 
             var canReuseAlreadyRegisteredFactory = factory != null && factory.Reuse == reuse && factory.Setup == setup;
-            if (!canReuseAlreadyRegisteredFactory)
-                factory = new InstanceFactory(originalInstance, reuse, setup);
-            else
+            if (canReuseAlreadyRegisteredFactory)
                 factory.ReplaceInstance(originalInstance);
+            else
+                factory = new InstanceFactory(originalInstance, reuse, setup);
 
             // Before even registering new factory (if old one is not exist or could not be reused)
             // we put instance into scope. So the factory created expression will be ignored anyway.
@@ -5221,8 +5242,8 @@ namespace DryIoc
             if (serviceExpr != null && reuse != null && !isReplacingDecorator)
             {
                 // The singleton optimization: eagerly create singleton and put it into state for fast access.
-                if (reuse is SingletonReuse &&
-                    FactoryType == FactoryType.Service &&
+                if (reuse is SingletonReuse && FactoryType == FactoryType.Service &&
+                    !(this is InstanceFactory) &&
                     request.Ancestor(r => r.ServiceType.IsFunc()).IsEmpty &&
                     container.Rules.EagerCachingSingletonForFasterAccess)
                     serviceExpr = CreateSingletonAndGetExpressionOrDefault(serviceExpr, request);
@@ -5307,9 +5328,13 @@ namespace DryIoc
             var scopedInstanceIdExpr = Expression.Constant(scopedInstanceId);
 
             if (Setup.PreventDisposal == false && Setup.WeaklyReferenced == false)
-                return Expression.Convert(
-                    Expression.Call(getScopeExpr, "GetOrAdd", ArrayTools.Empty<Type>(), scopedInstanceIdExpr,
-                        Expression.Lambda<CreateScopedValue>(serviceExpr, ArrayTools.Empty<ParameterExpression>())), serviceType);
+            {
+                if (serviceExpr.Type.IsValueType())
+                    serviceExpr = Expression.Convert(serviceExpr, typeof(object));
+                var getFromScope = Expression.Call(getScopeExpr, "GetOrAdd", ArrayTools.Empty<Type>(), scopedInstanceIdExpr,
+                    Expression.Lambda<CreateScopedValue>(serviceExpr, ArrayTools.Empty<ParameterExpression>()));
+                return Expression.Convert(getFromScope, serviceType);
+            }
 
             if (Setup.PreventDisposal)
                 serviceExpr = Expression.NewArrayInit(typeof(object), serviceExpr);

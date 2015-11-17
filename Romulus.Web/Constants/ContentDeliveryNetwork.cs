@@ -33,9 +33,9 @@ namespace Romulus.Web.Constants
       {
         public const string Domain = "cdnjs.cloudflare.com";
         public const string MaterializeCssUrl =
-          "//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/css/materialize.min.css";
+          "//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css";
         public const string MaterializeJsUrl =
-          "//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js";
+          "//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js";
       }
     }
 }

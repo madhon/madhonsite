@@ -159,6 +159,7 @@
     <Compile Include="DryIocNancyBootstrapper.cs" />
     <Compile Include="DryIoc\AsyncExecutionFlowScopeContext.cs" />
     <Compile Include="DryIoc\Container.cs" />
+    <Compile Include="DryIoc\FactoryCompiler.cs" />
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="JetBrainsAnnotations.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
