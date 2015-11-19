@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -13,10 +12,9 @@ namespace DryIoc
         [SuppressMessage("ReSharper", "RedundantAssignment", Justification = "Result is write only by design")]
         static partial void CompileToDelegate(Expression expression, ref FactoryDelegate result)
         {
-            var method = new DynamicMethod("_dryioc_get_",
-                MethodAttributes.Public | MethodAttributes.Static, CallingConventions.Standard,
+            var method = new DynamicMethod(string.Empty,
                 typeof(object), _factoryDelegateArgTypes,
-                typeof(Container), skipVisibility: true);
+                typeof(Container).Module, skipVisibility: true);
 
             var il = method.GetILGenerator();
 
@@ -46,23 +44,7 @@ namespace DryIoc
                     case ExpressionType.Constant:
                         return VisitConstant((ConstantExpression)expr, il);
                     case ExpressionType.Parameter:
-                        var paramExpr = (ParameterExpression)expr;
-                        if (paramExpr == Container.StateParamExpr) // Note: Only the state (singletons) is handled
-                        {
-                            il.Emit(OpCodes.Ldarg_0); // state is the first argument
-                            Debug.WriteLine("Ldarg_0 // state");
-                        }
-                        else if (paramExpr == Container.ResolverContextParamExpr)
-                        {
-                            il.Emit(OpCodes.Ldarg_1); // state is the first argument
-                            Debug.WriteLine("Ldarg_1 // resolverContext");
-                        }
-                        else if (paramExpr == Container.ResolutionScopeParamExpr)
-                        {
-                            il.Emit(OpCodes.Ldarg_2); // state is the first argument
-                            Debug.WriteLine("Ldarg_2 // scope");
-                        }
-                        return true;
+                        return VisitFactoryDelegateParameters(expr, il);
                     case ExpressionType.New:
                         return VisitNew((NewExpression)expr, il);
                     case ExpressionType.NewArrayInit:
@@ -74,9 +56,21 @@ namespace DryIoc
                     case ExpressionType.MemberAccess:
                         return VisitMemberAccess((MemberExpression)expr, il);
                     default:
-                        // Note: not supported yet
+                        // Not supported yet: nested lambdas (Invoke)
                         return false;
                 }
+            }
+
+            private static bool VisitFactoryDelegateParameters(Expression expr, ILGenerator il)
+            {
+                var paramExpr = (ParameterExpression)expr;
+                if (paramExpr == Container.StateParamExpr)
+                    il.Emit(OpCodes.Ldarg_0);
+                else if (paramExpr == Container.ResolverContextParamExpr)
+                    il.Emit(OpCodes.Ldarg_1);
+                else if (paramExpr == Container.ResolutionScopeParamExpr)
+                    il.Emit(OpCodes.Ldarg_2);
+                return true;
             }
 
             private static bool VisitBinary(BinaryExpression b, ILGenerator il)
@@ -102,15 +96,9 @@ namespace DryIoc
                 if (ok)
                 {
                     var convertTargetType = node.Type;
-                    if (convertTargetType != typeof(object)) // cast to object is not required
-                    {
-                        il.Emit(OpCodes.Castclass, convertTargetType);
-                        Debug.WriteLine("Castclass " + convertTargetType);
-                    }
-                    else
-                    {
-                        ok = false;
-                    }
+                    if (convertTargetType == typeof(object)) // not supported, probably required for converting ValueType
+                        return false;
+                    il.Emit(OpCodes.Castclass, convertTargetType);
                 }
                 return ok;
             }
@@ -119,25 +107,13 @@ namespace DryIoc
             {
                 var value = node.Value;
                 if (value == null)
-                {
                     il.Emit(OpCodes.Ldnull);
-                    Debug.WriteLine("Ldnull");
-                }
                 else if (value is int || value.GetType().IsEnum())
-                {
                     il.Emit(OpCodes.Ldc_I4, (int)value);
-                    Debug.WriteLine("Ldc_I4 " + value);
-                }
                 else if (value is string)
-                {
                     il.Emit(OpCodes.Ldstr, (string)value);
-                    Debug.WriteLine("Ldstr " + value);
-                }
                 else
-                {
                     return false;
-                }
-
                 return true;
             }
 
@@ -145,10 +121,7 @@ namespace DryIoc
             {
                 var ok = VisitExpressionList(node.Arguments, il);
                 if (ok)
-                {
                     il.Emit(OpCodes.Newobj, node.Constructor);
-                    Debug.WriteLine("Newobj " + node.Constructor.DeclaringType);
-                }
                 return ok;
             }
 
@@ -162,46 +135,30 @@ namespace DryIoc
                 var arrVar = il.DeclareLocal(arrType);
 
                 il.Emit(OpCodes.Ldc_I4, elems.Count);
-                Debug.WriteLine("Ldc_I4 " + elems.Count);
                 il.Emit(OpCodes.Newarr, elemType);
-                Debug.WriteLine("Newarr " + elemType);
                 il.Emit(OpCodes.Stloc, arrVar);
-                Debug.WriteLine("Stloc_0");
 
                 var ok = true;
                 for (int i = 0, n = elems.Count; i < n && ok; i++)
                 {
                     il.Emit(OpCodes.Ldloc, arrVar);
-                    Debug.WriteLine("Ldloc array");
-
                     il.Emit(OpCodes.Ldc_I4, i);
-                    Debug.WriteLine("Ldc_I4 " + i);
 
+                    // loading element address for later copying of value into it.
                     if (isElemOfValueType)
-                    {
-                        il.Emit(OpCodes.Ldelema, elemType); // loading element address for later copying of value into it.
-                        Debug.WriteLine("Ldelema " + elemType);
-                    }
+                        il.Emit(OpCodes.Ldelema, elemType);
 
                     ok = TryVisit(elems[i], il);
                     if (ok)
                     {
                         if (isElemOfValueType)
-                        {
                             il.Emit(OpCodes.Stobj, elemType); // store element of value type by array element address
-                            Debug.WriteLine("Stobj " + elemType);
-                        }
                         else
-                        {
                             il.Emit(OpCodes.Stelem_Ref);
-                            Debug.WriteLine("Stelem_Ref");
-                        }
                     }
                 }
 
                 il.Emit(OpCodes.Ldloc, arrVar);
-                Debug.WriteLine("Ldloc_0");
-
                 return ok;
             }
 
@@ -209,10 +166,7 @@ namespace DryIoc
             {
                 var ok = VisitBinary(node, il);
                 if (ok)
-                {
                     il.Emit(OpCodes.Ldelem_Ref);
-                    Debug.WriteLine("Ldelem_Ref");
-                }
                 return ok;
             }
 
@@ -223,7 +177,6 @@ namespace DryIoc
 
                 var obj = il.DeclareLocal(mi.Type);
                 il.Emit(OpCodes.Stloc, obj);
-                Debug.WriteLine("Stloc " + obj);
 
                 var bindings = mi.Bindings;
                 for (int i = 0, n = bindings.Count; i < n; i++)
@@ -231,9 +184,7 @@ namespace DryIoc
                     var binding = bindings[i];
                     if (binding.BindingType != MemberBindingType.Assignment)
                         return false;
-
                     il.Emit(OpCodes.Ldloc, obj);
-                    Debug.WriteLine("Ldloc " + obj);
 
                     ok = TryVisit(((MemberAssignment)binding).Expression, il);
                     if (!ok) return false;
@@ -251,14 +202,11 @@ namespace DryIoc
                         var field = binding.Member as FieldInfo;
                         if (field == null)
                             return false;
-
                         il.Emit(OpCodes.Stfld, field);
-                        Debug.WriteLine("Stfld " + field);
                     }
                 }
 
                 il.Emit(OpCodes.Ldloc, obj);
-                Debug.WriteLine("Ldloc " + obj);
                 return true;
             }
 
@@ -288,17 +236,7 @@ namespace DryIoc
                 var field = expr.Member as FieldInfo;
                 if (field != null)
                 {
-                    if (field.IsStatic())
-                    {
-                        il.Emit(OpCodes.Ldsfld, field);
-                        Debug.WriteLine("Ldsfld " + field);
-                    }
-                    else
-                    {
-                        il.Emit(OpCodes.Ldfld, field);
-                        Debug.WriteLine("Ldfld " + field);
-                    }
-
+                    il.Emit(field.IsStatic() ? OpCodes.Ldsfld : OpCodes.Ldfld, field);
                     return true;
                 }
 
@@ -316,16 +254,7 @@ namespace DryIoc
 
             private static void EmitMethodCall(MethodInfo method, ILGenerator il)
             {
-                if (method.IsVirtual)
-                {
-                    il.Emit(OpCodes.Callvirt, method);
-                    Debug.WriteLine("Callvirt " + method);
-                }
-                else
-                {
-                    il.Emit(OpCodes.Call, method);
-                    Debug.WriteLine("Call " + method);
-                }
+                il.Emit(method.IsVirtual ? OpCodes.Callvirt : OpCodes.Call, method);
             }
         }
     }
