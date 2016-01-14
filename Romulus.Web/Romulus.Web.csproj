@@ -50,8 +50,8 @@
       <HintPath>..\packages\MimeKit.1.2.19\lib\net45\BouncyCastle.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentValidation, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.6.0.0.0\lib\Net45\FluentValidation.dll</HintPath>
+    <Reference Include="FluentValidation, Version=6.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.0.2.0\lib\Net45\FluentValidation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MailKit, Version=1.2.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
