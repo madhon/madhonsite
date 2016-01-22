@@ -136,6 +136,7 @@
     <Content Include="newrelic\Extensions\CoreInstrumentation.xml" />
     <Content Include="newrelic\Extensions\JetBrains.Annotations.dll" />
     <Content Include="newrelic\Extensions\JetBrains.Annotations.xml" />
+    <Content Include="newrelic\Extensions\NancyInstrumentation.xml" />
     <Content Include="newrelic\Extensions\NewRelic.Agent.AttributeFilter.dll" />
     <Content Include="newrelic\Extensions\NewRelic.Agent.Configuration.dll" />
     <Content Include="newrelic\Extensions\NewRelic.Agent.Core.dll" />
@@ -229,6 +230,7 @@
     <Compile Include="JetBrainsAnnotations.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Modules\BaseModule.cs" />
     <Compile Include="Modules\ContactModule.cs" />
     <Compile Include="Modules\GridlockModule.cs" />
     <Compile Include="Modules\HomeModule.cs" />

@@ -5,8 +5,8 @@
   using Nancy;
 
   [UsedImplicitly]
-  public class HomeModule : NancyModule
-  {
+  public class HomeModule : BaseModule
+    {
     public HomeModule()
     {
       Get["/"] = _ =>

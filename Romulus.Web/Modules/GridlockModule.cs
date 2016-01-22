@@ -5,8 +5,8 @@
   using Nancy;
 
   [UsedImplicitly]
-  public class GridlockModule : NancyModule
-  {
+  public class GridlockModule : BaseModule
+    {
     public GridlockModule()
     {
       Get["/gridlock"] = _ => GetGridlockPage(_);
