@@ -15,8 +15,8 @@ namespace Romulus.Web.Constants
       public static class MaxCdn
       {
         public const string Domain = "maxcdn.bootstrapcdn.com";
-        public const string BootstrapCssUrl = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css";
-        public const string BootstrapJsUrl = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js";
+        public const string BootstrapCssUrl = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";
+        public const string BootstrapJsUrl = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js";
         public const string FontAwesomeUrl = "//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css";
       }
 
