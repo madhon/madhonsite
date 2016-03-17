@@ -58,8 +58,8 @@
 		<div class="container">Copyright &copy; @DateTime.Now.Year Madhon</div>
 	</div>
 </footer>
-    @Html.JsTag(ContentDeliveryNetwork.Google.JQuery2Url)
-    @Html.JsTag(ContentDeliveryNetwork.Cloudflare.MaterializeJsUrl)
+    @Html.JsTag(@ContentDeliveryNetwork.Google.JQuery2Url)
+    @Html.JsTag(@ContentDeliveryNetwork.Cloudflare.MaterializeJsUrl)
     @Html.JsTag("/content/js/app-mobile.js")
 	@RenderSection("scriptFiles", false)
 </body>

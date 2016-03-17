@@ -1,4 +1,4 @@
-@using System
+﻿@using System
 @using Romulus.Web.Constants
 @using Romulus.Web.Helpers
 <!DOCTYPE html>
@@ -27,10 +27,10 @@
     @Html.CssTag("/Content/css/site.min.css")
     @Html.CssTag("/Content/css/metro.min.css")
     @RenderSection("cssFiles", false)
-    @Html.JsTag(ContentDeliveryNetwork.JsDelivr.ModernizrUrl)
+    @Html.JsTag(@ContentDeliveryNetwork.JsDelivr.ModernizrUrl)
     <!--[if lt IE 9]>
-        @Html.JsTag(ContentDeliveryNetwork.JsDelivr.RespondUrl)
-        @Html.JsTag(ContentDeliveryNetwork.JsDelivr.HtmlShivUrl)
+        @Html.JsTag(@ContentDeliveryNetwork.JsDelivr.RespondUrl)
+        @Html.JsTag(@ContentDeliveryNetwork.JsDelivr.HtmlShivUrl)
     <![endif]-->
 </head>
 <body>
@@ -129,10 +129,10 @@
     </footer>
 
     <!--[if lt IE 9]>
-        @Html.JsTag(ContentDeliveryNetwork.Google.JQuery1Url, true)
+        @Html.JsTag(@ContentDeliveryNetwork.Google.JQuery1Url, true)
     <![endif]-->
     <!--[if gte IE 9]><!-->
-    @Html.JsTag(ContentDeliveryNetwork.Google.JQuery2Url, true)
+    @Html.JsTag(@ContentDeliveryNetwork.Google.JQuery2Url, true)
     <!--<![endif]-->
     @Html.JsTag(@ContentDeliveryNetwork.MaxCdn.BootstrapJsUrl, true)
     @RenderSection("scriptFiles", false)
