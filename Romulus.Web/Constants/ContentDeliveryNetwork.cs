@@ -15,7 +15,7 @@ namespace Romulus.Web.Constants
             public const string Domain = "maxcdn.bootstrapcdn.com";
             public const string BootstrapCssUrl = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";
             public const string BootstrapJsUrl = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js";
-            public const string FontAwesomeUrl = "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css";
+            public const string FontAwesomeUrl = "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css";
         }
 
         public static class JsDelivr
@@ -24,16 +24,16 @@ namespace Romulus.Web.Constants
             public const string ModernizrUrl = "https://cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js";
             public const string RespondUrl = "https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js";
             public const string HtmlShivUrl = "https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv-printshiv.min.js";
-            public const string ParsleyUrl = "https://cdn.jsdelivr.net/parsleyjs/2.3.7/parsley.min.js";
+            public const string ParsleyUrl = "https://cdn.jsdelivr.net/parsleyjs/2.3.9/parsley.min.js";
         }
 
         public static class Cloudflare
         {
             public const string Domain = "cdnjs.cloudflare.com";
             public const string MaterializeCssUrl =
-                "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css";
+                "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css";
             public const string MaterializeJsUrl =
-                "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js";
+                "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js";
         }
 
         public static class GetMdl
