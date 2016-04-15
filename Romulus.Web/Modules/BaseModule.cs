@@ -10,7 +10,7 @@
             Before += ctx =>
             {
                 var routeDescription = ctx.ResolvedRoute.Description;
-                NewRelicAgent.SetTransactionName("Custom", string.Format("{0} {1}", routeDescription.Method, routeDescription.Path));
+                NewRelicAgent.SetTransactionName("Custom", $"{routeDescription.Method} {routeDescription.Path}");
 
                 return null;
             };

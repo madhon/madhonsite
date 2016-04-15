@@ -1,73 +1,56 @@
 ﻿namespace Romulus.Web
 {
-  using System;
-  using System.Collections.Generic;
-  using System.Linq;
-  using JetBrains.Annotations;
-  using Nancy;
-  using Nancy.ErrorHandling;
-  using Nancy.ViewEngines;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using Nancy;
+    using Nancy.ErrorHandling;
+    using Nancy.ViewEngines;
 
-  [UsedImplicitly]
-  public class RomulsStatusCodeHandler : IStatusCodeHandler
-  {
-    private readonly IViewRenderer viewRenderer;
-
-    static RomulsStatusCodeHandler()
+    [UsedImplicitly]
+    public class RomulsStatusCodeHandler : IStatusCodeHandler
     {
-      Checks = new List<int>();
-    }
+        private readonly IViewRenderer viewRenderer;
 
-    public RomulsStatusCodeHandler(IViewRenderer viewRenderer)
-    {
-      this.viewRenderer = viewRenderer;
-    }
+        static RomulsStatusCodeHandler()
+        {
+            Checks = new List<int>();
+        }
 
-    public static IEnumerable<int> Checks { get; private set; }
+        public RomulsStatusCodeHandler(IViewRenderer viewRenderer)
+        {
+            this.viewRenderer = viewRenderer;
+        }
 
-    public bool HandlesStatusCode(HttpStatusCode statusCode, NancyContext context)
-    {
-      return Checks.Any(x => x == (int) statusCode);
-    }
+        private static IEnumerable<int> Checks { get; set; }
 
-    public void Handle(HttpStatusCode statusCode, NancyContext context)
-    {
-      try
-      {
-        var response = this.viewRenderer.RenderView(context, "Codes/" + (int) statusCode + ".cshtml");
-        response.StatusCode = statusCode;
-        context.Response = response;
-      }
-      catch (Exception)
-      {
-        RemoveCode((int) statusCode);
-        context.Response.StatusCode = statusCode;
-      }
-    }
+        public bool HandlesStatusCode(HttpStatusCode statusCode, NancyContext context)
+            => Checks.Any(x => x == (int) statusCode);
 
-    public static void AddCode(int code)
-    {
-      AddCode(new List<int> { code });
-    }
+        public void Handle(HttpStatusCode statusCode, NancyContext context)
+        {
+            try
+            {
+                var response = this.viewRenderer.RenderView(context, "Codes/" + (int) statusCode + ".cshtml");
+                response.StatusCode = statusCode;
+                context.Response = response;
+            }
+            catch (Exception)
+            {
+                RemoveCode((int) statusCode);
+                context.Response.StatusCode = statusCode;
+            }
+        }
 
-    public static void AddCode(IEnumerable<int> code)
-    {
-      Checks = Checks.Union(code);
-    }
+        public static void AddCode(int code) => AddCode(new List<int> { code });
 
-    public static void RemoveCode(int code)
-    {
-      RemoveCode(new List<int> { code });
-    }
+        public static void AddCode(IEnumerable<int> code) => Checks = Checks.Union(code);
 
-    public static void RemoveCode(IEnumerable<int> code)
-    {
-      Checks = Checks.Except(code);
-    }
+        public static void RemoveCode(int code) => RemoveCode(new List<int> { code });
 
-    public static void Disable()
-    {
-      Checks = new List<int>();
+        public static void RemoveCode(IEnumerable<int> code) => Checks = Checks.Except(code);
+
+        public static void Disable() => Checks = new List<int>();
     }
-  }
 }

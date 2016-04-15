@@ -56,9 +56,6 @@
       return View["Views/Contact/Complete"].WithStatusCode(HttpStatusCode.OK);
     }
 
-    private async Task SendMessageAsync([NotNull] ContactViewModel model)
-    {
-      await contactService.SendMessageAsync(model).WithoutCapturingContext();
-    }
+    private async Task SendMessageAsync([NotNull] ContactViewModel model) => await contactService.SendMessageAsync(model).WithoutCapturingContext();
   }
 }

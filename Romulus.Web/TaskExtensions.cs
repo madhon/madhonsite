@@ -1,19 +1,13 @@
 ﻿namespace Romulus.Web
 {
-  using System;
-  using System.Runtime.CompilerServices;
-  using System.Threading.Tasks;
+    using System;
+    using System.Runtime.CompilerServices;
+    using System.Threading.Tasks;
 
-  public static class TaskExtensions
-  {
-    public static ConfiguredTaskAwaitable WithoutCapturingContext(this Task task)
+    public static class TaskExtensions
     {
-      return task.ConfigureAwait(false);
-    }
+        public static ConfiguredTaskAwaitable WithoutCapturingContext(this Task task) => task.ConfigureAwait(false);
 
-    public static ConfiguredTaskAwaitable<T> WithoutCapturingContext<T>(this Task<T> task)
-    {
-      return task.ConfigureAwait(false);
+        public static ConfiguredTaskAwaitable<T> WithoutCapturingContext<T>(this Task<T> task) => task.ConfigureAwait(false);
     }
-  }
 }
