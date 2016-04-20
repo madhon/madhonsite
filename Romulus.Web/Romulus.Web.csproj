@@ -251,6 +251,7 @@
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Modules\BaseModule.cs" />
+    <Compile Include="Modules\BotModule.cs" />
     <Compile Include="Modules\ContactModule.cs" />
     <Compile Include="Modules\GridlockModule.cs" />
     <Compile Include="Modules\HomeModule.cs" />
