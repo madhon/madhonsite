@@ -6,6 +6,8 @@
 <head>
     <meta charset="utf-8" />
     <link rel="dns-prefetch" href="https://ajax.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://code.getmdl.io">
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <title>@ViewBag.Title - Madhon's Site</title>
@@ -22,44 +24,41 @@
     <meta name="application-name" content="Madhon's Site" />
     <meta name="msapplication-TileColor" content="#5373F4">
     <meta name="msapplication-config" content="/browserconfig.xml"/>
-    @Html.CssTag(@ContentDeliveryNetwork.Cloudflare.MaterializeCssUrl)
-    @Html.CssTag("/content/css/Site.Mobile.css")
+    @Html.CssTag(@ContentDeliveryNetwork.GetMdl.MdlIconsUrl)
+    @Html.CssTag(@ContentDeliveryNetwork.GetMdl.MdlCssUrl)
     @RenderSection("cssFiles", false)
 </head>
 <body>
 
-<header>
-	<div class="container">
-	<nav class="light-blue lighten-1">
-		<a href="#!" class="brand-logo">Madhon</a>
-		<a href="#" data-activates="nav-mobile" class="button-collapse top-nav waves-effect waves-light circle"><i class="mdi-navigation-menu"></i></a>
-		<ul class="right hide-on-med-and-down">
-			<li class="bold"><a href="/" class="waves-effect waves-teal"><i class="mdi-action-home left"></i> Home</a></li>
-			<li class="bold"><a href="/contact" class="waves-effect waves-teal"><i class="mdi-communication-email left"></i> Contact</a></li>
-		</ul>
-		<ul id="nav-mobile" class="side-nav fixed">
-			<li class="bold"><a href="/" class="waves-effect waves-teal"><i class="mdi-action-home left"></i> Home</a></li>
-			<li class="bold"><a href="/contact" class="waves-effect waves-teal"><i class="mdi-communication-email left"></i> Contact</a></li>
-		</ul>
-	</nav>
-	</div>
-</header>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">Madhon</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+            <span class="mdl-layout-title">Madhon</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="/">Home</a>
+                <a class="mdl-navigation__link" href="/contact">Contact</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            @RenderBody()
+        </main>
+    </div>
 
-<main>
-	<div class="section no-pad-bot" id="index-banner">
-		<div class="container">
-			@RenderBody()
-		</div>
-	</div>
-</main>
+    <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__left-section">
+            <div class="mdl-logo" Copyright &copy; @DateTime.Now.Year Madhon</div>
+        </div>
+    </footer>
 
-<footer class="page-footer light-blue lighten-1">
-	<div class="footer-copyright">
-		<div class="container">Copyright &copy; @DateTime.Now.Year Madhon</div>
-	</div>
-</footer>
-    @Html.JsTag(@ContentDeliveryNetwork.Google.JQuery2Url)
-    @Html.JsTag(@ContentDeliveryNetwork.Cloudflare.MaterializeJsUrl)
+@Html.JsTag(@ContentDeliveryNetwork.Google.JQuery2Url)
+    @Html.JsTag(@ContentDeliveryNetwork.GetMdl.MdlJsUrl)
     @Html.JsTag("/content/js/app-mobile.js")
 	@RenderSection("scriptFiles", false)
 </body>
