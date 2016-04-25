@@ -10,7 +10,7 @@
   using Romulus.Web.ViewModels;
 
   [UsedImplicitly]
-  public class ContactModule : BaseModule
+  public class ContactModule : NancyModule
   {
     private readonly IContactService contactService;
 

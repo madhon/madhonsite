@@ -5,7 +5,7 @@
   using Nancy;
 
   [UsedImplicitly]
-  public class HomeModule : BaseModule
+  public class HomeModule : NancyModule
     {
     public HomeModule()
     {

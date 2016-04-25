@@ -5,7 +5,7 @@
   using Nancy;
 
   [UsedImplicitly]
-  public class GridlockModule : BaseModule
+  public class GridlockModule : NancyModule
     {
     public GridlockModule()
     {
