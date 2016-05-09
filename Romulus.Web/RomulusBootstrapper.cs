@@ -8,6 +8,7 @@
     using Nancy.Gzip;
     using Nancy.Security;
     using Romulus.Web.Services;
+    using Romulus.Web.Helpers;
 
     [UsedImplicitly]
     public class RomulusBootstrapper : DryIocNancyBootstrapper
@@ -17,7 +18,7 @@
         protected override void ConfigureConventions(NancyConventions nancyConventions)
         {
             base.ConfigureConventions(nancyConventions);
-            MobileViewLocationConventions.Enable(nancyConventions);
+            nancyConventions.EnableMobileViewLocationConventions();
         }
 
         protected override void ConfigureApplicationContainer(IContainer existingContainer)
