@@ -1,61 +1,65 @@
 ﻿namespace Romulus.Web.Modules
 {
-  using System;
-  using System.Threading.Tasks;
-  using JetBrains.Annotations;
-  using Nancy;
-  using Nancy.ModelBinding;
-  using Nancy.Security;
-  using Romulus.Web.Services;
-  using Romulus.Web.ViewModels;
+    using System;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using Nancy;
+    using Nancy.ModelBinding;
+    using Nancy.Security;
+    using Romulus.Web.Services;
+    using Romulus.Web.ViewModels;
 
-  [UsedImplicitly]
-  public class ContactModule : NancyModule
-  {
-    private readonly IContactService contactService;
-
-    public ContactModule(IContactService contactService)
+    [UsedImplicitly]
+    public class ContactModule : BaseModule
     {
-      this.contactService = contactService;
-      Get["/contact"] = _ => GetIndex(_);
+        private readonly IContactService contactService;
 
-      Post["/contact", true] = async (x, ct) =>
-      {
-        try
+        public ContactModule(IContactService contactService)
         {
-          this.ValidateCsrfToken();
+
+
+            this.contactService = contactService;
+            Get["/contact"] = _ => GetIndex(_);
+
+            Post["/contact", true] = async (x, ct) =>
+            {
+                try
+                {
+                    this.ValidateCsrfToken();
+                }
+                catch (CsrfValidationException)
+                {
+                    return View["Views/Contact/Index"].WithStatusCode(HttpStatusCode.Forbidden);
+                }
+
+                var cvm = this.BindAndValidate<ContactViewModel>();
+                if (ModelValidationResult.IsValid)
+                {
+                    await SendMessageAsync(cvm).WithoutCapturingContext();
+                    return GetComplete(x);
+                }
+
+                Page.Title = "Contact";
+                return View["Views/Contact/Index", Model];
+            };
+
+            Get["/contact/complete"] = _ => GetComplete(_);
         }
-        catch (CsrfValidationException)
+
+        private dynamic GetIndex(dynamic p)
         {
-          return View["Views/Contact/Index"].WithStatusCode(HttpStatusCode.Forbidden);
+            this.CreateNewCsrfToken();
+            Page.Title = "Contact";
+            return View["Views/Contact/Index", Model];
         }
 
-        var model = this.BindAndValidate<ContactViewModel>();
-        if (ModelValidationResult.IsValid)
+        private dynamic GetComplete(dynamic p)
         {
-          await SendMessageAsync(model).WithoutCapturingContext();
-          return View["Views/Contact/Complete"];
+            Page.Title = "Contact";
+            return View["Views/Contact/Complete", Model];
         }
 
-        return View["Views/Contact/Index", model].WithStatusCode(HttpStatusCode.BadRequest);
-      };
-
-      Get["/contact/complete"] = _ => GetComplete(_);
+        private async Task SendMessageAsync([NotNull] ContactViewModel model)
+            => await contactService.SendMessageAsync(model).WithoutCapturingContext();
     }
-
-    private dynamic GetIndex(dynamic p)
-    {
-      this.CreateNewCsrfToken();
-      ViewBag.title = "Contact";
-      return View["Views/Contact/Index"].WithStatusCode(HttpStatusCode.OK);
-    }
-
-    private dynamic GetComplete(dynamic p)
-    {
-      ViewBag.title = "Contact";
-      return View["Views/Contact/Complete"].WithStatusCode(HttpStatusCode.OK);
-    }
-
-    private async Task SendMessageAsync([NotNull] ContactViewModel model) => await contactService.SendMessageAsync(model).WithoutCapturingContext();
-  }
 }

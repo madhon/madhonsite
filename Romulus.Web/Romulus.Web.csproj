@@ -172,6 +172,7 @@
     <Compile Include="JetBrainsAnnotations.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Modules\BaseModule.cs" />
     <Compile Include="Modules\BotModule.cs" />
     <Compile Include="Modules\ContactModule.cs" />
     <Compile Include="Modules\GridlockModule.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="TaskExtensions.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\ContactViewModelValidator.cs" />
+    <Compile Include="ViewModels\PageModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
