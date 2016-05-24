@@ -1,6 +1,7 @@
 ﻿namespace Romulus.Web
 {
     using System;
+    using System.Collections.Generic;
     using DryIoc;
     using JetBrains.Annotations;
     using Nancy.Bootstrapper;
