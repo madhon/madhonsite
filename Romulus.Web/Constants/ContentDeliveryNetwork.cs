@@ -24,7 +24,7 @@ namespace Romulus.Web.Constants
             public const string ModernizrUrl = "https://cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js";
             public const string RespondUrl = "https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js";
             public const string HtmlShivUrl = "https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv-printshiv.min.js";
-            public const string ParsleyUrl = "https://cdn.jsdelivr.net/parsleyjs/2.3.13/parsley.min.js";
+            public const string ParsleyUrl = "https://cdn.jsdelivr.net/parsleyjs/2.4.3/parsley.min.js";
         }
 
         public static class Cloudflare
