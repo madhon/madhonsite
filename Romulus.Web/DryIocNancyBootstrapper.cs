@@ -1,155 +1,127 @@
 ﻿namespace Romulus.Web
 {
-  using System;
-  using System.Collections.Generic;
-  using System.Linq;
-  using DryIoc;
-  using Nancy;
-  using Nancy.Bootstrapper;
-  using Nancy.Diagnostics;
+    using System;
+    using System.Collections.Generic;
+    using DryIoc;
+    using Nancy;
+    using Nancy.Bootstrapper;
+    using Nancy.Diagnostics;
+    using Nancy.ViewEngines;
 
-  public abstract class DryIocNancyBootstrapper : NancyBootstrapperWithRequestContainerBase<IContainer>
-  {
-    protected override IDiagnostics GetDiagnostics()
+    public abstract class DryIocNancyBootstrapper : NancyBootstrapperWithRequestContainerBase<IContainer>
     {
-      return ApplicationContainer.Resolve<IDiagnostics>();
-    }
+        private List<Type> _moduleTypes;
 
-    protected override IEnumerable<IApplicationStartup> GetApplicationStartupTasks()
-    {
-      return ApplicationContainer.ResolveMany<IApplicationStartup>();
-    }
+        protected override IContainer CreateRequestContainer(NancyContext context) => ApplicationContainer.OpenScope(Reuse.WebRequestScopeName);
 
-    protected override IEnumerable<IRequestStartup> RegisterAndGetRequestStartupTasks(IContainer container,
-      Type[] requestStartupTypes)
-    {
-      foreach (var requestStartupType in requestStartupTypes)
-      {
-        container.Register(typeof(IRequestStartup), requestStartupType, Reuse.Singleton);
-      }
+        protected override IEnumerable<INancyModule> GetAllModules(IContainer container) => container.Resolve<IEnumerable<INancyModule>>();
 
-      return container.ResolveMany<IRequestStartup>();
-    }
+        protected override IContainer GetApplicationContainer() => new Container(rules => rules.With(FactoryMethod.ConstructorWithResolvableArguments));
 
-    protected override IEnumerable<IRegistrations> GetRegistrationTasks()
-    {
-      return ApplicationContainer.ResolveMany<IRegistrations>();
-    }
+        protected override IEnumerable<IApplicationStartup> GetApplicationStartupTasks() => ApplicationContainer.Resolve<IEnumerable<IApplicationStartup>>();
 
-    protected override INancyEngine GetEngineInternal()
-    {
-      return ApplicationContainer.Resolve<INancyEngine>();
-    }
+        protected override IDiagnostics GetDiagnostics() => ApplicationContainer.Resolve<IDiagnostics>();
 
-    protected override IContainer GetApplicationContainer()
-    {
-      return new Container(rules => rules.With(FactoryMethod.ConstructorWithResolvableArguments));
-    }
+        protected override INancyEngine GetEngineInternal() => ApplicationContainer.Resolve<INancyEngine>();
 
-    protected override void RegisterBootstrapperTypes(IContainer applicationContainer)
-    {
-      applicationContainer.RegisterInstance<INancyModuleCatalog>(this);
-    }
-
-    protected override void RegisterTypes(IContainer container, IEnumerable<TypeRegistration> typeRegistrations)
-    {
-      foreach (var typeRegistration in typeRegistrations)
-      {
-        switch (typeRegistration.Lifetime)
+        protected override INancyModule GetModule(IContainer container, Type moduleType)
         {
-          case Lifetime.Transient:
-            container.Register(typeRegistration.RegistrationType, typeRegistration.ImplementationType, Reuse.Transient,
-              FactoryMethod.ConstructorWithResolvableArguments);
-            break;
-          case Lifetime.Singleton:
-            container.Register(typeRegistration.RegistrationType, typeRegistration.ImplementationType, Reuse.Singleton,
-              FactoryMethod.ConstructorWithResolvableArguments);
-            break;
-          case Lifetime.PerRequest:
-            throw new InvalidOperationException("Unable to directly register a per request lifetime.");
-          default:
-            throw new ArgumentOutOfRangeException();
-        }
-      }
-    }
+            var moduleKey = moduleType.FullName;
 
-    protected override void RegisterCollectionTypes(IContainer container,
-      IEnumerable<CollectionTypeRegistration> collectionTypeRegistrations)
-    {
-      foreach (var collectionTypeRegistration in collectionTypeRegistrations)
-      {
-        foreach (var implementationType in collectionTypeRegistration.ImplementationTypes)
+            if (!container.IsRegistered<INancyModule>(moduleKey))
+            {
+                this.RegisterRequestContainerModules(container, new[] { new ModuleRegistration(moduleType) });
+            }
+
+            return container.Resolve<INancyModule>(moduleKey);
+        }
+
+        protected override IEnumerable<IRegistrations> GetRegistrationTasks() => ApplicationContainer.Resolve<IEnumerable<IRegistrations>>();
+
+        protected override IEnumerable<IRequestStartup> RegisterAndGetRequestStartupTasks(IContainer container,
+            Type[] requestStartupTypes)
         {
-          switch (collectionTypeRegistration.Lifetime)
-          {
-            case Lifetime.Transient:
-              container.Register(collectionTypeRegistration.RegistrationType, implementationType, Reuse.Transient);
-              break;
-            case Lifetime.Singleton:
-              container.Register(collectionTypeRegistration.RegistrationType, implementationType, Reuse.Singleton);
-              break;
-            case Lifetime.PerRequest:
-              throw new InvalidOperationException("Unable to directly register a per request lifetime.");
-            default:
-              throw new ArgumentOutOfRangeException();
-          }
+            container.RegisterMany(requestStartupTypes, Reuse.Singleton,
+                serviceTypeCondition: t => t == typeof (IRequestStartup));
+            return container.Resolve<IEnumerable<IRequestStartup>>();
         }
-      }
+
+        protected override void RegisterBootstrapperTypes(IContainer applicationContainer)
+        {
+            applicationContainer.RegisterInstance<INancyModuleCatalog>(this);
+            applicationContainer.Register<IFileSystemReader, DefaultFileSystemReader>(Reuse.Singleton);
+        }
+
+        protected override void RegisterCollectionTypes(IContainer container,
+            IEnumerable<CollectionTypeRegistration> collectionTypeRegistrations)
+        {
+            var isScopedContainer = IsScoped(container);
+            foreach (var registration in collectionTypeRegistrations)
+            {
+                foreach (var implementationType in registration.ImplementationTypes)
+                {
+                    Register(container, registration.RegistrationType, implementationType, registration.Lifetime,
+                        isScopedContainer);
+                }
+            }
+        }
+
+        protected override void RegisterInstances(IContainer container,
+            IEnumerable<InstanceRegistration> instanceRegistrations)
+        {
+            foreach (var instanceRegistration in instanceRegistrations)
+            {
+                container.RegisterInstance(instanceRegistration.RegistrationType, instanceRegistration.Implementation);
+            }
+        }
+
+        protected override void RegisterRequestContainerModules(IContainer container,
+            IEnumerable<ModuleRegistration> moduleRegistrationTypes)
+        {
+            foreach (var moduleRegistrationType in moduleRegistrationTypes)
+            {
+                container.Register(
+                    typeof (INancyModule),
+                    moduleRegistrationType.ModuleType,
+                    serviceKey: moduleRegistrationType.ModuleType.FullName,
+                    ifAlreadyRegistered: IfAlreadyRegistered.Keep
+                    );
+            }
+        }
+
+        protected override void RegisterTypes(IContainer container, IEnumerable<TypeRegistration> typeRegistrations)
+        {
+            var isScopedContainer = IsScoped(container);
+            foreach (var registration in typeRegistrations)
+            {
+                Register(container, registration.RegistrationType, registration.ImplementationType,
+                    registration.Lifetime, isScopedContainer);
+            }
+        }
+
+        private bool IsScoped(IContainer container) => container.ContainerWeakRef.Scopes.GetCurrentScope() != null;
+
+        private static void Register(IRegistrator registrator, Type registrationType, Type implementationType,
+            Lifetime lifetime,
+            bool isScopedContainer)
+        {
+            var reuse = MapLifetimeToReuse(isScopedContainer ? Lifetime.PerRequest : lifetime);
+            registrator.Register(registrationType, implementationType, reuse);
+        }
+
+        private static IReuse MapLifetimeToReuse(Lifetime lifetime)
+        {
+            switch (lifetime)
+            {
+                case Lifetime.Transient:
+                    return Reuse.Transient;
+                case Lifetime.Singleton:
+                    return Reuse.Singleton;
+                case Lifetime.PerRequest:
+                    return Reuse.InWebRequest;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(lifetime), lifetime, "Not supported lifetime: " + lifetime);
+            }
+        }
     }
-
-    protected override void RegisterInstances(IContainer container,
-      IEnumerable<InstanceRegistration> instanceRegistrations)
-    {
-      foreach (var instanceRegistration in instanceRegistrations)
-      {
-        container.RegisterInstance(instanceRegistration.RegistrationType, instanceRegistration.Implementation);
-      }
-    }
-
-    protected override IContainer CreateRequestContainer(NancyContext context)
-    {
-      return ApplicationContainer.OpenScope();
-    }
-
-    private List<Type> _moduleTypes;
-
-    protected override void RegisterRequestContainerModules(IContainer container,
-      IEnumerable<ModuleRegistration> moduleRegistrationTypes)
-    {
-      _moduleTypes = new List<Type>();
-
-      foreach (var moduleRegistrationType in moduleRegistrationTypes)
-      {
-        _moduleTypes.Add(moduleRegistrationType.ModuleType);
-        container.Register(typeof(INancyModule), moduleRegistrationType.ModuleType,
-          serviceKey: moduleRegistrationType.ModuleType.FullName, ifAlreadyRegistered: IfAlreadyRegistered.Keep);
-      }
-    }
-
-    protected override IEnumerable<INancyModule> GetAllModules(IContainer container)
-    {
-      // Hack - need to create an instance using New() of each type otherwise they won't be resolved.
-      foreach (var type in _moduleTypes)
-      {
-        container.New(type);
-      }
-
-      return container.ResolveMany<INancyModule>().ToArray();
-    }
-
-    protected override INancyModule GetModule(IContainer container, Type moduleType)
-    {
-      var typeFullName = moduleType.FullName;
-
-      if (container.IsRegistered<INancyModule>(typeFullName))
-      {
-        return container.Resolve<INancyModule>(typeFullName);
-      }
-
-      var instance = (INancyModule)container.New(moduleType);
-      container.RegisterInstance(instance, serviceKey: typeFullName);
-
-      return instance;
-    }
-  }
 }
