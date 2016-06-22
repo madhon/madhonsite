@@ -25,9 +25,6 @@
         protected override void ConfigureApplicationContainer(IContainer existingContainer)
         {
             base.ConfigureApplicationContainer(existingContainer);
-
-            existingContainer.Register<ITransport, GmailTransport>();
-            existingContainer.Register<IContactService, ContactService>();
         }
 
         protected override void ApplicationStartup(IContainer container, IPipelines pipelines)

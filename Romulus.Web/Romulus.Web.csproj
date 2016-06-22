@@ -187,6 +187,7 @@
     <Compile Include="Services\GmailTransport.cs" />
     <Compile Include="Services\IContactService.cs" />
     <Compile Include="Services\ITransport.cs" />
+    <Compile Include="Services\ServiceRegistrations.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="TaskExtensions.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />

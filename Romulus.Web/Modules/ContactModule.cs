@@ -16,8 +16,6 @@
 
         public ContactModule(IContactService contactService)
         {
-
-
             this.contactService = contactService;
             Get["/contact"] = _ => GetIndex(_);
 
