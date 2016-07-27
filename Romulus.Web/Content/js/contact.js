@@ -1,4 +1,4 @@
-Console.log($.fn.jquery);
+console.log($.fn.jquery);
 
 $('#frmContact').parsley({
   successClass: 'has-success',
