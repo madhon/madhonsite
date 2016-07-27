@@ -1,4 +1,4 @@
-'use strict';
+document.write($.fn.jquery);
 
 $('#frmContact').parsley({
   successClass: 'has-success',
