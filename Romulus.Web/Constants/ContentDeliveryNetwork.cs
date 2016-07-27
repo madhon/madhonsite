@@ -7,14 +7,15 @@ namespace Romulus.Web.Constants
             public const string Domain = "ajax.googleapis.com";
             public const string JQuery1Url = "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js";
             public const string JQuery2Url = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js";
+            public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js";
             public const string SwfObjectUrl = "https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js";
         }
 
         public static class MaxCdn
         {
             public const string Domain = "maxcdn.bootstrapcdn.com";
-            public const string BootstrapCssUrl = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";
-            public const string BootstrapJsUrl = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js";
+            public const string BootstrapCssUrl = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+            public const string BootstrapJsUrl = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
             public const string FontAwesomeUrl = "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css";
         }
 
@@ -26,7 +27,7 @@ namespace Romulus.Web.Constants
             public const string HtmlShivUrl = "https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv-printshiv.min.js";
             public const string ParsleyUrl = "https://cdn.jsdelivr.net/parsleyjs/2.4.3/parsley.min.js";
         }
-
+      
         public static class Cloudflare
         {
             public const string Domain = "cdnjs.cloudflare.com";
@@ -34,6 +35,10 @@ namespace Romulus.Web.Constants
                 "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css";
             public const string MaterializeJsUrl =
                 "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js";
+            public const string Migrate1Url =
+                "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.js";
+            public const string Migrate3Url =
+                "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.0/jquery-migrate.js";
         }
 
         public static class GetMdl
