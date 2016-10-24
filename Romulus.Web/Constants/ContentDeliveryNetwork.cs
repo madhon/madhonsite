@@ -7,7 +7,7 @@ namespace Romulus.Web.Constants
             public const string Domain = "ajax.googleapis.com";
             public const string JQuery1Url = "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js";
             public const string JQuery2Url = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js";
-            public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js";
+            public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js";
             public const string SwfObjectUrl = "https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js";
         }
 
@@ -25,7 +25,7 @@ namespace Romulus.Web.Constants
             public const string ModernizrUrl = "https://cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js";
             public const string RespondUrl = "https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js";
             public const string HtmlShivUrl = "https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv-printshiv.min.js";
-            public const string ParsleyUrl = "https://cdn.jsdelivr.net/parsleyjs/2.4.4/parsley.min.js";
+            public const string ParsleyUrl = "https://cdn.jsdelivr.net/parsleyjs/2.5.1/parsley.min.js";
         }
       
         public static class Cloudflare
@@ -44,8 +44,8 @@ namespace Romulus.Web.Constants
         public static class GetMdl
         {
             public const string MdlIconsUrl = "https://fonts.googleapis.com/icon?family=Material+Icons";
-            public const string MdlCssUrl = "https://code.getmdl.io/1.1.3/material.indigo-pink.min.css";
-            public const string MdlJsUrl = "https://code.getmdl.io/1.1.3/material.min.js";
+            public const string MdlCssUrl = "https://code.getmdl.io/1.2.1/material.indigo-pink.min.css";
+            public const string MdlJsUrl = "https://code.getmdl.io/1.2.1/material.min.js";
         }
     }
 }
