@@ -10,7 +10,7 @@
 
     public abstract class DryIocNancyBootstrapper : NancyBootstrapperWithRequestContainerBase<IContainer>
     {
-        private List<Type> _moduleTypes;
+        //private List<Type> _moduleTypes;
 
         protected override IContainer CreateRequestContainer(NancyContext context) => ApplicationContainer.OpenScope(Reuse.WebRequestScopeName);
 
@@ -30,7 +30,7 @@
 
             if (!container.IsRegistered<INancyModule>(moduleKey))
             {
-                this.RegisterRequestContainerModules(container, new[] { new ModuleRegistration(moduleType) });
+                RegisterRequestContainerModules(container, new[] { new ModuleRegistration(moduleType) });
             }
 
             return container.Resolve<INancyModule>(moduleKey);

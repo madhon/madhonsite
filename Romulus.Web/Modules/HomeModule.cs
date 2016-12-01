@@ -1,6 +1,5 @@
 ﻿namespace Romulus.Web.Modules
 {
-  using System;
   using JetBrains.Annotations;
 
   [UsedImplicitly]
@@ -10,8 +9,8 @@
     {
       Get["/"] = _ =>
       {
-          base.Page.Title = "Home";
-          return View["Views/Home/Index", base.Model];
+          Page.Title = "Home";
+          return View["Views/Home/Index", Model];
       };
     }
   }

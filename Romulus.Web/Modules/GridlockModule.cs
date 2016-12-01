@@ -1,6 +1,5 @@
 ﻿namespace Romulus.Web.Modules
 {
-    using System;
     using JetBrains.Annotations;
 
     [UsedImplicitly]
@@ -8,13 +7,13 @@
     {
         public GridlockModule()
         {
-            Get["/gridlock"] = _ => GetGridlockPage(_);
+            Get["/gridlock"] = _ => GetGridlockPage();
         }
 
-        private dynamic GetGridlockPage(dynamic p)
+        private dynamic GetGridlockPage()
         {
             Page.Title = "Gridlock";
-            return View["Views/Gridlock/Index", base.Model];
+            return View["Views/Gridlock/Index", Model];
         }
     }
 }

@@ -1,14 +1,11 @@
 ﻿namespace Romulus.Web
 {
-    using System;
-    using System.Collections.Generic;
     using DryIoc;
     using JetBrains.Annotations;
     using Nancy.Bootstrapper;
     using Nancy.Conventions;
     using Nancy.Gzip;
     using Nancy.Security;
-    using Romulus.Web.Services;
     using Romulus.Web.Helpers;
 
     [UsedImplicitly]

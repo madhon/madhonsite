@@ -32,7 +32,7 @@
         {
             try
             {
-                var response = this.viewRenderer.RenderView(context, "Codes/" + (int) statusCode + ".cshtml");
+                var response = viewRenderer.RenderView(context, "Codes/" + (int) statusCode + ".cshtml");
                 response.StatusCode = statusCode;
                 context.Response = response;
             }

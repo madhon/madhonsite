@@ -18,8 +18,8 @@
 
     public async Task SendMessageAsync([NotNull] ContactViewModel model)
     {
-      var message = this.CreateMailMessage(model);
-      await this.transport.DeliverAsync(message).WithoutCapturingContext();
+      var message = CreateMailMessage(model);
+      await transport.DeliverAsync(message).WithoutCapturingContext();
     }
 
     private MimeMessage CreateMailMessage([NotNull] ContactViewModel model)

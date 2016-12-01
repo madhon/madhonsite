@@ -7,7 +7,7 @@
     [UsedImplicitly]
     public class BotModule : NancyModule
     {
-        private static readonly string[] tenHoursOfFun =
+        private static readonly string[] TenHoursOfFun =
         {
             "https://www.youtube.com/watch?v=wbby9coDRCk",
             "https://www.youtube.com/watch?v=nb2evY0kmpQ",
@@ -51,6 +51,6 @@
         private readonly Random rnd = new Random();
 
         private dynamic GetHoursOfFun()
-            => Response.AsRedirect(tenHoursOfFun[rnd.Next(0, tenHoursOfFun.Length)]);
+            => Response.AsRedirect(TenHoursOfFun[rnd.Next(0, TenHoursOfFun.Length)]);
     }
 }

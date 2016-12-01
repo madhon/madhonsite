@@ -17,7 +17,7 @@
         public ContactModule(IContactService contactService)
         {
             this.contactService = contactService;
-            Get["/contact"] = _ => GetIndex(_);
+            Get["/contact"] = _ => GetIndex();
 
             Post["/contact", true] = async (x, ct) =>
             {
@@ -34,24 +34,24 @@
                 if (ModelValidationResult.IsValid)
                 {
                     await SendMessageAsync(cvm).WithoutCapturingContext();
-                    return GetComplete(x);
+                    return GetComplete();
                 }
 
                 Page.Title = "Contact";
                 return View["Views/Contact/Index", Model];
             };
 
-            Get["/contact/complete"] = _ => GetComplete(_);
+            Get["/contact/complete"] = _ => GetComplete();
         }
 
-        private dynamic GetIndex(dynamic p)
+        private dynamic GetIndex()
         {
             this.CreateNewCsrfToken();
             Page.Title = "Contact";
             return View["Views/Contact/Index", Model];
         }
 
-        private dynamic GetComplete(dynamic p)
+        private dynamic GetComplete()
         {
             Page.Title = "Contact";
             return View["Views/Contact/Complete", Model];
