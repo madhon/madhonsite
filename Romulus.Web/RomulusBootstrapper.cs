@@ -1,15 +1,16 @@
 ﻿namespace Romulus.Web
 {
-    using DryIoc;
+    using Autofac;
     using JetBrains.Annotations;
     using Nancy.Bootstrapper;
+    using Nancy.Bootstrappers.Autofac;
     using Nancy.Conventions;
     using Nancy.Gzip;
     using Nancy.Security;
     using Romulus.Web.Helpers;
 
     [UsedImplicitly]
-    public class RomulusBootstrapper : DryIocNancyBootstrapper
+    public class RomulusBootstrapper : AutofacNancyBootstrapper
     {
         protected override byte[] FavIcon => null;
 
@@ -19,12 +20,7 @@
             nancyConventions.EnableMobileViewLocationConventions();
         }
 
-        protected override void ConfigureApplicationContainer(IContainer existingContainer)
-        {
-            base.ConfigureApplicationContainer(existingContainer);
-        }
-
-        protected override void ApplicationStartup(IContainer container, IPipelines pipelines)
+        protected override void ApplicationStartup(ILifetimeScope container, IPipelines pipelines)
         {
             RomulsStatusCodeHandler.AddCode(404);
             //CustomStatusCode.AddCode(ConfigurationManager.AppSettings["HttpErrorCodes"].Split(',').Select(x => int.Parse(x)));
