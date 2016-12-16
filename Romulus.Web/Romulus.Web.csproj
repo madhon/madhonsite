@@ -64,6 +64,10 @@
       <HintPath>..\packages\MailKit.1.10.1\lib\net451\MailKit.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MediatR, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediatR.2.1.0\lib\net45\MediatR.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -170,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\ContentDeliveryNetwork.cs" />
+    <Compile Include="Handlers\ContactMessageHandler.cs" />
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Helpers\MobileViewLocationConventions.cs" />
     <Compile Include="JetBrainsAnnotations.cs">
@@ -186,11 +191,8 @@
     <Compile Include="RomulusBootstrapper.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Services\ContactService.cs" />
-    <Compile Include="Services\GmailTransport.cs" />
-    <Compile Include="Services\IContactService.cs" />
-    <Compile Include="Services\ITransport.cs" />
-    <Compile Include="Services\ServiceRegistrations.cs" />
+    <Compile Include="Handlers\GmailTransport.cs" />
+    <Compile Include="Handlers\ITransport.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="TaskExtensions.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />

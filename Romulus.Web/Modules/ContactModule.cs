@@ -3,20 +3,20 @@
     using System;
     using System.Threading.Tasks;
     using JetBrains.Annotations;
+    using MediatR;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Security;
-    using Romulus.Web.Services;
     using Romulus.Web.ViewModels;
 
     [UsedImplicitly]
     public class ContactModule : BaseModule
     {
-        private readonly IContactService contactService;
+        private readonly IMediator mediator;
 
-        public ContactModule(IContactService contactService)
+        public ContactModule(IMediator mediator)
         {
-            this.contactService = contactService;
+            this.mediator = mediator;
             Get["/contact"] = _ => GetIndex();
 
             Post["/contact", true] = async (x, ct) =>
@@ -33,7 +33,7 @@
                 var cvm = this.BindAndValidate<ContactViewModel>();
                 if (ModelValidationResult.IsValid)
                 {
-                    await SendMessageAsync(cvm).WithoutCapturingContext();
+                    await mediator.PublishAsync(cvm).WithoutCapturingContext();
                     return GetComplete();
                 }
 
@@ -56,8 +56,5 @@
             Page.Title = "Contact";
             return View["Views/Contact/Complete", Model];
         }
-
-        private async Task SendMessageAsync([NotNull] ContactViewModel model)
-            => await contactService.SendMessageAsync(model).WithoutCapturingContext();
     }
 }

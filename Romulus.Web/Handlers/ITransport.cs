@@ -1,4 +1,4 @@
-﻿namespace Romulus.Web.Services
+﻿namespace Romulus.Web.Handlers
 {
     using System.Threading.Tasks;
     using MimeKit;

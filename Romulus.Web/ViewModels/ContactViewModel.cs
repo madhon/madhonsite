@@ -1,15 +1,16 @@
 ﻿namespace Romulus.Web.ViewModels
 {
-  using System;
-  using JetBrains.Annotations;
+    using System;
+    using JetBrains.Annotations;
+    using MediatR;
 
-  [UsedImplicitly]
-  public class ContactViewModel
-  {
-    public string Name { get; set; }
+    [UsedImplicitly]
+    public class ContactViewModel : IAsyncNotification
+    {
+        public string Name { get; set; }
 
-    public string Email { get; set; }
+        public string Email { get; set; }
 
-    public string Message { get; set; }
-  }
+        public string Message { get; set; }
+    }
 }
