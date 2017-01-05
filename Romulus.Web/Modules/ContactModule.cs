@@ -33,7 +33,7 @@
                 var cvm = this.BindAndValidate<ContactViewModel>();
                 if (ModelValidationResult.IsValid)
                 {
-                    await mediator.PublishAsync(cvm).WithoutCapturingContext();
+                    await this.mediator.Publish(cvm).WithoutCapturingContext();
                     return GetComplete();
                 }
 

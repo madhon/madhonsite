@@ -5,7 +5,7 @@
     using MediatR;
 
     [UsedImplicitly]
-    public class ContactViewModel : IAsyncNotification
+    public class ContactViewModel : INotification
     {
         public string Name { get; set; }
 
