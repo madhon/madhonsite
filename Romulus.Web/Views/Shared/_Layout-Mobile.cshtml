@@ -59,9 +59,8 @@
     </footer>
 
 @Html.JsTag(@ContentDeliveryNetwork.Google.JQuery2Url)
-    @Html.JsTag(@ContentDeliveryNetwork.Cloudflare.Migrate1Url)
-    @Html.JsTag(@ContentDeliveryNetwork.GetMdl.MdlJsUrl)
-    @Html.JsTag("/content/js/app-mobile.js")
-	@RenderSection("scriptFiles", false)
+@Html.JsTag(@ContentDeliveryNetwork.GetMdl.MdlJsUrl)
+@Html.JsTag("/content/js/app-mobile.js")
+@RenderSection("scriptFiles", false)
 </body>
 </html>

@@ -29,10 +29,6 @@
     @Html.CssTag("/Content/css/metro.min.css")
     @RenderSection("cssFiles", false)
     @Html.JsTag(@ContentDeliveryNetwork.JsDelivr.ModernizrUrl)
-    <!--[if lt IE 9]>
-        @Html.JsTag(@ContentDeliveryNetwork.JsDelivr.RespondUrl)
-        @Html.JsTag(@ContentDeliveryNetwork.JsDelivr.HtmlShivUrl)
-    <![endif]-->
 </head>
 <body>
     <!--[if lt IE 9]>
@@ -45,7 +41,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="spara">
-                        <!-- Contact details --><p></p>
+                       <p></p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -64,20 +60,13 @@
     <header>
         <div class="container">
             <div class="row">
-
                 <div class="col-md-3">
-
-                    <!-- Logo starts -->
-
                     <div class="logo">
                         <div class="logo-image">
-
                         </div>
                         <div class="logo-text">
                             <h1>Mad<span class="lightblue">Hon</span></h1>
-
                         </div>
-
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -105,15 +94,13 @@
     <div class="content">
         <div class="container ">
             <div class="row">
-                <!--<div class="col-md-2"></div>-->
                 <div class="col-md-offset-2 col-md-8">
                     @RenderBody()
-                </div> <!--/span8-->
+                </div>
                 <div class="col-md-2"></div>
-            </div><!--/row-->
-
-        </div> <!--/container-->
-    </div> <!--/content-->
+            </div>
+        </div>
+    </div>
     <!-- Content ends -->
 
     <footer>
@@ -129,12 +116,7 @@
         </div>
     </footer>
 
-    <!--[if lt IE 9]>
-        @Html.JsTag(@ContentDeliveryNetwork.Google.JQuery1Url)
-    <![endif]-->
-    <!--[if gte IE 9]><!-->
-    @Html.JsTag(@ContentDeliveryNetwork.Google.JQuery3Url)
-<!--<![endif]-->
-    @Html.JsTag(@ContentDeliveryNetwork.MaxCdn.BootstrapJsUrl)
-    @RenderSection("scriptFiles", false)
+@Html.JsTag(@ContentDeliveryNetwork.Google.JQuery3Url)
+@Html.JsTag(@ContentDeliveryNetwork.MaxCdn.BootstrapJsUrl)
+@RenderSection("scriptFiles", false)
 </html>
