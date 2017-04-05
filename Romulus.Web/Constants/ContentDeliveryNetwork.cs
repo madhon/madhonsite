@@ -6,7 +6,7 @@ namespace Romulus.Web.Constants
         {
             public const string Domain = "ajax.googleapis.com";
             public const string JQuery2Url = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js";
-            public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js";
+            public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js";
             public const string SwfObjectUrl = "https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js";
         }
 
@@ -28,13 +28,13 @@ namespace Romulus.Web.Constants
             public const string Domain = "cdn.jsdelivr.net";
 
             public const string MaterializeCssUrl =
-                "https://cdn.jsdelivr.net/materialize/0.98.0/css/materialize.min.css";
+                "https://cdn.jsdelivr.net/materialize/0.98.1/css/materialize.min.css";
 
             public const string MaterializeJsUrl =
-                "https://cdn.jsdelivr.net/materialize/0.98.0/js/materialize.min.js";
+                "https://cdn.jsdelivr.net/materialize/0.98.1/js/materialize.min.js";
 
-            public const string ModernizrUrl = "https://cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js";
-            public const string ParsleyUrl = "https://cdn.jsdelivr.net/parsleyjs/2.6.5/parsley.min.js";
+            public const string ModernizrUrl = "https://cdn.jsdelivr.net/modernizr/3.3.1/modernizr.min.js";
+            public const string ParsleyUrl = "https://cdn.jsdelivr.net/parsleyjs/2.7.0/parsley.min.js";
         }
 
         public static class Cloudflare
