@@ -33,7 +33,7 @@ namespace Romulus.Web.Constants
             public const string MaterializeJsUrl =
                 "https://cdn.jsdelivr.net/materialize/0.98.1/js/materialize.min.js";
 
-            public const string ModernizrUrl = "https://cdn.jsdelivr.net/modernizr/3.3.1/modernizr.min.js";
+            public const string ModernizrUrl = "https://cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js";
             public const string ParsleyUrl = "https://cdn.jsdelivr.net/parsleyjs/2.7.0/parsley.min.js";
         }
 
