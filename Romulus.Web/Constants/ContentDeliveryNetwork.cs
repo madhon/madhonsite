@@ -1,4 +1,4 @@
-namespace Romulus.Web.Constants
+﻿namespace Romulus.Web.Constants
 {
     public static class ContentDeliveryNetwork
     {
@@ -28,13 +28,13 @@ namespace Romulus.Web.Constants
             public const string Domain = "cdn.jsdelivr.net";
 
             public const string MaterializeCssUrl =
-                "https://cdn.jsdelivr.net/materialize/0.98.1/css/materialize.min.css";
+                "https://cdn.jsdelivr.net/materialize/0.98.2/css/materialize.min.css";
 
             public const string MaterializeJsUrl =
-                "https://cdn.jsdelivr.net/materialize/0.98.1/js/materialize.min.js";
+                "https://cdn.jsdelivr.net/materialize/0.98.2/js/materialize.min.js";
 
             public const string ModernizrUrl = "https://cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js";
-            public const string ParsleyUrl = "https://cdn.jsdelivr.net/parsleyjs/2.7.0/parsley.min.js";
+            public const string ParsleyUrl = "https://cdn.jsdelivr.net/parsleyjs/2.7.1/parsley.min.js";
         }
 
         public static class Cloudflare
