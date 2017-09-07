@@ -29,7 +29,8 @@
 
         protected override void ApplicationStartup(ILifetimeScope container, IPipelines pipelines)
         {
-            RomulsStatusCodeHandler.AddCode(404);
+          StaticConfiguration.DisableErrorTraces = false;
+      RomulsStatusCodeHandler.AddCode(404);
             //CustomStatusCode.AddCode(ConfigurationManager.AppSettings["HttpErrorCodes"].Split(',').Select(x => int.Parse(x)));
             Csrf.Enable(pipelines);
 
