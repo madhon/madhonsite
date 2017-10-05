@@ -1,4 +1,4 @@
-﻿namespace Romulus.Web.Constants
+namespace Romulus.Web.Constants
 {
   public static class ContentDeliveryNetwork
   {
@@ -36,7 +36,7 @@
 
       public const string ModernizrUrl = "https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js";
 
-      public const string ParsleyUrl = "https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js";
+      public const string ParsleyUrl = "https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.0/parsley.min.js";
 
       public const string Migrate1Url =
         "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.js";
