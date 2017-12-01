@@ -42,7 +42,7 @@ namespace Romulus.Web.Constants
         "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.js";
 
       public const string Migrate3Url =
-        "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.0/jquery-migrate.js";
+        "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.js";
     }
 
     public static class GetMdl
