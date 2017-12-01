@@ -1,13 +1,14 @@
 ﻿namespace Romulus.Web.Handlers
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using JetBrains.Annotations;
     using MediatR;
     using MimeKit;
     using Romulus.Web.ViewModels;
 
-    public class ContactMessageHandler : IAsyncNotificationHandler<ContactViewModel>
+    public class ContactMessageHandler : INotificationHandler<ContactViewModel>
     {
         private readonly ITransport transport;
 
@@ -16,7 +17,7 @@
             this.transport = transport;
         }
 
-        public async Task Handle(ContactViewModel notification)
+        public async Task Handle(ContactViewModel notification, CancellationToken ct)
         {
             var message = CreateMailMessage(notification);
             await transport.DeliverAsync(message).WithoutCapturingContext();
