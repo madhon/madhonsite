@@ -6,7 +6,7 @@ namespace Romulus.Web.Constants
     {
       public const string Domain = "ajax.googleapis.com";
       public const string JQuery2Url = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js";
-      public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js";
+      public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js";
       public const string SwfObjectUrl = "https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js";
     }
 
@@ -36,7 +36,7 @@ namespace Romulus.Web.Constants
 
       public const string ModernizrUrl = "https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js";
 
-      public const string ParsleyUrl = "https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.0/parsley.min.js";
+      public const string ParsleyUrl = "https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js";
 
       public const string Migrate1Url =
         "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.js";
