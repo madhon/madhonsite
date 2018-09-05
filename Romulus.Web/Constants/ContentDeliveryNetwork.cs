@@ -15,12 +15,12 @@ namespace Romulus.Web.Constants
       public const string Domain = "maxcdn.bootstrapcdn.com";
 
       public const string BootstrapCssUrl =
-        "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+        "https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
 
-      public const string BootstrapJsUrl = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
+      public const string BootstrapJsUrl = "https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
 
       public const string FontAwesomeUrl =
-        "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+        "https://use.fontawesome.com/releases/v5.3.1/css/all.css";
     }
 
     public static class Cloudflare
