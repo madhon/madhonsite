@@ -10,9 +10,9 @@ namespace Romulus.Web.Constants
       public const string SwfObjectUrl = "https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js";
     }
 
-    public static class MaxCdn
+    public static class BootstrapCdn
     {
-      public const string Domain = "maxcdn.bootstrapcdn.com";
+      public const string Domain = "stackpath.bootstrapcdn.com";
 
       public const string BootstrapCssUrl =
         "https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";

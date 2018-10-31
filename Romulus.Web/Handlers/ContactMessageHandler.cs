@@ -1,4 +1,4 @@
-﻿namespace Romulus.Web.Handlers
+namespace Romulus.Web.Handlers
 {
     using System;
     using System.Threading;
@@ -20,7 +20,7 @@
         public async Task Handle(ContactViewModel notification, CancellationToken ct)
         {
             var message = CreateMailMessage(notification);
-            await transport.DeliverAsync(message).WithoutCapturingContext();
+            await transport.DeliverAsync(message, ct).WithoutCapturingContext();
         }
 
         private MimeMessage CreateMailMessage([NotNull] ContactViewModel model)

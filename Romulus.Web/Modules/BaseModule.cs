@@ -1,4 +1,4 @@
-﻿namespace Romulus.Web.Modules
+namespace Romulus.Web.Modules
 {
     using System.Dynamic;
     using Nancy;

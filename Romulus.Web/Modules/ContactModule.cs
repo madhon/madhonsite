@@ -1,7 +1,5 @@
-﻿namespace Romulus.Web.Modules
+namespace Romulus.Web.Modules
 {
-    using System;
-    using System.Threading.Tasks;
     using JetBrains.Annotations;
     using MediatR;
     using Nancy;

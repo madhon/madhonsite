@@ -1,10 +1,11 @@
-﻿namespace Romulus.Web.Handlers
+namespace Romulus.Web.Handlers
 {
+    using System.Threading;
     using System.Threading.Tasks;
     using MimeKit;
 
     public interface ITransport
     {
-        Task DeliverAsync(MimeMessage message);
+        Task DeliverAsync(MimeMessage message, CancellationToken ct);
     }
 }
