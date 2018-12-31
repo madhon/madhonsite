@@ -1,4 +1,4 @@
-﻿namespace Romulus.Web
+namespace Romulus.Web
 {
     using FluentValidation.AspNetCore;
     using Infrastructure;
@@ -47,6 +47,8 @@
             app.UseResponseCaching();
             app.UseResponseCompression();
             app.UseStaticFilesWithCacheControl();
+
+          app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy());
 
             app.UseMvc(routes =>
             {
