@@ -1,18 +1,59 @@
 ﻿namespace Romulus.Web
 {
-  using System;
-  using JetBrains.Annotations;
-  using Microsoft.Owin.Extensions;
-  using Owin;
+    using FluentValidation.AspNetCore;
+    using Infrastructure;
+    using Infrastruture;
+    using JetBrains.Annotations;
+    using Lamar;
+    using MediatR;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.DependencyInjection;
+    using Services;
 
-  [UsedImplicitly]
-  public class Startup
-  {
-    [UsedImplicitly]
-    public void Configuration(IAppBuilder app)
+    public class Startup
     {
-      app.UseNancy(options => options.Bootstrapper = new RomulusBootstrapper());
-      app.UseStageMarker(PipelineStage.MapHandler);
+        [UsedImplicitly]
+        public void ConfigureContainer(ServiceRegistry services)
+        {
+            services.AddAntiforgerySecurely();
+            services.AddRouting(options =>
+            {
+                options.AppendTrailingSlash = true;
+                options.LowercaseUrls = true;
+            });
+
+            services.AddResponseCaching();
+            services.AddResponseCompression(options => options.MimeTypes = ResponseCompressionMimeTypes.Defaults);
+
+            services.AddMediatR();
+            services.AddMvc()
+                .AddFeatureFolders()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<Startup>(); });
+
+            services.For<ITransport>().Use<GmailTransport>();
+        }
+
+        [UsedImplicitly]
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseResponseCaching();
+            app.UseResponseCompression();
+            app.UseStaticFilesWithCacheControl();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    "default",
+                    "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
     }
-  }
 }
