@@ -48,7 +48,7 @@ namespace Romulus.Web
             app.UseResponseCompression();
             app.UseStaticFilesWithCacheControl();
 
-          app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy());
+            app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy().AddFeaturePolicy().AddReferrerPolicy());
 
             app.UseMvc(routes =>
             {

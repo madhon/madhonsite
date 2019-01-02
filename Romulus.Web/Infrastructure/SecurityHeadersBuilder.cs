@@ -7,28 +7,18 @@ namespace Romulus.Web.Infrastructure
     public SecurityHeadersBuilder AddDefaultSecurePolicy()
     {
       AddFrameOptionsDeny();
-      AddXssProtectionBlock();
+      AddDownloadOptionsNoOpen();
       AddContentTypeOptionsNoSniff();
+      AddXssProtectionBlock();
       //AddStrictTransportSecurityMaxAge();
       RemoveServerHeader();
+      RemoveHeader("X-Powered-By");
       return this;
     }
 
     public SecurityHeadersBuilder AddFrameOptionsDeny()
     {
       _policy.SetHeaders[FrameOptionsConstants.Header] = FrameOptionsConstants.Deny;
-      return this;
-    }
-
-    public SecurityHeadersBuilder AddFrameOptionsSameOrigin()
-    {
-      _policy.SetHeaders[FrameOptionsConstants.Header] = FrameOptionsConstants.SameOrigin;
-      return this;
-    }
-
-    public SecurityHeadersBuilder AddFrameOptionsSameOrigin(string uri)
-    {
-      _policy.SetHeaders[FrameOptionsConstants.Header] = string.Format(FrameOptionsConstants.AllowFromUri, uri);
       return this;
     }
 
@@ -41,6 +31,25 @@ namespace Romulus.Web.Infrastructure
     public SecurityHeadersBuilder AddContentTypeOptionsNoSniff()
     {
       _policy.SetHeaders["X-Content-Type-Options"] = "nosniff";
+      return this;
+    }
+
+    public SecurityHeadersBuilder AddDownloadOptionsNoOpen()
+    {
+      _policy.SetHeaders["X-Download-Options"] = "noopen";
+      return this;
+    }
+
+    public SecurityHeadersBuilder AddFeaturePolicy()
+    {
+      _policy.SetHeaders["Feature-Policy"] = @"geolocation 'none'; midi 'none'; notifications 'none';push 'none'; microphone 'none'; camera 'none'; magnetometer 'none'; gyroscope 'none'; speaker 'none'; vibrate 'none'; payment 'none'";
+      return this;
+    }
+
+    public SecurityHeadersBuilder AddReferrerPolicy()
+    {
+      _policy.SetHeaders["referrer"] = "no-referrer-when-downgrade";
+      _policy.SetHeaders["Referrer-Policy"] = "no-referrer-when-downgrade";
       return this;
     }
 
