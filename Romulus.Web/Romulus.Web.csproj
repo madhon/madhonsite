@@ -4,8 +4,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <LangVersion>latest</LangVersion>
     <TieredCompilation>true</TieredCompilation>
-    <AspNetCoreModuleName>AspNetCoreModule</AspNetCoreModuleName>
+    <!--<AspNetCoreModuleName>AspNetCoreModule</AspNetCoreModuleName>-->
     <!--<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>-->
+    <AspNetCoreModuleName>AspNetCoreModuleV2</AspNetCoreModuleName>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
