@@ -1,4 +1,4 @@
-﻿namespace Romulus.Web.Features.Contact
+namespace Romulus.Web.Features.Contact
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -53,7 +53,7 @@
             public async Task Handle(Command notification, CancellationToken ct)
             {
                 var message = CreateMailMessage(notification);
-                await transport.DeliverAsync(message, ct).WithoutCapturingContext();
+                // await transport.DeliverAsync(message, ct).WithoutCapturingContext();
             }
         }
     }
