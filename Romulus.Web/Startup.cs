@@ -4,7 +4,6 @@ namespace Romulus.Web
     using Infrastructure;
     using Infrastruture;
     using JetBrains.Annotations;
-    using Lamar;
     using MediatR;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -15,7 +14,7 @@ namespace Romulus.Web
     public class Startup
     {
         [UsedImplicitly]
-        public void ConfigureContainer(ServiceRegistry services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddAntiforgerySecurely();
             services.AddRouting(options =>
@@ -33,7 +32,7 @@ namespace Romulus.Web
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<Startup>(); });
 
-            services.For<ITransport>().Use<GmailTransport>();
+            services.AddTransient<ITransport, GmailTransport>();
         }
 
         [UsedImplicitly]

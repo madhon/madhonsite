@@ -1,6 +1,5 @@
 namespace Romulus.Web
 {
-  using Lamar.Microsoft.DependencyInjection;
   using Microsoft.AspNetCore;
   using Microsoft.AspNetCore.Hosting;
 
@@ -12,7 +11,6 @@ namespace Romulus.Web
     {
       return WebHost.CreateDefaultBuilder(args)
         .ConfigureKestrel((bc, o) => { o.AddServerHeader = false; })
-        .UseLamar()
         .UseStartup<Startup>();
     }
   }
