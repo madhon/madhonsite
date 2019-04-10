@@ -1,4 +1,4 @@
-﻿namespace Romulus.Web.Infrastruture
+namespace Romulus.Web.Infrastructure
 {
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc.Razor;

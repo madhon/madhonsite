@@ -2,7 +2,6 @@ namespace Romulus.Web
 {
     using FluentValidation.AspNetCore;
     using Infrastructure;
-    using Infrastruture;
     using JetBrains.Annotations;
     using MediatR;
     using Microsoft.AspNetCore.Builder;
@@ -16,7 +15,7 @@ namespace Romulus.Web
         [UsedImplicitly]
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAntiforgerySecurely();
+            services.AddAntiForgerySecurely();
             services.AddRouting(options =>
             {
                 options.AppendTrailingSlash = true;

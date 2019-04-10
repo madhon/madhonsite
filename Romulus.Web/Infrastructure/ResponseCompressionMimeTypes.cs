@@ -1,4 +1,4 @@
-﻿namespace Romulus.Web.Infrastructure
+namespace Romulus.Web.Infrastructure
 {
     using System.Collections.Generic;
     using System.Linq;

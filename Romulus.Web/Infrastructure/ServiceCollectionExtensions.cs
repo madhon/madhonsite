@@ -1,11 +1,11 @@
-﻿namespace Romulus.Web.Infrastruture
+namespace Romulus.Web.Infrastructure
 {
-    using System;
-    using Microsoft.Extensions.DependencyInjection;
+  using System;
+  using Microsoft.Extensions.DependencyInjection;
 
-    public static class ServiceCollectionExtensions
+  public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddAntiforgerySecurely(this IServiceCollection services)
+        public static IServiceCollection AddAntiForgerySecurely(this IServiceCollection services)
         {
             return services.AddAntiforgery(
                 options =>
@@ -19,7 +19,7 @@
 
         public static IMvcBuilder AddFeatureFolders(this IMvcBuilder services)
         {
-            if (services == null)
+            if (services is null)
             {
                 throw new ArgumentNullException(nameof(services));
             }

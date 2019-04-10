@@ -1,4 +1,4 @@
-﻿namespace Romulus.Web.Infrastructure
+namespace Romulus.Web.Infrastructure
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Net.Http.Headers;

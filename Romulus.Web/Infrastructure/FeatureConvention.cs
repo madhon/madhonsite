@@ -1,4 +1,4 @@
-﻿namespace Romulus.Web.Infrastruture
+namespace Romulus.Web.Infrastructure
 {
     using System;
     using System.Reflection;

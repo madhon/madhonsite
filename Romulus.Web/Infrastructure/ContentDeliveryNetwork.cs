@@ -1,4 +1,4 @@
-﻿namespace Romulus.Web.Infrastructure
+namespace Romulus.Web.Infrastructure
 {
     public static class ContentDeliveryNetwork
     {
