@@ -48,7 +48,7 @@ namespace Romulus.Web.Infrastructure
 
     public SecurityHeadersBuilder AddContentSecurityPolicy()
     {
-      _policy.SetHeaders["Content-Security-Policy-Report-Only"] = @"script-src 'self' ajax.googleapis.com https://www.google-analytics.com cdnjs.cloudflare.com stackpath.bootstrapcdn.com; style-src 'self' stackpath.bootstrapcdn.com cdnjs.cloudflare.com use.fontawesome.com; img-src 'self' www.google-analytics.com https://stats.g.doubleclick.net; connect-src 'self' www.google-analytics.com https://stats.g.doubleclick.net; form-action 'self'";
+      _policy.SetHeaders["Content-Security-Policy-Report-Only"] = @"script-src 'self' ajax.googleapis.com https://www.google-analytics.com cdnjs.cloudflare.com stackpath.bootstrapcdn.com; style-src 'self' stackpath.bootstrapcdn.com cdnjs.cloudflare.com use.fontawesome.com fonts.googleapis.com; img-src 'self' www.google-analytics.com https://stats.g.doubleclick.net; connect-src 'self' www.google-analytics.com https://stats.g.doubleclick.net; form-action 'self'";
       return this;
     }
 

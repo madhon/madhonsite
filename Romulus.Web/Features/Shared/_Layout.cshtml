@@ -1,11 +1,6 @@
 @using Romulus.Web.Infrastructure
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="no-js oldie lt-ie9 lt-ie8  lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js oldie lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js oldie lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
-<!--<![endif]-->
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <link rel="dns-prefetch" href="https://ajax.googleapis.com">
@@ -26,14 +21,8 @@
     <link rel="stylesheet" type="text/css" href="/Content/css/site.min.css" />
     <link rel="stylesheet" type="text/css" href="/Content/css/metro.min.css" />
     @RenderSection("cssFiles", false)
-    <script type="text/javascript" src="@ContentDeliveryNetwork.Cloudflare.ModernizrUrl"></script>
 </head>
 <body>
-    <!--[if lt IE 9]>
-    <div class="alert alert-warning" role="alert">
-           <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    </div>
-    <![endif]-->
     <div class="slidepanel">
         <div class="container">
             <div class="row">
