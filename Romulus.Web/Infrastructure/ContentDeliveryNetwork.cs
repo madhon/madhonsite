@@ -7,7 +7,6 @@ namespace Romulus.Web.Infrastructure
             public const string Domain = "ajax.googleapis.com";
             public const string JQuery2Url = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js";
             public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js";
-            public const string SwfObjectUrl = "https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js";
         }
 
         public static class BootstrapCdn
