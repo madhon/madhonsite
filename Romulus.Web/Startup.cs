@@ -1,6 +1,7 @@
 namespace Romulus.Web
 {
-    using FluentValidation.AspNetCore;
+  using System.Reflection;
+  using FluentValidation.AspNetCore;
     using Infrastructure;
     using JetBrains.Annotations;
     using MediatR;
@@ -25,7 +26,7 @@ namespace Romulus.Web
             services.AddResponseCaching();
             services.AddResponseCompression(options => options.MimeTypes = ResponseCompressionMimeTypes.Defaults);
 
-            services.AddMediatR();
+            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
             services.AddMvc()
                 .AddFeatureFolders()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
