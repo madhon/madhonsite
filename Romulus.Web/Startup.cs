@@ -1,18 +1,27 @@
 namespace Romulus.Web
 {
-  using System.Reflection;
-  using FluentValidation.AspNetCore;
+    using System.Reflection;
+    using FluentValidation.AspNetCore;
     using Infrastructure;
     using JetBrains.Annotations;
     using MediatR;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Services;
 
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         [UsedImplicitly]
         public void ConfigureServices(IServiceCollection services)
         {
@@ -41,6 +50,10 @@ namespace Romulus.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseHsts();
             }
 
             app.UseResponseCaching();
