@@ -1,4 +1,4 @@
-﻿namespace Romulus.Web.Services
+namespace Romulus.Web.Services
 {
     using System.Threading;
     using System.Threading.Tasks;

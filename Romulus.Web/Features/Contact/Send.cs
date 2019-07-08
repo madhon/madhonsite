@@ -32,10 +32,7 @@ namespace Romulus.Web.Features.Contact
         {
             private readonly ITransport transport;
 
-            public Handler(ITransport transport)
-            {
-                this.transport = transport;
-            }
+            public Handler(ITransport transport) => this.transport = transport;
 
             private MimeMessage CreateMailMessage([NotNull] Command model)
             {

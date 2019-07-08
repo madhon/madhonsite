@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>7.3</LangVersion>
     <TieredCompilation>true</TieredCompilation>
     <!--<AspNetCoreModuleName>AspNetCoreModule</AspNetCoreModuleName>-->
     <!--<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>-->
@@ -18,7 +18,7 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.4.0" />
     <PackageReference Include="MailKit" Version="2.2.0" />
     <PackageReference Include="MimeKit" Version="2.2.0" />
-    <PackageReference Include="JetBrains.Annotations" Version="2019.1.1" />
+    <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />
   </ItemGroup>
 
   <ItemGroup>
