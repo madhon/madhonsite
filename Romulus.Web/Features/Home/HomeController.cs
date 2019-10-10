@@ -1,4 +1,4 @@
-﻿namespace Romulus.Web.Features.Home
+namespace Romulus.Web.Features.Home
 {
     using System;
     using Microsoft.AspNetCore.Mvc;

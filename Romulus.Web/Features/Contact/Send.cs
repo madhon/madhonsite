@@ -50,6 +50,7 @@ namespace Romulus.Web.Features.Contact
             public async Task Handle(Command notification, CancellationToken ct)
             {
                 var message = CreateMailMessage(notification);
+                await Task.Delay(2, ct).WithoutCapturingContext();
                 // await transport.DeliverAsync(message, ct).WithoutCapturingContext();
             }
         }
