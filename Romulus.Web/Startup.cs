@@ -6,11 +6,9 @@ namespace Romulus.Web
     using JetBrains.Annotations;
     using MediatR;
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
     using Services;
 
     public class Startup
@@ -33,16 +31,16 @@ namespace Romulus.Web
             services.AddResponseCompression(options => options.MimeTypes = ResponseCompressionMimeTypes.Defaults);
 
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
-            services.AddMvc()
+
+            services.AddControllersWithViews()
                 .AddFeatureFolders()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<Startup>(); });
 
-            services.AddTransient<ITransport, GmailTransport>();
+            services.AddTransient<ITransport, NullTransport>();
         }
 
         [UsedImplicitly]
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -59,11 +57,11 @@ namespace Romulus.Web
 
             app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy().AddFeaturePolicy().AddReferrerPolicy().AddContentSecurityPolicy());
 
-            app.UseMvc(routes =>
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints => 
             {
-                routes.MapRoute(
-                    "default",
-                    "{controller=Home}/{action=Index}/{id?}");
+              endpoints.MapDefaultControllerRoute();
             });
         }
     }
