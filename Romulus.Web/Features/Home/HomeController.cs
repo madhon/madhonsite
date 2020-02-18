@@ -1,10 +1,13 @@
 namespace Romulus.Web.Features.Home
 {
     using System;
+    using System.Security.Cryptography;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : Controller
     {
+      private readonly RNGCryptoServiceProvider rand = new RNGCryptoServiceProvider();
+
         private static readonly string[] tenHoursOfFun =
         {
             "https://www.youtube.com/watch?v=wbby9coDRCk",
@@ -44,10 +47,19 @@ namespace Romulus.Web.Features.Home
         [Route("wp-admin/post-new.php")]
         [Route("wp-login.php")]
         [Route("xmlrpc.php")]
-        public ActionResult No()
+        public ActionResult No() => Redirect(tenHoursOfFun[RandomNumber(0, tenHoursOfFun.Length)]);
+
+        private int RandomNumber(int min, int max)
         {
-            var rnd = new Random();
-            return Redirect(tenHoursOfFun[rnd.Next(0, tenHoursOfFun.Length)]);
-        } 
+          var scale = uint.MaxValue;
+          while (scale == uint.MaxValue)
+          {
+            var fourBytes = new byte[4];
+            rand.GetBytes(fourBytes);
+            scale = BitConverter.ToUInt32(fourBytes, 0);
+          }
+
+          return (int) (min + (max - min) * (scale / (double) uint.MaxValue));
+        }
     }
 }
