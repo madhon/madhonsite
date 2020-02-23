@@ -6,6 +6,7 @@ namespace Romulus.Web
     using JetBrains.Annotations;
     using MediatR;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.HttpOverrides;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
@@ -42,6 +43,12 @@ namespace Romulus.Web
         [UsedImplicitly]
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+              ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -53,7 +60,7 @@ namespace Romulus.Web
 
             app.UseResponseCaching();
             app.UseResponseCompression();
-            app.UseStaticFilesWithCacheControl();
+            app.UseStaticFilesWithCacheControl(env);
 
             app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy().AddFeaturePolicy().AddReferrerPolicy().AddContentSecurityPolicy());
 

@@ -18,8 +18,4 @@
     <PackageReference Include="SecurityCodeScan" Version="3.4.0" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
 </Project>

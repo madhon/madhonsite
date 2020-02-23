@@ -1,6 +1,5 @@
 namespace Romulus.Web.Features.Home
 {
-    using System;
     using System.Security.Cryptography;
     using Microsoft.AspNetCore.Mvc;
 
@@ -47,19 +46,6 @@ namespace Romulus.Web.Features.Home
         [Route("wp-admin/post-new.php")]
         [Route("wp-login.php")]
         [Route("xmlrpc.php")]
-        public ActionResult No() => Redirect(tenHoursOfFun[RandomNumber(0, tenHoursOfFun.Length)]);
-
-        private int RandomNumber(int min, int max)
-        {
-          var scale = uint.MaxValue;
-          while (scale == uint.MaxValue)
-          {
-            var fourBytes = new byte[4];
-            rand.GetBytes(fourBytes);
-            scale = BitConverter.ToUInt32(fourBytes, 0);
-          }
-
-          return (int) (min + (max - min) * (scale / (double) uint.MaxValue));
-        }
+        public ActionResult No() => Redirect(tenHoursOfFun[RandomNumberGenerator.GetInt32(0, tenHoursOfFun.Length)]);
     }
 }
