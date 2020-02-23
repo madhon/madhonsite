@@ -28,7 +28,7 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '--configuration Release --output $(Build.ArtifactStagingDirectory) -r win10-x86 --no-build'
+    arguments: '--configuration Release --output $(Build.ArtifactStagingDirectory) -r win10-x86'
     zipAfterPublish: True
 - task: PublishBuildArtifacts@1
   inputs:
