@@ -23,7 +23,7 @@ steps:
   inputs:
     command: 'build'
     projects: '**/*.csproj'
-    arguments: '--configuration Release --no-restore'
+    arguments: '--configuration Release'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
