@@ -43,28 +43,20 @@ namespace Romulus.Web
         [UsedImplicitly]
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
+            app.UseRouting();
+
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
               ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
 
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
-
             app.UseResponseCaching();
             app.UseResponseCompression();
+
+            app.UseDefaultFiles();
             app.UseStaticFilesWithCacheControl(env);
 
             app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy().AddFeaturePolicy().AddReferrerPolicy().AddContentSecurityPolicy());
-
-            app.UseRouting();
 
             app.UseEndpoints(endpoints => 
             {
