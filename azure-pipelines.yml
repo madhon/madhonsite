@@ -34,10 +34,3 @@ steps:
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'madhonSite'
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Pay-As-You-Go(81e84b8a-f8b8-414d-ae7c-61908b042b5d)'
-    appType: 'webApp'
-    WebAppName: 'madhon'
-    packageForLinux: '$(System.ArtifactsDirectory)/**/*.zip'
