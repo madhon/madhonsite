@@ -28,6 +28,14 @@ namespace Romulus.Web
                 options.LowercaseUrls = true;
             });
 
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+              options.KnownNetworks.Clear();
+              options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
+
+            services.AddHealthChecks();
+
             services.AddResponseCaching();
             services.AddResponseCompression(options => options.MimeTypes = ResponseCompressionMimeTypes.Defaults);
 
@@ -45,10 +53,9 @@ namespace Romulus.Web
         {
             app.UseRouting();
 
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-              ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
+            app.UseHealthChecks("/healthz");
+
+            app.UseForwardedHeaders();
 
             app.UseResponseCaching();
             app.UseResponseCompression();
