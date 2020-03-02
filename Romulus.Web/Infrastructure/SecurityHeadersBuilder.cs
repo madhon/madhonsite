@@ -6,10 +6,10 @@ namespace Romulus.Web.Infrastructure
 
     public SecurityHeadersBuilder AddDefaultSecurePolicy()
     {
-      AddFrameOptionsDeny();
-      AddDownloadOptionsNoOpen();
-      AddContentTypeOptionsNoSniff();
-      AddXssProtectionBlock();
+      //AddFrameOptionsDeny();
+      //AddDownloadOptionsNoOpen();
+      //AddContentTypeOptionsNoSniff();
+      //AddXssProtectionBlock();
       //AddStrictTransportSecurityMaxAge();
       RemoveServerHeader();
       RemoveHeader("X-Powered-By");

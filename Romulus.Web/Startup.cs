@@ -56,7 +56,7 @@ namespace Romulus.Web
             app.UseDefaultFiles();
             app.UseStaticFilesWithCacheControl(env);
 
-            app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy().AddFeaturePolicy().AddReferrerPolicy().AddContentSecurityPolicy());
+            app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy());
 
             app.UseEndpoints(endpoints => 
             {
