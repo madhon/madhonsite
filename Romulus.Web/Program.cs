@@ -16,7 +16,7 @@ namespace Romulus.Web
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.ConfigureKestrel((bc, o) => { o.AddServerHeader = false; })
-                      .UseWebRoot(webRoot)
+                      //.UseWebRoot(webRoot)
                       .UseStartup<Startup>();
                 });
     

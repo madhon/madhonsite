@@ -13,12 +13,17 @@ namespace Romulus.Web.Infrastructure
         {
             public const string Domain = "stackpath.bootstrapcdn.com";
 
-            public const string BootstrapCssUrl =
+            public const string Bootstrap3CssUrl =
               "https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css";
 
-            public const string BootstrapJsUrl = "https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js";
+            public const string Bootstrap3JsUrl = "https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js";
 
-            public const string FontAwesomeUrl =
+            public const string BootstrapCssUrl =
+              "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css";
+
+            public const string BootstrapJsUrl = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js";
+
+      public const string FontAwesomeUrl =
               "https://use.fontawesome.com/releases/v5.12.0/css/all.css";
         }
 
@@ -36,6 +41,8 @@ namespace Romulus.Web.Infrastructure
             public const string ModernizrUrl = "https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js";
 
             public const string ParsleyUrl = "https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js";
+
+            public const string Popper = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/popper.min.js";
 
             public const string Migrate1Url =
               "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.js";
