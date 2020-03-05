@@ -1,6 +1,7 @@
 namespace Romulus.Web
 {
-    using System.Reflection;
+	using System;
+	using System.Reflection;
     using FluentValidation.AspNetCore;
     using Infrastructure;
     using JetBrains.Annotations;
@@ -21,7 +22,10 @@ namespace Romulus.Web
         [UsedImplicitly]
         public void ConfigureServices(IServiceCollection services)
         {
+			services.AddCustomLogging(Configuration);
+	        
             services.AddAntiForgerySecurely();
+
             services.AddRouting(options =>
             {
                 options.AppendTrailingSlash = true;
@@ -50,8 +54,15 @@ namespace Romulus.Web
 
         [UsedImplicitly]
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
-        {
-            app.UseRouting();
+        { 
+	        if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+			}
+
+			app.UseStaticFilesWithCacheControl(env);
+
+			app.UseRouting();
 
             app.UseHealthChecks("/healthz");
 
@@ -59,10 +70,7 @@ namespace Romulus.Web
 
             app.UseResponseCaching();
             app.UseResponseCompression();
-
-            app.UseDefaultFiles();
-            app.UseStaticFilesWithCacheControl(env);
-
+			
             app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy());
 
             app.UseEndpoints(endpoints => 

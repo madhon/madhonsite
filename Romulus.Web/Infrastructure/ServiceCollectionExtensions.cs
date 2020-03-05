@@ -1,7 +1,11 @@
 namespace Romulus.Web.Infrastructure
 {
   using System;
+  using JetBrains.Annotations;
+  using Microsoft.Extensions.Configuration;
   using Microsoft.Extensions.DependencyInjection;
+  using Microsoft.Extensions.Hosting;
+  using Microsoft.Extensions.Logging;
 
   public static class ServiceCollectionExtensions
     {
@@ -43,5 +47,21 @@ namespace Romulus.Web.Infrastructure
 
             return services;
         }
-    }
+
+        public static void AddCustomLogging([NotNull] this IServiceCollection services, [NotNull] IConfiguration configuration)
+        {
+	        services.AddLogging(config =>
+	        {
+		        config.ClearProviders();
+		        config.AddConfiguration(configuration.GetSection("Logging"));
+		        config.AddDebug();
+		        config.AddEventSourceLogger();
+
+		        if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Development)
+		        {
+			        config.AddConsole();
+		        }
+	        });
+        }
+	}
 }

@@ -1,0 +1,1 @@
+dotnet publish -c release -r linux-x64 -o ..\madhonpub --self-contained=false
