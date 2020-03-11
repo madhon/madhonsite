@@ -1,61 +1,69 @@
 namespace Romulus.Web
 {
-	using System;
 	using System.Reflection;
-    using FluentValidation.AspNetCore;
-    using Infrastructure;
-    using JetBrains.Annotations;
-    using MediatR;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.HttpOverrides;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
-    using Services;
+	using FluentValidation.AspNetCore;
+	using Infrastructure;
+	using JetBrains.Annotations;
+	using MediatR;
+	using Microsoft.AspNetCore.Builder;
+	using Microsoft.AspNetCore.HttpOverrides;
+	using Microsoft.Extensions.Configuration;
+	using Microsoft.Extensions.DependencyInjection;
+	using Microsoft.Extensions.Hosting;
+	using Services;
 
-    public class Startup
-    {
-        public IConfiguration Configuration { get; }
+	public class Startup
+	{
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+		}
 
-        public Startup(IConfiguration configuration) => Configuration = configuration;
+		public IConfiguration Configuration
+		{
+			get;
+		}
 
-        [UsedImplicitly]
-        public void ConfigureServices(IServiceCollection services)
-        {
+		[UsedImplicitly]
+		public void ConfigureServices(IServiceCollection services)
+		{
 			services.AddCustomLogging(Configuration);
-	        
-            services.AddAntiForgerySecurely();
 
-            services.AddRouting(options =>
-            {
-                options.AppendTrailingSlash = true;
-                options.LowercaseUrls = true;
-            });
+			services.AddAntiForgerySecurely();
 
-            services.Configure<ForwardedHeadersOptions>(options =>
-            {
-              options.KnownNetworks.Clear();
-              options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-            });
+			services.AddRouting(options =>
+			{
+				options.AppendTrailingSlash = true;
+				options.LowercaseUrls = true;
+			});
 
-            services.AddHealthChecks();
+			services.Configure<ForwardedHeadersOptions>(options =>
+			{
+				options.KnownNetworks.Clear();
+				options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+			});
 
-            services.AddResponseCaching();
-            services.AddResponseCompression(options => options.MimeTypes = ResponseCompressionMimeTypes.Defaults);
+			services.AddHealthChecks();
 
-            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
+			services.AddResponseCaching();
+			services.AddResponseCompression(options => options.MimeTypes = ResponseCompressionMimeTypes.Defaults);
 
-            services.AddControllersWithViews()
-                .AddFeatureFolders()
-                .AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<Startup>(); });
+			services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
 
-            services.AddTransient<ITransport, NullTransport>();
-        }
+			services.AddControllersWithViews()
+				.AddFeatureFolders()
+				.AddFluentValidation(cfg =>
+				{
+					cfg.RegisterValidatorsFromAssemblyContaining<Startup>();
+				});
 
-        [UsedImplicitly]
-        public void Configure(IApplicationBuilder app, IHostEnvironment env)
-        { 
-	        if (env.IsDevelopment())
+			services.AddTransient<ITransport, NullTransport>();
+		}
+
+		[UsedImplicitly]
+		public void Configure(IApplicationBuilder app, IHostEnvironment env)
+		{
+			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
 			}
@@ -64,19 +72,18 @@ namespace Romulus.Web
 
 			app.UseRouting();
 
-            app.UseHealthChecks("/healthz");
+			app.UseForwardedHeaders();
 
-            app.UseForwardedHeaders();
+			app.UseResponseCaching();
+			app.UseResponseCompression();
 
-            app.UseResponseCaching();
-            app.UseResponseCompression();
-			
-            app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy());
+			app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy());
 
-            app.UseEndpoints(endpoints => 
-            {
-              endpoints.MapDefaultControllerRoute();
-            });
-        }
-    }
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapHealthChecks("/healthz");
+				endpoints.MapDefaultControllerRoute();
+			});
+		}
+	}
 }
