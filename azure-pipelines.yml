@@ -33,4 +33,11 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'madhonSite'
+    ArtifactName: 'madhonS- 
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'DigialOcean'
+    sourceFolder: '$(Build.ArtifactStagingDirectory)'
+    contents: '**'
+    targetFolder: '/home/madhon_webdeploy/files'
+    readyTimeout: '20000'
