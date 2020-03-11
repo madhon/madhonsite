@@ -19,13 +19,13 @@ steps:
   inputs:
     command: 'build'
     projects: '**/*.csproj'
-    arguments: '-r $(rid) --configuration $(buildConfiguration'
+    arguments: '-r $(rid) --configuration $(buildConfiguration)'
 - task: DotNetCoreCLI@2
   displayName: 'Publish'
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '-r $(rid) --no-build --configuration $(buildConfiguration --output $(Build.ArtifactStagingDirectory) --self-contained=false'
+    arguments: '-r $(rid) --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained=false'
     zipAfterPublish: True
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifacts'
