@@ -33,8 +33,12 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'madhonS- 
-- task: DotNetCoreCLI@2
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+- task: CopyFilesOverSSH@0
   inputs:
-    command: 'test'
-    projects: '**/*.csproj'
+    sshEndpoint: 'DigialOcean'
+    sourceFolder: '$(Build.ArtifactStagingDirectory)'
+    contents: '**'
+    targetFolder: '/home/madhon_webdeploy/files'
+    readyTimeout: '20000'
