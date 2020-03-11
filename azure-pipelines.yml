@@ -2,10 +2,11 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 variables:
   buildConfiguration: 'Release'
+  rid: 'linux-x64'
 
 steps:
 - task: UseDotNet@2
@@ -14,28 +15,26 @@ steps:
     version: '3.1.x'
     performMultiLevelLookup: true
 - task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: '**/*.csproj'
-    feedsToUse: 'select'
-    verbosityRestore: 'Quiet'
-- task: DotNetCoreCLI@2
+  displayName: 'dotnet build $(buildConfiguration)'
   inputs:
     command: 'build'
     projects: '**/*.csproj'
-    arguments: '--configuration Release'
+    arguments: 'r $(rid) --configuration $(buildConfiguration'
 - task: DotNetCoreCLI@2
+  displayName: 'Pubish'
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '--configuration Release --output $(Build.ArtifactStagingDirectory) -r win10-x86'
+    arguments: 'r $(rid) --no-build --configuration $(buildConfiguration --output $(Build.ArtifactStagingDirectory) -self-contained=false'
     zipAfterPublish: True
 - task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifacts'
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 - task: CopyFilesOverSSH@0
+  displayName: 'Copy Files via SSh'
   inputs:
     sshEndpoint: 'DigialOcean'
     sourceFolder: '$(Build.ArtifactStagingDirectory)'
