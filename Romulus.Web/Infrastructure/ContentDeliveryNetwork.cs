@@ -13,39 +13,24 @@ namespace Romulus.Web.Infrastructure
         {
             public const string Domain = "stackpath.bootstrapcdn.com";
 
-            public const string Bootstrap3CssUrl =
-              "https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css";
-
-            public const string Bootstrap3JsUrl = "https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js";
-
             public const string BootstrapCssUrl =
-              "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css";
+			  "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css";
 
-            public const string BootstrapJsUrl = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js";
+            public const string BootstrapJsUrl = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js";
 
-      public const string FontAwesomeUrl =
-			  "https://use.fontawesome.com/releases/v5.13.0/css/all.css";
+			//public const string FontAwesomeUrl =
+			//  "https://use.fontawesome.com/releases/v5.13.0/css/all.css";
         }
 
         public static class Cloudflare
         {
             public const string Domain = "cdnjs.cloudflare.com";
 
-
-            public const string MaterializeCssUrl =
-              "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css";
-
-            public const string MaterializeJsUrl =
-              "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js";
-
             public const string ModernizrUrl = "https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js";
 
             public const string ParsleyUrl = "https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js";
 
-            public const string Popper = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/popper.min.js";
-
-            public const string Migrate1Url =
-              "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.js";
+            public const string Popper = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/cjs/popper.min.js";
 
             public const string Migrate3Url =
               "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.1.0/jquery-migrate.js";
