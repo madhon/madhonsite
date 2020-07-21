@@ -41,3 +41,9 @@ steps:
     contents: '**'
     targetFolder: '/home/madhon_webdeploy/files'
     readyTimeout: '20000'
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'DigialOcean'
+    runOptions: 'script'
+    scriptPath: '/home/madhon_webdeploy/deployit.sh'
+    readyTimeout: '20000'
