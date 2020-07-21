@@ -42,9 +42,26 @@ steps:
     targetFolder: '/home/madhon_webdeploy/files'
     readyTimeout: '20000'
 - task: SSH@0
-  displayName: 'Update site via SSH'
+  displayName: "Update site files via SSH"
   inputs:
     sshEndpoint: 'DigialOcean'
-    runOptions: 'script'
-    scriptPath: '/home/madhon_webdeploy/files/deployit.sh'
+    runOptions: 'inline'
+    inline: |
+      #!/bin/sh
+      
+      WEBROOT=/var/www/madhon.co.uk
+      
+      SOURCE=/home/madhon_webdeploy/files
+      
+      sudo systemctl stop madhonsite-kestrel.service
+      
+      cd $SOURCE/output
+      
+      unzip -o $SOURCE/Romulus.Web.zip
+      
+      sudo cp -r $SOURCE/output/* $WEBROOT
+      
+      sudo chown -R www-data:www-data $WEBROOT
+      
+      sudo systemctl start madhonsite-kestrel.service
     readyTimeout: '20000'
