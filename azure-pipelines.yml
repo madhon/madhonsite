@@ -48,20 +48,16 @@ steps:
     runOptions: 'inline'
     inline: |
       #!/bin/sh
-      
       WEBROOT=/var/www/madhon.co.uk
-      
       SOURCE=/home/madhon_webdeploy/files
-      
+      echo "Stopping site"
       sudo systemctl stop madhonsite-kestrel.service
-      
       cd $SOURCE/output
-      
-      unzip -o $SOURCE/Romulus.Web.zip
-      
+      echo "Unziping files"
+      unzip -oq $SOURCE/Romulus.Web.zip
+      echo "Copying files and reseting permissions"
       sudo cp -r $SOURCE/output/* $WEBROOT
-      
       sudo chown -R www-data:www-data $WEBROOT
-      
+      echo "Starting Site"
       sudo systemctl start madhonsite-kestrel.service
     readyTimeout: '20000'
