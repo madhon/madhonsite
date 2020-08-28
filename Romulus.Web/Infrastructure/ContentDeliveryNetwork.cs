@@ -14,9 +14,9 @@ namespace Romulus.Web.Infrastructure
             public const string Domain = "stackpath.bootstrapcdn.com";
 
             public const string BootstrapCssUrl =
-			  "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css";
+			  "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css";
 
-            public const string BootstrapJsUrl = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js";
+            public const string BootstrapJsUrl = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css";
 
 			//public const string FontAwesomeUrl =
 			//  "https://use.fontawesome.com/releases/v5.13.0/css/all.css";
