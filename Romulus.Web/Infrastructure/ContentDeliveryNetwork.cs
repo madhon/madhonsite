@@ -19,7 +19,7 @@ namespace Romulus.Web.Infrastructure
             public const string BootstrapJsUrl = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css";
 
 			//public const string FontAwesomeUrl =
-			//  "https://use.fontawesome.com/releases/v5.13.0/css/all.css";
+			//  "https://use.fontawesome.com/releases/v5.14.0/css/all.css";
         }
 
         public static class Cloudflare
