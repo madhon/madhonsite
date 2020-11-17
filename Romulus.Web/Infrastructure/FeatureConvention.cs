@@ -15,7 +15,12 @@ namespace Romulus.Web.Infrastructure
         private string GetFeatureName(TypeInfo controllerType)
         {
             string[] tokens = controllerType.FullName.Split('.');
-            if (tokens.All(t => t != "Features")) return "";
+
+            if (tokens.All(t => t != "Features"))
+            {
+	            return "";
+            }
+
             string featureName = tokens
                 .SkipWhile(t => !t.Equals("features",
                     StringComparison.CurrentCultureIgnoreCase))
