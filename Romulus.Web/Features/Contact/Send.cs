@@ -12,10 +12,10 @@ namespace Romulus.Web.Features.Contact
     {
         public class Command : IRequest, INotification
         {
-            public string Name { get; set; }
-            public string Email { get; set; }
-            public string Message { get; set; }
-        }
+            public string Name { get; set; } = default!;
+			public string Email { get; set; } = default!;
+			public string Message { get; set; } = default!;
+		}
 
         public class CommandValidator : AbstractValidator<Command>
         {
