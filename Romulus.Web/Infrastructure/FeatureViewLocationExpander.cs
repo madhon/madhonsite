@@ -14,7 +14,7 @@ namespace Romulus.Web.Infrastructure
             // Error checking removed for brevity
             var controllerActionDescriptor =
                 (ControllerActionDescriptor)context.ActionContext.ActionDescriptor;
-            string featureName = controllerActionDescriptor.Properties["feature"] as string;
+            string? featureName = controllerActionDescriptor.Properties["feature"] as string;
             foreach (var location in viewLocations)
             {
                 yield return location.Replace("{3}", featureName);

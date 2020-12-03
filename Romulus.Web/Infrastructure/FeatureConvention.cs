@@ -12,22 +12,23 @@ namespace Romulus.Web.Infrastructure
             controller.Properties.Add("feature",
                 GetFeatureName(controller.ControllerType));
         }
-        private string GetFeatureName(TypeInfo controllerType)
+        private static string GetFeatureName(TypeInfo controllerType)
         {
-            string[] tokens = controllerType.FullName.Split('.');
+            string[] tokens = controllerType.FullName!.Split('.');
 
             if (tokens.All(t => t != "Features"))
             {
 	            return "";
             }
 
-            string featureName = tokens
+            string? featureName = tokens
                 .SkipWhile(t => !t.Equals("features",
-                    StringComparison.CurrentCultureIgnoreCase))
-                .Skip(1)
+					StringComparison.OrdinalIgnoreCase))
+				.Skip(1)
                 .Take(1)
                 .FirstOrDefault();
-            return featureName;
+
+            return string.IsNullOrEmpty(featureName) ? string.Empty : featureName;
         }
     }
 }
