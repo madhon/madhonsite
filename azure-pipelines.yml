@@ -13,22 +13,30 @@ variables:
 
 steps:
 - task: UseDotNet@2
+  displayName: 'Install SDK'
   inputs:
     packageType: 'sdk'
     version: '5.x'
     performMultiLevelLookup: true
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet build $(buildConfiguration)'
+  displayName: 'Restore Packages'
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'select'
+    verbosityRestore: 'Quiet'
+- task: DotNetCoreCLI@2
+  displayName: 'Build Project'
   inputs:
     command: 'build'
     projects: '**/*.csproj'
-    arguments: '-r $(rid) --configuration $(buildConfiguration)'
+    arguments: '--configuration Release --no-restore'
 - task: DotNetCoreCLI@2
-  displayName: 'Publish'
+  displayName: 'Publish Build'
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '-r $(rid) --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    arguments: '--no-restore --no-build --configuration Release --self-contained=false --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifacts'
