@@ -2,6 +2,7 @@ namespace Romulus.Web.Features.Contact
 {
     using System.Threading.Tasks;
     using MediatR;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class ContactController : Controller
@@ -11,12 +12,13 @@ namespace Romulus.Web.Features.Contact
         public ContactController(IMediator mediator) => this.mediator = mediator;
 
         [HttpGet]
-#pragma warning disable SCS0012 // Controller method is potentially vulnerable to authorization bypass.
+        [AllowAnonymous()]
 		public IActionResult Index() => View();
 
 
 		[HttpPost]
-        [ValidateAntiForgeryToken()]
+		[AllowAnonymous()]
+		[ValidateAntiForgeryToken()]
         public async Task<IActionResult> Index(Send.Command command)
         {
             if (!ModelState.IsValid)
@@ -27,6 +29,5 @@ namespace Romulus.Web.Features.Contact
             await mediator.Publish(command).WithoutCapturingContext();
             return View("Complete");
         }
-#pragma warning restore SCS0012 // Controller method is potentially vulnerable to authorization bypass.
 	}
 }

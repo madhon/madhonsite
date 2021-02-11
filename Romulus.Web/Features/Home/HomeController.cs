@@ -2,6 +2,7 @@ namespace Romulus.Web.Features.Home
 {
     using System.Security.Cryptography;
     using JetBrains.Annotations;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : Controller
@@ -33,7 +34,7 @@ namespace Romulus.Web.Features.Home
         };
 
 		[HttpGet()]
-#pragma warning disable SCS0012 // Controller method is potentially vulnerable to authorization bypass.
+		[AllowAnonymous()]
 		public IActionResult Index() => View();
 
 
@@ -51,7 +52,7 @@ namespace Romulus.Web.Features.Home
         [Route("wp-login.php")]
         [Route("xmlrpc.php")]
 		[HttpGet()]
+		[AllowAnonymous()]
 		public ActionResult No() => Redirect(tenHoursOfFun[RandomNumberGenerator.GetInt32(0, tenHoursOfFun.Length)]);
-#pragma warning restore SCS0012 // Controller method is potentially vulnerable to authorization bypass.
 	}
 }
