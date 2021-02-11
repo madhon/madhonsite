@@ -9,7 +9,7 @@ namespace Romulus.Web.Features.TagHelpers
 		public override void Process(TagHelperContext context, TagHelperOutput output)
 		{
 			output.TagName = string.Empty;
-			output.Content.SetHtmlContent($"<!-- {Assembly.GetEntryAssembly().GetName().Version.ToString()} -->");
+			output.Content.SetHtmlContent($"<!-- {Assembly.GetEntryAssembly()!.GetName().Version} -->");
 		}
 	}
 }

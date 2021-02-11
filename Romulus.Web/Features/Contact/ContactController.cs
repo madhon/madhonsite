@@ -11,10 +11,12 @@ namespace Romulus.Web.Features.Contact
         public ContactController(IMediator mediator) => this.mediator = mediator;
 
         [HttpGet]
-        public IActionResult Index() => View();
+#pragma warning disable SCS0012 // Controller method is potentially vulnerable to authorization bypass.
+		public IActionResult Index() => View();
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+
+		[HttpPost]
+        [ValidateAntiForgeryToken()]
         public async Task<IActionResult> Index(Send.Command command)
         {
             if (!ModelState.IsValid)
@@ -25,5 +27,6 @@ namespace Romulus.Web.Features.Contact
             await mediator.Publish(command).WithoutCapturingContext();
             return View("Complete");
         }
-    }
+#pragma warning restore SCS0012 // Controller method is potentially vulnerable to authorization bypass.
+	}
 }

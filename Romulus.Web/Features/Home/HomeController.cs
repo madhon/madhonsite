@@ -1,6 +1,7 @@
 namespace Romulus.Web.Features.Home
 {
     using System.Security.Cryptography;
+    using JetBrains.Annotations;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : Controller
@@ -31,9 +32,12 @@ namespace Romulus.Web.Features.Home
             "https://www.youtube.com/watch?v=sCNrK-n68CM"
         };
 
-        public IActionResult Index() => View();
+		[HttpGet()]
+#pragma warning disable SCS0012 // Controller method is potentially vulnerable to authorization bypass.
+		public IActionResult Index() => View();
 
-        [Route("admin.php")]
+
+		[Route("admin.php")]
         [Route("admin/login.php")]
         [Route("administrator/index.php")]
         [Route("ajaxproxy/proxy.php")]
@@ -46,6 +50,8 @@ namespace Romulus.Web.Features.Home
         [Route("wp-admin/post-new.php")]
         [Route("wp-login.php")]
         [Route("xmlrpc.php")]
-        public ActionResult No() => Redirect(tenHoursOfFun[RandomNumberGenerator.GetInt32(0, tenHoursOfFun.Length)]);
-    }
+		[HttpGet()]
+		public ActionResult No() => Redirect(tenHoursOfFun[RandomNumberGenerator.GetInt32(0, tenHoursOfFun.Length)]);
+#pragma warning restore SCS0012 // Controller method is potentially vulnerable to authorization bypass.
+	}
 }
