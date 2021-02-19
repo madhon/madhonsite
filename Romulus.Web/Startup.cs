@@ -7,6 +7,7 @@ namespace Romulus.Web
 	using MediatR;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.HttpOverrides;
+	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
@@ -50,7 +51,7 @@ namespace Romulus.Web
 
 			services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
 
-			services.AddControllersWithViews()
+			services.AddControllersWithViews(opts => opts.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()))
 				.AddFeatureFolders()
 				.AddFluentValidation(cfg =>
 				{

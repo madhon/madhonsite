@@ -1,6 +1,7 @@
 namespace Romulus.Web.Features.Contact
 {
-    using System.Threading.Tasks;
+	using System.Threading;
+	using System.Threading.Tasks;
     using MediatR;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -18,15 +19,14 @@ namespace Romulus.Web.Features.Contact
 
 		[HttpPost]
 		[AllowAnonymous()]
-		[ValidateAntiForgeryToken()]
-        public async Task<IActionResult> Index(Send.Command command)
+        public async Task<IActionResult> Index(Send.Command command, CancellationToken cancellationToken)
         {
             if (!ModelState.IsValid)
             {
                 return View("Index");
             }
 
-            await mediator.Publish(command).WithoutCapturingContext();
+            await mediator.Publish(command, cancellationToken).WithoutCapturingContext();
             return View("Complete");
         }
 	}

@@ -1,4 +1,5 @@
 @using Romulus.Web.Infrastructure
+@model Romulus.Web.Features.Contact.Send.Command
 
 @{
     ViewBag.Title = "Index";
@@ -11,21 +12,21 @@
         <div class="form-group row">
             <label class="col-lg-2 col-form-label" for="Name">Name</label>
             <div class="col-lg-6">
-                <input class="form-control" id="Name" name="Name" placeholder="Your Name" type="text" value="" autofocus required/>
+                <input asp-for="Name" class="form-control" placeholder="Your Name" type="text" value="" autofocus required/>
             </div>
         </div>
 
         <div class="form-group row">
             <label class="col-lg-2 col-form-label" for="Email">Email</label>
             <div class="col-lg-6">
-                <input class="form-control" id="Email" name="Email" placeholder="Your Email Address" type="email" value="" data-parsley-trigger="change" required/>
+                <input asp-for="Email" class="form-control" placeholder="Your Email Address" type="email" value="" data-parsley-trigger="change" required/>
             </div>
         </div>
 
         <div class="form-group row">
             <label class="col-lg-2 col-form-label" for="Message">Message</label>
             <div class="col-lg-6">
-                <textarea class="form-control" cols="100" data-val="true" data-val-required="Enter your message" id="Message" name="Message" placeholder="Your message" rows="5" required></textarea>
+                <textarea asp-for="Message" class="form-control" cols="100" data-val="true" data-val-required="Enter your message" placeholder="Your message" rows="5" required></textarea>
             </div>
         </div>
     </fieldset>

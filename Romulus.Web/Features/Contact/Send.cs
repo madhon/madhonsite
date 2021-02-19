@@ -47,11 +47,11 @@ namespace Romulus.Web.Features.Contact
                 return message;
             }
 
-            public async Task Handle(Command notification, CancellationToken ct)
+            public Task Handle(Command notification, CancellationToken ct)
             {
                 var message = CreateMailMessage(notification);
-                 await transport.DeliverAsync(message, ct).WithoutCapturingContext();
-            }
+				return transport.DeliverAsync(message, ct);
+			}
         }
     }
 }

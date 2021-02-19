@@ -1,7 +1,6 @@
 namespace Romulus.Web.Features.Home
 {
     using System.Security.Cryptography;
-    using JetBrains.Annotations;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
