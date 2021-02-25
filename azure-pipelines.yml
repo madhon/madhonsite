@@ -44,32 +44,3 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
-- task: CopyFilesOverSSH@0
-  displayName: 'Copy files to digialocean'
-  inputs:
-    sshEndpoint: 'DigialOcean'
-    sourceFolder: '$(System.DefaultWorkingDirectory)/_MadhonCOMWebsite'
-    contents: '**'
-    targetFolder: '/home/madhon_webdeploy/files'
-    cleanTargetFolder: true
-    readyTimeout: '20000'
-- task: SSH@0
-  displayName: 'Update Site Files'
-  inputs:
-    sshEndpoint: 'DigialOcean'
-    runOptions: 'inline'
-    inline: |
-      #!/bin/sh
-      WEBROOT=/var/www/madhon.co.uk
-      SOURCE=/home/madhon_webdeploy/files
-      echo "Stopping site"
-      sudo systemctl stop madhonsite-kestrel.service
-      cd $SOURCE/output
-      echo "Unziping files"
-      unzip -oq $SOURCE/drop/Romulus.Web.zip
-      echo "Copying files and resetting permissions"
-      sudo cp -r $SOURCE/output/* $WEBROOT
-      sudo chown -R www-data:www-data $WEBROOT
-      echo "Starting Site"
-      sudo systemctl start madhonsite-kestrel.service
-    readyTimeout: '20000'
