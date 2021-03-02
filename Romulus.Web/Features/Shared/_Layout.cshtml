@@ -35,8 +35,8 @@
   <meta name="msapplication-config" content="/browserconfig.xml" />
   <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" type="text/css" href="@ContentDeliveryNetwork.BootstrapCdn.BootstrapCssUrl" />
-  <link rel="stylesheet" type="text/css" href="~/content/css/site.min.css" />
-  <link rel="stylesheet" type="text/css" href="~/content/css/metro.min.css" />
+  <link rel="stylesheet" type="text/css" href="~/content/css/site.min.css" asp-append-version="true" />
+  <link rel="stylesheet" type="text/css" href="~/content/css/metro.min.css" asp-append-version="true" />
   @RenderSection("cssFiles", false)
 </head>
 <body>
@@ -153,6 +153,6 @@
   <script type="text/javascript" src="@ContentDeliveryNetwork.Cloudflare.Popper"></script>
   <script type="text/javascript" src="@ContentDeliveryNetwork.BootstrapCdn.BootstrapJsUrl"></script>
   @RenderSection("scriptFiles", false)
-  <script type="text/javascript" src="~/content/js/ga.js"></script>
+  <script type="text/javascript" src="~/content/js/ga.js" asp-append-version="true"></script>
 </body>
 </html>
