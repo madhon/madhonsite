@@ -3,14 +3,13 @@ namespace Romulus.Web.Features.Contact
     using System.Threading;
     using System.Threading.Tasks;
     using FluentValidation;
-    using JetBrains.Annotations;
     using MediatR;
     using MimeKit;
     using Romulus.Web.Services;
 
     public class Send
     {
-        public class Command : IRequest, INotification
+        public record Command : IRequest, INotification
         {
             public string Name { get; set; } = default!;
 			public string Email { get; set; } = default!;
@@ -34,7 +33,7 @@ namespace Romulus.Web.Features.Contact
 
             public Handler(ITransport transport) => this.transport = transport;
 
-            private MimeMessage CreateMailMessage([NotNull] Command model)
+            private MimeMessage CreateMailMessage(Command model)
             {
                 var message = new MimeMessage();
                 message.From.Add(new MailboxAddress(model.Name, model.Email));

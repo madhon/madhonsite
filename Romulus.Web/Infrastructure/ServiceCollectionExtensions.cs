@@ -2,6 +2,7 @@ namespace Romulus.Web.Infrastructure
 {
   using System;
   using JetBrains.Annotations;
+  using Microsoft.AspNetCore.Hosting;
   using Microsoft.Extensions.Configuration;
   using Microsoft.Extensions.DependencyInjection;
   using Microsoft.Extensions.Hosting;
@@ -48,7 +49,7 @@ namespace Romulus.Web.Infrastructure
             return services;
         }
 
-        public static void AddCustomLogging([NotNull] this IServiceCollection services, [NotNull] IConfiguration configuration)
+        public static void AddCustomLogging([NotNull] this IServiceCollection services, [NotNull] IConfiguration configuration, IWebHostEnvironment environment)
         {
 	        services.AddLogging(config =>
 	        {
@@ -57,7 +58,7 @@ namespace Romulus.Web.Infrastructure
 		        config.AddDebug();
 		        config.AddEventSourceLogger();
 
-		        if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Development)
+		        if (environment.IsDevelopment())
 		        {
 			        config.AddConsole();
 		        }

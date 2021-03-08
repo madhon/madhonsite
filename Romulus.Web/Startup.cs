@@ -6,6 +6,7 @@ namespace Romulus.Web
 	using JetBrains.Annotations;
 	using MediatR;
 	using Microsoft.AspNetCore.Builder;
+	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.AspNetCore.HttpOverrides;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.Extensions.Configuration;
@@ -15,20 +16,25 @@ namespace Romulus.Web
 
 	public class Startup
 	{
-		public Startup(IConfiguration configuration)
-		{
-			Configuration = configuration;
-		}
-
 		public IConfiguration Configuration
 		{
 			get;
 		}
+		public IWebHostEnvironment Environment
+		{
+			get;
+		}
 
+		public Startup(IConfiguration configuration, IWebHostEnvironment environment)
+		{
+			Configuration = configuration;
+			Environment = environment;
+		}
+		
 		[UsedImplicitly]
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddCustomLogging(Configuration);
+			services.AddCustomLogging(Configuration, Environment);
 
 			services.AddAntiForgerySecurely();
 
@@ -47,7 +53,7 @@ namespace Romulus.Web
 			services.AddHealthChecks();
 
 			services.AddResponseCaching();
-			services.AddResponseCompression(options => options.MimeTypes = ResponseCompressionMimeTypes.Defaults);
+			//services.AddResponseCompression(options => options.MimeTypes = ResponseCompressionMimeTypes.Defaults);
 
 			services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
 
@@ -76,7 +82,7 @@ namespace Romulus.Web
 			app.UseForwardedHeaders();
 
 			app.UseResponseCaching();
-			app.UseResponseCompression();
+			//app.UseResponseCompression();
 
 			app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy());
 
