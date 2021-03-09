@@ -6,8 +6,6 @@ namespace Romulus.Web.Features.Home
 
     public class HomeController : Controller
     {
-      private readonly RNGCryptoServiceProvider rand = new RNGCryptoServiceProvider();
-
         private static readonly string[] tenHoursOfFun =
         {
             "https://www.youtube.com/watch?v=wbby9coDRCk",
@@ -35,8 +33,7 @@ namespace Romulus.Web.Features.Home
 		[HttpGet()]
 		[AllowAnonymous()]
 		public IActionResult Index() => View();
-
-
+		
 		[Route("admin.php")]
         [Route("admin/login.php")]
         [Route("administrator/index.php")]
