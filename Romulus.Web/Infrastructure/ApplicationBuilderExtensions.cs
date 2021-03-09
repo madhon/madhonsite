@@ -1,6 +1,7 @@
 namespace Romulus.Web.Infrastructure
 {
-    using Microsoft.AspNetCore.Builder;
+	using System;
+	using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Net.Http.Headers;
 
@@ -18,5 +19,17 @@ namespace Romulus.Web.Infrastructure
                           $"public, max-age={cachePeriod}" // A week in seconds
                 });
         }
-    }
+
+        public static IApplicationBuilder IfDevelopment(this IApplicationBuilder builder, IHostEnvironment env,
+	        Action<IApplicationBuilder> operation)
+        {
+	        if (env.IsDevelopment() && operation is not null)
+	        {
+		        operation(builder);
+	        }
+
+	        return builder;
+        }
+
+	}
 }

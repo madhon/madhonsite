@@ -20,12 +20,12 @@ namespace Romulus.Web
 		{
 			get;
 		}
-		public IWebHostEnvironment Environment
+		public IHostEnvironment Environment
 		{
 			get;
 		}
 
-		public Startup(IConfiguration configuration, IWebHostEnvironment environment)
+		public Startup(IConfiguration configuration, IHostEnvironment environment)
 		{
 			Configuration = configuration;
 			Environment = environment;
@@ -34,22 +34,22 @@ namespace Romulus.Web
 		[UsedImplicitly]
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.Configure<ForwardedHeadersOptions>(options =>
+			{
+				options.KnownNetworks.Clear();
+				options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+			});
+			
 			services.AddCustomLogging(Configuration, Environment);
 
-			services.AddAntiForgerySecurely();
+			services.AddAntiForgerySecurely(Environment);
 
 			services.AddRouting(options =>
 			{
 				options.AppendTrailingSlash = true;
 				options.LowercaseUrls = true;
 			});
-
-			services.Configure<ForwardedHeadersOptions>(options =>
-			{
-				options.KnownNetworks.Clear();
-				options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-			});
-
+			
 			services.AddHealthChecks();
 
 			services.AddResponseCaching();
@@ -68,18 +68,18 @@ namespace Romulus.Web
 		}
 
 		[UsedImplicitly]
-		public void Configure(IApplicationBuilder app, IHostEnvironment env)
+		public void Configure(IApplicationBuilder app)
 		{
-			if (env.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-			}
+			app.UseForwardedHeaders();
 
-			app.UseStaticFilesWithCacheControl(env);
+			app.IfDevelopment(Environment, a =>
+			{
+				a.UseDeveloperExceptionPage();
+			});
+			
+			app.UseStaticFilesWithCacheControl(Environment);
 
 			app.UseRouting();
-
-			app.UseForwardedHeaders();
 
 			app.UseResponseCaching();
 			//app.UseResponseCompression();

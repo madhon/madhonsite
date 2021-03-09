@@ -2,7 +2,7 @@ namespace Romulus.Web.Infrastructure
 {
   using System;
   using JetBrains.Annotations;
-  using Microsoft.AspNetCore.Hosting;
+  using Microsoft.AspNetCore.Http;
   using Microsoft.Extensions.Configuration;
   using Microsoft.Extensions.DependencyInjection;
   using Microsoft.Extensions.Hosting;
@@ -10,15 +10,18 @@ namespace Romulus.Web.Infrastructure
 
   public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddAntiForgerySecurely(this IServiceCollection services)
+        public static IServiceCollection AddAntiForgerySecurely(this IServiceCollection services, IHostEnvironment env)
         {
             return services.AddAntiforgery(
                 options =>
                 {
                     options.Cookie.Name = "f";
                     options.FormFieldName = "f";
-                    options.HeaderName = "X-XSRF-TOKEN";
-
+                    options.Cookie.SecurePolicy = env.IsDevelopment()
+	                    ? CookieSecurePolicy.SameAsRequest
+	                    : CookieSecurePolicy.Always;
+                    options.Cookie.HttpOnly = true;
+					options.HeaderName = "X-XSRF-TOKEN";
                 });
         }
 
@@ -49,7 +52,7 @@ namespace Romulus.Web.Infrastructure
             return services;
         }
 
-        public static void AddCustomLogging([NotNull] this IServiceCollection services, [NotNull] IConfiguration configuration, IWebHostEnvironment environment)
+        public static void AddCustomLogging([NotNull] this IServiceCollection services, [NotNull] IConfiguration configuration, IHostEnvironment environment)
         {
 	        services.AddLogging(config =>
 	        {
