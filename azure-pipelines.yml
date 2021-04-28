@@ -12,6 +12,8 @@ variables:
   rid: 'linux-x64'
 
 steps:
+- checkout:
+  fetchDepth: 2
 - task: UseDotNet@2
   displayName: 'Install SDK'
   inputs:
