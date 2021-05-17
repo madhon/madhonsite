@@ -6,8 +6,8 @@
   <meta charset="utf-8">
   <link rel="dns-prefetch" href="https://ajax.googleapis.com">
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-  <link rel="dns-prefetch" href="https://stackpath.bootstrapcdn.com">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://unpkg.com"/>
   <link rel="dns-prefetch" href="https://use.fontawesome.com">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Madhon's Site - @ViewBag.Title</title>
@@ -35,7 +35,7 @@
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="msapplication-config" content="/browserconfig.xml" />
   <meta name="theme-color" content="#ffffff">
-  <link rel="stylesheet" type="text/css" href="@ContentDeliveryNetwork.BootstrapCdn.BootstrapCssUrl" />
+  <link rel="stylesheet" type="text/css" href="@ContentDeliveryNetwork.JsDelivrCdn.BootstrapCssUrl" />
   <link rel="stylesheet" type="text/css" href="~/content/css/site.min.css" asp-append-version="true" />
   <link rel="stylesheet" type="text/css" href="~/content/css/metro.min.css" asp-append-version="true" />
   @RenderSection("cssFiles", false)
@@ -151,8 +151,8 @@
 <BuildVer />
 
 <script type="text/javascript" src="@ContentDeliveryNetwork.Google.JQuery3Url"></script>
-  <script type="text/javascript" src="@ContentDeliveryNetwork.Cloudflare.Popper"></script>
-  <script type="text/javascript" src="@ContentDeliveryNetwork.BootstrapCdn.BootstrapJsUrl"></script>
+  <script type="text/javascript" src="@ContentDeliveryNetwork.UnPkg.Popper"></script>
+  <script type="text/javascript" src="@ContentDeliveryNetwork.JsDelivrCdn.BootstrapJsUrl"></script>
   @RenderSection("scriptFiles", false)
   <script type="text/javascript" src="~/content/js/ga.js" asp-append-version="true"></script>
 </body>

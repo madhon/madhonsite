@@ -9,17 +9,14 @@ namespace Romulus.Web.Infrastructure
             public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js";
         }
 
-        public static class BootstrapCdn
+        public static class JsDelivrCdn
         {
-            public const string Domain = "stackpath.bootstrapcdn.com";
+            public const string Domain = "cdn.jsdelivr.net";
 
             public const string BootstrapCssUrl =
 			  "https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css";
 
             public const string BootstrapJsUrl = "https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js";
-
-			//public const string FontAwesomeUrl =
-			//  "https://use.fontawesome.com/releases/v5.14.0/css/all.css";
         }
 
         public static class Cloudflare
@@ -30,10 +27,14 @@ namespace Romulus.Web.Infrastructure
 
             public const string ParsleyUrl = "https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js";
 
-            public const string Popper = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/cjs/popper.min.js";
-
             public const string Migrate3Url =
               "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.1.0/jquery-migrate.js";
+        }
+
+        public static class UnPkg
+        {
+	        public const string Domain = "unpkg.com";
+	        public const string Popper = "https://unpkg.com/@popperjs/core@2";
         }
 
         public static class GetMdl
