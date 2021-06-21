@@ -33,6 +33,12 @@ steps:
     command: 'build'
     projects: '**/*.csproj'
     arguments: '-r $(rid) --configuration $(buildConfiguration)'
+- task: SnykSecurityScan@0
+  inputs:
+    serviceConnectionEndpoint: 'Madhon Snyk'
+    testType: 'app'
+    monitorOnBuild: true
+    failOnIssues: true
 - task: DotNetCoreCLI@2
   displayName: 'Publish Build'
   inputs:
