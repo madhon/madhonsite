@@ -39,6 +39,7 @@ steps:
     testType: 'app'
     monitorOnBuild: true
     failOnIssues: true
+    testDirectory: '$(Build.SourcesDirectory)/Romulus.Web'    
 - task: DotNetCoreCLI@2
   displayName: 'Publish Build'
   inputs:
