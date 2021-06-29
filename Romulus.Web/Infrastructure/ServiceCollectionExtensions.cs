@@ -15,12 +15,13 @@ namespace Romulus.Web.Infrastructure
             return services.AddAntiforgery(
                 options =>
                 {
+	                options.SuppressXFrameOptionsHeader = true;
                     options.Cookie.Name = "f";
                     options.FormFieldName = "f";
                     //options.Cookie.SecurePolicy = env.IsDevelopment()
 	                   // ? CookieSecurePolicy.SameAsRequest
 	                   // : CookieSecurePolicy.Always;
-	                   options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+	                options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
                     options.Cookie.HttpOnly = true;
 					options.HeaderName = "X-XSRF-TOKEN";
                 });
