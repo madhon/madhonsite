@@ -8,6 +8,7 @@
 		<RuntimeIdentifiers>win10-x64;linux-x64</RuntimeIdentifiers>
 		<TrimUnusedDependencies>true</TrimUnusedDependencies>
 		<Nullable>enable</Nullable>
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="JetBrains.Annotations" Version="2021.2.0" />
