@@ -14,9 +14,9 @@ namespace Romulus.Web.Infrastructure
             public const string Domain = "cdn.jsdelivr.net";
 
             public const string BootstrapCssUrl =
-			  "https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css";
+			  "https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css";
 
-            public const string BootstrapJsUrl = "https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js";
+            public const string BootstrapJsUrl = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js";
         }
 
         public static class Cloudflare
@@ -34,7 +34,7 @@ namespace Romulus.Web.Infrastructure
         public static class UnPkg
         {
 	        public const string Domain = "unpkg.com";
-	        public const string Popper = "https://unpkg.com/@popperjs/core@2";
+	        public const string Popper = "https://unpkg.com/@popperjs/core@2.9.3/dist/umd/popper.min.js";
         }
 
         public static class GetMdl
