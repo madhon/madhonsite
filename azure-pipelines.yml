@@ -10,6 +10,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   rid: 'linux-x64'
+  NUGET_PACKAGES: $(Pipeline.Workspace)/.nuget/packages
 
 steps:
 - checkout: self
@@ -20,6 +21,13 @@ steps:
     packageType: 'sdk'
     version: '5.x'
     performMultiLevelLookup: true
+- task: Cache@2
+  inputs:
+    key: '$(Agent.OS)" | $(Build.SourcesDirectory)/packages.lock.json'
+    path: '$(NUGET_PACKAGES)'
+    restoreKeys: |
+      nuget | "$(Agent.OS)"
+      nuget
 - task: DotNetCoreCLI@2
   displayName: 'Restore Packages'
   inputs:
