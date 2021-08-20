@@ -23,7 +23,7 @@ steps:
     performMultiLevelLookup: true
 - task: Cache@2
   inputs:
-    key: '$(Agent.OS)" | $(Build.SourcesDirectory)/packages.lock.json'
+    key: '$(Agent.OS)" | $(Build.SourcesDirectory)/Romulus.Web/packages.lock.json'
     path: '$(NUGET_PACKAGES)'
     restoreKeys: |
       nuget | "$(Agent.OS)"
