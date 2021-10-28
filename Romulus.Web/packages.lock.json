@@ -4,19 +4,19 @@
     ".NETCoreApp,Version=v5.0": {
       "FluentValidation.AspNetCore": {
         "type": "Direct",
-        "requested": "[10.3.3, )",
-        "resolved": "10.3.3",
-        "contentHash": "DEh0ibCjH2kL5sk9yHcYMFrARUZ+/7iisW900odFUh3FV2zS5A/7hjNjnHSv2Imgq4gIQmpajamMm1uFDrBBWA==",
+        "requested": "[10.3.4, )",
+        "resolved": "10.3.4",
+        "contentHash": "YxJ6YH8Oh/DIyHHbjLdQkITGpksihDbznqEbKJy+uPfphdWwtlzaVSx1XyLotSj/bkPXOdLL8w5FPh1TA0Acpw==",
         "dependencies": {
-          "FluentValidation": "10.3.3",
-          "FluentValidation.DependencyInjectionExtensions": "10.3.3"
+          "FluentValidation": "10.3.4",
+          "FluentValidation.DependencyInjectionExtensions": "10.3.4"
         }
       },
       "JetBrains.Annotations": {
         "type": "Direct",
-        "requested": "[2021.2.0, )",
-        "resolved": "2021.2.0",
-        "contentHash": "kKSyoVfndMriKHLfYGmr0uzQuI4jcc3TKGyww7buJFCYeHb/X0kodYBPL7n9454q7v6ASiRmDgpPGaDGerg/Hg=="
+        "requested": "[2021.3.0, )",
+        "resolved": "2021.3.0",
+        "contentHash": "Ddxjs5RRjf+c8m9m++WvhW1lz1bqNhsTjWvCLbQN9bvKbkJeR9MhtfNwKgBRRdG2yLHcXFr5Lf7fsvvkiPaDRg=="
       },
       "MailKit": {
         "type": "Direct",
@@ -137,15 +137,15 @@
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "10.3.3",
-        "contentHash": "sgRC+7q4mnmDHE9ehk2cvb+FDTy/gtw5iBoKFY3FVp1ZwFsLS0kIcdSpNlCO3XyyNIzZI2ca8I/YiFG9pM6x0Q=="
+        "resolved": "10.3.4",
+        "contentHash": "hsGRtnhTlCrRbxIOkKp6rCBtkq3UV0i31ckcJtd5j1i99zqLgbQGcbxK0SMU63DIto94f++uIdRpoycu8ySnDQ=="
       },
       "FluentValidation.DependencyInjectionExtensions": {
         "type": "Transitive",
-        "resolved": "10.3.3",
-        "contentHash": "kol9KlAn2pijRa0vLCzAPcp8Ql8yZdIRrO80eMVLswXQ0v6ai+ihOdqF/qPJCMXNWBnTcTGYjp1tZtizPWO+Cg==",
+        "resolved": "10.3.4",
+        "contentHash": "LS0opGF4r/upI92Y+bToBzFqHYrfuHDWz9z9DN2hUn+/tmt9lN8n0bevyswabdKlTwL6s8vMhVQxHXM8wjOAbQ==",
         "dependencies": {
-          "FluentValidation": "10.3.3",
+          "FluentValidation": "10.3.4",
           "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
         }
       },
