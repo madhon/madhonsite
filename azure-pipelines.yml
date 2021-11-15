@@ -19,7 +19,7 @@ steps:
   displayName: 'Install SDK'
   inputs:
     packageType: 'sdk'
-    version: '5.x'
+    version: '6.x'
     performMultiLevelLookup: true
 - task: Cache@2
   inputs:
