@@ -34,7 +34,7 @@ namespace Romulus.Web.Infrastructure
         public static class UnPkg
         {
 	        public const string Domain = "unpkg.com";
-	        public const string Popper = "https://unpkg.com/@popperjs/core@2.10.2/dist/umd/popper.min.js";
+	        public const string Popper = "https://unpkg.com/@popperjs/core@2.11.0/dist/umd/popper.min.js";
         }
 
         public static class GetMdl
