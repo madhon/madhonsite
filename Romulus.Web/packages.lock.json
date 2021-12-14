@@ -4,12 +4,12 @@
     "net6.0": {
       "FluentValidation.AspNetCore": {
         "type": "Direct",
-        "requested": "[10.3.5, )",
-        "resolved": "10.3.5",
-        "contentHash": "fHPayS6k2GbvblzFJjiHNlJT8iQhGkGbSX6Q6JsH6Od2uFDCRaZIj/qSUkCwlCE/cHldmiGbk30LrJyKav9HPg==",
+        "requested": "[10.3.6, )",
+        "resolved": "10.3.6",
+        "contentHash": "xUgEjm+aqQPiVyZHmIq1HCShjlu17Rm1iV6yuL9CFWAl9YPvMxJL7vB+A1CqFUeWsx3LH8fM8ivA/5q5jPmcJg==",
         "dependencies": {
-          "FluentValidation": "10.3.5",
-          "FluentValidation.DependencyInjectionExtensions": "10.3.5"
+          "FluentValidation": "10.3.6",
+          "FluentValidation.DependencyInjectionExtensions": "10.3.6"
         }
       },
       "JetBrains.Annotations": {
@@ -138,15 +138,15 @@
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "10.3.5",
-        "contentHash": "Mt2CnRqNA5+vXVNFY05yLuOG3OLYR7Q/ZcP/rcJZPNPbg95foVUruyQEmKl1GeXVnT2+u6rjGU2ZCdgF//QU2A=="
+        "resolved": "10.3.6",
+        "contentHash": "iMd370ZDx6ydm8t7bIFdRbSKX0e42lpvCtifUSbTSXOk5iKjmgl7HU0PXBhIWQAyIRi3gCwfMI9luj8H6K+byw=="
       },
       "FluentValidation.DependencyInjectionExtensions": {
         "type": "Transitive",
-        "resolved": "10.3.5",
-        "contentHash": "zGaFLXmf4c+kKqQpT0Ec1T97kbJMx9o25+0l6p/TYFQ99bHSLPmgpd8EjU6s7cXv9X/215mIlrazMkzvbCZFWg==",
+        "resolved": "10.3.6",
+        "contentHash": "yMwmbr+sHP/VLRQPTBVcgbJmtP5PGmxzNsqVX7FccDRwDB2edP8XsXWLNTZ4UwrslU1qQUD07BNQLDh7WXzpNw==",
         "dependencies": {
-          "FluentValidation": "10.3.5",
+          "FluentValidation": "10.3.6",
           "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
         }
       },
