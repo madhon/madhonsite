@@ -1,4 +1,6 @@
 using System.Reflection;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -11,6 +13,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureKestrel(o => o.AddServerHeader = false);
 builder.Host.UseSystemd();
 
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
+{
+	builder.RegisterType<NullTransport>().As<ITransport>().InstancePerDependency();
+});
 
 // ConfigureServices migrated elements
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
@@ -42,8 +50,6 @@ builder.Services.AddControllersWithViews(opts => opts.Filters.Add(new AutoValida
 	{
 		cfg.RegisterValidatorsFromAssemblyContaining<Program>();
 	});
-
-builder.Services.AddTransient<ITransport, NullTransport>();
 
 
 var app = builder.Build();
