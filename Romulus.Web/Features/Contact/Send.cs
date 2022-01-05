@@ -11,9 +11,9 @@ namespace Romulus.Web.Features.Contact
     {
         public record Command : IRequest, INotification
         {
-            public string Name { get; set; } = default!;
-			public string Email { get; set; } = default!;
-			public string Message { get; set; } = default!;
+            public string Name { get; init; } = default!;
+			public string Email { get; init; } = default!;
+			public string Message { get; init; } = default!;
 		}
 
         public class CommandValidator : AbstractValidator<Command>
