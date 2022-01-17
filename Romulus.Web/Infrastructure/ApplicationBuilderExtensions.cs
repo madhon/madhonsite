@@ -1,4 +1,4 @@
-namespace Romulus.Web.Infrastructure
+namespace Romulus.Web
 {
 	using System;
 	using Microsoft.AspNetCore.Builder;

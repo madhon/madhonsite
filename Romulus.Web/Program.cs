@@ -5,7 +5,7 @@ using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
-using Romulus.Web.Infrastructure;
+using Romulus.Web;
 using Romulus.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,8 +24,11 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
 	options.KnownNetworks.Clear();
+	options.KnownProxies.Clear();
 	options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
 });
+
+builder.Services.AddServerTiming();
 
 builder.Services.AddCustomLogging(builder.Configuration, builder.Environment);
 
