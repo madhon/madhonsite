@@ -1,4 +1,4 @@
-namespace Romulus.Web.Infrastructure
+namespace Romulus.Web
 {
   using System;
   using JetBrains.Annotations;
@@ -7,6 +7,7 @@ namespace Romulus.Web.Infrastructure
   using Microsoft.Extensions.DependencyInjection;
   using Microsoft.Extensions.Hosting;
   using Microsoft.Extensions.Logging;
+  using Romulus.Web.Infrastructure;
 
   public static class ServiceCollectionExtensions
     {
@@ -69,5 +70,9 @@ namespace Romulus.Web.Infrastructure
 		        }
 	        });
         }
+
+        public static IServiceCollection AddServerTiming(this IServiceCollection services) =>
+	        services.AddSingleton<ServerTimingMiddleware>();
+
 	}
 }

@@ -1,6 +1,7 @@
-namespace Romulus.Web.Infrastructure
+namespace Romulus.Web
 {
   using Microsoft.AspNetCore.Builder;
+  using Romulus.Web.Infrastructure;
 
   public static class SecurityHeadersMiddlewareExtensions
   {

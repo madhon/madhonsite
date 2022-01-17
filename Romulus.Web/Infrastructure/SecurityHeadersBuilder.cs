@@ -1,6 +1,8 @@
-namespace Romulus.Web.Infrastructure
+namespace Romulus.Web
 {
-  public class SecurityHeadersBuilder
+	using Romulus.Web.Infrastructure;
+
+	public class SecurityHeadersBuilder
   {
     private readonly SecurityHeadersPolicy _policy = new SecurityHeadersPolicy();
 
