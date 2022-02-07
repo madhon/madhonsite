@@ -1,0 +1,44 @@
+ARG VERSION=6.0-alpine
+
+FROM mcr.microsoft.com/dotnet/sdk:$VERSION  AS build
+WORKDIR /src
+
+COPY ["Romulus.Web.csproj", "Romulus.Web.csproj"]
+
+RUN dotnet restore "Romulus.Web.csproj"
+COPY . .
+
+WORKDIR /src
+RUN dotnet build "Romulus.Web.csproj" -c Release --runtime alpine-x64 --self-contained true --no-restore -p:PublishSingleFile=true -o /app/build
+
+FROM build AS publish
+RUN dotnet publish \
+  "Romulus.Web.csproj" \
+  --runtime alpine-x64 \
+  --self-contained true \
+  -c Release \
+  /p:PublishSingleFile=true -p:PublishTrimmed=True -p:TrimMode=CopyUsed \
+  -o /app/publish
+
+
+FROM  mcr.microsoft.com/dotnet/runtime-deps:$VERSION
+RUN addgroup -g 2000 app\
+  && adduser \
+  --disabled-password \
+  --home /app \
+  --uid 1000 --ingroup app \
+  --gecos '' app \
+  && chown -R app /app \
+  && apk add --upgrade --no-cache apk-tools \
+  && apk add --no-cache icu-libs
+
+USER app
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 \
+  DOTNET_RUNNING_IN_CONTAINER=true \
+  ASPNETCORE_URLS=http://+:8080 \
+  ASPNETCORE_ENVIRONMENT="Production"
+
+EXPOSE 8080
+ENTRYPOINT ["./Romulus.Web"]
