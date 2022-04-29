@@ -10,6 +10,8 @@ using Romulus.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+AppVersionInfo.InitialiseBuildInfoGivenPath(Directory.GetCurrentDirectory());
+
 builder.WebHost.ConfigureKestrel(o => o.AddServerHeader = false);
 builder.Host.UseSystemd();
 
