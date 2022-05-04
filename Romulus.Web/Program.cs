@@ -1,4 +1,5 @@
 using System.Reflection;
+using AspNetCore.ReCaptcha;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
@@ -56,6 +57,7 @@ builder.Services.AddControllersWithViews(opts => opts.Filters.Add(new AutoValida
 		cfg.RegisterValidatorsFromAssemblyContaining<Program>();
 	});
 
+builder.Services.AddReCaptcha(builder.Configuration.GetSection("ReCaptcha"));
 
 var app = builder.Build();
 

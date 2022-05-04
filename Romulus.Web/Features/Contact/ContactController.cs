@@ -2,7 +2,8 @@ namespace Romulus.Web.Features.Contact
 {
 	using System.Threading;
 	using System.Threading.Tasks;
-    using MediatR;
+	using AspNetCore.ReCaptcha;
+	using MediatR;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace Romulus.Web.Features.Contact
         [AllowAnonymous()]
 		public IActionResult Index() => View();
 
-
+		[ValidateReCaptcha]
 		[HttpPost]
 		[AllowAnonymous()]
         public async Task<IActionResult> Index(Send.Command command, CancellationToken cancellationToken)
