@@ -40,13 +40,13 @@ steps:
   inputs:
     command: 'build'
     projects: '**/*.csproj'
-    arguments: '-r $(rid) --configuration $(buildConfiguration) --no-self-contained'
+    arguments: '-r $(rid) --configuration $(buildConfiguration) --self-contained --no-restore -p:PublishSingleFile=true -p:ImportByWildcardBeforeSolution=false'
 - task: DotNetCoreCLI@2
   displayName: 'Publish Build'
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '-r $(rid) --no-restore --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --no-self-contained'
+    arguments: '-r $(rid) --no-restore --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained /p:PublishSingleFile=true -p:PublishTrimmed=True -p:TrimMode=CopyUsed '
     zipAfterPublish: True
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifacts'
