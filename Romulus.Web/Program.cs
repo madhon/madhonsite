@@ -1,5 +1,4 @@
 using System.Reflection;
-using AspNetCore.ReCaptcha;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
@@ -51,17 +50,18 @@ builder.Services.AddResponseCaching();
 builder.Services.AddMediatR(typeof(Program).GetTypeInfo().Assembly);
 
 builder.Services.AddControllersWithViews(opts => opts.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()))
-	.AddFeatureFolders()
-	.AddFluentValidation(cfg =>
-	{
-		cfg.RegisterValidatorsFromAssemblyContaining<Program>();
-	});
+	.AddFeatureFolders();
 
-builder.Services.AddReCaptcha(builder.Configuration.GetSection("ReCaptcha"));
+builder.Services.AddFluentValidationAutoValidation(config =>
+{
+	config.DisableDataAnnotationsValidation = true;
+});
+
+builder.Services.AddFluentValidationClientsideAdapters();
+
 
 var app = builder.Build();
 
-// ConfigureApp migrated elements
 
 app.UseForwardedHeaders();
 

@@ -1,6 +1,5 @@
 namespace Romulus.Web.Features.TagHelpers
 {
-	using System.Reflection;
 	using Microsoft.AspNetCore.Razor.TagHelpers;
 
 	[HtmlTargetElement("BuildVer", TagStructure = TagStructure.NormalOrSelfClosing)]
@@ -8,8 +7,16 @@ namespace Romulus.Web.Features.TagHelpers
 	{
 		public override void Process(TagHelperContext context, TagHelperOutput output)
 		{
+			string buildver = @$"<!--
+BuildNumber: {AppVersionInfo.GetBuildInfo().BuildNumber}
+BuildId: {AppVersionInfo.GetBuildInfo().BuildId}
+CommitHash: {AppVersionInfo.GetBuildInfo().CommitHash}
+-->
+";
+
+
 			output.TagName = string.Empty;
-			output.Content.SetHtmlContent($"<!-- {Assembly.GetEntryAssembly()!.GetName().Version} -->");
+			output.Content.SetHtmlContent(buildver);
 		}
 	}
 }
