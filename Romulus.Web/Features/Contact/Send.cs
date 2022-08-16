@@ -5,8 +5,7 @@ namespace Romulus.Web.Features.Contact
     using FluentValidation;
     using MediatR;
     using MimeKit;
-    using Romulus.Web.Services;
-
+    
     public class Send
     {
         public record Command : IRequest, INotification

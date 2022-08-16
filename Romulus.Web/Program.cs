@@ -1,12 +1,8 @@
 using System.Reflection;
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
-using Romulus.Web;
-using Romulus.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,20 +11,7 @@ AppVersionInfo.InitialiseBuildInfoGivenPath(Directory.GetCurrentDirectory());
 builder.WebHost.ConfigureKestrel(o => o.AddServerHeader = false);
 builder.Host.UseSystemd();
 
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-
-builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
-{
-	builder.RegisterType<NullTransport>().As<ITransport>().InstancePerDependency();
-});
-
-// ConfigureServices migrated elements
-builder.Services.Configure<ForwardedHeadersOptions>(options =>
-{
-	options.KnownNetworks.Clear();
-	options.KnownProxies.Clear();
-	options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-});
+builder.Services.AddScoped<ITransport, NullTransport>();
 
 builder.Services.AddServerTiming();
 
@@ -62,8 +45,13 @@ builder.Services.AddFluentValidationClientsideAdapters();
 
 var app = builder.Build();
 
-
-app.UseForwardedHeaders();
+var forwardedHeaderOptions = new ForwardedHeadersOptions
+{
+	ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+};
+forwardedHeaderOptions.KnownNetworks.Clear();
+forwardedHeaderOptions.KnownProxies.Clear();
+app.UseForwardedHeaders(forwardedHeaderOptions);
 
 app.IfDevelopment(app.Environment, a =>
 {
@@ -79,10 +67,7 @@ app.UseResponseCaching();
 
 app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy());
 
-app.UseEndpoints(endpoints =>
-{
-	endpoints.MapHealthChecks("/healthz");
-	endpoints.MapDefaultControllerRoute();
-});
+app.MapHealthChecks("/healthz");
+app.MapDefaultControllerRoute();
 
 app.Run();
