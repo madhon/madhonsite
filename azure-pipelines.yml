@@ -19,7 +19,6 @@ steps:
   fetchDepth: 2
 - script: |
       echo -e -n "{\"buildNumber\":\"$(Build.BuildNumber)\",\"buildId\":\"$(Build.BuildId)\",\"branchName\":\"$(Build.SourceBranchName)\",\"commitHash\":\"$(Build.SourceVersion)\"}" > "$(Build.SourcesDirectory)/Romulus.Web/buildinfo.json"
-      echo -e -n "{\"buildNumber\":\"$(Build.BuildNumber)\",\"buildId\":\"$(Build.BuildId)\",\"branchName\":\"$(Build.SourceBranchName)\",\"commitHash\":\"$(Build.SourceVersion)\"}" > "$(Build.SourcesDirectory)/Romulus.Web/buildinfo.json"
   displayName: "emit build details as JSON"
   failOnStderr: true
 - task: UseDotNet@2
