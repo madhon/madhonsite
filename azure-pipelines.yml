@@ -54,9 +54,9 @@ stages:
         publishWebProjects: true
         arguments: '-r $(rid) --no-restore --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained true /p:PublishSingleFile=true -p:PublishTrimmed=True -p:TrimMode=CopyUsed '
         zipAfterPublish: True
-	- task: PublishPipelineArtifact@1
-	  displayName: 'Upload Build Artifact'
-	  inputs:
+    - task: PublishPipelineArtifact@1
+      displayName: 'Upload Build Artifact'
+      inputs:
 	    targetPath: $(Build.ArtifactStagingDirectory)
 		ArtifactName: 'drop'
   - job: DODepoly
