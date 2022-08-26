@@ -35,7 +35,7 @@ namespace Romulus.Web
         public static IApplicationBuilder SetupSecurityHeaders(this IApplicationBuilder app)
         {
 
-	        string preloadDirective = Debugger.IsAttached ? string.Empty : ";preload";
+	        string preloadDirective = Debugger.IsAttached ? string.Empty : "; preload";
 
 	        app.UseSecurityHeaders(policies =>
 		        policies
@@ -43,7 +43,7 @@ namespace Romulus.Web
 			        .RemoveServerHeader()
 			        .AddReferrerPolicyNoReferrerWhenDowngrade()
 
-					//having to do this way as the normal code call excludes localhost, which breaks when proxied
+					//having to do this way as the normal code call excludes localhost, which breaks when proxied via nginx/traefik
 			        .AddCustomHeader("Strict-Transport-Security", $"max-age=31536000; includeSubDomains{preloadDirective}")
 
 			        .AddContentSecurityPolicy(p =>
