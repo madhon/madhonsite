@@ -34,14 +34,18 @@ namespace Romulus.Web
 
         public static IApplicationBuilder SetupSecurityHeaders(this IApplicationBuilder app)
         {
+
+	        string preloadDirective = Debugger.IsAttached ? string.Empty : ";preload";
+
 	        app.UseSecurityHeaders(policies =>
 		        policies
 			        .AddDefaultSecurityHeaders()
 			        .RemoveServerHeader()
 			        .AddReferrerPolicyNoReferrerWhenDowngrade()
-			        .AddStrictTransportSecurityMaxAgeIncludeSubDomains(maxAgeInSeconds: 31536000)
-			        //.AddStrictTransportSecurityMaxAgeIncludeSubDomainsAndPreload(maxAgeInSeconds: 31536000)
-			        
+
+					//having to do this way as the normal code call excludes localhost, which breaks when proxied
+			        .AddCustomHeader("Strict-Transport-Security", $"max-age=31536000; includeSubDomains{preloadDirective}")
+
 			        .AddContentSecurityPolicy(p =>
 			        {
 				        p.AddUpgradeInsecureRequests();
@@ -69,15 +73,14 @@ namespace Romulus.Web
 								.From("https://cdn.jsdelivr.net")
 								.From("https://cdnjs.cloudflare.com")
 								.From("https://unpkg.com")
-								.UnsafeInline();
+								.UnsafeInline(); //unsafe needed for browserlink
 
 							p.AddStyleSrc()
 								.Self()
 								.From("https://cdn.jsdelivr.net")
 								.From("https://fonts.googleapis.com")
 								.From("https://fonts.gstatic.com")
-								.UnsafeInline();
-
+								.UnsafeInline(); //unsafe needed for browserlink
 						}
 						else
 						{
@@ -98,10 +101,8 @@ namespace Romulus.Web
 								;
 						}
 
-
 						p.AddFontSrc()
 					        .From("https://fonts.gstatic.com");
-
 			        })
 			        .AddPermissionsPolicy(p =>
 			        {
