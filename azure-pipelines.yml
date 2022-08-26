@@ -57,11 +57,11 @@ stages:
     - task: PublishPipelineArtifact@1
       displayName: 'Upload Build Artifact'
       inputs:
-	    targetPath: $(Build.ArtifactStagingDirectory)
-		ArtifactName: 'drop'
+        targetPath: $(Build.ArtifactStagingDirectory)
+        ArtifactName: 'drop'
   - job: DODepoly
     steps:
-	- download: current
+    - download: current
       artifact: 'drop'
     - task: CopyFilesOverSSH@0
       displayName: 'Copy files to DigitalOcean'
