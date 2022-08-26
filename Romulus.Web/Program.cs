@@ -65,7 +65,8 @@ app.UseRouting();
 app.UseResponseCaching();
 //app.UseResponseCompression();
 
-app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy());
+//app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy());
+app.SetupSecurityHeaders();
 
 app.MapHealthChecks("/healthz");
 app.MapDefaultControllerRoute();
