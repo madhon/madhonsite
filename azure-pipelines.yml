@@ -62,8 +62,12 @@ stages:
         ArtifactName: 'drop'
   - job: DODepoly
     steps:
-    - download: current
-      artifact: 'drop'
+    - task: DownloadPipelineArtifact@2
+      displayName: 'Download Build Artifact'
+      inputs:
+        source: 'current'
+        artifact: 'drop'
+        path: '$(System.DefaultWorkingDirectory)/_MadhonCOMWebsite'
     - task: CopyFilesOverSSH@0
       displayName: 'Copy files to DigitalOcean'
       inputs:
