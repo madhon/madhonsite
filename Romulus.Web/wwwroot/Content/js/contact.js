@@ -1,5 +1,3 @@
-//console.log($.fn.jquery);
-
 $('#frmContact').parsley({
   successClass: 'has-success',
   errorClass: 'has-error',

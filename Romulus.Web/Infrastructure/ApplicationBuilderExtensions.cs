@@ -39,7 +39,8 @@ namespace Romulus.Web
 			        .AddDefaultSecurityHeaders()
 			        .RemoveServerHeader()
 			        .AddReferrerPolicyNoReferrerWhenDowngrade()
-			        .AddStrictTransportSecurityMaxAgeIncludeSubDomainsAndPreload(maxAgeInSeconds: 31536000)
+			        .AddStrictTransportSecurityMaxAgeIncludeSubDomains(maxAgeInSeconds: 31536000)
+			        //.AddStrictTransportSecurityMaxAgeIncludeSubDomainsAndPreload(maxAgeInSeconds: 31536000)
 			        
 			        .AddContentSecurityPolicy(p =>
 			        {
@@ -119,6 +120,7 @@ namespace Romulus.Web
 				        p.AddSpeaker().None();
 				        p.AddUsb().None();
 			        })
+			        .AddCustomHeader("Expect-CT", "max-age=0")
 
 			        
 	        );
