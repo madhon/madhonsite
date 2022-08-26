@@ -5,7 +5,6 @@ namespace Romulus.Web.Infrastructure
         public static class Google
         {
             public const string Domain = "ajax.googleapis.com";
-            public const string JQuery2Url = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js";
             public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js";
         }
 
@@ -35,13 +34,6 @@ namespace Romulus.Web.Infrastructure
         {
 	        public const string Domain = "unpkg.com";
 	        public const string Popper = "https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js";
-        }
-
-        public static class GetMdl
-        {
-            public const string MdlIconsUrl = "https://fonts.googleapis.com/icon?family=Material+Icons";
-            public const string MdlCssUrl = "https://code.getmdl.io/1.3.0/material.indigo-pink.min.css";
-            public const string MdlJsUrl = "https://code.getmdl.io/1.3.0/material.min.js";
         }
     }
 }
