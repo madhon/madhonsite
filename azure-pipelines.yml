@@ -13,43 +13,78 @@ variables:
   DOTNET_NOLOGO: true
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
-  
-steps:
-- checkout: self
-  fetchDepth: 2
-- script: |
-      echo -e -n "{\"buildNumber\":\"$(Build.BuildNumber)\",\"buildId\":\"$(Build.BuildId)\",\"branchName\":\"$(Build.SourceBranchName)\",\"commitHash\":\"$(Build.SourceVersion)\"}" > "$(Build.SourcesDirectory)/Romulus.Web/buildinfo.json"
-  displayName: "emit build details as JSON"
-  failOnStderr: true
-- task: UseDotNet@2
-  displayName: 'Install SDK'
-  inputs:
-    packageType: 'sdk'
-    version: '6.x'
-    performMultiLevelLookup: true
-- task: DotNetCoreCLI@2
-  displayName: 'Restore Packages'
-  inputs:
-    command: 'restore'
-    projects: '**/*.csproj'
-    feedsToUse: 'select'
-    verbosityRestore: 'Quiet'
-- task: DotNetCoreCLI@2
-  displayName: 'Build Project'
-  inputs:
-    command: 'build'
-    projects: '**/*.csproj'
-    arguments: '-r $(rid) --configuration $(buildConfiguration) --self-contained true --no-restore -p:PublishSingleFile=true -p:ImportByWildcardBeforeSolution=false'
-- task: DotNetCoreCLI@2
-  displayName: 'Publish Build'
-  inputs:
-    command: 'publish'
-    publishWebProjects: true
-    arguments: '-r $(rid) --no-restore --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained true /p:PublishSingleFile=true -p:PublishTrimmed=True -p:TrimMode=CopyUsed '
-    zipAfterPublish: True
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifacts'
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+
+stages:
+- stage: BuildAndDeploy
+  displayName: "Build and Deploy To DigitalOcean"
+  pool:
+    vmImage: $(agentImage)
+  jobs:
+  - job: Build  
+    steps:
+    - checkout: self
+      fetchDepth: 2
+    - script: |
+        echo -e -n "{\"buildNumber\":\"$(Build.BuildNumber)\",\"buildId\":\"$(Build.BuildId)\",\"branchName\":\"$(Build.SourceBranchName)\",\"commitHash\":\"$(Build.SourceVersion)\"}" > "$(Build.SourcesDirectory)/Romulus.Web/buildinfo.json"
+      displayName: "emit build details as JSON"
+      failOnStderr: true
+    - task: UseDotNet@2
+      displayName: 'Install SDK'
+      inputs:
+        packageType: 'sdk'
+        version: '6.x'
+        performMultiLevelLookup: true
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore Packages'
+      inputs:
+        command: 'restore'
+        projects: '**/*.csproj'
+        feedsToUse: 'select'
+        verbosityRestore: 'Quiet'
+    - task: DotNetCoreCLI@2
+      displayName: 'Build Project'
+      inputs:
+        command: 'build'
+        projects: '**/*.csproj'
+        arguments: '-r $(rid) --configuration $(buildConfiguration) --self-contained true --no-restore -p:PublishSingleFile=true -p:ImportByWildcardBeforeSolution=false'
+    - task: DotNetCoreCLI@2
+      displayName: 'Publish Build'
+      inputs:
+        command: 'publish'
+        publishWebProjects: true
+        arguments: '-r $(rid) --no-restore --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained true /p:PublishSingleFile=true -p:PublishTrimmed=True -p:TrimMode=CopyUsed '
+        zipAfterPublish: True
+	- task: PublishPipelineArtifact@1
+	  displayName: 'Upload Build Artifact'
+	  inputs:
+	    targetPath: $(Build.ArtifactStagingDirectory)
+		ArtifactName: 'drop'
+  - job: DODepoly
+    steps:
+	- download: current
+      artifact: 'drop'
+    - task: CopyFilesOverSSH@0
+      displayName: 'Copy files to DigitalOcean'
+      inputs:
+        sshEndpoint: DigialOcean
+        sourceFolder: '$(System.DefaultWorkingDirectory)/_MadhonCOMWebsite'
+        targetFolder: '/home/madhon_webdeploy/files'
+    - task: SSH@0
+      displayName: 'Update Site Files'
+      inputs:
+        sshEndpoint: DigialOcean
+        runOptions: inline
+        inline: |
+         #!/bin/sh
+         WEBROOT=/var/www/madhon.co.uk
+         SOURCE=/home/madhon_webdeploy/files
+         echo "Stopping site"
+         sudo systemctl stop madhonsite-kestrel.service
+         cd $SOURCE/output
+         echo "Unziping files"
+         unzip -oq $SOURCE/drop/Romulus.Web.zip
+         echo "Copying files and resetting permissions"
+         sudo cp -r $SOURCE/output/* $WEBROOT
+         sudo chown -R www-data:www-data $WEBROOT
+         echo "Starting Site"
+         sudo systemctl start madhonsite-kestrel.service
