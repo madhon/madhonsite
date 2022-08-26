@@ -22,6 +22,7 @@ stages:
     vmImage: $(agentImage)
   jobs:
   - job: Build  
+    displayName: 'Build App'
     steps:
     - checkout: self
       fetchDepth: 2
@@ -61,6 +62,8 @@ stages:
         targetPath: $(Build.ArtifactStagingDirectory)
         ArtifactName: 'drop'
   - job: DODepoly
+    dependsOn: ['Build']
+    displayName: 'Deploy to Digital Ocean'
     steps:
     - task: DownloadPipelineArtifact@2
       displayName: 'Download Build Artifact'
