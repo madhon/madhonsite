@@ -29,8 +29,10 @@ RUN addgroup -g 2000 app\
   --uid 1000 --ingroup app \
   --gecos '' app \
   && chown -R app /app \
-  && apk add --upgrade --no-cache apk-tools \
+  && apk add --upgrade --no-cache apk-tools curl \
   && apk add --no-cache icu-libs
+
+HEALTHCHECK --interval=5s --timeout=10s --retries=3 CMD curl --silent --fail http://localhost:8080/healthz || exit 1
 
 USER app
 WORKDIR /app
