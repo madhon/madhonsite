@@ -54,7 +54,7 @@ stages:
       inputs:
         command: 'publish'
         publishWebProjects: true
-        arguments: '-r $(rid) --no-restore --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained true /p:PublishSingleFile=true -p:PublishTrimmed=True -p:TrimMode=partial '
+        arguments: '-r $(rid) --no-restore --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained true /p:PublishSingleFile=true '
         zipAfterPublish: True
     - task: PublishPipelineArtifact@1
       displayName: 'Upload Build Artifact'
