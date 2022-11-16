@@ -3,14 +3,14 @@ trigger:
  branches:
   include:
     - master
-   
+
 pool:
   vmImage: 'ubuntu-20.04'
 
 variables:
   buildConfiguration: 'Release'
   rid: 'linux-x64'
-  agentImage: "ubuntu-20.04"  
+  agentImage: "ubuntu-20.04"
   DOTNET_NOLOGO: true
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
@@ -21,7 +21,7 @@ stages:
   pool:
     vmImage: $(agentImage)
   jobs:
-  - job: Build  
+  - job: Build
     displayName: 'Build App'
     steps:
     - checkout: self
@@ -34,7 +34,7 @@ stages:
       displayName: 'Install SDK'
       inputs:
         packageType: 'sdk'
-        version: '6.x'
+        version: '7.x'
         performMultiLevelLookup: true
     - task: DotNetCoreCLI@2
       displayName: 'Restore Packages'
