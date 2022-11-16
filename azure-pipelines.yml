@@ -65,11 +65,11 @@ stages:
 
 - stage: Deploy
   displayName: "Deploy To DigitalOcean"
+  dependsOn: ['Build']
   pool:
     vmImage: $(agentImage)
   jobs:
   - job: DODepoly
-    dependsOn: ['Build']
     displayName: 'Deploy to Digital Ocean'
     steps:
     - task: DownloadPipelineArtifact@2
