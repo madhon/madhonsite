@@ -34,7 +34,7 @@ stages:
       displayName: 'Install SDK'
       inputs:
         packageType: 'sdk'
-        version: '6.x'
+        version: '7.x'
         performMultiLevelLookup: true
     - task: DotNetCoreCLI@2
       displayName: 'Restore Packages'
@@ -54,7 +54,7 @@ stages:
       inputs:
         command: 'publish'
         publishWebProjects: true
-        arguments: '-r $(rid) --no-restore --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained true /p:PublishSingleFile=true -p:PublishTrimmed=true -p:TrimNode=partial'
+        arguments: '-r $(rid) --no-restore --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained true /p:PublishSingleFile=true -p:TrimMode=CopyUsed -p:_TrimmerDefaultAction=copy'
         zipAfterPublish: True
     - task: PublishPipelineArtifact@1
       displayName: 'Upload Build Artifact'
