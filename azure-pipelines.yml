@@ -16,8 +16,8 @@ variables:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 stages:
-- stage: BuildAndDeploy
-  displayName: "Build and Deploy To DigitalOcean"
+- stage: Build
+  displayName: "Build Site"
   pool:
     vmImage: $(agentImage)
   jobs:
@@ -61,6 +61,13 @@ stages:
       inputs:
         targetPath: $(Build.ArtifactStagingDirectory)
         ArtifactName: 'drop'
+
+
+- stage: Deploy
+  displayName: "Deploy To DigitalOcean"
+  pool:
+    vmImage: $(agentImage)
+  jobs:
   - job: DODepoly
     dependsOn: ['Build']
     displayName: 'Deploy to Digital Ocean'
