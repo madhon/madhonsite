@@ -97,7 +97,7 @@ stages:
          sudo systemctl stop madhonsite-kestrel.service
          cd $SOURCE/output
          echo "Unziping files"
-         unzip -oq $SOURCE/drop/Romulus.Web.zip
+         unzip -oq $SOURCE/Romulus.Web.zip
          echo "Copying files and resetting permissions"
          sudo cp -r $SOURCE/output/* $WEBROOT
          sudo chown -R www-data:www-data $WEBROOT
