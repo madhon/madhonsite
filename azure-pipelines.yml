@@ -48,13 +48,13 @@ stages:
       inputs:
         command: 'build'
         projects: '**/*.csproj'
-        arguments: '-r $(rid) --configuration $(buildConfiguration) --self-contained true --no-restore -p:PublishSingleFile=true -p:ImportByWildcardBeforeSolution=false'
+        arguments: '-r $(rid) --configuration $(buildConfiguration) --self-contained true --no-restore -p:PublishSingleFile=true'
     - task: DotNetCoreCLI@2
       displayName: 'Publish Build'
       inputs:
         command: 'publish'
         publishWebProjects: true
-        arguments: '-r $(rid) --no-restore --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained true /p:PublishSingleFile=true '
+        arguments: '-r $(rid) --no-restore --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained true /p:PublishSingleFile=true -p:TrimMode=CopyUsed -p:_TrimmerDefaultAction=copy'
         zipAfterPublish: True
     - task: PublishPipelineArtifact@1
       displayName: 'Upload Build Artifact'
