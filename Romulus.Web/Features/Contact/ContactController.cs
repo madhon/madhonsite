@@ -2,7 +2,7 @@ namespace Romulus.Web.Features.Contact
 {
 	using System.Threading;
 	using System.Threading.Tasks;
-	using MediatR;
+    using Mediator;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +25,7 @@ namespace Romulus.Web.Features.Contact
                 return View("Index");
             }
 
-            await mediator.Publish(command, cancellationToken).WithoutCapturingContext();
+            await mediator.Send(command, cancellationToken).ConfigureAwait(false);
             return View("Complete");
         }
 	}

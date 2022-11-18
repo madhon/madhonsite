@@ -3,12 +3,12 @@ namespace Romulus.Web.Features.Contact
     using System.Threading;
     using System.Threading.Tasks;
     using FluentValidation;
-    using MediatR;
+    using Mediator;
     using MimeKit;
     
     public class Send
     {
-        public record Command : IRequest, INotification
+        public record Command : ICommand
         {
             public string Name { get; init; } = default!;
 			public string Email { get; init; } = default!;
@@ -26,7 +26,7 @@ namespace Romulus.Web.Features.Contact
             }
         }
 
-        public class Handler : INotificationHandler<Command>
+        public class Handler : ICommandHandler<Command>
         {
             private readonly ITransport transport;
 
@@ -45,11 +45,12 @@ namespace Romulus.Web.Features.Contact
                 return message;
             }
 
-            public Task Handle(Command notification, CancellationToken ct)
+            public async ValueTask<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var message = CreateMailMessage(notification);
-				return transport.DeliverAsync(message, ct);
-			}
+                var message = CreateMailMessage(request);
+                await transport.DeliverAsync(message, cancellationToken).ConfigureAwait(false);
+                return new Unit();
+            }
         }
     }
 }
