@@ -1,6 +1,4 @@
-using System.Reflection;
 using FluentValidation.AspNetCore;
-using MediatR;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +9,7 @@ AppVersionInfo.InitialiseBuildInfoGivenPath(Directory.GetCurrentDirectory());
 builder.WebHost.ConfigureKestrel(o => o.AddServerHeader = false);
 builder.Host.UseSystemd();
 
-builder.Services.AddScoped<ITransport, NullTransport>();
+builder.Services.AddSingleton<ITransport, NullTransport>();
 
 builder.Services.AddServerTiming();
 
@@ -30,7 +28,7 @@ builder.Services.AddHealthChecks();
 builder.Services.AddResponseCaching();
 //services.AddResponseCompression(options => options.MimeTypes = ResponseCompressionMimeTypes.Defaults);
 
-builder.Services.AddMediatR(typeof(Program).GetTypeInfo().Assembly);
+builder.Services.AddMediator();
 
 builder.Services.AddControllersWithViews(opts => opts.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()))
 	.AddFeatureFolders();
