@@ -9,7 +9,7 @@ AppVersionInfo.InitialiseBuildInfoGivenPath(Directory.GetCurrentDirectory());
 builder.WebHost.ConfigureKestrel(o => o.AddServerHeader = false);
 builder.Host.UseSystemd();
 
-builder.Services.AddSingleton<ITransport, NullTransport>();
+builder.Services.AddScoped<ITransport, NullTransport>();
 
 builder.Services.AddServerTiming();
 
@@ -28,7 +28,7 @@ builder.Services.AddHealthChecks();
 builder.Services.AddResponseCaching();
 //services.AddResponseCompression(options => options.MimeTypes = ResponseCompressionMimeTypes.Defaults);
 
-builder.Services.AddMediator();
+builder.Services.AddMediator(opts=> opts.ServiceLifetime = ServiceLifetime.Scoped);
 
 builder.Services.AddControllersWithViews(opts => opts.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()))
 	.AddFeatureFolders();
