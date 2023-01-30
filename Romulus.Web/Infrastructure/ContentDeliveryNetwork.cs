@@ -5,7 +5,7 @@ namespace Romulus.Web.Infrastructure
         public static class Google
         {
             public const string Domain = "ajax.googleapis.com";
-            public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js";
+            public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js";
         }
 
         public static class JsDelivrCdn
@@ -13,9 +13,9 @@ namespace Romulus.Web.Infrastructure
             public const string Domain = "cdn.jsdelivr.net";
 
             public const string BootstrapCssUrl =
-			  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css";
+              "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css";
 
-            public const string BootstrapJsUrl = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js";
+            public const string BootstrapJsUrl = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js";
         }
 
         public static class Cloudflare
@@ -27,7 +27,7 @@ namespace Romulus.Web.Infrastructure
             public const string ParsleyUrl = "https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js";
 
             public const string Migrate3Url =
-              "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.1.0/jquery-migrate.js";
+              "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js";
         }
 
         public static class UnPkg
