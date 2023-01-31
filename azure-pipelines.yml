@@ -55,7 +55,7 @@ stages:
       inputs:
         serviceConnectionEndpoint: 'Madhon Snyk'
         testType: 'app'
-        targetFile: 'Romulus.Web'
+        targetFile: 'Romulus.Web/obj/project.assets.json'
         monitorWhen: 'always'
         failOnIssues: true
         projectName: 'MadhonCOMWebsite'
