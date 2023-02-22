@@ -15,17 +15,6 @@ namespace Romulus.Web
                 });
         }
 
-        public static IApplicationBuilder IfDevelopment(this IApplicationBuilder builder, IHostEnvironment env,
-	        Action<IApplicationBuilder> operation)
-        {
-	        if (env.IsDevelopment() && operation is not null)
-	        {
-		        operation(builder);
-	        }
-
-	        return builder;
-        }
-
         public static IApplicationBuilder SetupSecurityHeaders(this IApplicationBuilder app)
         {
 

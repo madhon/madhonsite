@@ -2,14 +2,23 @@ var builder = WebApplication.CreateBuilder(args);
 
 AppVersionInfo.InitialiseBuildInfoGivenPath(Directory.GetCurrentDirectory());
 
+builder.AddSerilog();
+
 builder.WebHost.ConfigureKestrel(o => o.AddServerHeader = false);
 builder.Host.UseSystemd();
+
+
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.KnownNetworks.Clear();
+    options.KnownProxies.Clear();
+});
 
 builder.Services.AddScoped<ITransport, NullTransport>();
 
 builder.Services.AddServerTiming();
 
-builder.Services.AddCustomLogging(builder.Configuration, builder.Environment);
 
 builder.Services.AddAntiForgerySecurely(builder.Environment);
 
@@ -39,18 +48,16 @@ builder.Services.AddFluentValidationClientsideAdapters();
 
 var app = builder.Build();
 
-var forwardedHeaderOptions = new ForwardedHeadersOptions
-{
-	ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-};
-forwardedHeaderOptions.KnownNetworks.Clear();
-forwardedHeaderOptions.KnownProxies.Clear();
-app.UseForwardedHeaders(forwardedHeaderOptions);
+app.UseForwardedHeaders();
 
-app.IfDevelopment(app.Environment, a =>
+app.MapHealthChecks("/healthz");
+
+app.UseSerilogRequestLogging();
+
+if (app.Environment.IsDevelopment())
 {
-	a.UseDeveloperExceptionPage();
-});
+    app.UseDeveloperExceptionPage();
+}
 
 app.UseStaticFilesWithCacheControl(app.Environment);
 
@@ -62,7 +69,7 @@ app.UseResponseCaching();
 //app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy());
 app.SetupSecurityHeaders();
 
-app.MapHealthChecks("/healthz");
+
 app.MapDefaultControllerRoute();
 
 app.Run();

@@ -46,22 +46,6 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    public static void AddCustomLogging([NotNull] this IServiceCollection services, [NotNull] IConfiguration configuration, IHostEnvironment environment)
-    {
-        services.AddLogging(config =>
-        {
-            config.ClearProviders();
-            config.AddConfiguration(configuration.GetSection("Logging"));
-            config.AddDebug();
-            config.AddEventSourceLogger();
-
-            if (environment.IsDevelopment())
-            {
-                config.AddConsole();
-            }
-        });
-    }
-
     public static IServiceCollection AddServerTiming(this IServiceCollection services) =>
         services.AddSingleton<ServerTimingMiddleware>();
 

@@ -18,7 +18,8 @@ global using MimeKit;
 global using MailKit.Net.Smtp;
 global using MailKit.Security;
 global using JetBrains.Annotations;
-
+global using Serilog;
+global using Serilog.Events;
 
 global using Romulus.Web;
 global using Romulus.Web.Infrastructure;

@@ -113,5 +113,6 @@ stages:
          echo "Copying files and resetting permissions"
          sudo cp -r $SOURCE/output/* $WEBROOT
          sudo chown -R www-data:www-data $WEBROOT
+         sudo /usr/bin/rm $WEBROOT/appsettings.Development.json
          echo "Starting Site"
          sudo systemctl start madhonsite-kestrel.service
