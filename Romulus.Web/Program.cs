@@ -1,7 +1,3 @@
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Mvc;
-
 var builder = WebApplication.CreateBuilder(args);
 
 AppVersionInfo.InitialiseBuildInfoGivenPath(Directory.GetCurrentDirectory());

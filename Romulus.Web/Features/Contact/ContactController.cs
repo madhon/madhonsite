@@ -1,11 +1,5 @@
 namespace Romulus.Web.Features.Contact;
 
-using System.Threading;
-using System.Threading.Tasks;
-using Mediator;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
 public class ContactController : Controller
 {
     private readonly IMediator mediator;

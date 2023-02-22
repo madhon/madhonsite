@@ -8,7 +8,7 @@ namespace Romulus.Web.Services
   {
     public async Task DeliverAsync(MimeMessage message, CancellationToken ct)
     {
-      await Task.Delay(2, ct).WithoutCapturingContext();
+      await Task.Delay(2, ct).ConfigureAwait(false);
     }
   }
 }

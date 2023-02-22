@@ -1,11 +1,5 @@
 namespace Romulus.Web
 {
-	using System;
-	using System.Diagnostics;
-	using Microsoft.AspNetCore.Builder;
-    using Microsoft.Extensions.Hosting;
-    using Microsoft.Net.Http.Headers;
-
     public static class ApplicationBuilderExtensions
     {
         public static IApplicationBuilder UseStaticFilesWithCacheControl(this IApplicationBuilder application, IHostEnvironment env)
