@@ -15,6 +15,12 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
     options.KnownProxies.Clear();
 });
 
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.AppendTrailingSlash = true;
+    options.LowercaseUrls = true;
+});
+
 builder.Services.AddScoped<ITransport, NullTransport>();
 
 builder.Services.AddServerTiming();
@@ -22,11 +28,7 @@ builder.Services.AddServerTiming();
 
 builder.Services.AddAntiForgerySecurely(builder.Environment);
 
-builder.Services.AddRouting(options =>
-{
-	options.AppendTrailingSlash = true;
-	options.LowercaseUrls = true;
-});
+builder.Services.AddRouting();
 
 builder.Services.AddHealthChecks();
 
