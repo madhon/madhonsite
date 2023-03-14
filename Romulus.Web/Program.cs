@@ -33,7 +33,7 @@ builder.Services.AddRouting();
 builder.Services.AddHealthChecks();
 
 builder.Services.AddResponseCaching();
-//services.AddResponseCompression(options => options.MimeTypes = ResponseCompressionMimeTypes.Defaults);
+builder.Services.AddResponseCompression(options => options.MimeTypes = ResponseCompressionMimeTypes.Defaults);
 
 builder.Services.AddMediator(opts=> opts.ServiceLifetime = ServiceLifetime.Scoped);
 
@@ -61,16 +61,14 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.UseStaticFilesWithCacheControl(app.Environment);
+app.UseStaticFilesWithCacheControl();
 
 app.UseRouting();
 
 app.UseResponseCaching();
-//app.UseResponseCompression();
+app.UseResponseCompression();
 
-//app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePolicy());
 app.SetupSecurityHeaders();
-
 
 app.MapDefaultControllerRoute();
 

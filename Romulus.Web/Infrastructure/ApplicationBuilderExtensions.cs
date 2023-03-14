@@ -2,112 +2,26 @@ namespace Romulus.Web
 {
     public static class ApplicationBuilderExtensions
     {
-        public static IApplicationBuilder UseStaticFilesWithCacheControl(this IApplicationBuilder application, IHostEnvironment env)
+        public static WebApplication UseStaticFilesWithCacheControl(this WebApplication app)
         {
-          var cachePeriod = env.IsDevelopment() ? "600" : "604800";
+          var cachePeriod = app.Environment.IsDevelopment() ? "600" : "604800";
 
-          return application.UseStaticFiles(
+          app.UseStaticFiles(
                 new StaticFileOptions
                 {
                     OnPrepareResponse =
                         _ => _.Context.Response.Headers[HeaderNames.CacheControl] =
                           $"public, max-age={cachePeriod}" // A week in seconds
                 });
+
+          return app;
         }
 
-        public static IApplicationBuilder SetupSecurityHeaders(this IApplicationBuilder app)
+        public static WebApplication SetupSecurityHeaders(this WebApplication app)
         {
-
 	        string preloadDirective = Debugger.IsAttached ? string.Empty : "; preload";
 
-	        app.UseSecurityHeaders(policies =>
-		        policies
-			        .AddDefaultSecurityHeaders()
-			        .RemoveServerHeader()
-			        .AddReferrerPolicyNoReferrerWhenDowngrade()
-
-					//having to do this way as the normal code call excludes localhost, which breaks when proxied via nginx/traefik
-			        .AddCustomHeader("Strict-Transport-Security", $"max-age=31536000; includeSubDomains{preloadDirective}")
-
-			        .AddContentSecurityPolicy(p =>
-			        {
-				        p.AddUpgradeInsecureRequests();
-				        p.AddBlockAllMixedContent();
-				        p.AddDefaultSrc().None();
-				        p.AddObjectSrc().None();
-				        p.AddMediaSrc().None();
-				        p.AddFrameAncestors().None();
-				        p.AddFrameSrc().None();
-				        p.AddFormAction().Self();
-				        p.AddImgSrc().Self();
-						p.AddManifestSrc().Self();
-
-						if (Debugger.IsAttached)
-						{
-							p.AddConnectSrc()
-								.Self()
-								.From("http://localhost:*")
-								.From("https://localhost:*")
-								.From("ws://localhost:*");
-
-							p.AddScriptSrc()
-								.Self()
-								.From("https://ajax.googleapis.com")
-								.From("https://cdn.jsdelivr.net")
-								.From("https://cdnjs.cloudflare.com")
-								.From("https://unpkg.com")
-								.UnsafeInline(); //unsafe needed for browserlink
-
-							p.AddStyleSrc()
-								.Self()
-								.From("https://cdn.jsdelivr.net")
-								.From("https://fonts.googleapis.com")
-								.From("https://fonts.gstatic.com")
-								.UnsafeInline(); //unsafe needed for browserlink
-						}
-						else
-						{
-							p.AddConnectSrc().None();
-							p.AddScriptSrc()
-								.Self()
-								.From("https://ajax.googleapis.com")
-								.From("https://cdn.jsdelivr.net")
-								.From("https://cdnjs.cloudflare.com")
-								.From("https://unpkg.com")
-								;
-
-							p.AddStyleSrc()
-								.Self()
-								.From("https://cdn.jsdelivr.net")
-								.From("https://fonts.googleapis.com")
-								.From("https://fonts.gstatic.com")
-								;
-						}
-
-						p.AddFontSrc()
-					        .From("https://fonts.gstatic.com");
-			        })
-			        .AddPermissionsPolicy(p =>
-			        {
-				        p.AddAccelerometer().None();
-				        p.AddAutoplay().None();
-				        p.AddCamera().None();
-				        p.AddEncryptedMedia().None();
-				        p.AddFullscreen().None();
-				        p.AddGeolocation().None();
-				        p.AddGyroscope().None();
-				        p.AddMagnetometer().None();
-				        p.AddMicrophone().None();
-				        p.AddMidi().None();
-				        p.AddPayment().None();
-				        p.AddPictureInPicture().None();
-				        p.AddSpeaker().None();
-				        p.AddUsb().None();
-			        })
-			        .AddCustomHeader("Expect-CT", "max-age=0")
-
-			        
-	        );
+	        app.UseSecurityHeaders(SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment()));
 	        return app;
         }
     }
