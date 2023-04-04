@@ -37,6 +37,8 @@ public static class OpenTelemetryExtensions
         {
             metrics.SetResourceBuilder(resourceBuilder)
                 .AddAspNetCoreInstrumentation();
+
+            metrics.AddHoneycomb(honeycombOptions);
         });
 
         builder.Services.AddSingleton(TracerProvider.Default.GetTracer(honeycombOptions.ServiceName));
