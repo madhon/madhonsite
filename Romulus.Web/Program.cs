@@ -1,8 +1,10 @@
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 AppVersionInfo.InitialiseBuildInfoGivenPath(Directory.GetCurrentDirectory());
 
 builder.AddSerilog();
+builder.AddOpenTelemetry();
+
 
 builder.WebHost.ConfigureKestrel(o => o.AddServerHeader = false);
 builder.Host.UseSystemd();
