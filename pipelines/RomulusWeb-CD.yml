@@ -2,7 +2,7 @@ name: RomulusWeb-CD
 trigger: none
 resources:
   pipelines:
-   - pipeline: RomulusWebBuild
+   - pipeline: RomulusWeb-Build
      source: RomulusWeb-CI
      trigger:
       branches:
