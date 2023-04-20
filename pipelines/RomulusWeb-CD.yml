@@ -27,9 +27,12 @@ stages:
     - task: DownloadPipelineArtifact@2
       displayName: 'Download Build Artifact'
       inputs:
-        source: 'current'
-        artifact: 'drop'
-        path: '$(System.DefaultWorkingDirectory)/_MadhonCOMWebsite'
+        buildType: 'specific'
+        project: '4be30c19-ce7f-46bc-94f9-f712d0faf9ba'
+        definition: '13'
+        buildVersionToDownload: 'latest'
+        artifactName: 'drop'
+        targetPath: '$(System.DefaultWorkingDirectory)/_MadhonCOMWebsite'
     - task: CopyFilesOverSSH@0
       displayName: 'Copy files to DigitalOcean'
       inputs:
