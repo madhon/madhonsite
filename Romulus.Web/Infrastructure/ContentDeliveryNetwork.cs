@@ -1,11 +1,11 @@
-namespace Romulus.Web.Infrastructure
+﻿namespace Romulus.Web.Infrastructure
 {
     public static class ContentDeliveryNetwork
     {
         public static class Google
         {
             public const string Domain = "ajax.googleapis.com";
-            public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js";
+            public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js";
         }
 
         public static class JsDelivrCdn
@@ -27,13 +27,13 @@ namespace Romulus.Web.Infrastructure
             public const string ParsleyUrl = "https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js";
 
             public const string Migrate3Url =
-              "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js";
+              "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.1/jquery-migrate.min.js";
         }
 
         public static class UnPkg
         {
 	        public const string Domain = "unpkg.com";
-	        public const string Popper = "https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js";
+	        public const string Popper = "https://unpkg.com/@popperjs/core@2.11.7/dist/umd/popper.min.js";
         }
     }
 }

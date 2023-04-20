@@ -1,0 +1,59 @@
+name: RomulusWeb-CD
+trigger: none
+resources:
+  pipelines:
+   - pipeline: RomulusWebBuild
+     source: RomulusWeb-CI
+     trigger:
+      branches:
+       include:
+         - master         
+
+pool:
+  vmImage: 'ubuntu-20.04'
+
+variables:
+  agentImage: "ubuntu-20.04"
+
+stages:
+- stage: Deploy
+  displayName: "Deploy To DigitalOcean"
+  dependsOn: ['Build']
+  pool:
+    vmImage: $(agentImage)
+  jobs:
+  - job: DODepoly
+    displayName: 'Deploy to Digital Ocean'
+    steps:
+    - task: DownloadPipelineArtifact@2
+      displayName: 'Download Build Artifact'
+      inputs:
+        source: 'current'
+        artifact: 'drop'
+        path: '$(System.DefaultWorkingDirectory)/_MadhonCOMWebsite'
+    - task: CopyFilesOverSSH@0
+      displayName: 'Copy files to DigitalOcean'
+      inputs:
+        sshEndpoint: DigialOcean
+        sourceFolder: '$(System.DefaultWorkingDirectory)/_MadhonCOMWebsite'
+        targetFolder: '/home/madhon_webdeploy/files'
+    - task: SSH@0
+      displayName: 'Update Site Files'
+      inputs:
+        sshEndpoint: DigialOcean
+        runOptions: inline
+        inline: |
+         #!/bin/sh
+         WEBROOT=/var/www/madhon.co.uk
+         SOURCE=/home/madhon_webdeploy/files
+         echo "Stopping site"
+         sudo systemctl stop madhonsite-kestrel.service
+         cd $SOURCE/output
+         echo "Unziping files"
+         unzip -oq $SOURCE/Romulus.Web.zip
+         echo "Copying files and resetting permissions"
+         sudo cp -r $SOURCE/output/* $WEBROOT
+         sudo chown -R www-data:www-data $WEBROOT
+         sudo /usr/bin/rm $WEBROOT/appsettings.Development.json
+         echo "Starting Site"
+         sudo systemctl start madhonsite-kestrel.service
