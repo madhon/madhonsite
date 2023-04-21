@@ -20,6 +20,7 @@ stages:
   displayName: "Deploy To DigitalOcean"
   pool:
     vmImage: $(agentImage)
+  environment: prod
   jobs:
   - job: DODepoly
     displayName: 'Deploy to Digital Ocean'
