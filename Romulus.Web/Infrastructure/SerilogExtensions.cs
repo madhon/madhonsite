@@ -1,5 +1,7 @@
 ﻿namespace Romulus.Web.Infrastructure;
 
+using Serilog.Settings.Configuration;
+
 public static class SerilogExtensions
 {
     public static WebApplicationBuilder AddSerilog(this WebApplicationBuilder builder, string sectionName = "Serilog")
@@ -9,7 +11,8 @@ public static class SerilogExtensions
 
         builder.Host.UseSerilog((context, loggerConfiguration) =>
         {
-            loggerConfiguration.ReadFrom.Configuration(context.Configuration, sectionName: sectionName);
+            var options = new ConfigurationReaderOptions { SectionName = sectionName };
+            loggerConfiguration.ReadFrom.Configuration(context.Configuration, options);
 
             loggerConfiguration
                 .Enrich.WithProperty("Application", builder.Environment.ApplicationName)
