@@ -9,12 +9,12 @@ trigger:
     - Romulus.Web/*
 
 pool:
-  vmImage: 'ubuntu-20.04'
+  vmImage: 'ubuntu-22.04'
 
 variables:
   buildConfiguration: 'Release'
   rid: 'linux-x64'
-  agentImage: "ubuntu-20.04"
+  agentImage: "ubuntu-22.04"
   DOTNET_NOLOGO: true
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
@@ -30,16 +30,19 @@ stages:
     steps:
     - checkout: self
       fetchDepth: 2
+
     - script: |
         echo -e -n "{\"buildNumber\":\"$(Build.BuildNumber)\",\"buildId\":\"$(Build.BuildId)\",\"branchName\":\"$(Build.SourceBranchName)\",\"commitHash\":\"$(Build.SourceVersion)\"}" > "$(Build.SourcesDirectory)/Romulus.Web/buildinfo.json"
       displayName: "emit build details as JSON"
       failOnStderr: true
+
     - task: UseDotNet@2
       displayName: 'Install SDK'
       inputs:
         packageType: 'sdk'
         version: '7.x'
         performMultiLevelLookup: true
+
     - task: DotNetCoreCLI@2
       displayName: 'Restore Packages'
       inputs:
@@ -47,6 +50,7 @@ stages:
         projects: '**/*.csproj'
         feedsToUse: 'select'
         verbosityRestore: 'Quiet'
+
     - task: DotNetCoreCLI@2
       displayName: 'Build Project'
       inputs:
@@ -65,6 +69,12 @@ stages:
         projectName: 'MadhonCOMWebsite'
         organization: 'd2752ef3-cc32-4f0b-8239-4d7235bdf118'
 
+    - script: |
+        curl -Lo $(Agent.TempDirectory)/sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
+        chmod +x $(Agent.TempDirectory)/sbom-tool
+        $(Agent.TempDirectory)/sbom-tool generate -b $(Build.ArtifactStagingDirectory) -bc $(Build.SourcesDirectory) -pn RomulusWeb -pv 1.0.0 -ps Madhon -nsb https://sbom.madhon.co.uk -V Verbose
+      displayName: Generate SBOM
+
     - task: DotNetCoreCLI@2
       displayName: 'Publish Build'
       inputs:
@@ -72,6 +82,7 @@ stages:
         publishWebProjects: true
         arguments: '-r $(rid) --no-restore --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained true /p:PublishSingleFile=true -p:TrimMode=CopyUsed -p:_TrimmerDefaultAction=copy'
         zipAfterPublish: True
+
     - task: PublishPipelineArtifact@1
       displayName: 'Upload Build Artifact'
       inputs:
