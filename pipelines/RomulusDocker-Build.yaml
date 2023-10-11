@@ -33,6 +33,5 @@ stages:
           command: buildAndPush
           containerRegistry: $(dockerRegistryServiceConnection)
           repository: $(imageRepository)
-          buildContext: .
           Dockerfile: $(dockerfilePath)
           tags: $(tag)
