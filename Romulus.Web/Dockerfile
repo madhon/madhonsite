@@ -30,7 +30,7 @@ RUN addgroup -g 2000 app\
   --gecos '' app \
   && chown -R app /app \
   && apk add --upgrade --no-cache apk-tools curl \
-  && apk add --no-cache icu-libs
+  && apk add --no-cache icu-libs tzdata
 
 HEALTHCHECK --interval=5s --timeout=10s --retries=3 CMD curl --silent --fail http://localhost:8080/healthz || exit 1
 
