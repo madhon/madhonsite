@@ -9,21 +9,18 @@ resources:
        include:
          - master         
 
-pool:
-  vmImage: 'ubuntu-22.04'
-
 variables:
   agentImage: "ubuntu-22.04"
 
 stages:
 - stage: Deploy
   displayName: "Deploy To DigitalOcean"
-  pool:
-    vmImage: $(agentImage)
   jobs:
   - deployment: DODepoly
     displayName: 'Deploy to Digital Ocean'
     environment: Prod
+    pool:
+     vmImage: $(agentImage)
     strategy:
       runOnce:
         deploy:    
@@ -52,6 +49,7 @@ stages:
                   #!/bin/sh
                   WEBROOT=/var/www/madhon.co.uk
                   SOURCE=/home/madhon_webdeploy/files
+                  echo "Deploying Artifact from Build ID - $(resources.pipeline.RomulusWeb-Build.runID)"
                   echo "Stopping site"
                   sudo systemctl stop madhonsite-kestrel.service
                   cd $SOURCE/output
