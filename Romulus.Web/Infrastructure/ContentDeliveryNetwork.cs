@@ -7,7 +7,7 @@ public static class ContentDeliveryNetwork
 	{
 		public const string Domain = "ajax.googleapis.com";
 
-		public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js";
+		public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
 
 	}
 
@@ -36,7 +36,7 @@ public static class ContentDeliveryNetwork
 	public static class UnPkg
 	{
 			public const string Domain = "unpkg.com";
-			public const string Popper = "https://unpkg.com/@popperjs/core@2.11.7/dist/umd/popper.min.js";
+			public const string Popper = "https://unpkg.com/@popperjs/core@2.11.8/dist/umd/popper.min.js";
 	}
 }
 #pragma warning restore S1075 // URIs should not be hardcoded
