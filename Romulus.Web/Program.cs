@@ -2,13 +2,13 @@
 
 AppVersionInfo.InitialiseBuildInfoGivenPath(Directory.GetCurrentDirectory());
 
-builder.AddSerilog();
-builder.AddOpenTelemetry();
+builder.Services.AddAzureAppConfig(builder.Configuration, builder.Configuration, builder.Environment);
 
+builder.Host.AddSerilog(builder.Configuration, builder.Environment);
+builder.Services.AddOpenTelemetry(builder.Configuration, builder.Environment);
 
 builder.WebHost.ConfigureKestrel(o => o.AddServerHeader = false);
 builder.Host.UseSystemd();
-
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
@@ -49,6 +49,7 @@ builder.Services.AddFluentValidationAutoValidation(config =>
 
 builder.Services.AddFluentValidationClientsideAdapters();
 
+builder.Services.AddFeatureManagement();
 
 var app = builder.Build();
 

@@ -1,20 +1,20 @@
 ﻿namespace Romulus.Web.Infrastructure;
 
-using System.Reflection;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
 public static class OpenTelemetryExtensions
 {
-    public static WebApplicationBuilder AddOpenTelemetry(this WebApplicationBuilder builder)
+    public static IServiceCollection AddOpenTelemetry(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
-        var resourceBuilder = GetResourceBuilder(builder.Environment);
-        var otlpEndpoint = builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"];
+        var resourceBuilder = GetResourceBuilder(environment);
+        var otlpEndpoint = configuration["OTEL_EXPORTER_OTLP_ENDPOINT"];
 
-        var honeycombOptions = builder.Configuration.GetHoneycombOptions();
+        var honeycombOptions = configuration.GetHoneycombOptions();
 
-        builder.Services.AddOpenTelemetry().WithTracing(tracing =>
+        services.AddOpenTelemetry()
+            .WithTracing(tracing =>
         {
             tracing.SetResourceBuilder(resourceBuilder)
                 .AddAspNetCoreInstrumentation(nci =>
@@ -41,10 +41,9 @@ public static class OpenTelemetryExtensions
             metrics.AddHoneycomb(honeycombOptions);
         });
 
-        builder.Services.AddSingleton(TracerProvider.Default.GetTracer(honeycombOptions.ServiceName));
+        services.AddSingleton(TracerProvider.Default.GetTracer(honeycombOptions.ServiceName));
 
-
-        return builder;
+        return services;
     }
 
     private static void Enrich(Activity activity, HttpRequest request)
@@ -63,8 +62,7 @@ public static class OpenTelemetryExtensions
         activity.AddTag("http.response_content_type", response.ContentType);
     }
 
-
-    public static string GetHttpFlavour(string protocol)
+    private static string GetHttpFlavour(string protocol)
     {
         if (HttpProtocol.IsHttp10(protocol))
         {

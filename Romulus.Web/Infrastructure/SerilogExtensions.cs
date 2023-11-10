@@ -4,18 +4,18 @@ using Serilog.Settings.Configuration;
 
 public static class SerilogExtensions
 {
-    public static WebApplicationBuilder AddSerilog(this WebApplicationBuilder builder, string sectionName = "Serilog")
+    public static IHostBuilder AddSerilog(this IHostBuilder host, IConfiguration configuration, IWebHostEnvironment environment, string sectionName = "Serilog")
     {
         var serilogOptions = new SerilogOptions();
-        builder.Configuration.GetSection(sectionName).Bind(serilogOptions);
+        configuration.GetSection(sectionName).Bind(serilogOptions);
 
-        builder.Host.UseSerilog((context, loggerConfiguration) =>
+        host.UseSerilog((context, loggerConfiguration) =>
         {
             var options = new ConfigurationReaderOptions { SectionName = sectionName };
             loggerConfiguration.ReadFrom.Configuration(context.Configuration, options);
 
             loggerConfiguration
-                .Enrich.WithProperty("Application", builder.Environment.ApplicationName)
+                .Enrich.WithProperty("Application", environment.ApplicationName)
                 .Enrich.FromLogContext();
 
             loggerConfiguration.MinimumLevel.Override("Microsoft", LogEventLevel.Information);
@@ -41,7 +41,7 @@ public static class SerilogExtensions
 
         });
 
-        return builder;
+        return host;
     }
 
 

@@ -2,14 +2,14 @@ global using System.Threading;
 global using System.Threading.Tasks;
 global using System.Security.Cryptography;
 global using System.Diagnostics;
-
+global using System.Reflection;
 
 global using Microsoft.Net.Http.Headers;
 global using Microsoft.AspNetCore.HttpOverrides;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.Razor.TagHelpers;
-
+global using Microsoft.FeatureManagement;
 
 global using FluentValidation;
 global using FluentValidation.AspNetCore;
