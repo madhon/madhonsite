@@ -9,12 +9,12 @@ RUN dotnet restore "Romulus.Web.csproj"
 COPY . .
 
 WORKDIR /src
-RUN dotnet build "Romulus.Web.csproj" -c Release --runtime alpine-x64 --self-contained true --no-restore -p:PublishSingleFile=true -o /app/build
+RUN dotnet build "Romulus.Web.csproj" -c Release --runtime linux-musl-x64 --self-contained true --no-restore -p:PublishSingleFile=true -o /app/build
 
 FROM build AS publish
 RUN dotnet publish \
   "Romulus.Web.csproj" \
-  --runtime alpine-x64 \
+  --runtime linux-musl-x64\
   --self-contained true \
   -c Release \
   /p:PublishSingleFile=true -p:PublishTrimmed=True -p:TrimMode=CopyUsed -p:_TrimmerDefaultAction=copy \
