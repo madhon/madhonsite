@@ -40,7 +40,7 @@ stages:
       displayName: 'Install SDK'
       inputs:
         packageType: 'sdk'
-        version: '7.x'
+        version: '8.x'
         performMultiLevelLookup: true
 
     - task: DotNetCoreCLI@2
