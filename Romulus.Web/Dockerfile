@@ -1,4 +1,4 @@
-ARG VERSION=7.0-alpine
+ARG VERSION=8.0-alpine
 
 FROM mcr.microsoft.com/dotnet/sdk:$VERSION  AS build
 WORKDIR /src
@@ -22,24 +22,25 @@ RUN dotnet publish \
 
 
 FROM  mcr.microsoft.com/dotnet/runtime-deps:$VERSION
-RUN addgroup -g 2000 app\
+RUN addgroup -g 2000 romulus \
   && adduser \
   --disabled-password \
-  --home /app \
-  --uid 1000 --ingroup app \
-  --gecos '' app \
-  && chown -R app /app \
+  --home /romulus \
+  --uid 1000 --ingroup romulus \
+  --gecos '' romulus \
+  && chown -R romulus /romulus \
   && apk add --upgrade --no-cache apk-tools curl \
   && apk add --no-cache icu-libs tzdata
 
 HEALTHCHECK --interval=5s --timeout=10s --retries=3 CMD curl --silent --fail http://localhost:8080/healthz || exit 1
 
 USER app
-WORKDIR /app
+WORKDIR /romulus
 COPY --from=publish /app/publish .
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 \
   DOTNET_RUNNING_IN_CONTAINER=true \
   ASPNETCORE_URLS=http://+:8080 \
+  ASPNETCORE_HTTP_PORTS=8080 \
   ASPNETCORE_ENVIRONMENT="Production"
 
 EXPOSE 8080

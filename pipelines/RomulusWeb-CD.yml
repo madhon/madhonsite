@@ -56,8 +56,8 @@ stages:
                   echo "Unziping files"
                   unzip -oq $SOURCE/Romulus.Web.zip
                   echo "Copying files and resetting permissions"
+                  rm $SOURCE/output/appsettings.*
                   sudo cp -r $SOURCE/output/* $WEBROOT
                   sudo chown -R www-data:www-data $WEBROOT
-                  sudo /usr/bin/rm $WEBROOT/appsettings.Development.json
                   echo "Starting Site"
                   sudo systemctl start madhonsite-kestrel.service
