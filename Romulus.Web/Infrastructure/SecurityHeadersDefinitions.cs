@@ -37,6 +37,7 @@ public static class SecurityHeadersDefinitions
         return policy;
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "MA0051:Method is too long", Justification = "<Pending>")]
     private static void AddCspHstsDefinitions(bool cspReportOnly, HeaderPolicyCollection policy)
     {
         if (!Debugger.IsAttached)

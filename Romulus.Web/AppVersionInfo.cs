@@ -1,4 +1,4 @@
-namespace Romulus.Web
+﻿namespace Romulus.Web
 {
 	using System.Text.Json;
 
@@ -7,6 +7,7 @@ namespace Romulus.Web
 	public static class AppVersionInfo
 	{
 		private const string _buildFileName = "buildinfo.json";
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "MA0011:IFormatProvider is missing", Justification = "Build versioning")]
 		private static BuildInfo _fileBuildInfo = new(
 			BranchName: "",
 			BuildNumber: DateTime.UtcNow.ToString("yyyyMMdd") + ".0",
@@ -14,6 +15,8 @@ namespace Romulus.Web
 			CommitHash: $"Not yet initialised - call {nameof(InitialiseBuildInfoGivenPath)}"
 		);
 
+
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "MA0011:IFormatProvider is missing", Justification = "Build versioning")]
 		public static void InitialiseBuildInfoGivenPath(string path)
 		{
 			var buildFilePath = Path.Combine(path, _buildFileName);

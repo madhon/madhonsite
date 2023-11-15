@@ -1,4 +1,4 @@
-namespace Romulus.Web.Infrastructure
+﻿namespace Romulus.Web.Infrastructure
 {
     using System;
     using System.Reflection;
@@ -16,7 +16,7 @@ namespace Romulus.Web.Infrastructure
         {
             string[] tokens = controllerType.FullName!.Split('.');
 
-            if (tokens.All(t => t != "Features"))
+            if (tokens.All(t => !t.Equals("Features", StringComparison.OrdinalIgnoreCase)))
             {
 	            return "";
             }
