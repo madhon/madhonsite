@@ -1,105 +1,72 @@
 ﻿namespace Romulus.Web.Infrastructure;
 
+using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
 public static class OpenTelemetryExtensions
 {
-    public static IServiceCollection AddOpenTelemetry(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
+    public static IHostApplicationBuilder AddOpenTelemetry(this IHostApplicationBuilder builder)
     {
-        var resourceBuilder = GetResourceBuilder(environment);
-        var otlpEndpoint = configuration["OTEL_EXPORTER_OTLP_ENDPOINT"];
-
-        var honeycombOptions = configuration.GetHoneycombOptions();
-
-        services.AddOpenTelemetry()
-            .WithTracing(tracing =>
+        builder.Logging.AddOpenTelemetry(o =>
         {
-            tracing.SetResourceBuilder(resourceBuilder)
-                .AddAspNetCoreInstrumentation(nci =>
-                {
-                    nci.EnrichWithHttpRequest = Enrich;
-                    nci.EnrichWithHttpResponse = Enrich;
-                    nci.RecordException = true;
-                });
-
-            if (!string.IsNullOrWhiteSpace(otlpEndpoint))
-            {
-                tracing.AddOtlpExporter();
-            }
-
-            tracing.AddSource("Romulus.Web");
-
-            tracing.AddHoneycomb(honeycombOptions);
-
-        }).WithMetrics(metrics =>
-        {
-            metrics.SetResourceBuilder(resourceBuilder)
-                .AddAspNetCoreInstrumentation();
-
-            metrics.AddHoneycomb(honeycombOptions);
+            o.IncludeFormattedMessage = true;
+            o.IncludeScopes = true;
         });
 
-        services.AddSingleton(TracerProvider.Default.GetTracer(honeycombOptions.ServiceName));
-
-        return services;
-    }
-
-    private static void Enrich(Activity activity, HttpRequest request)
-    {
-        var context = request.HttpContext;
-        activity.AddTag("http.flavor", GetHttpFlavour(request.Protocol));
-        activity.AddTag("http.scheme", request.Scheme);
-        activity.AddTag("http.client_ip", context.Connection.RemoteIpAddress);
-        activity.AddTag("http.request_content_length", request.ContentLength);
-        activity.AddTag("http.request_content_type", request.ContentType);
-    }
-
-    private static void Enrich(Activity activity, HttpResponse response)
-    {
-        activity.AddTag("http.response_content_length", response.ContentLength);
-        activity.AddTag("http.response_content_type", response.ContentType);
-    }
-
-    private static string GetHttpFlavour(string protocol)
-    {
-        if (HttpProtocol.IsHttp10(protocol))
-        {
-            return "1.0";
-        }
-        else if (HttpProtocol.IsHttp11(protocol))
-        {
-            return "1.1";
-        }
-        else if (HttpProtocol.IsHttp2(protocol))
-        {
-            return "2.0";
-        }
-        else if (HttpProtocol.IsHttp3(protocol))
-        {
-            return "3.0";
-        }
-
-        throw new InvalidOperationException($"Protocol {protocol} not recognised.");
-    }
-
-    private static ResourceBuilder GetResourceBuilder(IWebHostEnvironment webHostEnvironment)
-    {
-        var version = Assembly
-            .GetExecutingAssembly()
-            .GetCustomAttribute<AssemblyFileVersionAttribute>()!
-            .Version;
-
-        return ResourceBuilder
-            .CreateEmpty()
-            .AddService(webHostEnvironment.ApplicationName, serviceVersion: version)
-            .AddAttributes(
-                new KeyValuePair<string, object>[]
+        builder.Services.AddOpenTelemetry()
+            .WithTracing(tracing =>
+            {
+                if (builder.Environment.IsDevelopment())
                 {
-                        new("deployment.environment", webHostEnvironment.EnvironmentName),
-                        new("host.name", Environment.MachineName),
-                })
-            .AddEnvironmentVariableDetector();
+                    tracing.SetSampler(new AlwaysOnSampler());
+                }
+
+                tracing
+                    .AddSource(InstrumentationConfig.ActivitySource.Name)
+                    .ConfigureResource(resource => resource.AddService(InstrumentationConfig.ServiceName))
+                    .AddAspNetCoreInstrumentation(nci =>
+                    {
+                        nci.RecordException = true;
+                    });
+            })
+            .WithMetrics(metrics =>
+            {
+                metrics
+                    .ConfigureResource(resource => resource.AddService(InstrumentationConfig.ServiceName))
+                    .AddAspNetCoreInstrumentation();
+            });
+
+        builder.AddOpenTelemetryExporters();
+
+        return builder;
     }
+
+    private static IHostApplicationBuilder AddOpenTelemetryExporters(this IHostApplicationBuilder builder)
+    {
+        var useOtlpExporter = !string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);
+        if (useOtlpExporter)
+        {
+            builder.Services.Configure<OpenTelemetryLoggerOptions>(logging => logging.AddOtlpExporter());
+            builder.Services.ConfigureOpenTelemetryMeterProvider(metrics => metrics.AddOtlpExporter());
+            builder.Services.ConfigureOpenTelemetryTracerProvider(tracing => tracing.AddOtlpExporter());
+        }
+
+        var honeycombOptions = builder.Configuration.GetHoneycombOptions();
+        if (honeycombOptions is not null)
+        {
+            builder.Services.AddOpenTelemetry()
+                .WithTracing(tracing => tracing.AddHoneycomb(honeycombOptions))
+                .WithMetrics(metrics => metrics.AddHoneycomb(honeycombOptions));
+        }
+
+        return builder;
+    }
+
+    private static MeterProviderBuilder AddBuiltInMeters(this MeterProviderBuilder meterProviderBuilder) =>
+    meterProviderBuilder.AddMeter(
+        "Microsoft.AspNetCore.Hosting",
+        "Microsoft.AspNetCore.Server.Kestrel",
+        "System.Net.Http");
 }

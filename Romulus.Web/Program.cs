@@ -1,11 +1,14 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+
+var builder = WebApplication.CreateBuilder(args);
 
 AppVersionInfo.InitialiseBuildInfoGivenPath(Directory.GetCurrentDirectory());
 
-builder.Services.AddAzureAppConfig(builder.Configuration, builder.Configuration, builder.Environment);
+//builder.Services.AddAzureAppConfig(builder.Configuration, builder.Configuration, builder.Environment);
 
 builder.Host.AddSerilog(builder.Configuration, builder.Environment);
-builder.Services.AddOpenTelemetry(builder.Configuration, builder.Environment);
+builder.AddOpenTelemetry();
 
 builder.WebHost.ConfigureKestrel(o => o.AddServerHeader = false);
 builder.Host.UseSystemd();
@@ -27,15 +30,14 @@ builder.Services.AddScoped<ITransport, NullTransport>();
 
 builder.Services.AddServerTiming();
 
-
 builder.Services.AddAntiForgerySecurely(builder.Environment);
 
 builder.Services.AddRouting();
 
-builder.Services.AddHealthChecks();
+builder.Services.AddHealthChecks()
+    .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
 
 builder.Services.AddResponseCaching();
-builder.Services.AddResponseCompression(options => options.MimeTypes = ResponseCompressionMimeTypes.Defaults);
 
 builder.Services.AddMediator(opts=> opts.ServiceLifetime = ServiceLifetime.Scoped);
 
@@ -55,9 +57,13 @@ var app = builder.Build();
 
 app.UseForwardedHeaders();
 
-app.MapHealthChecks("/healthz");
-
 app.UseSerilogRequestLogging();
+
+app.MapHealthChecks("/healthz");
+app.MapHealthChecks("/liveness", new HealthCheckOptions
+{
+    Predicate = r => r.Tags.Contains("live")
+});
 
 if (app.Environment.IsDevelopment())
 {
@@ -69,7 +75,6 @@ app.UseStaticFilesWithCacheControl();
 app.UseRouting();
 
 app.UseResponseCaching();
-app.UseResponseCompression();
 
 app.SetupSecurityHeaders();
 

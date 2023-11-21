@@ -1,4 +1,4 @@
-namespace Romulus.Web.Features.Contact;
+﻿namespace Romulus.Web.Features.Contact;
 
 public class ContactController : Controller
 {
@@ -14,12 +14,16 @@ public class ContactController : Controller
     [AllowAnonymous()]
     public async Task<IActionResult> Index(Send.Command command, CancellationToken cancellationToken)
     {
-        if (!ModelState.IsValid)
+        using (var act = InstrumentationConfig.ActivitySource.StartActivity("ContactController.Index", ActivityKind.Internal))
         {
-            return View("Index");
-        }
+            if (!ModelState.IsValid)
+            {
+                return View("Index");
+            }
 
-        await mediator.Send(command, cancellationToken).ConfigureAwait(false);
-        return View("Complete");
+            await mediator.Send(command, cancellationToken).ConfigureAwait(false);
+            return View("Complete");
+
+        }
     }
 }

@@ -30,7 +30,7 @@ RUN addgroup -g 2000 romulus \
   --gecos '' romulus \
   && chown -R romulus /romulus \
   && apk add --upgrade --no-cache apk-tools curl \
-  && apk add --no-cache icu-libs tzdata
+  && apk add --no-cache icu-libs tzdata libsecret
 
 HEALTHCHECK --interval=5s --timeout=10s --retries=3 CMD curl --silent --fail http://localhost:8080/healthz || exit 1
 
