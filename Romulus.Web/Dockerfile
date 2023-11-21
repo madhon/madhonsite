@@ -34,12 +34,11 @@ RUN addgroup -g 2000 romulus \
 
 HEALTHCHECK --interval=5s --timeout=10s --retries=3 CMD curl --silent --fail http://localhost:8080/healthz || exit 1
 
-USER app
+USER romulus
 WORKDIR /romulus
 COPY --from=publish /app/publish .
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 \
   DOTNET_RUNNING_IN_CONTAINER=true \
-  ASPNETCORE_URLS=http://+:8080 \
   ASPNETCORE_HTTP_PORTS=8080 \
   ASPNETCORE_ENVIRONMENT="Production"
 

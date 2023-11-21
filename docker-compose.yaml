@@ -11,20 +11,21 @@ services:
       ASPNETCORE_ENVIRONMENT: "Development"
       DOTNET_RUNNING_IN_CONTAINER : "true"
       DOTNET_SYSTEM_GLOBALIZATION_INVARIANT : "1"
+      ConnectionStrings__AppConfig : ""
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.madhon.entrypoints=web"
-      - "traefik.http.routers.madhon.rule=Host(`madhon-192-168-1-70.nip.io`)"
+      - "traefik.http.routers.madhon.rule=Host(`madhon-192-168-1-175.nip.io`)"
       - "traefik.http.services.madhon.loadbalancer.server.port=8080"
       - "traefik.http.routers.madhonsecure.entrypoints=websecure"
       - "traefik.http.routers.madhonsecure.tls=true"
-      - "traefik.http.routers.madhonsecure.rule=Host(`madhon-192-168-1-70.nip.io`)"
+      - "traefik.http.routers.madhonsecure.rule=Host(`madhon-192-168-1-175.nip.io`)"
       - "traefik.http.middlewares.testHeader.headers.customresponseheaders.X-Custom-Response-Header=value"
       - "traefik.http.routers.madhon.middlewares=testHeader@docker"
       - "traefik.http.routers.madhonsecure.middlewares=testHeader@docker"
 
   traefikproxy:
-    image: traefik:v2.8
+    image: traefik:v2.10
     pull_policy: always
     restart: unless-stopped
     container_name: traefikproxy
@@ -55,7 +56,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dashboard.rule=Host(`traefik-192-168-1-70.nip.io`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
+      - "traefik.http.routers.dashboard.rule=Host(`traefik-192-168-1-175.nip.io`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
       - "traefik.http.routers.dashboard.service=api@internal"
       - "traefik.http.routers.dashboard.entrypoints=websecure"
     depends_on:
