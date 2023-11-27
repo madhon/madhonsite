@@ -44,11 +44,11 @@
       },
       "FluentValidation.DependencyInjectionExtensions": {
         "type": "Direct",
-        "requested": "[11.8.0, )",
-        "resolved": "11.8.0",
-        "contentHash": "fNfH9XEwevXb1JKCWGEkmkIKDYK3+gaAG8ugeOggd0oc8hdwsl3SNC59qAM1tcKVUhcD+AEDCI4hXX5WWshpWg==",
+        "requested": "[11.8.1, )",
+        "resolved": "11.8.1",
+        "contentHash": "Yyme2uCHnf+HawEHUEj7PguR54TPkx1HJT93/POvHT4xONvUrNfLg3Zt2NUAmIbhMjplb6TPLN8DD9AA7B/3QA==",
         "dependencies": {
-          "FluentValidation": "11.8.0",
+          "FluentValidation": "11.8.1",
           "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
         }
       },
@@ -103,17 +103,17 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.110, )",
-        "resolved": "2.0.110",
-        "contentHash": "5D8BEtSXhYNxim4VNAVJ0EYkx2GmiYJvdMmvpyR7JIQ0egguT+bjXM+07t1p4zEYHsWcHkEW19lUbw4eEwAGSQ=="
+        "requested": "[2.0.112, )",
+        "resolved": "2.0.112",
+        "contentHash": "mqlE8STIpfo1ZR7zc6H4V9mNEJjfaaa7ECIbuoQ3B2VAyiU8rlAezXz/n8SamiakVy10cItwyLnxcTGCch+7Hg=="
       },
       "Microsoft.Azure.AppConfiguration.AspNetCore": {
         "type": "Direct",
-        "requested": "[6.1.1, )",
-        "resolved": "6.1.1",
-        "contentHash": "1nMU7y90Dyj366ASoOIaUCZgXqoNmxwTcTTqmQbNPFd6GgHRN2MhiOR2WU4uk84pi+5fMVPCa+nMm4WuNFIGmQ==",
+        "requested": "[7.0.0, )",
+        "resolved": "7.0.0",
+        "contentHash": "onLEml0xN+4bb699sHV+jUJGiCuuBOwx83pOMiC2eO7vSwXNRDzQ6df+335RufUj8khJVrzQQtZ8hqyPa1EMRg==",
         "dependencies": {
-          "Microsoft.Extensions.Configuration.AzureAppConfiguration": "6.1.1"
+          "Microsoft.Extensions.Configuration.AzureAppConfiguration": "7.0.0"
         }
       },
       "Microsoft.Extensions.Hosting.Systemd": {
@@ -127,11 +127,11 @@
       },
       "Microsoft.FeatureManagement.AspNetCore": {
         "type": "Direct",
-        "requested": "[3.0.0, )",
-        "resolved": "3.0.0",
-        "contentHash": "Qe811VbY5bDtht2nYSTooAr4Z0Zvh5Y43W6U3qnPgs5oFdTsEC7ar+amF6gAiLSzlf3jSIW2Bd+kYtfE0q2j9Q==",
+        "requested": "[3.1.0, )",
+        "resolved": "3.1.0",
+        "contentHash": "WM0mpBocKaXxp1sJVLZdBh1wisFeGUOjjIqzwYaY7GJSie/jbsJw9vZgS6CxZPnMKo7X7PUtuK6BbFHkFmkHTg==",
         "dependencies": {
-          "Microsoft.FeatureManagement": "3.0.0"
+          "Microsoft.FeatureManagement": "3.1.0"
         }
       },
       "Microsoft.Identity.Client": {
@@ -211,6 +211,15 @@
           "OpenTelemetry": "1.6.0"
         }
       },
+      "OpenTelemetry.Instrumentation.Runtime": {
+        "type": "Direct",
+        "requested": "[1.5.1, )",
+        "resolved": "1.5.1",
+        "contentHash": "F3uYt/T5+2YZCxZmAdoK7u5AZxqDLYaTj5ddZ//Cnn9x+Lys9D9wRzqizQgKpAQJJ6prVh0TcBEbCCpEKKDZvw==",
+        "dependencies": {
+          "OpenTelemetry.Api": "[1.5.1, 2.0.0)"
+        }
+      },
       "SecurityCodeScan.VS2019": {
         "type": "Direct",
         "requested": "[5.6.7, )",
@@ -272,12 +281,12 @@
       },
       "Azure.Data.AppConfiguration": {
         "type": "Transitive",
-        "resolved": "1.2.0",
-        "contentHash": "KA1dAM9TuDsq0CRFd+3cJTYUAzA2z9N8t9/xKdDbP9URuReq/NDFcKYr7GW2W9xzVGDtCHlD5j5am/+zLLBdSg==",
+        "resolved": "1.3.0",
+        "contentHash": "9f+HzKqf56R2clVMBbbC6u1aQiiL6ov+7e3evcrMFo+cuhKGZhPWKO7vLLun8u3pY2jQ6VJ7ltZZyvzapYZNhA==",
         "dependencies": {
-          "Azure.Core": "1.20.0",
-          "Microsoft.Bcl.AsyncInterfaces": "1.0.0",
-          "System.Text.Json": "4.6.0"
+          "Azure.Core": "1.35.0",
+          "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
+          "System.Text.Json": "4.7.2"
         }
       },
       "Azure.Messaging.EventGrid": {
@@ -308,8 +317,8 @@
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "11.8.0",
-        "contentHash": "TiEaaYqSIAS+wXQv46LRm8Mca092XYNePD0n231Hqlkmm5FuToZoWnjI1ef/vJUxBzqR7/k2vaVQXxijNgVKRQ=="
+        "resolved": "11.8.1",
+        "contentHash": "N72rnlE99XYB7EGA1u9y7m7kNTTynqOPBhZqDE8zr1Y0aSR4t5si94LRA7UVdAV09GaXWCErW+EiFhfbg3DSbg=="
       },
       "Google.Protobuf": {
         "type": "Transitive",
@@ -383,16 +392,15 @@
       },
       "Microsoft.Extensions.Configuration.AzureAppConfiguration": {
         "type": "Transitive",
-        "resolved": "6.1.1",
-        "contentHash": "PzD72ezmSPaW+iXKjNRFe0tS2ZxW/Y/4NwDbB/hulOVAURTqrPm9ZkR9La/J9vQXSxwMLoXgQKEbxOUsTMK5qQ==",
+        "resolved": "7.0.0",
+        "contentHash": "ef49XuB+STPg0Yw/UcDKEyom5qm9dR1klR/PLVpAX6+hRdBuQOffZfilbfTNAYT6jsn3dgRjsOtq90hYlcI9vQ==",
         "dependencies": {
-          "Azure.Data.AppConfiguration": "1.2.0",
+          "Azure.Data.AppConfiguration": "1.3.0",
           "Azure.Messaging.EventGrid": "4.7.0",
           "Azure.Security.KeyVault.Secrets": "4.3.0",
-          "Microsoft.Extensions.Configuration": "3.1.18",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.18",
-          "Microsoft.Extensions.Logging": "3.1.18",
-          "System.Text.Json": "4.7.2"
+          "Microsoft.Extensions.Configuration": "6.0.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging": "6.0.0"
         }
       },
       "Microsoft.Extensions.Configuration.Binder": {
@@ -671,8 +679,8 @@
       },
       "Microsoft.FeatureManagement": {
         "type": "Transitive",
-        "resolved": "3.0.0",
-        "contentHash": "ttMenyjcGzEN3SG/fYUGHMq1gCwE6MQYcaedWYrrMz9m3RW/yxSp5xoPTH/fRu6TdB5Jt6ZSR22uT4I4JF0auA==",
+        "resolved": "3.1.0",
+        "contentHash": "UdeNGOWDX2r+OMZWjqgVUOhN/OLVhSIlSL2lJZsO4iciHAh/GGJrYsjAnvMvFMCyabeDhCohwHYWfWAfWp9GnA==",
         "dependencies": {
           "Microsoft.Extensions.Caching.Memory": "2.1.23",
           "Microsoft.Extensions.Configuration.Binder": "2.1.10",

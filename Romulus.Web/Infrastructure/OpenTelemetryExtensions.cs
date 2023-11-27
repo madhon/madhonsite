@@ -35,7 +35,9 @@ public static class OpenTelemetryExtensions
             {
                 metrics
                     .ConfigureResource(resource => resource.AddService(InstrumentationConfig.ServiceName))
-                    .AddAspNetCoreInstrumentation();
+                    .AddRuntimeInstrumentation()
+                    .AddAspNetCoreInstrumentation()
+                    .AddBuiltInMeters();
             });
 
         builder.AddOpenTelemetryExporters();
