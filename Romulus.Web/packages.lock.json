@@ -103,9 +103,9 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.112, )",
-        "resolved": "2.0.112",
-        "contentHash": "mqlE8STIpfo1ZR7zc6H4V9mNEJjfaaa7ECIbuoQ3B2VAyiU8rlAezXz/n8SamiakVy10cItwyLnxcTGCch+7Hg=="
+        "requested": "[2.0.119, )",
+        "resolved": "2.0.119",
+        "contentHash": "rF1oD+nbL8pDot9zNYsPA4xvWePdR09G/pfdUE7I1oaiyaslZ7x1A9FioHcGYueaHmk3QpmBCdR10m0C86w/YQ=="
       },
       "Microsoft.Azure.AppConfiguration.AspNetCore": {
         "type": "Direct",
@@ -136,20 +136,21 @@
       },
       "Microsoft.Identity.Client": {
         "type": "Direct",
-        "requested": "[4.57.0, )",
-        "resolved": "4.57.0",
-        "contentHash": "cE6FQvNIh9Brcok/JztOQa3t62XftatH7+Oi/PK6HbQAIpKyAuIj/ac4P9VrwPW+S2MkLR1/jEY5rXpLoHBC/w==",
+        "requested": "[4.58.0, )",
+        "resolved": "4.58.0",
+        "contentHash": "dRPo7/omWfLcxUniAvlsTduSm0YYpef6Mumlx1PjXfIeB8tWrXe5vK9h8Ld41u/5W569Sx5QKSz+VI4KtxsVjg==",
         "dependencies": {
-          "Microsoft.IdentityModel.Abstractions": "6.22.0"
+          "Microsoft.IdentityModel.Abstractions": "6.22.0",
+          "System.Diagnostics.DiagnosticSource": "7.0.2"
         }
       },
       "Microsoft.Identity.Client.Extensions.Msal": {
         "type": "Direct",
-        "requested": "[4.57.0, )",
-        "resolved": "4.57.0",
-        "contentHash": "kIm9mro7XWxsJMYfzscIlg12tNnzLx9c1WjnPinVrbM6zpZ1DyIt5iApK1tT4sIqsnPZ8D9iSQxtMZ5mQedNbw==",
+        "requested": "[4.58.0, )",
+        "resolved": "4.58.0",
+        "contentHash": "g799G8sjZmYmkbDn6jd+1mC/mxCHSHCDx3fm3z7U5OBpMhE1aiHpQ4pfXOibG6iD8JWBIckFME3JWf4oj8ttVQ==",
         "dependencies": {
-          "Microsoft.Identity.Client": "4.57.0",
+          "Microsoft.Identity.Client": "4.58.0",
           "System.IO.FileSystem.AccessControl": "5.0.0",
           "System.Security.Cryptography.ProtectedData": "4.5.0"
         }
@@ -272,11 +273,11 @@
       },
       "Serilog.Sinks.Console": {
         "type": "Direct",
-        "requested": "[5.0.0, )",
-        "resolved": "5.0.0",
-        "contentHash": "IZ6bn79k+3SRXOBpwSOClUHikSkp2toGPCZ0teUkscv4dpDg9E2R2xVsNkLmwddE4OpNVO3N0xiYsAH556vN8Q==",
+        "requested": "[5.0.1, )",
+        "resolved": "5.0.1",
+        "contentHash": "6Jt8jl9y2ey8VV7nVEUAyjjyxjAQuvd5+qj4XYAT9CwcsvR70HHULGBeD+K2WCALFXf7CFsNQT4lON6qXcu2AA==",
         "dependencies": {
-          "Serilog": "3.1.0"
+          "Serilog": "3.1.1"
         }
       },
       "Azure.Data.AppConfiguration": {
