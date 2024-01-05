@@ -44,11 +44,11 @@
       },
       "FluentValidation.DependencyInjectionExtensions": {
         "type": "Direct",
-        "requested": "[11.8.1, )",
-        "resolved": "11.8.1",
-        "contentHash": "Yyme2uCHnf+HawEHUEj7PguR54TPkx1HJT93/POvHT4xONvUrNfLg3Zt2NUAmIbhMjplb6TPLN8DD9AA7B/3QA==",
+        "requested": "[11.9.0, )",
+        "resolved": "11.9.0",
+        "contentHash": "Ko++xvN7HUf4WlHJL6bhsybUj/uho8ApOYIdxGjpF8Ot7Fukz6LRfRJ06H0KXhWqmMHWEbu89hJbjKJHtg7b9g==",
         "dependencies": {
-          "FluentValidation": "11.8.1",
+          "FluentValidation": "11.9.0",
           "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
         }
       },
@@ -103,9 +103,9 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.120, )",
-        "resolved": "2.0.120",
-        "contentHash": "l7seJUWo99aSbV+Z7az58uGKOW+RlfIqpqLDKOVFRc/lXYCk0k8piLvb8HuanE0WZfELuIsChvfjVy62GnKJpg=="
+        "requested": "[2.0.134, )",
+        "resolved": "2.0.134",
+        "contentHash": "N+63EP3eJLRRZKoD3IpiGWgbdkNOnjxr0VovOBAc69LxUocrlxQ9uZODg2v1QEYQWEF7A3h6YTY0KcHPpe+EcQ=="
       },
       "Microsoft.Azure.AppConfiguration.AspNetCore": {
         "type": "Direct",
@@ -127,11 +127,11 @@
       },
       "Microsoft.FeatureManagement.AspNetCore": {
         "type": "Direct",
-        "requested": "[3.1.0, )",
-        "resolved": "3.1.0",
-        "contentHash": "WM0mpBocKaXxp1sJVLZdBh1wisFeGUOjjIqzwYaY7GJSie/jbsJw9vZgS6CxZPnMKo7X7PUtuK6BbFHkFmkHTg==",
+        "requested": "[3.1.1, )",
+        "resolved": "3.1.1",
+        "contentHash": "dFzRB4cjjjW5Qp5GRoSm1Qnoi2BWVo72gH3OB8rVO1ulrj7hkJALLpH5BnBlIhQNoVJV1oyQVcDjeISXN8um6A==",
         "dependencies": {
-          "Microsoft.FeatureManagement": "3.1.0"
+          "Microsoft.FeatureManagement": "3.1.1"
         }
       },
       "Microsoft.Identity.Client": {
@@ -206,20 +206,20 @@
       },
       "OpenTelemetry.Instrumentation.AspNetCore": {
         "type": "Direct",
-        "requested": "[1.6.0-rc.1, )",
-        "resolved": "1.6.0-rc.1",
-        "contentHash": "8pFH1VI216QpKrl2bXBwkI5h1McO+wHWbEXXS+4cx2BH6Bj+stf0dgQF7o7gI3u3yJNSLSDoV7ICRRRrtugkLg==",
+        "requested": "[1.7.0, )",
+        "resolved": "1.7.0",
+        "contentHash": "K/mjCmuR9zgrL6fMC6sbnX/y6BOJJFI3hp42O+tz8nT/w6sxbfjrLcU+fVwfct3lsnohSKdPfrq6fSrxAF5ezw==",
         "dependencies": {
-          "OpenTelemetry.Api.ProviderBuilderExtensions": "1.6.0"
+          "OpenTelemetry.Api.ProviderBuilderExtensions": "1.7.0"
         }
       },
       "OpenTelemetry.Instrumentation.Runtime": {
         "type": "Direct",
-        "requested": "[1.5.1, )",
-        "resolved": "1.5.1",
-        "contentHash": "F3uYt/T5+2YZCxZmAdoK7u5AZxqDLYaTj5ddZ//Cnn9x+Lys9D9wRzqizQgKpAQJJ6prVh0TcBEbCCpEKKDZvw==",
+        "requested": "[1.7.0, )",
+        "resolved": "1.7.0",
+        "contentHash": "yHMfoLHLJknhPHWwjzIyEWtfAawzRnevVJ4EWfBmZNH1vxoZ8qh8eq3UadymTqm/L6r9BJaLmdp/U4AzHhhY2Q==",
         "dependencies": {
-          "OpenTelemetry.Api": "[1.5.1, 2.0.0)"
+          "OpenTelemetry.Api": "[1.7.0, 2.0.0)"
         }
       },
       "SecurityCodeScan.VS2019": {
@@ -319,8 +319,8 @@
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "11.8.1",
-        "contentHash": "N72rnlE99XYB7EGA1u9y7m7kNTTynqOPBhZqDE8zr1Y0aSR4t5si94LRA7UVdAV09GaXWCErW+EiFhfbg3DSbg=="
+        "resolved": "11.9.0",
+        "contentHash": "VneVlTvwYDkfHV5av3QrQ0amALgrLX6LV94wlYyEsh0B/klJBW7C8y2eAtj5tOZ3jH6CAVpr4s1ZGgew/QWyig=="
       },
       "Google.Protobuf": {
         "type": "Transitive",
@@ -681,8 +681,8 @@
       },
       "Microsoft.FeatureManagement": {
         "type": "Transitive",
-        "resolved": "3.1.0",
-        "contentHash": "UdeNGOWDX2r+OMZWjqgVUOhN/OLVhSIlSL2lJZsO4iciHAh/GGJrYsjAnvMvFMCyabeDhCohwHYWfWAfWp9GnA==",
+        "resolved": "3.1.1",
+        "contentHash": "H9KZxiFSJKGnQtiuHwkvKgw6ij1E9M5lBUtqn1VZPAR1Wy8fkrZOmWwoC+3DJrqOVeZq+riUKuwWst8zEpmtOw==",
         "dependencies": {
           "Microsoft.Extensions.Caching.Memory": "2.1.23",
           "Microsoft.Extensions.Configuration.Binder": "2.1.10",
