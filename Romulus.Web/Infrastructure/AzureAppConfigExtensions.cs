@@ -33,8 +33,10 @@ public static class AzureAppConfigExtensions
 
         configurationBuilder.AddAzureAppConfiguration(opts =>
         {
+            var aazOpts = configuration.GetConnectionString("AppConfig");
+
             opts.Connect(
-                    new Uri(configuration.GetConnectionString("AppConfig")),
+                    new Uri(aazOpts!),
                     new DefaultAzureCredential(azCredOpts))
                 .Select(KeyFilter.Any, LabelFilter.Null);
         });

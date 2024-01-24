@@ -45,7 +45,7 @@ public static class SerilogExtensions
     }
 
 
-    private sealed class SerilogOptions
+    internal sealed class SerilogOptions
     {
         public bool UseConsole { get; set; } = true;
         public string? FilePath
