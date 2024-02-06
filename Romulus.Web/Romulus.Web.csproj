@@ -14,7 +14,7 @@
 
   <PropertyGroup>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-    <AccelerateBuildsInVisualStudio >true</AccelerateBuildsInVisualStudio>
+    <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
     <EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>
     <EnableConfigurationBindingGenerator>true</EnableConfigurationBindingGenerator>
   </PropertyGroup>
@@ -38,7 +38,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Meziantou.Analyzer" Version="2.0.138">
+    <PackageReference Include="Meziantou.Analyzer" Version="2.0.139">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
