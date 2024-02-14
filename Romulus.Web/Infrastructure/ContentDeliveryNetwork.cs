@@ -16,9 +16,9 @@ public static class ContentDeliveryNetwork
 		public const string Domain = "cdn.jsdelivr.net";
 
 		public const string BootstrapCssUrl =
-		  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css";
+		  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css";
 
-		public const string BootstrapJsUrl = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js";
+		public const string BootstrapJsUrl = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js";
 	}
 
 	public static class Cloudflare
