@@ -32,7 +32,8 @@ stages:
                 buildType: 'specific'
                 project: '4be30c19-ce7f-46bc-94f9-f712d0faf9ba'
                 definition: '13'
-                buildVersionToDownload: 'latest'
+                buildVersionToDownload: 'specific'
+                pipelineId: $(resources.pipeline.RomulusWeb-Build.runiD)
                 artifactName: 'drop'
                 targetPath: '$(System.DefaultWorkingDirectory)/_MadhonCOMWebsite'
             - task: CopyFilesOverSSH@0
