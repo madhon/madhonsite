@@ -1,6 +1,6 @@
 namespace Romulus.Web.Features.Contact;
 
-public class Send
+public static class Send
 {
     public record Command : ICommand
     {
@@ -9,7 +9,7 @@ public class Send
         public string Message { get; init; } = default!;
     }
 
-    public class CommandValidator : AbstractValidator<Command>
+    public sealed class CommandValidator : AbstractValidator<Command>
     {
         public CommandValidator()
         {
@@ -20,7 +20,7 @@ public class Send
         }
     }
 
-    public class Handler : ICommandHandler<Command>
+    public sealed class Handler : ICommandHandler<Command>
     {
         private readonly ITransport transport;
 

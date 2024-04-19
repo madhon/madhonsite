@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
+﻿
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateSlimBuilder(args);
 
 AppVersionInfo.InitialiseBuildInfoGivenPath(Directory.GetCurrentDirectory());
 

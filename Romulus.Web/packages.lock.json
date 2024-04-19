@@ -20,13 +20,13 @@
       },
       "Azure.Identity": {
         "type": "Direct",
-        "requested": "[1.11.0, )",
-        "resolved": "1.11.0",
-        "contentHash": "JcpkMpW8Wx/XfQfMiSc9ecdIy0GhdpsMCT3Lh8EJZQ/NN6OxPeY7OAcfmucsvdfrldbFJd04m+Kfd+1QILBAgg==",
+        "requested": "[1.11.1, )",
+        "resolved": "1.11.1",
+        "contentHash": "gxdWsy9hQVijmPkgz0ZrrjGTfyTYs2YGe60JXHn2MWXSkt1sB/b9HcGkN8vaYmspkdGWDvdReNuHhDg423IOMw==",
         "dependencies": {
           "Azure.Core": "1.38.0",
-          "Microsoft.Identity.Client": "4.60.1",
-          "Microsoft.Identity.Client.Extensions.Msal": "4.60.1",
+          "Microsoft.Identity.Client": "4.60.3",
+          "Microsoft.Identity.Client.Extensions.Msal": "4.60.3",
           "System.Memory": "4.5.4",
           "System.Security.Cryptography.ProtectedData": "4.7.0",
           "System.Text.Json": "4.7.2",
@@ -118,9 +118,9 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.147, )",
-        "resolved": "2.0.147",
-        "contentHash": "bloVeZFFQKeJ8QO65XgN1FTHvzKGU523otZjDvQU4Wu7FLWbd/AjWoDFlCaSpBiC+awD/B8Q7CuwINJEVMsk+Q=="
+        "requested": "[2.0.149, )",
+        "resolved": "2.0.149",
+        "contentHash": "nJaiWMp6AlosBpl3sJO/frbqiImPBHodaJpcwlA/ez3zwjj9ZF4oeH0tWHSRFW8+e5mJMswlc3Kwl8DFskVOCg=="
       },
       "Microsoft.Azure.AppConfiguration.AspNetCore": {
         "type": "Direct",
@@ -253,6 +253,18 @@
         "dependencies": {
           "OpenTelemetry.Api": "[1.8.0, 2.0.0)"
         }
+      },
+      "Roslynator.Analyzers": {
+        "type": "Direct",
+        "requested": "[4.12.1, )",
+        "resolved": "4.12.1",
+        "contentHash": "spdzd9cce7fvmAKlrRjDArKN0ytYHmmcYfAojUFFDPzTOheWGAk4xmAP3y5kEGtYnkUYRo4onO8YEggQFDUZtA=="
+      },
+      "Roslynator.Formatting.Analyzers": {
+        "type": "Direct",
+        "requested": "[4.12.1, )",
+        "resolved": "4.12.1",
+        "contentHash": "CxPpTLRwRUii+CbkizxCEiUD5d7rxzl/9eFByuQP/NFgS1a8eJdvJpMFWJdnDWhD8E8l6SSA8Y8UWw4NIoZslA=="
       },
       "SecurityCodeScan.VS2019": {
         "type": "Direct",
