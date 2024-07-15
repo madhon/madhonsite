@@ -1,0 +1,12 @@
+jobs:
+  - job: CreateGitTag
+    displayName: "Create git tag"
+    steps:
+      - checkout: self
+        persistCredentials: true
+        clean: true
+      - script: |
+          git config --global user.name "Azure DevOps"
+          git config --global user.email "AZDO@madhon.co.uk"
+          git tag -a $(Build.BuildNumber) -m $(Build.BuildNumber)
+          git push origin $(Build.BuildNumber)
