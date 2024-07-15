@@ -1,4 +1,4 @@
-obs:
+jobs:
   - job: GenerateReleaseNotes
     displayName: "Generate Release Notes"
     steps:
