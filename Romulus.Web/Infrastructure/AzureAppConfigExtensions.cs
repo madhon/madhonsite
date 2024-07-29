@@ -45,7 +45,7 @@ public static class AzureAppConfigExtensions
         if (environment.IsDevelopment())
         {
             var appAssembly = Assembly.Load(new AssemblyName(environment.ApplicationName));
-            configurationBuilder.AddUserSecrets(appAssembly, true, true);
+            configurationBuilder.AddUserSecrets(appAssembly, optional: true, reloadOnChange: true);
         }
 
         return services;

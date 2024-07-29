@@ -1,5 +1,6 @@
 ﻿namespace Romulus.Web.Infrastructure;
 
+using OpenTelemetry;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
@@ -50,13 +51,11 @@ public static class OpenTelemetryExtensions
         var useOtlpExporter = !string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);
         if (useOtlpExporter)
         {
-            builder.Services.Configure<OpenTelemetryLoggerOptions>(logging => logging.AddOtlpExporter());
-            builder.Services.ConfigureOpenTelemetryMeterProvider(metrics => metrics.AddOtlpExporter());
-            builder.Services.ConfigureOpenTelemetryTracerProvider(tracing => tracing.AddOtlpExporter());
+            builder.Services.AddOpenTelemetry().UseOtlpExporter();
         }
 
         var honeycombOptions = builder.Configuration.GetHoneycombOptions();
-        if (honeycombOptions is not null)
+        if (honeycombOptions is not null && !string.IsNullOrEmpty(honeycombOptions.ApiKey))
         {
             builder.Services.AddOpenTelemetry()
                 .WithTracing(tracing => tracing.AddHoneycomb(honeycombOptions))
