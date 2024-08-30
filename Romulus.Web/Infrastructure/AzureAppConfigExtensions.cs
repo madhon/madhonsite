@@ -31,6 +31,8 @@ public static class AzureAppConfigExtensions
 
         //var azEventSourceListener = AzureEventSourceListener.CreateConsoleLogger(System.Diagnostics.Tracing.EventLevel.Verbose);
 
+        services.AddAzureAppConfiguration();
+
         configurationBuilder.AddAzureAppConfiguration(opts =>
         {
             var aazOpts = configuration.GetConnectionString("AppConfig");
@@ -49,5 +51,16 @@ public static class AzureAppConfigExtensions
         }
 
         return services;
+    }
+
+    public static WebApplication UseAzureAppConfig(this WebApplication app)
+    {
+        if (string.IsNullOrEmpty(app.Configuration.GetConnectionString("AppConfig")))
+        {
+            return app;
+        }
+
+        app.UseAzureAppConfiguration();
+        return app;
     }
 }

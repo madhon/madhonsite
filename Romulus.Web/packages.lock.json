@@ -173,9 +173,9 @@
       },
       "Microsoft.Identity.Client": {
         "type": "Direct",
-        "requested": "[4.63.0, )",
-        "resolved": "4.63.0",
-        "contentHash": "J+4j85UCu6B6d/tbbYh6u/FsSVmmUhFzkmkY8r1wZObv9fJWmOO+zCb7QJzd6Yq9QrhN1nfGbjM2tI9IAGSOww==",
+        "requested": "[4.64.0, )",
+        "resolved": "4.64.0",
+        "contentHash": "LY5Mr3+UdjWdc5ej93bE0uYTs5ZpD4zzg3w69tSO8b+JieEGZ6t0eUX003/x7gPadsxCw2RKLNKtfRGxWrUsNQ==",
         "dependencies": {
           "Microsoft.IdentityModel.Abstractions": "6.35.0",
           "System.Diagnostics.DiagnosticSource": "6.0.1"
@@ -183,11 +183,11 @@
       },
       "Microsoft.Identity.Client.Extensions.Msal": {
         "type": "Direct",
-        "requested": "[4.63.0, )",
-        "resolved": "4.63.0",
-        "contentHash": "wZm+Ncm/Q6YSZdlz/Qo54kSR8CdB6hFNc00km6Y6Lgp5arzTI321nOTh/7+HPeDv0Y7sYmyJ575l0kE1DnAmlg==",
+        "requested": "[4.64.0, )",
+        "resolved": "4.64.0",
+        "contentHash": "7bQCUz6rYBJYeVm3548dizD+Ww+ZSBUTignAZM5N8EUvG9ItSsUDeCVxDghidOqvbI9WBtEQe9v4BG/Eu7lOgg==",
         "dependencies": {
-          "Microsoft.Identity.Client": "4.63.0",
+          "Microsoft.Identity.Client": "4.64.0",
           "System.Security.Cryptography.ProtectedData": "4.5.0"
         }
       },
@@ -204,17 +204,17 @@
       },
       "NetEscapades.AspNetCore.SecurityHeaders": {
         "type": "Direct",
-        "requested": "[0.22.0, )",
-        "resolved": "0.22.0",
-        "contentHash": "8Nzff7nu6SdvV7tq4six1P4ALIwFhpIaOFzYEfLlUi1qWZXoaC/kaUF+BXYRw9Jh7SfA2580z21ATg8OY0xfUg=="
+        "requested": "[0.23.0, )",
+        "resolved": "0.23.0",
+        "contentHash": "wOi6FuJF9VmsPMTyaYeHTrTqa/ZmSXHrZzuJVRhfJL6wxRw1YDpeoXFdOl/j4K5iqCgnvm7WaA83Kzs7DpuFRA=="
       },
       "NetEscapades.AspNetCore.SecurityHeaders.TagHelpers": {
         "type": "Direct",
-        "requested": "[0.22.0, )",
-        "resolved": "0.22.0",
-        "contentHash": "J/f2vPYbaQsZaYvePaBEAZafE33rB6p9gOiXI66sgI+15h9Lc2AswFpZ8epOxJVZorVCkx1l/fUmn7PVZoGyUA==",
+        "requested": "[0.23.0, )",
+        "resolved": "0.23.0",
+        "contentHash": "KBbI4DklL8RF1wiuVAs8ugtudbIb7WfQvmwTC1U7sxiZeQhlSHc6/qkQGRHCjPHD9/WSqxT04v2WjsqZ9VYJfQ==",
         "dependencies": {
-          "NetEscapades.AspNetCore.SecurityHeaders": "0.22.0"
+          "NetEscapades.AspNetCore.SecurityHeaders": "0.23.0"
         }
       },
       "OpenTelemetry.Exporter.OpenTelemetryProtocol": {
