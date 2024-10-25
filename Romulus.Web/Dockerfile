@@ -1,7 +1,7 @@
 ARG VERSION=8.0-azurelinux3.0-distroless-extra
 ARG SDKVERSION=8.0-azurelinux3.0
 
-FROM mcr.microsoft.com/dotnet/sdk:$VERSION  AS build
+FROM mcr.microsoft.com/dotnet/sdk:$SDKVERSION  AS build
 WORKDIR /src
 
 COPY ["Romulus.Web.csproj", "Romulus.Web.csproj"]
