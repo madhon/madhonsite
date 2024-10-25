@@ -1,6 +1,4 @@
-﻿
-
-var builder = WebApplication.CreateSlimBuilder(args);
+﻿var builder = WebApplication.CreateSlimBuilder(args);
 
 AppVersionInfo.InitialiseBuildInfoGivenPath(Directory.GetCurrentDirectory());
 
@@ -41,7 +39,8 @@ builder.Services.AddResponseCaching();
 builder.Services.AddMediator(opts=> opts.ServiceLifetime = ServiceLifetime.Scoped);
 
 builder.Services.AddControllersWithViews(opts => opts.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()))
-	.AddFeatureFolders();
+	.AddFeatureFolders()
+    .AddJsonOptions(opts => opts.JsonSerializerOptions.TypeInfoResolverChain.Insert(0, AppJsonSerializerContext.Default));
 
 builder.Services.AddFluentValidationAutoValidation(config =>
 {
@@ -61,7 +60,7 @@ app.UseSerilogRequestLogging();
 app.MapHealthChecks("/healthz");
 app.MapHealthChecks("/liveness", new HealthCheckOptions
 {
-    Predicate = r => r.Tags.Contains("live")
+    Predicate = r => r.Tags.Contains("live"),
 });
 
 if (app.Environment.IsDevelopment())

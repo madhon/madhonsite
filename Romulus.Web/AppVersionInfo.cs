@@ -2,7 +2,9 @@
 
 using System.Text.Json;
 
+#pragma warning disable MA0048
 public record BuildInfo(string BranchName, string BuildNumber, string BuildId, string CommitHash);
+#pragma warning restore MA0048
 
 public static class AppVersionInfo
 {
@@ -15,7 +17,6 @@ public static class AppVersionInfo
         CommitHash: $"Not yet initialised - call {nameof(InitialiseBuildInfoGivenPath)}"
     );
 
-
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "MA0011:IFormatProvider is missing", Justification = "Build versioning")]
     public static void InitialiseBuildInfoGivenPath(string path)
     {
@@ -25,17 +26,8 @@ public static class AppVersionInfo
             try
             {
                 var buildInfoJson = File.ReadAllText(buildFilePath);
-                var buildInfo = JsonSerializer.Deserialize<BuildInfo>(buildInfoJson, new JsonSerializerOptions
-                {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                });
-
-                if (buildInfo == null)
-                {
-                    throw new Exception($"Failed to deserialise {_buildFileName}");
-                }
-
-                _fileBuildInfo = buildInfo;
+                var buildInfo = JsonSerializer.Deserialize<BuildInfo>(buildInfoJson, AppJsonSerializerContext.Default.BuildInfo);
+                _fileBuildInfo = buildInfo ?? throw new Exception($"Failed to deserialise {_buildFileName}");
             }
             catch (Exception)
             {
