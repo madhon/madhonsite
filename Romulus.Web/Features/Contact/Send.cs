@@ -41,7 +41,7 @@ public static class Send
 
         public async ValueTask<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
-            var message = CreateMailMessage(request);
+            using var message = CreateMailMessage(request);
             await transport.DeliverAsync(message, cancellationToken).ConfigureAwait(false);
             return new Unit();
         }

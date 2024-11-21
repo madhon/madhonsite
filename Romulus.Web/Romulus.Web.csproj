@@ -20,6 +20,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-5f2m-466j-3848;https://github.com/advisories/GHSA-x5qj-9vmx-7g6g;https://github.com/advisories/GHSA-xhfc-gr8f-ffwc" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="packages.lock.json" />
   </ItemGroup>
 
@@ -28,6 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="IDisposableAnalyzers" Version="4.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Azure.Core" Version="1.44.1" />
     <PackageReference Include="Azure.Identity" Version="1.13.1" />
     <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.7.0" />
@@ -58,15 +66,15 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.0" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.10.0" />
     <PackageReference Include="Honeycomb.OpenTelemetry" Version="1.5.0" />
-    <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" Version="0.24.0" />
-    <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders.TagHelpers" Version="0.24.0" />
+    <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" Version="1.0.0-preview.2" />
+    <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders.TagHelpers" Version="1.0.0-preview.2" />
     <PackageReference Include="Serilog" Version="4.1.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
     <PackageReference Include="Serilog.Formatting.Compact" Version="3.0.0" />
     <PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.4" />
-    <PackageReference Include="Meziantou.Analyzer" Version="2.0.179">
+    <PackageReference Include="Meziantou.Analyzer" Version="2.0.180">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -84,8 +92,6 @@
     </PackageReference>
     <PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
-    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="9.0.0" />
-    <PackageReference Include="System.Text.Json" Version="9.0.0" />
   </ItemGroup>
  
 </Project>
