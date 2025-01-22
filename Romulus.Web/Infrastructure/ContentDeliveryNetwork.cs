@@ -29,7 +29,7 @@ public static class ContentDeliveryNetwork
 		public const string ParsleyUrl = "https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js";
 
 		public const string Migrate3Url =
-		  "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.5.2/jquery-migrate.min.js";
+		  "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.5.2/jquery-migrate.js";
 	}
 
 	public static class UnPkg

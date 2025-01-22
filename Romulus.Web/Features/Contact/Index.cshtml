@@ -1,4 +1,3 @@
-@using Romulus.Web.Infrastructure
 @model Romulus.Web.Features.Contact.Send.Command
 
 @{
@@ -12,21 +11,21 @@
         <div class="form-group row">
             <label class="col-lg-2 col-form-label" for="Name">Name</label>
             <div class="col-lg-6">
-                <input asp-for="Name" class="form-control" placeholder="Your Name" type="text" value="" autocomplete="name" autofocus required/>
+                <input asp-for="Name" class="form-control" placeholder="Your Name" type="text" value="" autocomplete="name" autofocus required />
             </div>
         </div>
 
         <div class="form-group row">
             <label class="col-lg-2 col-form-label" for="Email">Email</label>
             <div class="col-lg-6">
-                <input asp-for="Email" class="form-control" placeholder="Your Email Address" type="email" value="" autocomplete="email" data-parsley-trigger="change" required/>
+                <input asp-for="Email" class="form-control" placeholder="Your Email Address" type="email" value="" autocomplete="email" required/>
             </div>
         </div>
 
 	    <div class="form-group row">
 		    <label class="col-lg-2 col-form-label" for="Message">Message</label>
 		    <div class="col-lg-6">
-			    <textarea asp-for="Message" class="form-control" cols="100" data-val="true" data-val-required="Enter your message" placeholder="Your message"  autocomplete="off" rows="5" required></textarea>
+			    <textarea asp-for="Message" class="form-control" cols="100" placeholder="Enter Your message"  autocomplete="off" rows="5" required></textarea>
 		    </div>
 	    </div>
     </fieldset>
@@ -36,8 +35,4 @@
     </div>
 </form>
 
-@section scriptFiles {
-    <script type="text/javascript" src="@ContentDeliveryNetwork.Cloudflare.ParsleyUrl"></script>
-    <script type="text/javascript" src="~/Content/js/contact.js" asp-append-version="true"></script>
-}
 
