@@ -26,6 +26,21 @@ stages:
         deploy:    
           steps:
             - download: none
+            - task: Bash@3
+              displayName: 'Who Approved'
+              env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+              inputs:
+                targetType: inline
+                script: |
+                  organization="madhon"
+                  project="MadhonCOMWebsite"
+                  uri="https://dev.azure.com/$organization/$project/_apis/pipelines/approvals?\$expand=steps&api-version=7.1-preview.1"
+                  response=$(curl -X GET -u :$SYSTEM_ACCESSTOKEN $uri)
+                  actualApprovers=$(echo $response | jq '.value[] | select(.pipeline.owner.id==$(Build.BuildId))' | jq -r '.steps[].actualApprover.displayName')
+                  echo "-----------------------------------------------"
+                  echo "The following users approved this deployment:"
+                  echo "$actualApprovers"              
             - task: DownloadPipelineArtifact@2
               displayName: 'Download Build Artifact'
               inputs:
