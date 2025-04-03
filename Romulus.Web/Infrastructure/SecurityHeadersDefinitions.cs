@@ -59,7 +59,7 @@ public static class SecurityHeadersDefinitions
                 p.AddMediaSrc().Self();
                 p.AddBaseUri().Self();
                 p.AddFrameSrc().Self();
-            
+
                 p.AddConnectSrc().None();
 
                 p.AddImgSrc()

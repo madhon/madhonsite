@@ -1,5 +1,5 @@
-ARG VERSION=9.0-azurelinux3.0-distroless-extra
-ARG SDKVERSION=9.0-azurelinux3.0
+ARG VERSION=9.0-noble-chiseled-extra
+ARG SDKVERSION=9.0-noble
 
 FROM mcr.microsoft.com/dotnet/sdk:$SDKVERSION  AS build
 WORKDIR /src
@@ -23,7 +23,7 @@ RUN dotnet publish \
 
 
 FROM  mcr.microsoft.com/dotnet/runtime-deps:$VERSION
-HEALTHCHECK --interval=5s --timeout=10s --retries=3 CMD curl --silent --fail http://localhost:8080/healthz || exit 1
+#HEALTHCHECK --interval=5s --timeout=10s --retries=3 CMD curl --silent --fail http://localhost:8080/healthz || exit 1
 
 USER $APP_UID
 WORKDIR /app

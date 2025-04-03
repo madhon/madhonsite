@@ -4,18 +4,18 @@ using Serilog.Settings.Configuration;
 
 public static class SerilogExtensions
 {
-    public static IHostBuilder AddSerilog(this IHostBuilder host, IConfiguration configuration, IWebHostEnvironment environment, string sectionName = "Serilog")
+    public static WebApplicationBuilder AddSerilog(this WebApplicationBuilder builder, string sectionName = "Serilog")
     {
         var serilogOptions = new SerilogOptions();
-        configuration.GetSection(sectionName).Bind(serilogOptions);
+        builder.Configuration.GetSection(sectionName).Bind(serilogOptions);
 
-        host.UseSerilog((context, loggerConfiguration) =>
+        builder.Services.AddSerilog(loggerConfiguration =>
         {
             var options = new ConfigurationReaderOptions { SectionName = sectionName };
-            loggerConfiguration.ReadFrom.Configuration(context.Configuration, options);
+            loggerConfiguration.ReadFrom.Configuration(builder.Configuration, options);
 
             loggerConfiguration
-                .Enrich.WithProperty("Application", environment.ApplicationName)
+                .Enrich.WithProperty("Application", builder.Environment.ApplicationName)
                 .Enrich.FromLogContext();
 
             loggerConfiguration.MinimumLevel.Override("Microsoft", LogEventLevel.Information);
@@ -24,9 +24,7 @@ public static class SerilogExtensions
             if (serilogOptions.UseConsole)
             {
                 loggerConfiguration.WriteTo.Async(writeTo =>
-                {
-                    writeTo.Console(outputTemplate: serilogOptions.LogTemplate);
-                });
+                    writeTo.Console(outputTemplate: serilogOptions.LogTemplate));
             }
 
             if (!string.IsNullOrEmpty(serilogOptions.FilePath))
@@ -35,15 +33,14 @@ public static class SerilogExtensions
                 {
                     writeTo.File(serilogOptions.FilePath,
                         outputTemplate: serilogOptions.LogTemplate,
-                        rollingInterval: RollingInterval.Day, shared: true);
+                        shared: true,
+                        rollingInterval: RollingInterval.Day);
                 });
             }
-
         });
 
-        return host;
+        return builder;
     }
-
 
     internal sealed class SerilogOptions
     {
