@@ -42,7 +42,7 @@ stages:
         displayName: Trivy Scan
         inputs:
           version: latest
-          docker: false
+          method: install
           type: 'image'
           target: '$(imageRepository):$(tag)'
           scanners: 'misconfig, secret, vuln'
