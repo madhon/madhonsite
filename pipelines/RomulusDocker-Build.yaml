@@ -17,7 +17,7 @@ variables:
   
 stages:
   - stage: Build
-    displayName: Build and Push Image
+    displayName: 'Build, Scan and Push Image'
     jobs:
     - job: Build
       displayName: Build
@@ -46,11 +46,12 @@ stages:
           type: 'image'
           target: '$(imageRepository):$(tag)'
           scanners: 'misconfig, secret, vuln'
-          severities: 'HIGH, CRITICAL'
+#          severities: 'HIGH, CRITICAL'
           reports: 'sarif'
+          publish: true
 
       - task: Docker@2
-        displayName: Build and Push to $(imageRepository):$(tag)
+        displayName: Push $(imageRepository):$(tag) to Docker
         inputs:
           command: Push
           containerRegistry: $(dockerRegistryServiceConnection)
