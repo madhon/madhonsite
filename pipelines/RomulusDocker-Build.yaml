@@ -28,10 +28,27 @@ stages:
         fetchDepth: 1
         fetchTags: false
         clean: true
+
+      - task: Docker@2
+        displayName: Build $(imageRepository):$(tag)
+        inputs:
+          command: build
+          containerRegistry: $(dockerRegistryServiceConnection)
+          repository: $(imageRepository)
+          Dockerfile: $(dockerfilePath)
+          tags: $(tag)
+          
+      - task: Trivy@2
+        displayName: Trivy Scan
+        inputs:
+          docker: false
+          type: 'image'
+          image: '$(imageRepository):$(tag)'
+
       - task: Docker@2
         displayName: Build and Push to $(imageRepository):$(tag)
         inputs:
-          command: buildAndPush
+          command: Push
           containerRegistry: $(dockerRegistryServiceConnection)
           repository: $(imageRepository)
           Dockerfile: $(dockerfilePath)
