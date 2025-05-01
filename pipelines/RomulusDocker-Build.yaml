@@ -46,7 +46,7 @@ stages:
           type: 'image'
           target: '$(imageRepository):$(tag)'
           scanners: 'misconfig, secret, vuln'
-#          severities: 'HIGH, CRITICAL'
+          severities: 'HIGH, CRITICAL'
           reports: 'sarif'
           publish: true
 
