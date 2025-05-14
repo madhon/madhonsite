@@ -42,9 +42,11 @@ builder.Services.AddControllersWithViews(opts => opts.Filters.Add(new AutoValida
 	.AddFeatureFolders()
     .AddJsonOptions(opts => opts.JsonSerializerOptions.TypeInfoResolverChain.Insert(0, AppJsonSerializerContext.Default));
 
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+
 builder.Services.AddFluentValidationAutoValidation(config =>
 {
-	config.DisableDataAnnotationsValidation = true;
+    config.DisableDataAnnotationsValidation = true;
 });
 
 builder.Services.AddFluentValidationClientsideAdapters();
