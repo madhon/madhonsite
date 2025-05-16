@@ -23,11 +23,11 @@ builder.Services.Configure<RouteOptions>(options =>
     options.LowercaseUrls = true;
 });
 
-builder.Services.AddScoped<ITransport, NullTransport>();
+builder.Services.AddMailTransport();
 
 builder.Services.AddServerTiming();
 
-builder.Services.AddAntiForgerySecurely(builder.Environment);
+builder.Services.AddAntiForgerySecurely();
 
 builder.Services.AddRouting();
 
@@ -42,14 +42,7 @@ builder.Services.AddControllersWithViews(opts => opts.Filters.Add(new AutoValida
 	.AddFeatureFolders()
     .AddJsonOptions(opts => opts.JsonSerializerOptions.TypeInfoResolverChain.Insert(0, AppJsonSerializerContext.Default));
 
-builder.Services.AddValidatorsFromAssemblyContaining<Program>();
-
-builder.Services.AddFluentValidationAutoValidation(config =>
-{
-    config.DisableDataAnnotationsValidation = true;
-});
-
-builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddFluentValidators();
 
 builder.Services.AddFeatureManagement();
 

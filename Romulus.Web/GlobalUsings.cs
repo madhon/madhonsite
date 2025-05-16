@@ -14,7 +14,6 @@ global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 global using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 global using FluentValidation;
-global using FluentValidation.AspNetCore;
 global using Mediator;
 global using MimeKit;
 global using MailKit.Net.Smtp;

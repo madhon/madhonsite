@@ -54,14 +54,6 @@ public static class OpenTelemetryExtensions
             builder.Services.AddOpenTelemetry().UseOtlpExporter();
         }
 
-        var honeycombOptions = builder.Configuration.GetHoneycombOptions();
-        if (honeycombOptions is not null && !string.IsNullOrEmpty(honeycombOptions.ApiKey))
-        {
-            builder.Services.AddOpenTelemetry()
-                .WithTracing(tracing => tracing.AddHoneycomb(honeycombOptions))
-                .WithMetrics(metrics => metrics.AddHoneycomb(honeycombOptions));
-        }
-
         return builder;
     }
 

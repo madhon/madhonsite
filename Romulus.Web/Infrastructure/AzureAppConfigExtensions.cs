@@ -24,7 +24,7 @@ public static class AzureAppConfigExtensions
             ExcludeInteractiveBrowserCredential = true,
             ExcludeManagedIdentityCredential = false,
             ExcludeSharedTokenCacheCredential = true,
-            ExcludeVisualStudioCodeCredential = false,
+            //ExcludeVisualStudioCodeCredential = false,
             ExcludeVisualStudioCredential = false,
             ExcludeWorkloadIdentityCredential = true,
         };

@@ -1,8 +1,22 @@
 namespace Romulus.Web;
 
+using Romulus.Web.Features.Contact;
+
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddAntiForgerySecurely(this IServiceCollection services, IHostEnvironment env)
+    public static IServiceCollection AddFluentValidators(this IServiceCollection services)
+    {
+        services.AddScoped<IValidator<Send.Command>, Send.CommandValidator>();
+        return services;
+    }
+
+    public static IServiceCollection AddMailTransport(this IServiceCollection services)
+    {
+        services.AddScoped<ITransport, NullTransport>();
+        return services;
+    }
+
+    public static IServiceCollection AddAntiForgerySecurely(this IServiceCollection services)
     {
         return services.AddAntiforgery(
             options =>
@@ -48,5 +62,4 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddServerTiming(this IServiceCollection services) =>
         services.AddSingleton<ServerTimingMiddleware>();
-
 }
