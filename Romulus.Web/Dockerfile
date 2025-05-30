@@ -1,4 +1,4 @@
-ARG VERSION=9.0-noble-chiseled-extra
+ARG VERSION=9.0-noble-chiseled
 ARG SDKVERSION=9.0-noble
 
 FROM mcr.microsoft.com/dotnet/sdk:$SDKVERSION  AS build
@@ -18,7 +18,7 @@ RUN dotnet publish \
   --runtime linux-x64\
   --self-contained true \
   -c Release \
-  /p:PublishSingleFile=true -p:PublishTrimmed=True -p:TrimMode=CopyUsed -p:_TrimmerDefaultAction=copy \
+  /p:PublishSingleFile=true \
   -o /app/publish
 
 

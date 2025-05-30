@@ -2,7 +2,7 @@ namespace Romulus.Web.Features.Home;
 
 public class HomeController : Controller
 {
-    private static readonly string[] tenHoursOfFun =
+    private static readonly string[] TenHoursOfFun =
     {
         "https://www.youtube.com/watch?v=wbby9coDRCk",
         "https://www.youtube.com/watch?v=nb2evY0kmpQ",
@@ -29,7 +29,6 @@ public class HomeController : Controller
     [HttpGet()]
     [AllowAnonymous()]
     public IActionResult Index() => View();
-		
     [Route("admin.php")]
     [Route("admin/login.php")]
     [Route("administrator/index.php")]
@@ -45,5 +44,5 @@ public class HomeController : Controller
     [Route("xmlrpc.php")]
     [HttpGet()]
     [AllowAnonymous()]
-    public ActionResult No() => Redirect(tenHoursOfFun[RandomNumberGenerator.GetInt32(0, tenHoursOfFun.Length)]);
+    public ActionResult No() => Redirect(TenHoursOfFun[RandomNumberGenerator.GetInt32(0, TenHoursOfFun.Length)]);
 }
