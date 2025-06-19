@@ -36,14 +36,11 @@
       },
       "Azure.Security.KeyVault.Secrets": {
         "type": "Direct",
-        "requested": "[4.7.0, )",
-        "resolved": "4.7.0",
-        "contentHash": "uOPCojkm41V4dKTORyGzl3/f/lriKpxSQ43fWDn4StRJBVmbF1F/DNWJhwm207kCnqgE/W9+tskJSimIKHCZkw==",
+        "requested": "[4.8.0, )",
+        "resolved": "4.8.0",
+        "contentHash": "tmcIgo+de2K5+PTBRNlnFLQFbmSoyuT9RpDr5MwKS6mIfNxLPQpARkRAP91r3tmeiJ9j/UCO0F+hTlk1Bk7HNQ==",
         "dependencies": {
-          "Azure.Core": "1.44.1",
-          "System.Memory": "4.5.5",
-          "System.Text.Json": "6.0.10",
-          "System.Threading.Tasks.Extensions": "4.5.4"
+          "Azure.Core": "1.46.2"
         }
       },
       "FluentValidation.DependencyInjectionExtensions": {
@@ -100,9 +97,9 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.201, )",
-        "resolved": "2.0.201",
-        "contentHash": "ehMMCZcz1jFsMlxf62K4LBp9t+dF1spSwr4vjWRAiMvc8lVKw27dNpKH7bnrropwdWTSWDim9arCvyNyfPTEnA=="
+        "requested": "[2.0.202, )",
+        "resolved": "2.0.202",
+        "contentHash": "VDsrL0SRYoR6t975NExCRgZzGIYudgIETUAPnyMG17sr9I9OzNGzpwX1dHOPSd8Ue28ltnNiOL3czLmNdQngYA=="
       },
       "Microsoft.Azure.AppConfiguration.AspNetCore": {
         "type": "Direct",
@@ -167,9 +164,9 @@
       },
       "Microsoft.Identity.Client": {
         "type": "Direct",
-        "requested": "[4.72.1, )",
-        "resolved": "4.72.1",
-        "contentHash": "U3FbgYeKbU34zP17vi4xO70U5WiVO4GcqHbGwfqzAGJMQQfzkdEK5Ue69mI1tWj7Ft2lbJJ9Wsho9/6Jn5OKqQ==",
+        "requested": "[4.73.0, )",
+        "resolved": "4.73.0",
+        "contentHash": "31+VEPw9vIr4jqWKcUfeGxraafAtLDVIfbedhdfxCisj3CiPyH8rznDiYl/vLnhv7myMzmCQCb0bhxH6/hYRew==",
         "dependencies": {
           "Microsoft.IdentityModel.Abstractions": "6.35.0",
           "System.Diagnostics.DiagnosticSource": "6.0.1"
@@ -177,11 +174,11 @@
       },
       "Microsoft.Identity.Client.Extensions.Msal": {
         "type": "Direct",
-        "requested": "[4.72.1, )",
-        "resolved": "4.72.1",
-        "contentHash": "yFdAwNqc7VLcB3UhgbPwPVo6DTywXrMf0NTZZZHJiD0Qu3aG2vJtKghlEj/VLwY80SmnebZiPkGdkmPUfSMCbA==",
+        "requested": "[4.73.0, )",
+        "resolved": "4.73.0",
+        "contentHash": "3MPudLLJTETwaVbIMCrjPudharswjLRpzJtX2d6Bhp5ZsN+jYHWh5M2uf9l7tfb3gLR9zg0e2GCTfdc0yWJogQ==",
         "dependencies": {
-          "Microsoft.Identity.Client": "4.72.1",
+          "Microsoft.Identity.Client": "4.73.0",
           "System.Security.Cryptography.ProtectedData": "4.5.0"
         }
       },
