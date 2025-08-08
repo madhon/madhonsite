@@ -1,6 +1,6 @@
 ﻿namespace Romulus.Web.Infrastructure;
 
-public static class SecurityHeadersDefinitions
+internal static class SecurityHeadersDefinitions
 {
     public static HeaderPolicyCollection GetHeaderPolicyCollection(bool cspReportOnly)
     {

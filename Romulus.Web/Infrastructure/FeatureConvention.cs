@@ -5,7 +5,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using System.Linq;
 
-public class FeatureConvention : IControllerModelConvention
+internal sealed class FeatureConvention : IControllerModelConvention
 {
     public void Apply(ControllerModel controller)
     {

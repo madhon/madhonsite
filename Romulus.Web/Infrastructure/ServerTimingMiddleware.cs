@@ -1,6 +1,6 @@
 namespace Romulus.Web.Infrastructure;
 
-public class ServerTimingMiddleware : IMiddleware
+internal sealed class ServerTimingMiddleware : IMiddleware
 {
     private const string ServerTimingHttpHeader = "Server-Timing";
 

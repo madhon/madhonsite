@@ -2,7 +2,7 @@ namespace Romulus.Web;
 
 using Romulus.Web.Features.Contact;
 
-public static class ServiceCollectionExtensions
+internal static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddFluentValidators(this IServiceCollection services)
     {
@@ -35,10 +35,7 @@ public static class ServiceCollectionExtensions
 
     public static IMvcBuilder AddFeatureFolders(this IMvcBuilder services)
     {
-        if (services is null)
-        {
-            throw new ArgumentNullException(nameof(services));
-        }
+        ArgumentNullException.ThrowIfNull(services);
 
         var expander = new FeatureViewLocationExpander();
 

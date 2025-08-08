@@ -1,18 +1,19 @@
 ﻿namespace Romulus.Web;
 
+using System.Globalization;
 using System.Text.Json;
 
 #pragma warning disable MA0048
-public record BuildInfo(string BranchName, string BuildNumber, string BuildId, string CommitHash);
+internal sealed record BuildInfo(string BranchName, string BuildNumber, string BuildId, string CommitHash);
 #pragma warning restore MA0048
 
-public static class AppVersionInfo
+internal static class AppVersionInfo
 {
     private const string _buildFileName = "buildinfo.json";
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "MA0011:IFormatProvider is missing", Justification = "Build versioning")]
     private static BuildInfo _fileBuildInfo = new(
         BranchName: "",
-        BuildNumber: DateTime.UtcNow.ToString("yyyyMMdd") + ".0",
+        BuildNumber: DateTime.UtcNow.ToString("yyyyMMdd", CultureInfo.InvariantCulture) + ".0",
         BuildId: "xxxxxx",
         CommitHash: $"Not yet initialised - call {nameof(InitialiseBuildInfoGivenPath)}"
     );
@@ -33,7 +34,7 @@ public static class AppVersionInfo
             {
                 _fileBuildInfo = new BuildInfo(
                     BranchName: "",
-                    BuildNumber: DateTime.UtcNow.ToString("yyyyMMdd") + ".0",
+                    BuildNumber: DateTime.UtcNow.ToString("yyyyMMdd", CultureInfo.InvariantCulture) + ".0",
                     BuildId: "xxxxxx",
                     CommitHash: "Failed to load build info from buildinfo.json"
                 );

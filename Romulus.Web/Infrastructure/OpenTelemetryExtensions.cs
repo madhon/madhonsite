@@ -1,15 +1,16 @@
 ﻿namespace Romulus.Web.Infrastructure;
 
 using OpenTelemetry;
-using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-public static class OpenTelemetryExtensions
+internal static class OpenTelemetryExtensions
 {
     public static IHostApplicationBuilder AddOpenTelemetry(this IHostApplicationBuilder builder)
     {
+        ArgumentNullException.ThrowIfNull(builder);
+
         builder.Logging.AddOpenTelemetry(o =>
         {
             o.IncludeFormattedMessage = true;

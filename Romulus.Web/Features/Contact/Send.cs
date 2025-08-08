@@ -26,7 +26,7 @@ public static class Send
 
         public Handler(ITransport transport) => this.transport = transport;
 
-        private MimeMessage CreateMailMessage(Command model)
+        private static MimeMessage CreateMailMessage(Command model)
         {
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress(model.Name, model.Email));
@@ -41,6 +41,8 @@ public static class Send
 
         public async ValueTask<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
+            ArgumentNullException.ThrowIfNull(request);
+
             using var message = CreateMailMessage(request);
             await transport.DeliverAsync(message, cancellationToken).ConfigureAwait(false);
             return new Unit();

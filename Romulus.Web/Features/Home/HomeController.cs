@@ -1,9 +1,9 @@
 namespace Romulus.Web.Features.Home;
 
-public class HomeController : Controller
+internal sealed class HomeController : Controller
 {
     private static readonly string[] TenHoursOfFun =
-    {
+    [
         "https://www.youtube.com/watch?v=wbby9coDRCk",
         "https://www.youtube.com/watch?v=nb2evY0kmpQ",
         "https://www.youtube.com/watch?v=eh7lp9umG2I",
@@ -24,11 +24,12 @@ public class HomeController : Controller
         "https://www.youtube.com/watch?v=KMFOVSWn0mI",
         "https://www.youtube.com/watch?v=clU0Sh9ngmY",
         "https://www.youtube.com/watch?v=sCNrK-n68CM"
-    };
+    ];
 
     [HttpGet()]
     [AllowAnonymous()]
     public IActionResult Index() => View();
+
     [Route("admin.php")]
     [Route("admin/login.php")]
     [Route("administrator/index.php")]

@@ -1,6 +1,6 @@
 namespace Romulus.Web;
 
-public static class ApplicationBuilderExtensions
+internal static class ApplicationBuilderExtensions
 {
     public static WebApplication UseStaticFilesWithCacheControl(this WebApplication app)
     {
@@ -11,7 +11,7 @@ public static class ApplicationBuilderExtensions
             {
                 OnPrepareResponse =
                     _ => _.Context.Response.Headers[HeaderNames.CacheControl] =
-                        $"public, max-age={cachePeriod}" // A week in seconds
+                        $"public, max-age={cachePeriod}", // A week in seconds
             });
 
         return app;

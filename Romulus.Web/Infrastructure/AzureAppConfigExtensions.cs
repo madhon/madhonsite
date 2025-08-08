@@ -3,7 +3,7 @@
 using Azure.Identity;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 
-public static class AzureAppConfigExtensions
+internal static class AzureAppConfigExtensions
 {
     public static IServiceCollection AddAzureAppConfig(this IServiceCollection services,
         IConfigurationBuilder configurationBuilder,

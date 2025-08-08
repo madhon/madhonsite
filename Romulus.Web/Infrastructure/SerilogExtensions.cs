@@ -1,8 +1,9 @@
 ﻿namespace Romulus.Web.Infrastructure;
 
+using System.Globalization;
 using Serilog.Settings.Configuration;
 
-public static class SerilogExtensions
+internal static class SerilogExtensions
 {
     public static WebApplicationBuilder AddSerilog(this WebApplicationBuilder builder, string sectionName = "Serilog")
     {
@@ -24,7 +25,7 @@ public static class SerilogExtensions
             if (serilogOptions.UseConsole)
             {
                 loggerConfiguration.WriteTo.Async(writeTo =>
-                    writeTo.Console(outputTemplate: serilogOptions.LogTemplate));
+                    writeTo.Console(outputTemplate: serilogOptions.LogTemplate, formatProvider: CultureInfo.InvariantCulture));
             }
 
             if (!string.IsNullOrEmpty(serilogOptions.FilePath))
@@ -33,6 +34,7 @@ public static class SerilogExtensions
                 {
                     writeTo.File(serilogOptions.FilePath,
                         outputTemplate: serilogOptions.LogTemplate,
+                        formatProvider: CultureInfo.InvariantCulture,
                         shared: true,
                         rollingInterval: RollingInterval.Day);
                 });

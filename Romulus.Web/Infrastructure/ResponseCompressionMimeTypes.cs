@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using static Microsoft.AspNetCore.ResponseCompression.ResponseCompressionDefaults;
 
-public static class ResponseCompressionMimeTypes
+internal static class ResponseCompressionMimeTypes
 {
     public static IEnumerable<string> Defaults
-        => MimeTypes.Concat(new[]
-        {
+        => MimeTypes.Concat([
             // ATOM
             "application/atom+xml",
             // Images
@@ -17,6 +16,6 @@ public static class ResponseCompressionMimeTypes
             // Fonts
             "application/vnd.ms-fontobject",
             "application/x-font-ttf",
-            "font/otf"
-        });
+            "font/otf",
+        ]);
 }

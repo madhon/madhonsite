@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Controllers;
 
-public class FeatureViewLocationExpander : IViewLocationExpander
+internal sealed class FeatureViewLocationExpander : IViewLocationExpander
 {
     public void PopulateValues(ViewLocationExpanderContext context) { }
 
@@ -17,7 +17,7 @@ public class FeatureViewLocationExpander : IViewLocationExpander
         string? featureName = controllerActionDescriptor.Properties["feature"] as string;
         foreach (var location in viewLocations)
         {
-            yield return location.Replace("{3}", featureName);
+            yield return location.Replace("{3}", featureName, StringComparison.OrdinalIgnoreCase);
         }
     }
 }
