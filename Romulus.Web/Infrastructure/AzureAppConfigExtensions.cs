@@ -23,7 +23,6 @@ internal static class AzureAppConfigExtensions
             ExcludeEnvironmentCredential = false,
             ExcludeInteractiveBrowserCredential = true,
             ExcludeManagedIdentityCredential = false,
-            ExcludeSharedTokenCacheCredential = true,
             //ExcludeVisualStudioCodeCredential = false,
             ExcludeVisualStudioCredential = false,
             ExcludeWorkloadIdentityCredential = true,

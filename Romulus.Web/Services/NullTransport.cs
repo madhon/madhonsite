@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MimeKit;
 
-public class NullTransport : ITransport
+internal sealed class NullTransport : ITransport
 {
     public async Task DeliverAsync(MimeMessage message, CancellationToken ct)
     {
