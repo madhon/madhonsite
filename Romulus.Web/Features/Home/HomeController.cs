@@ -1,6 +1,6 @@
 namespace Romulus.Web.Features.Home;
 
-internal sealed class HomeController : Controller
+public sealed class HomeController : Controller
 {
     private static readonly string[] TenHoursOfFun =
     [

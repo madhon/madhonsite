@@ -1,6 +1,6 @@
 ﻿namespace Romulus.Web.Features.Contact;
 
-internal sealed class ContactController : Controller
+public sealed class ContactController : Controller
 {
     private readonly IMediator mediator;
 
