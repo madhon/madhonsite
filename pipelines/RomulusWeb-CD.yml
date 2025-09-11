@@ -10,7 +10,7 @@ resources:
          - master         
 
 variables:
-  agentImage: "ubuntu-22.04"
+  agentImage: "ubuntu-24.04"
 
 stages:
 - stage: Deploy

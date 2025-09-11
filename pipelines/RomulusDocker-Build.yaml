@@ -12,7 +12,7 @@ variables:
   imageRepository: 'madhon/madhonsite'
   dockerfilePath: '$(Build.SourcesDirectory)/Romulus.Web/Dockerfile'
   tag: '$(Build.BuildId)'
-  vmImageName: 'ubuntu-22.04'
+  vmImageName: 'ubuntu-24.04'
   MSBUILDTERMINALLOGGER: true
   
 stages:
