@@ -1,4 +1,6 @@
-﻿var builder = WebApplication.CreateSlimBuilder(args);
+﻿using Microsoft.AspNetCore.ResponseCompression;
+
+var builder = WebApplication.CreateSlimBuilder(args);
 
 AppVersionInfo.InitialiseBuildInfoGivenPath(Directory.GetCurrentDirectory());
 
@@ -35,6 +37,13 @@ builder.Services.AddHealthChecks()
     .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
 
 builder.Services.AddResponseCaching();
+builder.Services.AddResponseCompression( opts =>
+{
+    opts.EnableForHttps = true;
+    opts.MimeTypes = ResponseCompressionMimeTypes.Defaults;
+    opts.Providers.Add<BrotliCompressionProvider>();
+    opts.Providers.Add<GzipCompressionProvider>();
+});
 
 builder.Services.AddMediator(opts=> opts.ServiceLifetime = ServiceLifetime.Scoped);
 
@@ -68,6 +77,7 @@ app.UseStaticFilesWithCacheControl();
 app.UseRouting();
 
 app.UseResponseCaching();
+app.UseResponseCompression();
 
 app.SetupSecurityHeaders();
 

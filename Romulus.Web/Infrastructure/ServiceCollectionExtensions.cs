@@ -1,6 +1,7 @@
 namespace Romulus.Web;
 
 using Romulus.Web.Features.Contact;
+using SameSiteMode = Microsoft.AspNetCore.Http.SameSiteMode;
 
 internal static class ServiceCollectionExtensions
 {
@@ -27,6 +28,7 @@ internal static class ServiceCollectionExtensions
                 //options.Cookie.SecurePolicy = env.IsDevelopment()
                 // ? CookieSecurePolicy.SameAsRequest
                 // : CookieSecurePolicy.Always;
+                options.Cookie.SameSite = SameSiteMode.Lax;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
                 options.Cookie.HttpOnly = true;
                 options.HeaderName = "X-XSRF-TOKEN";
