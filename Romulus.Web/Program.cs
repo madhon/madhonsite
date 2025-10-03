@@ -62,7 +62,7 @@ app.UseForwardedHeaders();
 app.UseSerilogRequestLogging();
 
 app.MapHealthChecks("/healthz");
-app.MapHealthChecks("/liveness", new HealthCheckOptions
+app.MapHealthChecks("/alive", new HealthCheckOptions
 {
     Predicate = r => r.Tags.Contains("live"),
 });

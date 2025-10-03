@@ -7,6 +7,9 @@ using OpenTelemetry.Trace;
 
 internal static class OpenTelemetryExtensions
 {
+    private const string HealthEndpointPath = "/healthz";
+    private const string AlivenessEndpointPath = "/alive";
+
     public static IHostApplicationBuilder AddOpenTelemetry(this IHostApplicationBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder);
@@ -31,6 +34,11 @@ internal static class OpenTelemetryExtensions
                     .AddAspNetCoreInstrumentation(nci =>
                     {
                         nci.RecordException = true;
+                        nci.Filter = httpContext =>
+                            !(httpContext.Request.Path.StartsWithSegments(HealthEndpointPath,
+                                  StringComparison.OrdinalIgnoreCase)
+                              || httpContext.Request.Path.StartsWithSegments(AlivenessEndpointPath,
+                                  StringComparison.OrdinalIgnoreCase));
                     });
             })
             .WithMetrics(metrics =>
@@ -62,5 +70,6 @@ internal static class OpenTelemetryExtensions
     meterProviderBuilder.AddMeter(
         "Microsoft.AspNetCore.Hosting",
         "Microsoft.AspNetCore.Server.Kestrel",
-        "System.Net.Http");
+        "System.Net.Http",
+        "Romulus.Web");
 }

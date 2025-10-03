@@ -1,7 +1,7 @@
 namespace Romulus.Web.Features.TagHelpers;
 
 [HtmlTargetElement("BuildVer", TagStructure = TagStructure.NormalOrSelfClosing)]
-internal sealed class BuildVerTagHelper : TagHelper
+public sealed class BuildVerTagHelper : TagHelper
 {
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
