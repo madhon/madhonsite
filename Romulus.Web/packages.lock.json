@@ -94,9 +94,9 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.226, )",
-        "resolved": "2.0.226",
-        "contentHash": "FP4A10jj/YjfrToUs/b4cUfTnIT9QSAMLb/WSq4qpsXOo9/jd+vLGT4o4oKi+qyRxUz5ZFL/MlPThGaKUL+Zrg=="
+        "requested": "[2.0.231, )",
+        "resolved": "2.0.231",
+        "contentHash": "h5FQkDk22R291JofPXFDxrgNyk1RGCqeIQKcrCRXYz+p5v2Ade2C9PpRiatasVqSDPyFk2q/B5AflWM2a9TVwQ=="
       },
       "Microsoft.Azure.AppConfiguration.AspNetCore": {
         "type": "Direct",
@@ -237,20 +237,20 @@
       },
       "OpenTelemetry.Instrumentation.AspNetCore": {
         "type": "Direct",
-        "requested": "[1.12.0, )",
-        "resolved": "1.12.0",
-        "contentHash": "r+Mzggd2P4N0Y34QIO6kakVPBOKFYSHnLkTrXXM+r37ABp+iaUvVUe+u/uxszsi5f7P5mrG0uYYaJ1QGHvzo3A==",
+        "requested": "[1.13.0, )",
+        "resolved": "1.13.0",
+        "contentHash": "+R2SOerMNh8/i6OJf4Q+HQUntoI6REF5FlXBiO5LzBj9MHGuuRbAIYYLcpbv/rwqWIa5RsPcZkNLo1M/41cWuQ==",
         "dependencies": {
-          "OpenTelemetry.Api.ProviderBuilderExtensions": "[1.12.0, 2.0.0)"
+          "OpenTelemetry.Api.ProviderBuilderExtensions": "[1.13.1, 2.0.0)"
         }
       },
       "OpenTelemetry.Instrumentation.Runtime": {
         "type": "Direct",
-        "requested": "[1.12.0, )",
-        "resolved": "1.12.0",
-        "contentHash": "xmd0TAm2x+T3ztdf5BolIwLPh+Uy6osaBeIQtCXv611PN7h/Pnhsjg5lU2hkAWj7M7ns74U5wtVpS8DXmJ+94w==",
+        "requested": "[1.13.0, )",
+        "resolved": "1.13.0",
+        "contentHash": "JwSyhx+Nw49meSfKYdc+I0YfUxBDEAGbDYm+JGLjV5w9+4p3EGGwLW7KRnEhtyKCVNtVx1G4JbfxtO+DWYp2kQ==",
         "dependencies": {
-          "OpenTelemetry.Api": "[1.12.0, 2.0.0)"
+          "OpenTelemetry.Api": "[1.13.1, 2.0.0)"
         }
       },
       "Roslynator.Analyzers": {
