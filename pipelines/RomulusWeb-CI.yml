@@ -1,12 +1,12 @@
 name: RomulusWeb-CI
 trigger:
- batch: true
- branches:
-  include:
-    - master
- paths:
-  include:
-    - Romulus.Web/*
+  batch: true
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - Romulus.Web/*
 
 pool:
   vmImage: 'ubuntu-24.04'
@@ -21,72 +21,72 @@ variables:
   MSBUILDTERMINALLOGGER: true
 
 stages:
-- stage: Build
-  displayName: "Build Site"
-  pool:
-    vmImage: $(agentImage)
-  jobs:
-  - job: Build
-    displayName: 'Build App'
-    steps:
-    - checkout: self
-      fetchDepth: 2
+  - stage: Build
+    displayName: "Build Site"
+    pool:
+      vmImage: $(agentImage)
+    jobs:
+      - job: Build
+        displayName: 'Build App'
+        steps:
+          - checkout: self
+            fetchDepth: 2
 
-    - script: |
-        echo -e -n "{\"buildNumber\":\"$(Build.BuildNumber)\",\"buildId\":\"$(Build.BuildId)\",\"branchName\":\"$(Build.SourceBranchName)\",\"commitHash\":\"$(Build.SourceVersion)\"}" > "$(Build.SourcesDirectory)/Romulus.Web/buildinfo.json"
-      displayName: "emit build details as JSON"
-      failOnStderr: true
+          - script: |
+              echo -e -n "{\"buildNumber\":\"$(Build.BuildNumber)\",\"buildId\":\"$(Build.BuildId)\",\"branchName\":\"$(Build.SourceBranchName)\",\"commitHash\":\"$(Build.SourceVersion)\"}" > "$(Build.SourcesDirectory)/Romulus.Web/buildinfo.json"
+            displayName: "emit build details as JSON"
+            failOnStderr: true
 
-    - task: UseDotNet@2
-      displayName: 'Install SDK'
-      inputs:
-        packageType: 'sdk'
-        version: '10.x'
-        performMultiLevelLookup: true
-        includePreviewVersions: true
+          - task: UseDotNet@2
+            displayName: 'Install SDK'
+            inputs:
+              packageType: 'sdk'
+              version: '10.x'
+              performMultiLevelLookup: true
+              includePreviewVersions: true
 
-    - task: DotNetCoreCLI@2
-      displayName: 'Restore Packages'
-      inputs:
-        command: 'restore'
-        projects: '**/*.csproj'
-        feedsToUse: 'select'
-        verbosityRestore: 'Quiet'
+          - task: DotNetCoreCLI@2
+            displayName: 'Restore Packages'
+            inputs:
+              command: 'restore'
+              projects: '**/*.csproj'
+              feedsToUse: 'select'
+              verbosityRestore: 'Quiet'
 
-    - task: DotNetCoreCLI@2
-      displayName: 'Build Project'
-      inputs:
-        command: 'build'
-        projects: '**/*.csproj'
-        arguments: '-r $(rid) --configuration $(buildConfiguration) --self-contained --no-restore -p:PublishSingleFile=true
+          - task: DotNetCoreCLI@2
+            displayName: 'Build Project'
+            inputs:
+              command: 'build'
+              projects: '**/*.csproj'
+              arguments: '-r $(rid) --configuration $(buildConfiguration) --self-contained --no-restore -p:PublishSingleFile=true'
 
-    - task: SnykSecurityScan@1
-      displayName: 'Snyk Security Scan'
-      inputs:
-        serviceConnectionEndpoint: 'Madhon Snyk'
-        testType: 'app'
-        targetFile: 'Romulus.Web/obj/project.assets.json'
-        monitorWhen: 'always'
-        failOnIssues: true
-        projectName: 'MadhonCOMWebsite'
-        organization: 'd2752ef3-cc32-4f0b-8239-4d7235bdf118'
+          - task: SnykSecurityScan@1
+            displayName: 'Snyk Security Scan'
+            inputs:
+              serviceConnectionEndpoint: 'Madhon Snyk'
+              testType: 'app'
+              targetFile: 'Romulus.Web/obj/project.assets.json'
+              monitorWhen: 'always'
+              failOnIssues: true
+              projectName: 'MadhonCOMWebsite'
+              organization: 'd2752ef3-cc32-4f0b-8239-4d7235bdf118'
 
-    - script: |
-        curl -Lo $(Agent.TempDirectory)/sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
-        chmod +x $(Agent.TempDirectory)/sbom-tool
-        $(Agent.TempDirectory)/sbom-tool generate -b $(Build.ArtifactStagingDirectory) -bc $(Build.SourcesDirectory) -pn RomulusWeb -pv 1.0.0 -ps Madhon -nsb https://sbom.madhon.co.uk -V Verbose
-      displayName: Generate SBOM
+          - script: |
+              curl -Lo $(Agent.TempDirectory)/sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
+              chmod +x $(Agent.TempDirectory)/sbom-tool
+              $(Agent.TempDirectory)/sbom-tool generate -b $(Build.ArtifactStagingDirectory) -bc $(Build.SourcesDirectory) -pn RomulusWeb -pv 1.0.0 -ps Madhon -nsb https://sbom.madhon.co.uk -V Verbose
+            displayName: Generate SBOM
 
-    - task: DotNetCoreCLI@2
-      displayName: 'Publish Build'
-      inputs:
-        command: 'publish'
-        publishWebProjects: true
-        arguments: '-r $(rid) --no-restore --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained /p:PublishSingleFile=true -p:TrimMode=CopyUsed -p:_TrimmerDefaultAction=copy'
-        zipAfterPublish: True
+          - task: DotNetCoreCLI@2
+            displayName: 'Publish Build'
+            inputs:
+              command: 'publish'
+              publishWebProjects: true
+              arguments: '-r $(rid) --no-restore --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained /p:PublishSingleFile=true -p:TrimMode=CopyUsed -p:_TrimmerDefaultAction=copy'
+              zipAfterPublish: True
 
-    - task: PublishPipelineArtifact@1
-      displayName: 'Upload Build Artifact'
-      inputs:
-        targetPath: $(Build.ArtifactStagingDirectory)
-        ArtifactName: 'drop'
+          - task: PublishPipelineArtifact@1
+            displayName: 'Upload Build Artifact'
+            inputs:
+              targetPath: $(Build.ArtifactStagingDirectory)
+              ArtifactName: 'drop'
