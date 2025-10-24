@@ -58,7 +58,7 @@ stages:
       inputs:
         command: 'build'
         projects: '**/*.csproj'
-        arguments: '-r $(rid) --configuration $(buildConfiguration) --self-contained --no-restore -p:PublishSingleFile=true'
+        arguments: '-r $(rid) --configuration $(buildConfiguration) --self-contained --no-restore -p:PublishSingleFile=true /p:PublishReadyToRun=true'
 
     - task: SnykSecurityScan@1
       displayName: 'Snyk Security Scan'
@@ -82,7 +82,7 @@ stages:
       inputs:
         command: 'publish'
         publishWebProjects: true
-        arguments: '-r $(rid) --no-restore --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained /p:PublishSingleFile=true -p:TrimMode=CopyUsed -p:_TrimmerDefaultAction=copy'
+        arguments: '-r $(rid) --no-restore --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained /p:PublishSingleFile=true -p:TrimMode=CopyUsed -p:_TrimmerDefaultAction=copy /p:PublishReadyToRun=true'
         zipAfterPublish: True
 
     - task: PublishPipelineArtifact@1

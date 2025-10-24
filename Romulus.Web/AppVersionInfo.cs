@@ -10,7 +10,7 @@ internal sealed record BuildInfo(string BranchName, string BuildNumber, string B
 internal static class AppVersionInfo
 {
     private const string _buildFileName = "buildinfo.json";
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "MA0011:IFormatProvider is missing", Justification = "Build versioning")]
+
     private static BuildInfo _fileBuildInfo = new(
         BranchName: "",
         BuildNumber: DateTime.UtcNow.ToString("yyyyMMdd", CultureInfo.InvariantCulture) + ".0",
@@ -18,7 +18,6 @@ internal static class AppVersionInfo
         CommitHash: $"Not yet initialised - call {nameof(InitialiseBuildInfoGivenPath)}"
     );
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "MA0011:IFormatProvider is missing", Justification = "Build versioning")]
     public static void InitialiseBuildInfoGivenPath(string path)
     {
         var buildFilePath = Path.Combine(path, _buildFileName);
