@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <PublishReadyToRun>true</PublishReadyToRun>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
     <EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>
@@ -21,7 +22,7 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
     <WarningsAsErrors>$(WarningsAsErrors);RS0030;SYSLIB1045;CA1309;CA1310;CA1831;CA1832;CA1833;CA1827;CA1860;CA1820;CA1829;CA1845;CA1846;CA1848;CA1851;CA1852;IDE0028;IDE0300</WarningsAsErrors>    
-    <NoWarn>$(NoWarn);CA1812;CA1515</NoWarn>
+    <NoWarn>$(NoWarn);CA1812;CA1515;CA1034</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -52,7 +53,7 @@
     <PackageReference Include="Azure.Core" Version="1.49.0" />
     <PackageReference Include="Azure.Identity" Version="1.17.0" />
     <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.8.0" />
-    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
+    <PackageReference Include="FluentValidation" Version="12.1.0" />
     <PackageReference Include="JetBrains.Annotations" Version="2025.2.2" />
     <PackageReference Include="Mediator.Abstractions" Version="3.0.1" />
     <PackageReference Include="Mediator.SourceGenerator" Version="3.0.1">
@@ -64,9 +65,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="10.0.0-rc.2.25502.107" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="10.0.0-rc.2.25502.107" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.0-rc.2.25502.107" />
     <PackageReference Include="Microsoft.Extensions.Telemetry.Abstractions" Version="9.10.0" />
     <PackageReference Include="MailKit" Version="4.14.1" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
@@ -88,11 +87,11 @@
     <PackageReference Include="Serilog.Extensions.Logging" Version="9.0.2" />
     <PackageReference Include="Serilog.Formatting.Compact" Version="3.0.0" />
     <PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="9.0.0" />
     <PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />    
-    <PackageReference Include="Meziantou.Analyzer" Version="2.0.239">
+    <PackageReference Include="Meziantou.Analyzer" Version="2.0.250">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -109,7 +108,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.0-rc.2.25502.107" />
-    <PackageReference Include="System.Text.Json" Version="10.0.0-rc.2.25502.107" />
   </ItemGroup>
  
 </Project>

@@ -5,6 +5,8 @@ public sealed class BuildVerTagHelper : TagHelper
 {
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
+        ArgumentNullException.ThrowIfNull(output);
+
         string buildver = $"""
                            <!--
                            BuildNumber: {AppVersionInfo.GetBuildInfo().BuildNumber}
@@ -13,7 +15,6 @@ public sealed class BuildVerTagHelper : TagHelper
                            -->
 
                            """;
-
 
         output.TagName = string.Empty;
         output.Content.SetHtmlContent(buildver);
