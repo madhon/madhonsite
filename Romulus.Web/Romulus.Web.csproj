@@ -14,7 +14,6 @@
 
   <PropertyGroup>
     <PublishReadyToRun>true</PublishReadyToRun>
-    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
     <EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>
     <EnableConfigurationBindingGenerator>true</EnableConfigurationBindingGenerator>
@@ -29,13 +28,6 @@
     <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-5f2m-466j-3848;https://github.com/advisories/GHSA-x5qj-9vmx-7g6g;https://github.com/advisories/GHSA-xhfc-gr8f-ffwc" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Remove="packages.lock.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="packages.lock.json" />
-  </ItemGroup>
 
   <ItemGroup>
     <TrimmerRootAssembly Include="Serilog" />
@@ -76,10 +68,10 @@
     <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="4.3.0" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.79.0" />
     <PackageReference Include="Microsoft.Identity.Client.Extensions.Msal" Version="4.79.0" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.13.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.13.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.13.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.13.1" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.14.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.14.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.14.0.0" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.14.0" />
     <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" Version="1.2.0" />
     <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders.TagHelpers" Version="1.2.0" />
     <PackageReference Include="Serilog" Version="4.3.0" />
