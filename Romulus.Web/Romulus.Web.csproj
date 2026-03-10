@@ -57,17 +57,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="10.0.4" />
     <PackageReference Include="Microsoft.Extensions.Telemetry.Abstractions" Version="10.3.0" />
-    <PackageReference Include="MailKit" Version="4.15.0" />
+    <PackageReference Include="MailKit" Version="4.15.1" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MimeKit" Version="4.15.1" />
     <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="4.4.0" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.82.1" />
-    <PackageReference Include="Microsoft.Identity.Client.Extensions.Msal" Version="4.82.1" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.83.0" />
+    <PackageReference Include="Microsoft.Identity.Client.Extensions.Msal" Version="4.83.0" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.15.0" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.0" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.15.0" />
@@ -83,7 +83,7 @@
     <PackageReference Include="Serilog.Settings.Configuration" Version="10.0.0" />
     <PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />    
-    <PackageReference Include="Meziantou.Analyzer" Version="3.0.19">
+    <PackageReference Include="Meziantou.Analyzer" Version="3.0.22">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -99,7 +99,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.3" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.4" />
   </ItemGroup>
  
 </Project>
