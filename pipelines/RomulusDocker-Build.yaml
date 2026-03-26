@@ -41,7 +41,7 @@ stages:
       - task: Trivy@2
         displayName: Trivy Scan
         inputs:
-          version: latest
+          version: v0.69.3
           method: install
           type: 'image'
           target: '$(imageRepository):$(tag)'
