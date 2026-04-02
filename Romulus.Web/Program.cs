@@ -59,7 +59,18 @@ var app = builder.Build();
 
 app.UseForwardedHeaders();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
 app.UseSerilogRequestLogging();
+app.SetupSecurityHeaders();
+app.UseResponseCompression();
+app.UseStaticFilesWithCacheControl();
+
+app.UseRouting();
+app.UseResponseCaching();
 
 app.MapHealthChecks("/healthz");
 app.MapHealthChecks("/alive", new HealthCheckOptions
@@ -67,19 +78,6 @@ app.MapHealthChecks("/alive", new HealthCheckOptions
     Predicate = r => r.Tags.Contains("live"),
 });
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-
-app.UseStaticFilesWithCacheControl();
-
-app.UseRouting();
-
-app.UseResponseCaching();
-app.UseResponseCompression();
-
-app.SetupSecurityHeaders();
 
 app.MapDefaultControllerRoute();
 

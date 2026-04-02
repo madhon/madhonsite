@@ -2,7 +2,7 @@
 
 using Microsoft.AspNetCore.Http.HttpResults;
 
-internal sealed class WebFingerController : Controller
+public sealed class WebFingerController : Controller
 {
     [HttpGet()]
     [AllowAnonymous()]
