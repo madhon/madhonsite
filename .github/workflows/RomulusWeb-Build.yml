@@ -1,0 +1,94 @@
+name: RomulusWeb-Build
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - Romulus.Web/**
+
+env:
+  buildConfiguration: Release
+  rid: linux-x64
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  MSBUILDTERMINALLOGGER: true
+
+jobs:
+  build:
+    name: Build App
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+
+      - name: Emit build details as JSON
+        run: |
+          echo -e -n "{\"buildNumber\":\"${{ github.run_number }}\",\"buildId\":\"${{ github.run_id }}\",\"branchName\":\"${{ github.ref_name }}\",\"commitHash\":\"${{ github.sha }}\"}" \
+            > "${{ github.workspace }}/Romulus.Web/buildinfo.json"
+
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.x'
+          include-prerelease: true
+
+      - name: Restore Packages
+        run: dotnet restore **/*.csproj --verbosity quiet
+
+      - name: Build Project
+        run: |
+          dotnet build **/*.csproj \
+            -r ${{ env.rid }} \
+            --configuration ${{ env.buildConfiguration }} \
+            --self-contained \
+            --no-restore \
+            -p:PublishSingleFile=true
+
+      - name: Snyk Security Scan
+        uses: snyk/actions/dotnet@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: |
+            --file=Romulus.Web/obj/project.assets.json
+            --project-name=MadhonCOMWebsite
+            --org=d2752ef3-cc32-4f0b-8239-4d7235bdf118
+            --severity-threshold=low
+
+      - name: Generate SBOM
+        run: |
+          curl -Lo $RUNNER_TEMP/sbom-tool \
+            https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
+          chmod +x $RUNNER_TEMP/sbom-tool
+          $RUNNER_TEMP/sbom-tool generate \
+            -b ${{ github.workspace }}/_staging \
+            -bc ${{ github.workspace }} \
+            -pn RomulusWeb \
+            -pv 1.0.0 \
+            -ps Madhon \
+            -nsb https://sbom.madhon.co.uk \
+            -V Verbose
+
+      - name: Publish Build
+        run: |
+          dotnet publish \
+            -r ${{ env.rid }} \
+            --no-restore \
+            --configuration ${{ env.buildConfiguration }} \
+            --output ${{ github.workspace }}/_staging \
+            --self-contained \
+            /p:PublishSingleFile=true \
+            -p:TrimMode=CopyUsed \
+            -p:_TrimmerDefaultAction=copy
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: drop
+          path: ${{ github.workspace }}/_staging
+          retention-days: 30
