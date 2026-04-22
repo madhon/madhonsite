@@ -1,0 +1,75 @@
+name: RomulusWeb-Docker
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - Romulus.Web/**
+
+env:
+  IMAGE_REPOSITORY: madhon/madhonsite
+  DOCKERFILE_PATH: Romulus.Web/Dockerfile
+  MSBUILDTERMINALLOGGER: true
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build, Scan and Push Image
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+          fetch-tags: false
+          clean: true
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Image
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: ${{ env.DOCKERFILE_PATH }}
+          push: false
+          tags: ${{ env.IMAGE_REPOSITORY }}:${{ github.run_id }}
+
+        - name: Install Trivy
+          uses: aquasecurity/setup-trivy@v0.2.6
+          with:
+            version: v0.70.0
+
+      - name: Trivy Scan
+        uses: aquasecurity/trivy-action@0.35.0
+        with:
+          image-ref: ${{ env.IMAGE_REPOSITORY }}:${{ github.run_id }}
+          scan-type: image
+          scanners: misconfig,secret,vuln
+          severity: HIGH,CRITICAL
+          format: sarif
+          output: trivy-results.sarif
+
+      - name: Upload Trivy SARIF to GitHub Security
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: trivy-results.sarif
+
+      - name: Push Image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ${{ env.DOCKERFILE_PATH }}
+          push: true
+          tags: |
+            ${{ env.IMAGE_REPOSITORY }}:${{ github.run_id }}
+            ${{ env.IMAGE_REPOSITORY }}:latest
