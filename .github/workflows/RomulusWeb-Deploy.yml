@@ -1,0 +1,63 @@
+name: RomulusWeb-Deploy
+
+on:
+  workflow_run:
+    workflows: ["RomulusWeb-Build"]
+    branches: [master]
+    types: [completed]
+
+jobs:
+  deploy:
+    name: Deploy to DigitalOcean
+    runs-on: ubuntu-24.04
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    environment: Prod
+
+    steps:
+      - name: Who Approved
+        run: |
+          approver="${{ github.actor }}"
+          echo "-----------------------------------------------"
+          echo "This deployment was triggered by: $approver"
+          echo "Approved via GitHub environment protection rules on: Prod"
+
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: drop
+          path: ${{ github.workspace }}/_MadhonCOMWebsite
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Copy files to DigitalOcean
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.DO_SSH_HOST }}
+          username: ${{ secrets.DO_SSH_USERNAME }}
+          key: ${{ secrets.DO_SSH_PRIVATE_KEY }}
+          source: ${{ github.workspace }}/_MadhonCOMWebsite
+          target: /home/madhon_webdeploy/files
+          strip_components: 3  # strips workspace path prefix
+
+      - name: Update Site Files
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.DO_SSH_HOST }}
+          username: ${{ secrets.DO_SSH_USERNAME }}
+          key: ${{ secrets.DO_SSH_PRIVATE_KEY }}
+          script: |
+            #!/bin/sh
+            WEBROOT=/var/www/madhon.co.uk
+            SOURCE=/home/madhon_webdeploy/files
+            echo "Deploying Artifact from Build Run ID - ${{ github.event.workflow_run.id }}"
+            echo "Stopping site"
+            sudo systemctl stop madhonsite-kestrel.service
+            cd $SOURCE/output
+            echo "Unzipping files"
+            unzip -oq $SOURCE/Romulus.Web.zip
+            echo "Copying files and resetting permissions"
+            rm $SOURCE/output/appsettings.*
+            sudo cp -r $SOURCE/output/* $WEBROOT
+            sudo chown -R www-data:www-data $WEBROOT
+            echo "Starting Site"
+            sudo systemctl start madhonsite-kestrel.service
