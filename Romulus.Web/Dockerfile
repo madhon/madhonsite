@@ -2,14 +2,14 @@ ARG VERSION=10.0-noble-chiseled
 ARG SDKVERSION=10.0-noble
 
 FROM mcr.microsoft.com/dotnet/sdk:$SDKVERSION  AS build
-WORKDIR /src
+WORKDIR /Romulus.Web
 
 COPY ["Romulus.Web.csproj", "Romulus.Web.csproj"]
 
 RUN dotnet restore "Romulus.Web.csproj"
 COPY . .
 
-WORKDIR /src
+WORKDIR /Romulus.Web
 RUN dotnet build "Romulus.Web.csproj" -c Release --runtime linux-x64 --self-contained true --no-restore -p:PublishSingleFile=true -o /app/build
 
 FROM build AS publish
