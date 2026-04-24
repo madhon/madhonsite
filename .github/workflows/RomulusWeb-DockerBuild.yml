@@ -1,4 +1,4 @@
-name: RomulusWeb-Docker
+name: RomulusWeb-DockerBuild
 
 on:
   push:
