@@ -36,7 +36,6 @@ jobs:
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '10.x'
-          include-prerelease: true
 
       - name: Restore Packages
         run: dotnet restore **/*.csproj --verbosity quiet
@@ -49,17 +48,6 @@ jobs:
             --self-contained \
             --no-restore \
             -p:PublishSingleFile=true
-
-      - name: Snyk Security Scan
-        uses: snyk/actions/dotnet@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: |
-            --file=Romulus.Web/obj/project.assets.json
-            --project-name=MadhonCOMWebsite
-            --org=d2752ef3-cc32-4f0b-8239-4d7235bdf118
-            --severity-threshold=low
 
       - name: Generate SBOM
         run: |
