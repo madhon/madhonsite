@@ -3,6 +3,8 @@ ARG SDKVERSION=10.0-noble
 
 FROM mcr.microsoft.com/dotnet/sdk:$SDKVERSION  AS publish
 
+WORKDIR /src
+
 COPY ["Romulus.Web.csproj", "Romulus.Web.csproj"]
 
 RUN dotnet restore "Romulus.Web.csproj"
