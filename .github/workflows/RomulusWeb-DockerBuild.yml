@@ -42,8 +42,9 @@ jobs:
       - name: Build Image
         uses: docker/build-push-action@v7
         with:
-          context: .
+          context: ./Romulus.Web
           file: ${{ env.DOCKERFILE_PATH }}
+          load: true
           push: false
           tags: ${{ env.IMAGE_REPOSITORY }}:${{ github.run_id }}
 
@@ -69,11 +70,6 @@ jobs:
           sarif_file: trivy-results.sarif
 
       - name: Push Image
-        uses: docker/build-push-action@v7
-        with:
-          context: .
-          file: ${{ env.DOCKERFILE_PATH }}
-          push: true
-          tags: |
-            ${{ env.IMAGE_REPOSITORY }}:${{ github.run_id }}
-            ${{ env.IMAGE_REPOSITORY }}:latest
+        run: |
+          docker push ${{ env.IMAGE_REPOSITORY }}:${{ github.run_id }}
+          docker push ${{ env.IMAGE_REPOSITORY }}:latest
