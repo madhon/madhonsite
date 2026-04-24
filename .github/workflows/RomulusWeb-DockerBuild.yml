@@ -44,13 +44,13 @@ jobs:
           push: false
           tags: ${{ env.IMAGE_REPOSITORY }}:${{ github.run_id }}
 
-        - name: Install Trivy
-          uses: aquasecurity/setup-trivy@v0.2.6
-          with:
-            version: v0.70.0
+      - name: Install Trivy
+        uses: aquasecurity/setup-trivy@v0.2.6
+        with:
+          version: v0.70.0
 
       - name: Trivy Scan
-        uses: aquasecurity/trivy-action@0.35.0
+        uses: aquasecurity/trivy-action@0.36.0
         with:
           image-ref: ${{ env.IMAGE_REPOSITORY }}:${{ github.run_id }}
           scan-type: image
