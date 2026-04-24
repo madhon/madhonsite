@@ -47,7 +47,9 @@ jobs:
           file: ${{ env.DOCKERFILE_PATH }}
           load: true
           push: false
-          tags: ${{ env.IMAGE_REPOSITORY }}:${{ github.run_id }}
+          tags: |
+            ${{ env.IMAGE_REPOSITORY }}:${{ github.run_id }}
+            ${{ env.IMAGE_REPOSITORY }}:latest
 
       - name: Install Trivy
         uses: aquasecurity/setup-trivy@v0.2.6
