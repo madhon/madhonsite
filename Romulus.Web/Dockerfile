@@ -14,6 +14,7 @@ RUN dotnet publish \
   --self-contained true \
   -c Release \
   /p:PublishSingleFile=true \
+  --no-restore \
   -o /app/publish
 
 
