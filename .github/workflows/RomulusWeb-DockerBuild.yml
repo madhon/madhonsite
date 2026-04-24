@@ -6,7 +6,8 @@ on:
       - master
     paths:
       - Romulus.Web/**
-
+  workflow_dispatch:
+    
 env:
   IMAGE_REPOSITORY: madhon/madhonsite
   DOCKERFILE_PATH: Romulus.Web/Dockerfile
