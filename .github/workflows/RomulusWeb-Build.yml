@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - Romulus.Web/**
+  workflow_dispatch:      
 
 env:
   buildConfiguration: Release
