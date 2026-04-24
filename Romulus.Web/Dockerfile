@@ -8,12 +8,11 @@ COPY ["Romulus.Web.csproj", "Romulus.Web.csproj"]
 RUN dotnet restore "Romulus.Web.csproj"
 COPY . .
 
-RUN dotnet publish \
-  "Romulus.Web.csproj" \
-  --runtime linux-x64\
+RUN dotnet publish "Romulus.Web.csproj" \
+  --runtime linux-x64 \
   --self-contained true \
   -c Release \
-  /p:PublishSingleFile=true \
+  -p:PublishSingleFile=true \
   --no-restore \
   -o /app/publish
 

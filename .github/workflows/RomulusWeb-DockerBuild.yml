@@ -11,7 +11,7 @@ on:
 env:
   IMAGE_REPOSITORY: madhon/madhonsite
   DOCKERFILE_PATH: Romulus.Web/Dockerfile
-  MSBUILDTERMINALLOGGER: true
+  #MSBUILDTERMINALLOGGER: true
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
