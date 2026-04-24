@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - Romulus.Web/**
+      - '!Romulus.Web/Dockerfile'
   workflow_dispatch:
     
 env:
