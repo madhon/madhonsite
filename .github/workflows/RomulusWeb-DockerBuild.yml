@@ -50,7 +50,7 @@ jobs:
           version: v0.70.0
 
       - name: Trivy Scan
-        uses: aquasecurity/trivy-action@0.36.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ${{ env.IMAGE_REPOSITORY }}:${{ github.run_id }}
           scan-type: image
