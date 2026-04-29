@@ -40,6 +40,15 @@ jobs:
           target: /home/madhon_webdeploy/files
           strip_components: 3  # strips workspace path prefix
 
+      - name: Check deployed files structure
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.DO_SSH_HOST }}
+          username: ${{ secrets.DO_SSH_USERNAME }}
+          key: ${{ secrets.DO_SSH_PRIVATE_KEY }}
+          script: |
+            find /home/madhon_webdeploy/files -type f
+
       - name: Update Site Files
         uses: appleboy/ssh-action@v1.2.5
         with:
