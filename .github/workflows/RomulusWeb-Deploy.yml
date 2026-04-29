@@ -58,7 +58,7 @@ jobs:
           script: |
             #!/bin/sh
             WEBROOT=/var/www/madhon.co.uk
-            SOURCE=/home/madhon_webdeploy/files
+            SOURCE=/home/madhon_webdeploy/files/madhonsite/madhonsite/_MadhonCOMWebsite
             echo "Deploying Artifact from Build Run ID - ${{ github.event.workflow_run.id }}"
             echo "Stopping site"
             sudo systemctl stop madhonsite-kestrel.service
