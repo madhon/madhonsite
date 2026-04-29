@@ -59,15 +59,15 @@ jobs:
             #!/bin/sh
             WEBROOT=/var/www/madhon.co.uk
             SOURCE=/home/madhon_webdeploy/files/madhonsite/madhonsite/_MadhonCOMWebsite
+
             echo "Deploying Artifact from Build Run ID - ${{ github.event.workflow_run.id }}"
             echo "Stopping site"
             sudo systemctl stop madhonsite-kestrel.service
-            cd $SOURCE/output
-            echo "Unzipping files"
-            unzip -oq $SOURCE/Romulus.Web.zip
+
             echo "Copying files and resetting permissions"
-            rm $SOURCE/output/appsettings.*
-            sudo cp -r $SOURCE/output/* $WEBROOT
+            rm $SOURCE/appsettings.*
+            sudo cp -r $SOURCE/* $WEBROOT
             sudo chown -R www-data:www-data $WEBROOT
+
             echo "Starting Site"
             sudo systemctl start madhonsite-kestrel.service
