@@ -56,18 +56,7 @@ jobs:
           username: ${{ secrets.DO_SSH_USERNAME }}
           key: ${{ secrets.DO_SSH_PRIVATE_KEY }}
           script: |
-            #!/bin/sh
-            WEBROOT=/var/www/madhon.co.uk
-            SOURCE=/home/madhon_webdeploy/files/madhonsite/madhonsite/_MadhonCOMWebsite
-
             echo "Deploying Artifact from Build Run ID - ${{ github.event.workflow_run.id }}"
             echo "Stopping site"
-            sudo systemctl stop madhonsite-kestrel.service
-
-            echo "Copying files and resetting permissions"
-            rm $SOURCE/appsettings.*
-            sudo cp -r $SOURCE/* $WEBROOT
-            sudo chown -R www-data:www-data $WEBROOT
-
-            echo "Starting Site"
-            sudo systemctl start madhonsite-kestrel.service
+            sudo /usr/local/bin/madhon-deploy.sh
+            echo "Done"
