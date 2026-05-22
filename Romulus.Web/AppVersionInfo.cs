@@ -27,7 +27,7 @@ internal static class AppVersionInfo
             {
                 var buildInfoJson = File.ReadAllText(buildFilePath);
                 var buildInfo = JsonSerializer.Deserialize<BuildInfo>(buildInfoJson, AppJsonSerializerContext.Default.BuildInfo);
-                _fileBuildInfo = buildInfo ?? throw new Exception($"Failed to deserialise {_buildFileName}");
+                _fileBuildInfo = buildInfo ?? throw new InvalidOperationException($"Failed to deserialise {_buildFileName}");
             }
             catch (Exception)
             {
