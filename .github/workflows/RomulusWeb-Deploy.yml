@@ -33,7 +33,7 @@ jobs:
       - name: Pre-deploy allow
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.DO_SSH_HOS }}
+          host: ${{ secrets.DO_SSH_HOST }}
           username: ${{ secrets.DO_SSH_USERNAME}}
           key: ${{ secrets.DO_SSH_PRIVATE_KEYY }}
           script: sudo systemctl stop sshguard
@@ -73,7 +73,7 @@ jobs:
         if: always()
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.DO_SSH_HOS }}
+          host: ${{ secrets.DO_SSH_HOST }}
           username: ${{ secrets.DO_SSH_USERNAME }}
           key: ${{ secrets.DO_SSH_PRIVATE_KEY }}
           script: sudo systemctl start sshguard            
