@@ -30,13 +30,13 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Pre-deploy allow
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.DO_SSH_HOST }}
-          username: ${{ secrets.DO_SSH_USERNAME}}
-          key: ${{ secrets.DO_SSH_PRIVATE_KEYY }}
-          script: sudo systemctl stop sshguard
+#      - name: Pre-deploy allow
+#        uses: appleboy/ssh-action@v1
+#        with:
+#          host: ${{ secrets.DO_SSH_HOST }}
+#          username: ${{ secrets.DO_SSH_USERNAME}}
+#          key: ${{ secrets.DO_SSH_PRIVATE_KEYY }}
+#          script: sudo systemctl stop sshguard
 
       - name: Copy files to DigitalOcean
         uses: appleboy/scp-action@v1
@@ -69,11 +69,11 @@ jobs:
             sudo /usr/local/bin/madhon-deploy.sh
             echo "Done"
             
-      - name: Re-enable SSHGuard
-        if: always()
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.DO_SSH_HOST }}
-          username: ${{ secrets.DO_SSH_USERNAME }}
-          key: ${{ secrets.DO_SSH_PRIVATE_KEY }}
-          script: sudo systemctl start sshguard            
+#      - name: Re-enable SSHGuard
+#        if: always()
+#        uses: appleboy/ssh-action@v1
+#        with:
+#          host: ${{ secrets.DO_SSH_HOST }}
+#          username: ${{ secrets.DO_SSH_USERNAME }}
+#          key: ${{ secrets.DO_SSH_PRIVATE_KEY }}
+#          script: sudo systemctl start sshguard            
