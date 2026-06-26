@@ -59,6 +59,8 @@ var app = builder.Build();
 
 app.UseForwardedHeaders();
 
+app.UseServerTiming();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();

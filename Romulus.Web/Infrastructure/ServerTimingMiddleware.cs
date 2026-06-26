@@ -1,5 +1,7 @@
 namespace Romulus.Web.Infrastructure;
 
+using System.Globalization;
+
 internal sealed class ServerTimingMiddleware : IMiddleware
 {
     private const string ServerTimingHttpHeader = "Server-Timing";
@@ -13,13 +15,16 @@ internal sealed class ServerTimingMiddleware : IMiddleware
         if (context.Response.SupportsTrailers())
         {
             context.Response.DeclareTrailer(ServerTimingHttpHeader);
-            var stopWatch = new Stopwatch();
-            stopWatch.Start();
+            var start = Stopwatch.GetTimestamp();
 
             await next(context).ConfigureAwait(false);
 
-            stopWatch.Stop();
-            context.Response.AppendTrailer(ServerTimingHttpHeader, $"app;dur={stopWatch.ElapsedMilliseconds}.0");
+            var elapsed = Stopwatch.GetElapsedTime(start);
+
+            context.Response.AppendTrailer(
+                ServerTimingHttpHeader,
+                $"app;dur={elapsed.TotalMilliseconds.ToString(CultureInfo.InvariantCulture)}");
+
         }
         else
         {

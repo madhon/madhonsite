@@ -61,4 +61,5 @@ internal static class ServiceCollectionExtensions
 
     public static IServiceCollection AddServerTiming(this IServiceCollection services) =>
         services.AddSingleton<ServerTimingMiddleware>();
+
 }

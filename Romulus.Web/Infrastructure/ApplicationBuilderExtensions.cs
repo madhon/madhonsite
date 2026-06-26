@@ -24,4 +24,10 @@ internal static class ApplicationBuilderExtensions
         app.UseSecurityHeaders(SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment()));
         return app;
     }
+
+    public static WebApplication UseServerTiming(this WebApplication app)
+    {
+        app.UseMiddleware<ServerTimingMiddleware>();
+        return app;
+    }
 }
