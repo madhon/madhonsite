@@ -28,9 +28,15 @@ internal static class ContentDeliveryNetwork
 
 		public const string ParsleyUrl = "https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js";
 
-		public const string Migrate3Url =
-		  "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.5.2/jquery-migrate.js";
+		public const string Migrate4Url =
+		  "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/4.0.2/jquery-migrate.js";
 	}
+
+    internal static class JQueryCDN
+    {
+        public const string Domain = "code.jquery.com";
+        public const string Jquery4Url = "https://code.jquery.com/jquery-4.0.0.min.js";
+    }
 
     internal static class UnPkg
 	{
