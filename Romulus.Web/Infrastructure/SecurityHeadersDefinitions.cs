@@ -70,7 +70,8 @@ internal static class SecurityHeadersDefinitions
                     .From("https://ajax.googleapis.com")
                     .From("https://cdn.jsdelivr.net")
                     .From("https://cdnjs.cloudflare.com")
-                    .From("https://unpkg.com");
+                    .From("https://unpkg.com")
+                    .From("https://code.jquery.com");
 
                 p.AddStyleSrc()
                     .Self()
@@ -109,8 +110,7 @@ internal static class SecurityHeadersDefinitions
                     .From("ws://localhost:*");
 
                 p.AddImgSrc()
-                    .Self()
-                    .UnsafeInline();
+                    .Self();
 
                 p.AddScriptSrc()
                     .Self()
@@ -118,6 +118,7 @@ internal static class SecurityHeadersDefinitions
                     .From("https://cdn.jsdelivr.net")
                     .From("https://cdnjs.cloudflare.com")
                     .From("https://unpkg.com")
+                    .From("https://code.jquery.com")
                     .UnsafeInline();
 
                 p.AddStyleSrc()
@@ -128,8 +129,7 @@ internal static class SecurityHeadersDefinitions
                     .UnsafeInline();
 
                 p.AddFontSrc()
-                    .From("https://fonts.gstatic.com")
-                    .UnsafeInline();
+                    .From("https://fonts.gstatic.com");
             }, asReportOnly: cspReportOnly);
         }
     }
