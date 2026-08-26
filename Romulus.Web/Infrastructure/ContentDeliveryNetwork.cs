@@ -3,13 +3,6 @@
 #pragma warning disable S1075 // URIs should not be hardcoded
 internal static class ContentDeliveryNetwork
 {
-    internal static class Google
-	{
-		public const string Domain = "ajax.googleapis.com";
-
-		public const string JQuery3Url = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
-	}
-
     internal static class JsDelivrCdn
 	{
 		public const string Domain = "cdn.jsdelivr.net";
