@@ -66,8 +66,8 @@
     </PackageReference>
     <PackageReference Include="MimeKit" Version="4.17.0" />
     <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="4.7.0" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.88.0" />
-    <PackageReference Include="Microsoft.Identity.Client.Extensions.Msal" Version="4.88.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.89.0" />
+    <PackageReference Include="Microsoft.Identity.Client.Extensions.Msal" Version="4.89.0" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.18.0" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.18.0" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.18.0" />
