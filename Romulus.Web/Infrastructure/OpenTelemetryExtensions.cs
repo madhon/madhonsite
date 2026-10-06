@@ -10,7 +10,7 @@ internal static class OpenTelemetryExtensions
     private const string HealthEndpointPath = "/healthz";
     private const string AlivenessEndpointPath = "/alive";
 
-    public static IHostApplicationBuilder AddOpenTelemetry(this IHostApplicationBuilder builder)
+    public static IHostApplicationBuilder AddAppOpenTelemetry(this IHostApplicationBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder);
 

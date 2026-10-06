@@ -7,7 +7,7 @@ AppVersionInfo.InitialiseBuildInfoGivenPath(Directory.GetCurrentDirectory());
 //builder.Services.AddAzureAppConfig(builder.Configuration, builder.Configuration, builder.Environment);
 
 builder.AddSerilog();
-builder.AddOpenTelemetry();
+builder.AddAppOpenTelemetry();
 
 builder.WebHost.ConfigureKestrel(o => o.AddServerHeader = false);
 builder.Host.UseSystemd();
