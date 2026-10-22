@@ -64,7 +64,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="MimeKit" Version="4.18.1" />
+    <PackageReference Include="MimeKit" Version="4.18.2" />
     <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="4.8.0" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.91.1" />
     <PackageReference Include="Microsoft.Identity.Client.Extensions.Msal" Version="4.91.1" />
