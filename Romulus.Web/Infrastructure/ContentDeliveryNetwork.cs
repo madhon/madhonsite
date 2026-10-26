@@ -8,9 +8,9 @@ internal static class ContentDeliveryNetwork
 		public const string Domain = "cdn.jsdelivr.net";
 
 		public const string BootstrapCssUrl =
-		  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css";
+		  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css";
 
-		public const string BootstrapJsUrl = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js";
+		public const string BootstrapJsUrl = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js";
 	}
 
     internal static class Cloudflare
