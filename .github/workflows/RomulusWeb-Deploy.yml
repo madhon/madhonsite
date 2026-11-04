@@ -37,6 +37,14 @@ jobs:
 #          username: ${{ secrets.DO_SSH_USERNAME}}
 #          key: ${{ secrets.DO_SSH_PRIVATE_KEYY }}
 #          script: sudo systemctl stop sshguard
+      
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:infrastructure
+          version: latest
 
       - name: Copy files to DigitalOcean
         uses: appleboy/scp-action@v1
