@@ -53,7 +53,7 @@ builder.Services.AddControllersWithViews(opts => opts.Filters.Add(new AutoValida
 
 builder.Services.AddFluentValidators();
 
-builder.Services.AddFeatureManagement();
+builder.AddFeatureManagementServices();
 
 var app = builder.Build();
 

@@ -1,5 +1,7 @@
 namespace Romulus.Web.Services;
 
+using MailKit;
+
 internal sealed class Office365Transport : ITransport
 {
     public async Task DeliverAsync(MimeMessage message, CancellationToken ct)
