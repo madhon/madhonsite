@@ -36,7 +36,7 @@ jobs:
       - name: Install .NET SDK
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '10.x'
+          dotnet-version: '11.x'
 
       - name: Restore Packages
         run: dotnet restore **/*.csproj --verbosity quiet

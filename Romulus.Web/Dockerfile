@@ -1,5 +1,5 @@
-ARG VERSION=10.0-noble-chiseled
-ARG SDKVERSION=10.0-noble
+ARG VERSION=11.0-resolute-chiseled
+ARG SDKVERSION=11.0-resolute
 
 FROM mcr.microsoft.com/dotnet/sdk:$SDKVERSION  AS publish
 

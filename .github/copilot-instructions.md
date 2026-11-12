@@ -2,7 +2,7 @@
 
 ## Project Shape
 
-- This repository contains a single ASP.NET Core MVC application in `Romulus.Web` targeting `net10.0`.
+- This repository contains a single ASP.NET Core MVC application in `Romulus.Web` targeting `net11.0`.
 - Use the existing feature-folder structure under `Romulus.Web/Features` instead of creating traditional `Controllers` and `Views` folders.
 - Keep startup and hosting code in `Romulus.Web/Program.cs` minimal and explicit.
 
