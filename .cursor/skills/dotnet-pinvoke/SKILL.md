@@ -57,7 +57,7 @@ This skill covers both `DllImport` (available since .NET Framework 1.0) and `Lib
 | **Mechanism** | Runtime marshalling | Source generator (compile-time) |
 | **AOT / Trim safe** | No | Yes |
 | **String marshalling** | `CharSet` enum | `StringMarshalling` enum |
-| **Error handling** | `SetLastError` | `SetLastPInvokeError` |
+| **Error handling** | `SetLastError` | `SetLastError` |
 | **Availability** | .NET Framework 1.0+ | .NET 7+ only |
 
 ### Step 2: Map Native Types to .NET Types
@@ -154,7 +154,7 @@ private static extern int SetName(
 
 // LibraryImport — UTF-16
 [LibraryImport("kernel32", StringMarshalling = StringMarshalling.Utf16,
-    SetLastPInvokeError = true)]
+    SetLastError = true)]
 internal static partial int GetModuleFileNameW(
     IntPtr hModule, [Out] char[] filename, int size);
 
@@ -260,9 +260,11 @@ int result = handle.Use(myData);
 
 ### Step 7: Handle Errors
 
+Set `LibraryImportAttribute.SetLastError` to `true` when the native API's contract requires capturing the OS last-error value, then retrieve it with `Marshal.GetLastPInvokeError()`.
+
 ```csharp
 // Win32 APIs — check SetLastError
-[LibraryImport("kernel32", SetLastPInvokeError = true)]
+[LibraryImport("kernel32", SetLastError = true)]
 [return: MarshalAs(UnmanagedType.Bool)]
 internal static partial bool CloseHandle(IntPtr hObject);
 
@@ -338,6 +340,12 @@ GC.KeepAlive(callback); // prevent collection — fnPtr does not root the delega
 Use `NativeLibrary.SetDllImportResolver` for complex scenarios, or conditional compilation for simple cases. Use `CLong`/`CULong` for C `long`/`unsigned long`. Note: `CLong`/`CULong` with `LibraryImport` requires `[assembly: DisableRuntimeMarshalling]`.
 
 ```csharp
+// Trivial: use platform naming convention
+// The default naming convention adds corresponding prefix and extension when
+// searching the nativelibrary. The resultant file name will be mylib.dll on
+// Windows, libmylib.so on Linux and libmylib.dylib on macOS.
+private const string LibName = "mylib";
+
 // Simple: conditional compilation
 // WINDOWS, LINUX, MACOS are predefined only when targeting an OS-specific TFM
 // (e.g., net8.0-windows). For portable TFMs (e.g., net8.0), these symbols are
@@ -351,13 +359,15 @@ Use `NativeLibrary.SetDllImportResolver` for complex scenarios, or conditional c
 #endif
 
 // Complex: runtime resolver
+// When targeting netstandard2.0 or other frameworks when OperatingSystem.IsXXX
+// is not available, use RuntimeInformation.IsOSPlatform(OSPlatform.XXX) api.
 NativeLibrary.SetDllImportResolver(typeof(MyLib).Assembly,
     (name, assembly, searchPath) =>
     {
         if (name != "mylib") return IntPtr.Zero;
-        string libName = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+        string libName = OperatingSystem.IsWindows()
             ? "mylib.dll"
-            : RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
+            : OperatingSystem.IsMacOS()
                 ? "libmylib.dylib" : "libmylib.so";
         NativeLibrary.TryLoad(libName, assembly, searchPath, out var handle);
         return handle;
@@ -373,7 +383,7 @@ For codebases targeting .NET 7+, migrating provides AOT compatibility and trimmi
 1. Add `partial` to the containing class and make the method `static partial`
 2. Replace `[DllImport]` with `[LibraryImport]`
 3. Replace `CharSet` with `StringMarshalling`
-4. Replace `SetLastError = true` with `SetLastPInvokeError = true`
+4. Preserve `SetLastError = true` for APIs that require capturing the OS last-error value
 5. Remove `CallingConvention` unless targeting Windows x86
 6. Build and fix `SYSLIB1054`–`SYSLIB1057` analyzer warnings
 
@@ -418,7 +428,7 @@ For binding Objective-C libraries (macOS/iOS), use [Objective Sharpie](https://l
 - [ ] Memory ownership is documented and matched (who allocates, who frees, with what)
 - [ ] `SafeHandle` used for all native handles (no raw `IntPtr` escaping the interop layer)
 - [ ] Delegates passed as callbacks are rooted to prevent GC collection
-- [ ] `SetLastError`/`SetLastPInvokeError` set for APIs that use OS error codes
+- [ ] `DllImportAttribute.SetLastError` or `LibraryImportAttribute.SetLastError` set to `true` when the native API requires last-error capture
 - [ ] Struct layout matches native (packing, alignment, field order)
 - [ ] `CLong`/`CULong` used for C `long`/`unsigned long` in cross-platform code
 - [ ] If using `CLong`/`CULong` with `LibraryImport`, `[assembly: DisableRuntimeMarshalling]` is applied
